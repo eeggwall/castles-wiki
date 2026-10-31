@@ -5,7 +5,7 @@ summary: A^e(w, h) is a sum of exponentials in the width and, for w <= 12 (compu
 tags: [analysis, castle, fractional-calculus, interpolation, matrix-power, branch-cut, quasi-polynomial, c-finite, eigenvalues, transfer-matrix, square-root, embedding, metallic-means, computation, verification]
 sources: [project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # Fractional width and fractional height
@@ -151,6 +151,7 @@ The ridge rule `R_h = J - D` (neighboring columns differ in height unless both e
 - [[castle-strip](pages/castle-strip.md)] - the 0/1 rule matrices whose square roots are the half-columns.
 - [[ridge-castle](pages/ridge-castle.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `J - D` and its characteristic polynomial.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strip on three heights, whose tridiagonal matrix has no real square root.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - a seminar through the fractional block count, the half-sum, the interpolations of this page and the half-column, and the walk on a tree castle.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: A castle of width w has semi-perimeter s = w + blocks, so the block cou
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis]
 sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, baril-florez-ramirez-2026-generalized-narayana-arrays]
 created: 2026-09-22
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -106,6 +106,7 @@ Here `F_n` are the Fibonacci numbers with `F_1 = F_2 = 1`; Delest and Viennot wr
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the castle generating function `Π/(1 − x − Π)` by width, blocks and area, which at equal weights for width and blocks grades by semi-perimeter and area.
 - [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] - strip rules counted by semi-perimeter: the growth constants at each height through 4, silver first at height 5, and the bound that excludes bronze below height 22.
 - [[euler-castles](pages/euler-castles.md)] - convex castles counted by `F_{s−1}` at semi-perimeter `s`, on which Franklin's move keeps the area and the semi-perimeter and changes the block count by one.
+- [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] - the simple random walk on a tree castle, a stationary step of which is horizontal with probability `(w − 1)/(s − 2)`.
 
 ## Footnotes
 

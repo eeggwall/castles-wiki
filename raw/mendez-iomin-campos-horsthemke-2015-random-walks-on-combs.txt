@@ -1,0 +1,595 @@
+                                                                                 Mesoscopic description of random walks on combs
+                                                                       Vicenç Méndez,1 Alexander Iomin,2 Daniel Campos,1 and Werner Horsthemke3
+                                                                           1
+                                                                          Grup de Fı́sica Estadı́stica. Departament de Fı́sica. Facultat de Ciències. Edifici
+                                                                            Cc. Universitat Autònoma de Barcelona, 08193 Bellaterra (Barcelona) Spain
+                                                                                      2
+                                                                                        Department of Physics, Technion, Haifa, 32000, Israel
+                                                                     3
+                                                                       Department of Chemistry, Southern Methodist University, Dallas, Texas 75275-0314, USA
+                                                                                                        (Dated: July 28, 2018)
+
+
+
+
+arXiv:1509.01670v1 [cond-mat.stat-mech] 5 Sep 2015
+                                                                     Combs are a simple caricature of various types of natural branched structures, which belong to
+                                                                  the category of loopless graphs and consist of a backbone and branches. We study continuous time
+                                                                  random walks on combs and present a generic method to obtain their transport properties. The
+                                                                  random walk along the branches may be biased, and we account for the effect of the branches by
+                                                                  renormalizing the waiting time probability distribution function for the motion along the backbone.
+                                                                  We analyze the overall diffusion properties along the backbone and find normal diffusion, anomalous
+                                                                  diffusion, and stochastic localization (diffusion failure), respectively, depending on the characteristics
+                                                                  of the continuous time random walk along the branches.
+
+                                                                  PACS numbers: 05.40.-a
+
+
+                                                                      I.       INTRODUCTION                              walks on comb structures provide a geometrical explana-
+                                                                                                                         tion of anomalous diffusion.
+                                                        Random walks often provide the underlying meso-                     More general combs have been studied recently. For
+                                                     scopic mechanism for transport phenomena in physics,                example, a numerical study of the encounter problem
+                                                     chemistry and biology [1–3]. A wide class of random                 of two walkers in branched structures shows that the
+                                                     walks give rise to normal diffusion, where the mean-                topological heterogeneity of the structure can play an
+                                                     square displacement (MSD), h(∆r)2 (t)i, grows linearly              important role [20]. Another example is the occupation
+                                                     with time t for long times. In many important appli-                time statistics for random walkers on combs where the
+                                                     cations, however, the MSD behaves like h(∆r)2 (t)i ∝ tγ ,           branches can be regarded as independent complex struc-
+                                                     with γ 6= 1, and the diffusion is anomalous [1, 2]. Anoma-          tures, namely fractal or other ramified branches [21]. Fi-
+                                                     lous diffusion can be modelled by various classes of ran-           nally, we want to mention studies to understand the dif-
+                                                     dom walks [4]. We focus on the important class of contin-           fusion mechanism along a variety of branched systems,
+                                                     uous time random walks (CTRWs) [1, 2]. A specific fea-              where scaling arguments, verified by numerical simula-
+                                                     ture of a CTRW is that a walker waits for a random time             tions, have been able to predict how the MSD grows with
+                                                     τ between any two successive jumps. These waiting times             time [22].
+                                                     are random independent variables with a probability dis-               Diffusion on comb structures has also been studied by
+                                                     tribution function (PDF) φ(τ ), and the tail of the PDF             macroscopic approaches, based on Fokker-Planck equa-
+                                                     determines if the transport is diffusive (γ = 1) or sub-            tions [12], which have been applied to describe diffu-
+                                                     diffusive (γ < 1). Heavy-tailed waiting time PDFs give              sive properties in discrete systems, such as porous dis-
+                                                     rise to subdiffusion. Realistic models of the waiting time          crete media [5], infiltration of diffusing particles from
+                                                     PDF have been formulated for transport in disordered                one material into another [23], and superdiffusion due to
+                                                     materials with fractal and ramified architecture, such as           the presence of inhomogeneous convection flow [24, 25].
+                                                     porous discrete media [5] and comb and dendritic poly-              Other macroscopic descriptions, based on renormalizing
+                                                     mers [6–8], and for transport in crowded environments               the waiting time PDF for jumps along the backbone
+                                                     [9].                                                                to take into account the transport along the branches
+                                                        A simple caricature of various types of natural                  [26], have been found useful to model continuous-time-
+                                                     branched structures that belong to the category of loop-            reaction-transport processes [27] and human migrations
+                                                     less graphs is a comb model (see Fig. 1). The comb model            along river networks [28].
+                                                     was introduced to understand anomalous transport in                    Kahng and Redner provided a mesoscopic, probabilis-
+                                                     percolation clusters [10–12]. Now, comb-like models are             tic description of random walks on combs, by using the
+                                                     widely employed to describe various experimental appli-             successive decimation of the discrete-time Master equa-
+                                                     cations. These models have proven useful to describe                tion to obtain a mesoscopic balance equations for the
+                                                     the transport along spiny dendrites [13, 14], percolation           probability of the walker to be at a given node at a given
+                                                     clusters with dangling bonds [11], diffusion of drugs in            time [29]. A mesoscopic description is necessary for an ac-
+                                                     the circulatory system [15], energy transfer in comb poly-          curate description of the transport properties, such as the
+                                                     mers [6, 7] and dendritic polymers [8], diffusion in porous         diffusion coefficient or the mean visiting time in a branch,
+                                                     materials [16–18], the influence of vegetation architec-            in terms of the microscopic parameters that characterize
+                                                     ture on the diffusion of insects on plant surfaces [19],            the random walk process.
+                                                     and many other interdisciplinary applications. Random                  Here we obtain transport quantities within the frame-
+                                                                                                                           2
+
+work of the CTRW formalism. We assume that the                 t. When the walker arrives at a node, it waits a ran-
+motion along the backbone and the branches is non-             dom time τ before performing a new jump to the nearest
+Markovian and that the motion along the branches can           node. We assume that the comb is homogeneous, and the
+be non-isotropic. We reduce the dynamic effect of the          waiting time PDF at any given node is given by φ0 (τ ).
+branches to a waiting time PDF for the motion along the        When the walker enters a branch, it spends some time
+backbone by using the decimation method of Kahng and           moving inside the branch before returning to the back-
+Redner. The time spent by the walker between its en-           bone. This sojourn time can be used to determine an
+try into the branches and its return to the backbone for       effective waiting time PDF φ(τ ) for the walker’s motion
+the first time is treated as a contribution to the effective   along the backbone. In other words, the motion of the
+waiting time at the node where the branch crosses the          walker on the comb can be reduced to the effective mo-
+backbone.                                                      tion along a one-dimensional lattice, corresponding to the
+   The paper is organized as follows. In Sec. II we formu-     backbone only. This motion is non-Markovian and can
+late the mesoscopic description of the random walk on          be described mesoscopically by the Generalized Master
+the comb and reduce walker’s motion to an effective mo-        Equation (GME)
+tion along the backbone only with a renormalized waiting
+time PDF for the backbone nodes. Sec. III deals with the         ∂P
+                                                                        Z t
+MSD of the effective backbone motion, derives the effec-            =      K(t − t′ )dt′ ×
+                                                                 ∂t      0
+tive diffusion coefficient, and establishes the conditions               Z ∞                                       
+for normal diffusion, anomalous diffusion, and stochastic                     P (x − x′ , t′ )Φ(x′ )dx′ − P (x, t′ ) , (2.1)
+localization (diffusion failure) [30] in terms of the num-                    −∞
+ber of branch nodes and the degree of bias of the motion
+along the branches. We provide details of the numerical        where K(t) is the memory kernel related to the waiting
+calculations in Sec. ?? and summarize our results and          time PDF via its Laplace transform, K(s) = sφ(s)/[1 −
+discuss their implications in Sec. IV.                         φ(s)], where s is the Laplace variable. The dispersal ker-
+                                                               nel Φ(x) represents the probability for the walker of per-
+                                                               forming a jump of length x. If the walker moves isotrop-
+        II.       MESOSCOPIC DESCRIPTION                       ically between nearest neighbors in a one-dimensional
+                                                               lattice of spacing a, the dispersal kernel reads Φ(x) =
+  The simplest comb model, shown in Fig. 1, is formed          δ(x − a)/2 + δ(x + a)/2. We assume that the walker is
+by a principal axis, called the backbone, which is a one-      initially located at x = 0, i.e., P (x, 0) = δx,0 with x = ia
+dimensional lattice with spacing a, and identical branches     and i = 0, ±1, ±2, . . . , where δx,0 is the Kronecker delta.
+that cross the backbone perpendicularly at each node.          Then the Laplace transform of the GME for x 6= 0 reads
+The walker moves through the comb by performing jumps
+                                                                                 φ(s)
+                                                                    P (x, s) =        [P (x − a, s) + P (x + a, s)] .   (2.2)
+              b    b        b   b   b   b                                         2
+                                                                 The mesoscopic balance equation for the walker on the
+                                                               comb being at node x = ia of the backbone is
+              b    b        b   b   b   b
+
+
+         a
+              b    b        b   b   b   b
+
+                                                                           φ0 (s)
+                                             backbone            P (x, s) =       [P (x − a, s) + P (x + a, s)]
+              b    b        b   b   b   b                                    4
+                        a                                           + (1 − q)φ0 (s) [P (y = a, s) + P (y = −a, s)] . (2.3)
+              b    b        b   b   b   b
+
+
+                                                               Here P (x, s), P (x − a, s), and P (x + a, s) is short-
+              b    b        b   b   b   b
+                                            branch             hand for P (x, y = 0, s), P (x − a, y = 0, s), and
+                                                               P (x + a, y = 0, s), and P (y = a, s) and P (y = −a, s)
+              b     b       b   b   b   b                      stands for P (x, y = a, s) and P (x, y = −a, s). The
+                                                               term φ0 (s) [P (x − a, s) + P (x + a, s)] /4 corresponds to
+FIG. 1: Comb structure consisting of a backbone and            the contribution of the walker arriving at node x = ia
+branches. Each point represents a node where the walker        from the left or from the right with probability 1/4 after
+may jump or wait a random time                                 waiting a random time τ with PDF φ0 (τ ) at nodes x + a
+                                                               or x − a. As shown in Fig. 2, the walker located at the
+between nearest-neighbor nodes along the backbone or           ith node of the backbone may jump to the right, left,
+along the branches. We assume that the walker performs         up or down with probability 1/4. We assume that the
+isotropic jumps along the backbone, but the jumps along        walker moves forward (away from the backbone) along
+the branches may be biased, for example by an external         the branches with probability q and back to the back-
+field [10].                                                    bone with probability 1 − q. The term
+   We derive the balance equation for the PDF P (x, t)
+of finding the walker at node x on the backbone at time             (1 − q)φ0 (s) [P (y = a, s) + P (y = −a, s)]        (2.4)
+                                                                                                                                                                     3
+
+in (2.3) corresponds the contribution of the walker arriv-       Setting y = 3a in (2.8) we obtain
+ing at the backbone node x from the first node of the
+upper or lower branch after waiting there a random time            P (y = 2a, s) − qφ0 (s)P (y = a, s)
+τ with PDF φ0 (τ ).
+                                                                                  = φ0 (s)(1 − q) A1 λ3+ + A2 λ3− . (2.13)
+                                                                                                                
+   Consider the motion along the upper branches. The
+lower branch dynamics is the same due to the symmetry
+                                                                 Solving the system of equations (2.10) and (2.13) for the
+of the comb. The mesoscopic balance equation for the
+                                                                 quantities A1 and A2 , we obtain
+first node of the upper branches reads
+
+                 φ0 (s)                                                   P (y = 2a, s) − qφ0 (s)P (y = a, s)
+P (y = a, s) =          P (x, s) + φ0 (s)(1 − q)P (y = 2a, s).     A1 =
+                   4                                                          λ2+ (λ+ − λ− ) φ0 (s)(1 − q)
+                                                         (2.5)                                      λ− P (y = 2a, s)
+The first term φ0 (s)P (x, s)/4 corresponds to the contri-                                        − 2                , (2.14)
+                                                                                                     λ+ (λ+ − λ− )
+bution of the walker arriving from the backbone, while
+φ0 (s)(1 − q)P (y = 2a, s) is the contribution of the walker
+jumping from the upper node y = 2a to y = a with prob-
+ability 1 − q after waiting a random time τ with PDF                      −P (y = 2a, s) + qφ0 (s)P (y = a, s)
+                                                                   A2 =
+φ0 (τ ). Analogously, we have for the lower branches                          λ2− (λ+ − λ− ) φ0 (s)(1 − q)
+                                                                                                   λ+ P (y = 2a, s)
+                φ0 (s)                                                                           + 2                . (2.15)
+P (y = −a, s) =        P (x, s)+φ0 (s)(1−q)P (y = −2a, s).                                          λ− (λ+ − λ− )
+                  4
+                                                    (2.6)
+                                                                    A special situation occurs at the end of the branches,
+Generalizing (2.5) to any node of the branches located
+                                                                 where we have to impose reflecting boundary conditions,
+between 2a ≤ y ≤ (N − 2)a, we obtain the balance equa-
+                                                                 i.e.,
+tion for the upper branches
+                                                                     P (y = N a, s) = qφ0 (s)P (y = (N − 1)a, s).                                                (2.16)
+   P (y, s) = φ0 (s) [qP (y − a, s) + (1 − q)P (y + a, s)] .
+                                                         (2.7)   The node at y = (N − 1)a also needs a special balance
+   To determine the Laplace transform φ(s) of the ef-            equation (see Fig. 2),
+fective backbone node waiting time PDF, we need to
+determine P (y = a, s) and P (y = −a, s) in (2.3) in                                                        b
+                                                                                                                                            y = Na
+terms of P (x, t), so that (2.3) can be cast in the form
+of (2.2). Given (2.5) and (2.6), this goal can be achieved                                      1                                            q
+if P (y = 2a, s) and P (y = −2a, s) can be related to
+P (y = a, s) and P (y = −a, s). We proceed as follows.                                              b
+                                                                                                                                            y = (N − 1)a
+The solution of (2.7) reads
+                                                                                          1−q                                                q
+                                 y/a        y/a
+                 P (y, s) = A1 λ+ + A2 λ− ,             (2.8)                                               b                   y = (N − 2)a
+                                                                                                                                    b
+                                                                                                                                b
+
+
+where                                                                                                                                   b
+
+
+
+
+                           p                                                                                            b       y = 2a
+                      1±     1 − 4q(1 − q)φ20 (s)
+               λ± =                               .     (2.9)
+                            2(1 − q)φ0 (s)                                                1−q                                                q
+
+To find expressions for the quantities A1 and A2 , whose                                                b                               y=a
+dependence on x and s is not displayed, we apply (2.8)
+                                                                                          1−q                                               1/4
+to the node y = 2a:
+                                                                                          1/4                                                    1/4
+                P (y = 2a, s) = A1 λ2+ + A2 λ2− .      (2.10)                   i−a   b                         b
+                                                                                                                            i
+                                                                                                                                                       b
+                                                                                                                                                           i+a
+                                                                                          1/4                                                    1/4
+On the other hand, setting y = 2a in (2.7), we find                                       1/4                                               1−q
+
+                                                                                                                    b
+                                                                                                                                y = −a
+     P (y = 2a, s) = φ0 (s) [qP (y = a, s)
+                       + (1 − q)φ0 (s)P (y = 3a, s)] , (2.11)                                   q                                            1−q
+
+
+or
+
+     P (y = 2a, s) − φ0 (s)qP (y = a, s) =                       FIG. 2: Schematic representation of the possible jumps of a
+                     φ0 (s)(1 − q)φ0 (s)P (y = 3a, s). (2.12)    walker with the corresponding probabilities.
+                                                                                                                                               4
+
+  P (y = (N − 1)a, s) = qφ0 (s)P (y = (N − 2)a, s)                          50
+
+                          + φ0 (s)P (y = N a, s). (2.17)                    40                q > 1/2
+
+                                                                            30
+                                                                  ⟨t⟩/t̄
+  Substituting y = (N − 2)a into (2.7) and considering
+                                                                                                                 q = 1/2
+(2.16), we can write                                                        20
+
+ P (y = (N −2)a, s) = h(φ0 (s))P (y = (N −3)a, s), (2.18)                   10                                                  q < 1/2
+
+where                                                                        0
+                                                                                      2       4         6       8      10       12   14
+                                                
+                             qφ0 (s) 1 − qφ20 (s)                                                               N
+                 h(φ0 (s)) =                       .   (2.19)
+                              1 + q(q − 2)φ20 (s)
+                                                                            40
+Substituting the solutions from (2.8), (2.14), and (2.15)                   35
+                                                                            30
+into (2.18), we find
+                                                                            25
+        P (y = 2a, s) = G(q, φ0 (s))P (y = a, s),      (2.20)     ⟨t⟩/t̄    20                                      N =3
+                                                                            15
+where                                                                       10
+                                                                             5                                                   N =2
+                                2qφ0 (s)                                     0
+G(q, φ0 (s)) =                                             ,
+                   1 + H(q, φ0 (s)) p                                            0    0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9                  1
+               1+                     1 − 4q(1 − q)φ20 (s)
+                   1 − H(q, φ0 (s))                                                                             q
+                                                   (2.21)
+                   N −5                                       FIG. 3: Dimensionless mean waiting time of the effective
+                 λ−       λ− − h(φ0 (s))                        backbone dynamics.
+H(q, φ0 (s)) =                           .         (2.22)
+                 λ+       λ+ − h(φ0 (s))
+
+For the lower branch we obtain in a similar manner,             The mean waiting time hti is given by
+    P (y = −2a, s) = G(q, φ0 (s))P (y = −a, s).        (2.23)                           t̄ 
+                                                                                             2(1 − q)1−N q N + 4q − 3 .
+                                                                                                                     
+                                                                           hti =                                                          (3.2)
+                                                                                     2q − 1
+We have achieved our goal of expressing P (y = 2a, s)
+and P (y = −2a, s) in terms of P (y = a, s) and P (y =           In Fig. 3, we plot the effective mean waiting at a node
+−a, s). Substituting (2.20) and (2.23) into (2.5) and (2.6)     of the backbone dynamics versus N and q. It shows that
+and using the resulting expressions in (2.3), we obtain an      the mean waiting time hti is a monotonically increasing
+equation of the form (2.2) with                                 function of both q and N . If the random walk inside
+                                                                the branches is isotropic, q = 1/2, one obtains by the
+                             φ0 (s)                             L’Hopital’s rule from (3.2)
+     φ(s) =                                       .    (2.24)
+                            (1 − q)φ20 (s)
+                 2−                                                                          lim hti = (1 + 2N ) t̄.                      (3.3)
+                    1 − (1 − q)φ0 (s)G(q, φ0 (s))                                           q→1/2
+
+
+The Laplace inversion of (2.24) yields φ(τ ), which in-         To determine the diffusion coefficient D for diffusion
+corporates the dynamics along the branches and can be           through the comb, we first calculate the MSD. Perform-
+understood as the effective waiting time PDF for a walker       ing the Fourier-Laplace transform on (2.1), we obtain
+moving along the backbone only.                                                                             1 − φ(s)
+                                                                                          P (k, s) =                    .                 (3.4)
+                                                                                                        s[1 − Φ(k)φ(s)]
+          III.     STATISTICAL PROPERTIES                       The MSD in Laplace space reads (see, e.g., [2])
+
+                           A.   N finite                                                                        d2 P (k, s)
+                                                                                           x2 (s) = − lim                   .             (3.5)
+                                                                                                            k→0    dk 2
+   If the local waiting time PDF φ0 (τ ) has finite moments,    As mentioned in Sec. II, we assume that the motion on
+its Laplace transform reads [2], φ0 (s) ≃ 1 − st̄, in the       the backbone is unbiased and that the walker only jumps
+large time limit s → 0, where t̄ is the local mean waiting      to nearest neighbors. This implies that the kernel Φ(x)
+time at each node. Taking the limit s → 0 in (2.24), we         is given Φ(x) = δ(x − a)/2 + δ(x + a)/2, and we obtain
+obtain the waiting time PDF for the effective backbone          from (3.5),
+dynamics,
+                                                                                                                  a2
+                                           −1                                               x2 (s) =                                      (3.6)
+                       φ(s) ≃ (1 + s hti)       .       (3.1)                                               s [φ(s)−1 − 1]
+                                                                                                                                                        5
+
+in the large time limit. If the waiting time PDF φ(t)                                   the result given by (3.7) for the MSD. The transport is
+possesses a finite first moment, (3.1) implies that the                                 diffusive for finite N , regardless q and the specific form
+MSD along the backbone corresponds to normal diffu-                                     of φ0 (τ ), as long as it has finite moments.
+sion x2 (t) = 2Dt. The diffusion coefficient is given by                                   We consider now a an effective waiting time PDF with
+                          a2
+                                 a       2
+                                              2q − 1                                    the large-time limit φ0 (τ ) ∼ τ −1−γ , with Laplace trans-
+               D=              =                              .                 (3.7)   form φ0 (s) ≃ 1 − (sτ0 )γ and 0 < γ < 1, which does not
+                         2 hti   2t̄ 2(1 − q)1−N q N + 4q − 3                           possess finite moments. Here τ0 is a parameter with units
+In Fig. 4, we compare the results provided by (3.7) with                                of time. In this case, the waiting time PDF for the back-
+numerical simulations.                                                                  bone dynamics is obtained by simply replacing st̄ with
+                                                                                        (sτ0 )γ , i.e, φ(s) ≃ [1 + (sτ0 )γ hti /τ0 ]−1 . Substituting this
+              0.18                                                                      result into (3.6), we find
+                               Dt̄ = 1/6
+              0.16
+
+              0.14                                                                                                     a2 τ0 (t/τ0 )γ
+                                                                                                            x2 (t) =                  ,             (3.8)
+              0.12                                                                                                      hti Γ(1 + γ)
+               0.1                    N =6
+Dt̄
+              0.08                                                     N =2             for large t, where hti is given by (3.2), with τ0 instead of t̄.
+                                                           N =3                         If the waiting time PDF φ0 (τ ) at each node of the comb
+              0.06
+                                                                                        has a power-law tail, then the overall transport along the
+              0.04                                                                      backbone is anomalous.
+              0.02
+
+                0
+                     0             0.2           0.4           0.6        0.8       1
+                                                       q
+                                                                                                                 B.    N →∞
+FIG. 4: Plot of the diffusion coefficient through the comb for
+N = 2, N = 3, and N = 6 versus q. Solid curves corre-
+spond to exact analytical results given by (3.7). Numerical                                If the number of nodes of the branches goes to infinity,
+simulations results are depicted with symbols.                                          the mean time spent by the walker visiting a branch in-
+                                                                                        creases monotonically, see (3.2). However, this does not
+                                                                                        always results in anomalous transport along the overall
+   As Fig. 3 demonstrates, hti increases monotonically
+                                                                                        structure as we show below.
+with N for q < 1/2 and saturates at (4q − 3)/(2q − 1) for
+N → ∞. Consequently, the mean waiting time hti is fi-                                    For N → ∞, the quotient (λ− /λ+ )N → 0 and also
+nite for N → ∞; the overall diffusion along the backbone                                H → 0. We obtain from (2.21),
+is normal. However, for q ≥ 1/2, the mean waiting time
+hti increases without bound as N increases, and anoma-
+                                                                                                                 2qφ0 (s)          2qφ0 (s)
+lous transport is expected for N → ∞. In Fig. 5, we plot                                  G(q, φ0 (s)) =    p                   ≡           ,
+                                                                                                                           2
+                                                                                                        1 + 1 − 4q(1 − q)φ0 (s)   1 + g(q)
+               1.0e+05                                                                                                                    (3.9)
+                                                                                                                 p
+                                                                                        where we define g(q) ≡ 1 − 4q(1 − q)φ20 (s) for conve-
+               8.0e+04                                                                  nience. Equation (2.24) reduces to
+
+
+hx2 (t)i/2D
+               6.0e+04
+                                                                                                                                            
+                                                                                                          φ0 (s) 1 + g(q) − 2q(1 − q)φ20 (s)
+                                                                                        φ(s) =                                                          .
+                                                                                                 2 − (1 + 3q − 4q 2 )φ20 (s) + [2 − (1 − q)φ20 (s)]g(q)
+               4.0e+04                                                                                                                            (3.10)
+                                                                                        We take the limit s → 0 and consider first the case where
+               2.0e+04                                                                  φ0 (τ ) has finite moments. Then φ0 (s) ≃ 1 − st̄, as s → 0.
+                                                                                        The square root g(q) in (3.10) reads
+               0.0e+00
+                     0e+00               2e+04    4e+04        6e+04    8e+04   1e+05              
+                                                                                                               4q(1 − q)
+                                                           t
+                                                                                                   
+                                                                                                    1 − 2q −                st̄,    q < 1/2,
+                                                                                                                 2q − 1
+                                                                                                   
+                                                                                                   
+                                                                                                              √
+                                                                                                   
+                                                                                                   
+                                                                                                   √
+                                                                                                   
+FIG. 5: MSD over 2D for N fixed and three different values                                                      2
+                                                                                            g(q) ≃     2st̄ −     (st̄)3/2 ,         q = 1/2,      (3.11)
+of q: 0.1, 0.25, 05. 0.75                                                                          
+                                                                                                   
+                                                                                                              4
+                                                                                                                 4q(1 − q)
+                                                                                                   
+                                                                                                   
+                                                                                                   −1 + 2q +                   st̄, q > 1/2,
+                                                                                                   
+                                                                                                   
+the MSD scaled by the diffusion coefficient. It illustrates                                                        2q − 1
+                                                                                                                                   6
+
+and (3.10) implies that the waiting time PDF is given by               0 < γ < 1, as s → 0. The MSD in this case can be
+                               −1                                   obtained straightforwardly by replacing st̄ with (sτ0 )γ in
+                   4q − 3                                              (3.12). For large times it reads
+             1 +            s t̄     ,              q < 1/2,
+          
+          
+                   2q − 1
+          
+          
+                                                                                                            γ
+                                                                                              a2     2q − 1 t
+                                                                                      
+                  √ −1
+          
+                                                                                                                    , q < 1/2,
+                                                                                     
+  φ(s) ≃     1 + 2st̄            ,                  q = 1/2,
+                                                                                       
+          
+                                                                                       
+                                                                                       
+                                                                                       
+                                                                                        Γ(1 + γ) 4q − 3 τ0
+                                                                                                          γ/2
+                                             −1                                                 a2           t
+                                                                                      
+              3q − 1 4q 2 − 3q + 1
+            
+                                                                             x2 (t) = √
+          
+                                                                                                                     , q = 1/2,
+          
+          
+          
+                      +                 st̄     , q > 1/2.                                 2Γ(1 + γ/2) τ0
+                 q           (2q − 1)q
+                                                                                       
+                                                                                       
+                                                                                       
+                                                                                             a2 q(2q − 1)
+                                                                                       
+                                                         (3.12)                        
+                                                                                       
+                                                                                       
+                                                                                        γ                   µ(t/τ0 ), q > 1/2,
+Substituting (3.12) into (3.6), we find for large t,                                     τ0 (4q 2 − 3q + 1)
+                                                                                                                               (3.15)
+                    2q − 1 t
+              
+               a2               ,            q < 1/2,                 where
+                    4q − 3 t̄
+              
+              
+              
+                                                                                                        γ
+                                                                                                                     (2q − 1)2
+                                                                                                                                
+                                                                                                              t
+              
+               r                                                                            γ
+    x2 (t) = a2 2t ,                          q = 1/2,   (3.13)            µ(t/τ0 ) = (t/τ0 ) Eγ,γ+1 −
+                                                                                                             τ0   4q 2 − 3q + 1
+                      π t̄
+                                                                                                                               (3.16)
+              
+                       q
+              
+              
+               a2           (1 − e−αt ) , q > 1/2,
+              
+                                                                       is expressed in terms of the the generalized Mittag-Leffler
+              
+                    2q − 1
+                                                                       function Eα,β (z). We use the following property of inte-
+where the rate of saturation is                                        gration of the Mittag-Leffler function [31],
+                                  (2q − 1)2                                  Z t
+                        α=                       .           (3.14)              Eα,β (bz α ) z β−1 dz = tβ Eα,β+1 (btα ) .    (3.17)
+                               (4q 2 − 3q + 1)t̄                              0
+
+In Fig 6 we compare these results with numerical simu-                 Subdiffusion in the branches results in backbone subdif-
+lations for N = 103 . For q = 1/2, we obtain the well                  fusion for q ≤ 1/2. For advection away from the back-
+known
+   √ result of subdiffusive transport with the MSD                     bone, q > 1/2, we again find stochastic localization. For
+∼ t. However, for q 6= 1/2, the side branches expe-                    t/τ0 ≫ 1, Eα,β (−atα ) ∼ t−α /Γ(β − α) [32], and conse-
+rience advection, and the transport is remarkably differ-              quently µ(t/τ0 ) approaches a finite value as t → ∞.
+ent. Namely, for q > 1/2 the advection is away from
+the backbone along the branches, y → ±∞. The walker
+is effectively trapped inside the branches, and stochas-                                 IV.    CONCLUSION
+tic localization (diffusion failure) occurs, x2 (∞) < ∞,
+[30]. For q < 1/2, the advection is towards the backbone.                 We have developed a mesoscopic equation for a ran-
+It enhances the backbone dynamics and normal diffusion                 dom walk on a regular comb structure given by (2.2) and
+takes place.                                                           (2.24). The random walk along the branches consists of,
+          45                                                           possibly biased, jumps to the nearest node, while waiting
+                                                                       at each node for a random time τ distributed according
+          40
+                                                                       to the PDF φ0 (τ ) before proceeding with the next jump.
+          35                                                           The overall dynamics along the branches has been re-
+                                                        ∼t             duced to an effective waiting time PDF, given by (2.24),
+          30
+                                                                       for motion solely along the backbone. We have obtained
+
+⟨x2(t)⟩
+          25                                                           statistical properties, such as the effective mean waiting
+          20                                                           time, hti for the backbone nodes, and the diffusion coef-
+                                                                       ficient, D, of the overall structure for the case where the
+          15        q < 1/2                             ∼ t1/2         number of nodes N of the branches is finite or infinite. If
+          10                   q = 1/2                                 N is finite and φ0 (τ ) has finite moments, both hti and D
+          5                    q > 1/2
+                                                                       are derived exactly in terms of the bias probability q, the
+                                                                       number of nodes N on the branch, and the mean waiting
+          0                                                            time probability at each node. In this case the transport
+               0   50         100        150     200   250       300
+                                                                       is always normal diffusion. If φ0 (τ ) ∼ τ −1−γ for large
+                                         t
+                                                                       time, it does not posses finite moments and the MSD of
+FIG. 6: MSD for three values of q, displaying three different          the random walker behaves like tγ . If N is infinite, the
+behaviors. Solid curves correspond to the results given by             value of q is decisive. If φ0 (τ ) has finite moments, the
+(3.13). Symbols are the results of numerical simulations with          diffusion regime is normal if q < 1/2, while the MSD
+N = 103 .                                                              behaves like t1/2 for q = 1/2. If q > 1/2, the MSD
+                                                                       approaches a constant finite value for large time, corre-
+ Consider now the case where the local waiting time                    sponding to stochastic localization (diffusion failure). If
+PDF is φ0 (τ ) ∼ τ −1−γ , i.e., φ0 (s) ≃ 1 − (sτ0 )γ with              φ0 (τ ) ∼ τ −1−γ for large time, the MSD behaves like tγ
+                                                                                                                        7
+
+for q < 1/2 and like tγ/2 for q = 1/2 Again, stochastic        the support by the Israel Science Foundation (ISF-1028).
+localization occurs for q > 1/2. In summary, if the bias       VM and DC have been supported by the Ministerio de
+probability of moving away from the backbone is q > 1/2,       Ciencia e Innovación under Grant No. FIS2012-32334.
+then stochastic localization occurs, regardless of the other   VM also thanks the Isaac Newton Institute for Mathe-
+characteristic parameters related to the random walk on        matical Sciences, Cambridge, for support and hospitality
+the branches.                                                  during the CGP programme where part of this work was
+                                                               undertaken.
+
+                   Acknowledgments
+
+  A.I. would like to thank the Universitat Autònoma de
+Barcelona for hospitality and financial support, as well as
+
+
+
+
+ [1] E. W. Montroll and M. F. Shlesinger, in Nonequilib-               lanov, Microelectron. Eng. 88, 694 (2011), URL
+     rium Phenomena II: From Stochastics to Hydrodynamics,             http://dx.doi.org/10.1016/j.mee.2010.08.028.
+     edited by J. L. Lebowitz and E. W. Montroll (Elsevier        [17] H.       E.      Stanley         and        A.        Coniglio,
+     Science Publishers BV, Amsterdam, 1984), pp. 1–121.               Phys.     Rev.     B      29,       522      (1984),     URL
+ [2] R. Metzler and J. Klafter, Phys. Rep. 339, 1 (2000), URL          http://link.aps.org/doi/10.1103/PhysRevB.29.522.
+     http://dx.doi.org/10.1016/S0370-1573(00)00070-3.             [18] A. Tarasenko and L. Jastrabı́k, Microporous and
+ [3] J. Klafter and I. M. Sokolov, First Steps in Ran-                 Mesoporous Materials 152,              134 (2012),       URL
+     dom Walks:        From Tools to Applications (Ox-                 http://www.sciencedirect.com/science/article/pii/S138718111
+     ford University Press, New York, 2011), URL                  [19] S. Hannunen, Ecol. Model. 155, 149 (2002), URL
+                                                                       http://www.sciencedirect.com/science/article/pii/S030438000
+     https://global.oup.com/academic/product/first-steps-in-random-walks-9780199234868?cc=us&lang=en&.
+ [4] R.    Metzler      and     J.     Klafter,      J.    Phys.  [20] E.    Agliari,    A.      Blumen,        and       D.   Cassi,
+     A:    Math.     Gen.     37,      R161      (2004),    URL        Phys.     Rev.    E    89,       052147       (2014),    URL
+     http://dx.doi.org/10.1088/0305-4470/37/31/R01.                    http://link.aps.org/doi/10.1103/PhysRevE.89.052147.
+ [5] K. Maex, M. R. Baklanov, D. Shamiryan, F. la-                [21] A.     Rebenshtok        and       E.      Barkai,      Phys.
+     copi, S. H. Brongersma, and Z. S. Yanovit-                        Rev.       E     88,        052126         (2013),       URL
+     skaya, J. Appl. Phys. 93, 8793 (2003), URL                        http://link.aps.org/doi/10.1103/PhysRevE.88.052126.
+     http://dx.doi.org/10.1063/1.1567460.                         [22] G. Forte, R. Burioni, F. Cecconi, and A. Vulpiani,
+ [6] E.    F.    Casassa     and      G.     C.     Berry,    J.       J. Phys.: Condens. Matter 25, 465106 (2013), URL
+     Polymer     Sci.     A     4,     881      (1966),     URL        http://stacks.iop.org/0953-8984/25/i=46/a=465106.
+     http://dx.doi.org/10.1002/pol.1966.160040605.                [23] N.      Korabel       and        E.      Barkai,        Phys.
+ [7] J.   F.    Douglas,     J.     Roovers,      and    K.   F.       Rev.      Lett.    104,        170603       (2010),      URL
+     Freed, Macromolecules 23, 4168 (1990), URL                        http://link.aps.org/doi/10.1103/PhysRevLett.104.170603.
+     http://dx.doi.org/10.1021/ma00220a022.                       [24] E.      Baskin       and         A.       Iomin,        Phys.
+ [8] H. Frauenrath, Prog. Polymer Sci. 30, 325 (2005), URL             Rev.      Lett.    93,         120603       (2004),      URL
+                                                                       http://dx.doi.org/10.1103/PhysRevLett.93.120603.
+     http://www.sciencedirect.com/science/article/pii/S0079670005000110.
+ [9] I. M. Sokolov, Soft Matter 8, 9043 (2012), URL               [25] A.      Iomin       and         E.      Baskin,         Phys.
+     http://dx.doi.org/10.1039/C2SM25701G.                             Rev.       E     71,        061101         (2005),       URL
+[10] S.   R.    White      and     M.     Barma,      J.   Phys.       http://dx.doi.org/10.1103/PhysRevE.71.061101.
+     A:    Math.     Gen.     17,      2995     (1984),     URL   [26] C. Van den Broeck, Phys. Rev. Lett. 62, 1421 (1989),
+     http://stacks.iop.org/0305-4470/17/i=15/a=017.                    URL http://link.aps.org/abstract/PRL/v62/p1421.
+[11] G.     H.     Weiss     and       S.     Havlin,      Phys-  [27] D.      Campos       and        V.      Méndez,        Phys.
+     ica      A       134,         474       (1986),        URL        Rev.       E     71,        051104         (2005),       URL
+     http://dx.doi.org/10.1016/0378-4371(86)90060-9.                   http://dx.doi.org/10.1103/PhysRevE.71.051104.
+[12] V.     Arkhincheev       and       E.     Baskin,      Sov.  [28] D.    Campos,       J.     Fort,      and       V.    Méndez,
+     Phys.     JETP        73,       161      (1991),       URL        Theor.     Pop.    Biol.     69,      88      (2006),    URL
+     http://jetp.ac.ru/cgi-bin/dn/e_073_01_0161.pdf.                   http://dx.doi.org/10.1016/j.tpb.2005.09.001.
+[13] V.    Méndez     and    A.     Iomin,       Chaos,    Soli- [29] B.     Kahng      and       S.     Redner,         J.   Phys.
+     tons    &     Fractals     53,      46     (2013),     URL        A:    Math.      Gen.      22,      887      (1989),     URL
+                                                                       http://stacks.iop.org/0305-4470/22/i=7/a=019.
+     http://www.sciencedirect.com/science/article/pii/S0960077913000830.
+[14] A.      Iomin       and       V.       Méndez,       Phys.  [30] S.     I.      Denisov       and        W.       Horsthemke,
+     Rev.      E      88,       012706        (2013),       URL        Phys.     Rev.    E      62,       7729      (2000),     URL
+     http://link.aps.org/doi/10.1103/PhysRevE.88.012706.               http://dx.doi.org/10.1103/PhysRevE.62.7729.
+[15] R. E. Marsh, T. A. Riauka, and S. A. McQuarrie,              [31] I. Podlubny, Fractional Differential Equations (Academic
+     Q. J. Nucl. Med. Mol. Imaging 52, 278 (2008), URL                 Press, San Diego, 1999).
+     http://www.minervamedica.it/index2.t?show=R39Y2008N03A0278.  [32] H. Bateman, Higher Transcendental Functions [Vol-
+[16] V. E. Arkhincheev, E. Kunnen, and M. R. Bak-                      umes I-III] (McGraw-Hill, New York, 1953), URL
+                                                                 8
+
+http://resolver.caltech.edu/CaltechAUTHORS:20140123-104529738.
+

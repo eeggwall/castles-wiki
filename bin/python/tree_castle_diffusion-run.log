@@ -1,0 +1,63 @@
+# python3 bin/python/tree_castle_diffusion.py  (2026-10-29, Python 3.11)
+[1] w <= 8, h <= 5: the graph of each of the 4824 tree castles is its comb (bottom row and columns), with blocks = 1 + n - w; each of the 483456 other castles has the comb as a proper spanning tree, with one extra edge per 2 x 2 square: True
+[2] the 892 tree castles with w <= 7, h <= 4: pi(v) = d(v)/(2(n - 1)) is stationary, and a step from pi is horizontal with probability (w - 1)/(n - 1) = (w - 1)/(w + b - 2): True
+    (1, 3, 1, 1, 4, 1): E hor(10^7)/10^7 from cell (1, 1) = 0.5000002, (w - 1)/(n - 1) = 0.5000000
+    (2, 1, 2, 1, 2): E hor(10^7)/10^7 from cell (1, 1) = 0.5714285, (w - 1)/(n - 1) = 0.5714286
+    (1, 1, 1, 2, 1, 1, 2, 1, 1): E hor(10^7)/10^7 from cell (1, 1) = 0.8000002, (w - 1)/(n - 1) = 0.8000000
+    (5, 1, 1, 3, 1, 2, 1, 1, 4): E hor(10^7)/10^7 from cell (1, 1) = 0.4444442, (w - 1)/(n - 1) = 0.4444444
+[2] from the bottom-left cell, E hor(t)/t at t = 10^7 equals (w - 1)/(n - 1) to 10^-5 on four castles: True
+[3] the 888 tree castles with 2 <= w <= 7, h <= 4: from column i the next horizontal step is to the right with probability 1/2 inside, 1 at column 1 and 0 at column w: True
+[4] eight tree castles of width 13 from the foot of column 7 (d = 6): msd(t) = E hor(t) exactly for t <= 6; first t with msd(t) != E hor(t): [7, 7, 7, 7, 7, 7, 7, 7]: True
+[5] extended battlements h = 2, 3, 7, t <= 300: E[X_t^2] = E hor(t) to 10^-9: True
+[5] battlement h = 11: crossover 8(h + 1)^2/pi = 366.7; rate 2/(h + 1) = 0.166667
+      t        E hor(t)      local exponent   E hor/sqrt(t)   E hor/t     E hor/(4 sqrt(2t/pi))   E hor (h + 1)/(2t)
+    10^1         5.73026      0.7185         1.81207      0.573026        0.5678                3.4382
+    10^2         26.4332      0.6616         2.64332      0.264332        0.8282                1.5860
+    10^3         176.667      0.9433         5.58669      0.176667        1.7505                1.0600
+    10^4         1676.67      0.9940        16.76667      0.167667        5.2535                1.0060
+    10^5         16676.7      0.9994        52.73625      0.166767       16.5238                1.0006
+    10^6          166677      0.9999       166.67667      0.166677       52.2246                1.0001
+    10^7     1.66668e+06      1.0000       527.04944      0.166668      165.1396                1.0000
+    10^8     1.66667e+07      1.0000      1666.66767      0.166667      522.2145                1.0000
+    10^9     1.66667e+08      1.0000      5270.46308      0.166667     1651.3865                1.0000
+[5] battlement h = 101: crossover 8(h + 1)^2/pi = 2.649e+04; rate 2/(h + 1) = 0.019608
+      t        E hor(t)      local exponent   E hor/sqrt(t)   E hor/t     E hor/(4 sqrt(2t/pi))   E hor (h + 1)/(2t)
+    10^1         5.73026      0.7185         1.81207      0.573026        0.5678               29.2243
+    10^2         25.9197      0.5977         2.59197      0.259197        0.8121               13.2190
+    10^3         94.2522      0.5337         2.98052      0.094252        0.9339                4.8069
+    10^4         324.484      0.6149         3.24484      0.032448        1.0167                1.6549
+    10^5         2089.91      0.9381         6.60887      0.020899        2.0707                1.0659
+    10^6           19737      0.9934        19.73697      0.019737        6.1842                1.0066
+    10^7          196208      0.9993        62.04628      0.019621       19.4409                1.0007
+    10^8     1.96091e+06      0.9999       196.09134      0.019609       61.4410                1.0001
+    10^9      1.9608e+07      1.0000       620.05853      0.019608      194.2820                1.0000
+[5] battlement h = 1001: crossover 8(h + 1)^2/pi = 2.557e+06; rate 2/(h + 1) = 0.001996
+      t        E hor(t)      local exponent   E hor/sqrt(t)   E hor/t     E hor/(4 sqrt(2t/pi))   E hor (h + 1)/(2t)
+    10^1         5.73026      0.7185         1.81207      0.573026        0.5678              287.0860
+    10^2         25.9197      0.5977         2.59197      0.259197        0.8121              129.8575
+    10^3         94.2522      0.5337         2.98052      0.094252        0.9339               47.2203
+    10^4         312.258      0.5109         3.12258      0.031226        0.9784               15.6441
+    10^5         1002.29      0.5035         3.16951      0.010023        0.9931                5.0215
+    10^6         3319.06      0.6104         3.31906      0.003319        1.0400                1.6629
+    10^7         21289.1      0.9375         6.73220      0.002129        2.1094                1.0666
+    10^8          200930      0.9934        20.09298      0.002009        6.2957                1.0067
+    10^9     1.99734e+06      0.9993        63.16134      0.001997       19.7903                1.0007
+    4 sqrt(2/pi) = 3.19154
+[5] h = 101: at t = 8(h + 1)^2/pi = 26494, E hor(t) = 648.613 against the asymptotes 519.482 = 519.482 (ratio 1.2486), local exponent 0.8008
+[5] h = 1001: at t = 8(h + 1)^2/pi = 2556675, E hor(t) = 6432.15 against the asymptotes 5103.14 = 5103.14 (ratio 1.2604), local exponent 0.7932
+[5] h = 2001: at t = 8(h + 1)^2/pi = 10206298, E hor(t) = 12858.4 against the asymptotes 10196.1 = 10196.1 (ratio 1.2611), local exponent 0.7928
+[5] battlement h = 2001: E hor(t)/sqrt(t) at t = 10^3, 10^4, 10^5: [2.98052, 3.12258, 3.16951] ; slopes in sqrt(t) between them: [3.18827, 3.19121] ; E hor(t) - 4 sqrt(2t/pi): [-6.673, -6.896, -6.967]
+[5] E hor(t)/t -> 2/(h + 1) at t = 10^9 for h = 11, 101, and the slope of E hor(t) in sqrt(t) between t = 10^4 and 10^5 within 0.005 of 4 sqrt(2/pi) at h = 2001: True
+    two-sided teeth N = 2: E hor(t)/t = 0.20000000, 1/(1 + 2N) = 2 D (Mendez (3.3), (3.7)) = 0.20000000
+    two-sided teeth N = 3: E hor(t)/t = 0.14285715, 1/(1 + 2N) = 2 D (Mendez (3.3), (3.7)) = 0.14285714
+    two-sided teeth N = 6: E hor(t)/t = 0.07692309, 1/(1 + 2N) = 2 D (Mendez (3.3), (3.7)) = 0.07692308
+    two-sided teeth N = 20: E hor(t)/t = 0.02439031, 1/(1 + 2N) = 2 D (Mendez (3.3), (3.7)) = 0.02439024
+    one-sided teeth l = 1: E hor(t)/t = 0.50000000, 1/(1 + l) (Yuste (24)-(26), theta = 1/3, t_R = 2l) = 0.50000000
+    one-sided teeth l = 2: E hor(t)/t = 0.33333334, 1/(1 + l) (Yuste (24)-(26), theta = 1/3, t_R = 2l) = 0.33333333
+    one-sided teeth l = 5: E hor(t)/t = 0.16666669, 1/(1 + l) (Yuste (24)-(26), theta = 1/3, t_R = 2l) = 0.16666667
+    one-sided teeth l = 30: E hor(t)/t = 0.03225825, 1/(1 + l) (Yuste (24)-(26), theta = 1/3, t_R = 2l) = 0.03225806
+    two-sided teeth N = 4000: E hor(t)/sqrt(t) at 10^3, 10^4, 10^5 = [0.78227, 0.7929, 0.79631] ; slopes in sqrt(t): [0.79782, 0.79788] ; sqrt(2/pi) = 0.79788
+[6] the backbone fraction reproduces the coefficients of Mendez et al. and Yuste et al., and the window constant sqrt(2/pi) of Pach-Tardos and Mendez et al.: True
+[7] class A: widths [9, 8, 8, 7, 7, 6] rates ['4/5', '7/10', '7/10', '3/5', '3/5', '1/2'] ; B: width 8 rate 7/10
+[7] the six skylines of class A have one graph, not that of B, and rates 4/5, 7/10, 7/10, 3/5, 3/5, 1/2: True
+all checks passed: True

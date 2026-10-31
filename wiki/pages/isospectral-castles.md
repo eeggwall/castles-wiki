@@ -5,7 +5,7 @@ summary: Kac's question "can one hear the shape of a drum?" asked of castles - d
 tags: [analysis, castle, spectral, isospectral, adjacency, laplacian, kac, sunada, schwenk, trace-formula, tree, numpy, sympy, networkx, verification]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # Isospectral castles - hearing the shape of a castle
@@ -128,6 +128,7 @@ A castle is silver by spectrum when its castle graph has spectral radius `1 + �
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - the spectral types of castles, of which isospectral pairs are one.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the spectral radii of castle graphs and the scan that finds the castles silver by spectrum.
 - [[castle-graph](pages/castle-graph.md)] - the castle graph and the tree castles.
+- [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] - the six skylines of class `A` as combs: one graph, with backbone rates `(w − 1)/(n − 1)` from `1/2` to `4/5`.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the Laplacian, the Ihara zeta function and the skyline DFT.
 - [[levy-flights](pages/levy-flights.md)] - the fractional Laplacian `L^α`; its heat traces are functions of the Laplacian spectrum, but its local return probabilities separate the 11-cell pair.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph_radius` and the adjacency and Laplacian matrices of a castle.

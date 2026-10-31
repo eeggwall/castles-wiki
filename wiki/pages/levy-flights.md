@@ -5,7 +5,7 @@ summary: The fractional Laplacian L^α = U Λ^α U^T of a castle graph, defined 
 tags: [analysis, castle, fractional-calculus, fractional-laplacian, riascos-mateos, levy-flight, anomalous-diffusion, isospectral, cospectral, tree-castle, spectral-graph-theory, laplacian, heat-kernel, spectral-invariant]
 sources: [project-euler-502-representations]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # Lévy flights on the castle graph
@@ -135,6 +135,8 @@ print(round(dB[cellsB.index((2, 2))] - dA[tipsA].mean(), 5))   # 0.02839
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - a seminar on what the spectrum of the castle graph determines, which cites the separation of the 11-cell pair here.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the sink avalanche profile, which also separates the 11-cell pair.
 - [[castle-avalanches](pages/castle-avalanches.md)] - the inverse reduced Laplacian, Dhar's expected-toppling matrix.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - a seminar on castle operations at order 1/2, ending with the time-fractional comb against this space-fractional Laplacian.
+- [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] - the simple random walk on a tree castle, held up in the teeth instead of jumping; the order-1/2 window of the comb model and the backbone rate `(w − 1)/(n − 1)`.
 - [[fractional-recurrences](pages/fractional-recurrences.md)], [[fractional-block-count](pages/fractional-block-count.md)], [[power-law-memory-rules](pages/power-law-memory-rules.md)] - the Grünwald-Letnikov fractional difference applied to recurrences, skylines and strip rules; `L^α` here is a fractional power of a matrix, defined by Equation (1).
 
 ## Footnotes

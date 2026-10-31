@@ -5,7 +5,7 @@ summary: A seminar on Kac's drum question asked of castles, organized as a list 
 tags: [concept, castle, seminar, pedagogy, teaching, spectral, isospectral, adjacency, laplacian, kac, schwenk, sunada, trace-formula, matrix-tree-theorem, tree-castle, golden-ratio, silver-ratio]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # Hear the shape of a castle - seminar
@@ -236,7 +236,7 @@ False
 - [[sandpile-identity](pages/sandpile-identity.md)] - one grain on the apex of the identity of the 10-cell pair: 57 topplings against 1.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - a seminar following the 16-cell castle `(3,2,1,2,2,1,2,3)`, silver by spectrum, through its sandpile group, clock, identity and avalanches.
 - [[castle-avalanches](pages/castle-avalanches.md)] - random grain drops on castles; the mean avalanche size is given by the reduced Laplacian, and the `2 × 2` squares change the tail of the distribution.
-- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)] and [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)] and [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
 
 ## Footnotes
 
