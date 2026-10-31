@@ -1,11 +1,11 @@
 ---
 title: Hardin identity seminar - towers, words, and one change of basis
 category: Concepts
-summary: A seminar on the Hardin word identity. Split the signed tower count P(6, L) = 1, 1, 7, 49, 231, 833, … by the parity of the last column; the even half 1, 4, 16, 56, 192, … is divisible by 2^L, leaving 1, 2, 4, 7, 12, 21, 37, 65 (A005251, binary strings with no isolated 1). The stops explain it - towers as a 7 × 7 signed transfer matrix, the involution JD (reflect heights, flip odd signs) that splits it into two sectors, a basis in which the even sector matrix is twice an integer matrix (the 2^L), a three-state pending-letter automaton for the words, and a 0/1 change of basis S with det −1 that conjugates one matrix into the other. The same argument at k = 4m + 2 proves the identity for every m, with Hardin's A202882, A203094, A203184, whose "Empirical" recurrences hold. A closing stop places A005251 among tree castles by area and, at height 4, Tetali's unique tournaments. One snippet block reproduces every value.
+summary: A seminar on the Hardin word identity. Split the signed tower count P(6, L) = 1, 1, 7, 49, 231, 833, … by the parity of the last column; the even half 1, 4, 16, 56, 192, … is divisible by 2^L, leaving 1, 2, 4, 7, 12, 21, 37, 65 (A005251, binary strings with no isolated 1). The stops explain it - towers as a 7 × 7 signed transfer matrix, the involution 𝒥D (reflect heights, flip odd signs) that splits it into two sectors, a basis in which the even sector matrix is twice an integer matrix (the 2^L), a three-state pending-letter automaton for the words, and a 0/1 change of basis S with det −1 that conjugates one matrix into the other. The same argument at k = 4m + 2 proves the identity for every m, with Hardin's A202882, A203094, A203184, whose "Empirical" recurrences hold. A closing stop places A005251 among tree castles by area and, at height 4, Tetali's unique tournaments. One snippet block reproduces every value.
 tags: [concept, castle, seminar, pedagogy, teaching, signed-tower-count, transfer-matrix, symmetry, bijection, hardin, words, automaton, oeis, a005251, plastic-number]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-26
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Hardin identity seminar - towers, words, and one change of basis
@@ -43,13 +43,13 @@ Build the towers left to right, one column at a time. A step from height `a` dow
 
 *Idea:* a nearest-neighbor rule on column heights gives a transfer matrix, and a transfer-matrix count is C-finite.
 
-## Stop 2 - the symmetry `JD`
+## Stop 2 - the symmetry `𝒥D`
 
-Consider two maps on heights: `J` reflects them (`c ↦ k − c`), and `D` flips the sign of every odd height. Neither commutes with `M̃_k`, but their **product does**: `JD · M̃_k = M̃_k · JD`. Reflecting the heights turns descents into ascents, and flipping the odd signs turns the signs back; entrywise, `JD · M̃_k · JD = (−1)^k M̃_k = (JD)² M̃_k` ([[tower-parity-sectors](pages/tower-parity-sectors.md)], Part 1).
+Consider two maps on heights: `𝒥` reflects them (`c ↦ k − c`), and `D` flips the sign of every odd height. Neither commutes with `M̃_k`, but their **product does**: `𝒥D · M̃_k = M̃_k · 𝒥D`. Reflecting the heights turns descents into ascents, and flipping the odd signs turns the signs back; entrywise, `𝒥D · M̃_k · 𝒥D = (−1)^k M̃_k = (𝒥D)² M̃_k` ([[tower-parity-sectors](pages/tower-parity-sectors.md)], Part 1).
 
-For even `k`, `JD` squares to the identity, so it splits the heights' vector space into its `+1` and `−1` eigenspaces, and `M̃_k` preserves each. The `+1` eigenspace carries the towers with an even last column, so this is the **even/odd last-column split** of Stop 0, and each half satisfies the linear recurrence of its own factor of `char_k`.
+For even `k`, `𝒥D` squares to the identity, so it splits the heights' vector space into its `+1` and `−1` eigenspaces, and `M̃_k` preserves each. The `+1` eigenspace carries the towers with an even last column, so this is the **even/odd last-column split** of Stop 0, and each half satisfies the linear recurrence of its own factor of `char_k`.
 
-*Idea:* the even/odd split is the eigenspace split of the involution `JD`, which commutes with `M̃_k`.
+*Idea:* the even/odd split is the eigenspace split of the involution `𝒥D`, which commutes with `M̃_k`.
 
 ## Stop 3 - where the `2^L` comes from
 
@@ -236,7 +236,7 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 ## Related Concepts
 
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - the proof for every `m` and the state-by-state reading of `S`.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the symmetry `JD`, the sectors, and the factors `H_d`, `V_d` of `char_k`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the symmetry `𝒥D`, the sectors, and the factors `H_d`, `V_d` of `char_k`.
 - [[a005251-bijection](pages/a005251-bijection.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - Stop 7's compositions and strings.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[castle-sign](pages/castle-sign.md)] - the signed count and the block sign.
 - [[plastic-number](pages/plastic-number.md)] - the `ψ²` growth of the `m = 1` case.

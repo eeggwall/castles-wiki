@@ -5,7 +5,7 @@ summary: For every m ≥ 0 and k = 4m + 2, the signed count of towers of height 
 tags: [analysis, castle, signed-tower-count, transfer-matrix, bijection, hardin, oeis, words, sympy, verification, proof]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-25
+updated: 2026-10-31
 ---
 
 # The Hardin word identity
@@ -73,7 +73,7 @@ So `P_even(6, L) = 2^L · A005251(L+3)` for `L ≤ 7`.[^2]
 
 ## The tower side
 
-Write `P_even(k, L) = e_0ᵀ M̃_k^L v⁺` with `v⁺ = ([b even])_{b=0..k}`: the descent weights of `M̃_k` miss only the final drop from the last column to the base, which has even size when the last column is even. For even `k`, the involution `JD` (reverse the heights, flip the sign of odd heights) commutes with `M̃_k`, and the even sector is its `+1` eigenspace ([[tower-parity-sectors](pages/tower-parity-sectors.md)], Part 1). For `k = 4m + 2`, a basis of that eigenspace is
+Write `P_even(k, L) = e_0ᵀ M̃_k^L v⁺` with `v⁺ = ([b even])_{b=0..k}`: the descent weights of `M̃_k` miss only the final drop from the last column to the base, which has even size when the last column is even. For even `k`, the involution `𝒥D` (reverse the heights, flip the sign of odd heights) commutes with `M̃_k`, and the even sector is its `+1` eigenspace ([[tower-parity-sectors](pages/tower-parity-sectors.md)], Part 1). For `k = 4m + 2`, a basis of that eigenspace is
 
 ```
 f_c  =  e_c + (−1)^c e_{k−c},        c = 0, 1, …, 2m,
@@ -212,7 +212,7 @@ Both readings were checked for `m = 1, 2` and `L ≤ 3`.[^3]
 
 ## Related Concepts
 
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed transfer matrix `M̃_k`, the involution `JD`, the split `P = P_even + P_odd`, and the factors `H_d`, `V_d` of `char_k`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed transfer matrix `M̃_k`, the involution `𝒥D`, the split `P = P_even + P_odd`, and the factors `H_d`, `V_d` of `char_k`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - a seminar on the case `m = 1`.
 - [[plastic-number](pages/plastic-number.md)] - at `m = 1`, `H_3` is the minimal polynomial of `ψ²`, and `W_1` is `A005251`.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and its characteristic polynomials `char_k`.

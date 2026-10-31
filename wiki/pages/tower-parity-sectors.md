@@ -1,11 +1,11 @@
 ---
 title: Tower parity sectors - why char_k factors, and where the plastic number comes from
 category: Analyses
-summary: The signed transfer matrix M̃_k commutes with JD, "reflect heights, flip the sign of odd heights", so for even k the signed tower count splits by the parity of the last column, P = P_even + P_odd, and char_k splits into the characteristic polynomials of the two sectors. In μ = λ/2 the factors are H_d(μ) = Σ_i (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i} and V_d = H_{d+1} + μ² H_{d−1}, with char_{2d}(2μ) = 2^{2d} H_d V_d proved by Pascal's rule and a Lucas-type doubling computation. H_3 is the minimal polynomial of ψ² (ψ the plastic number), so ρ_6 = 2ψ². For k = 4m + 2 the even sector is 2^L times Hardin's counts of words in which every nonzero letter is at most a neighbor (A005251, A202882, A203094, A203184).
+summary: The signed transfer matrix M̃_k commutes with 𝒥D, "reflect heights, flip the sign of odd heights", so for even k the signed tower count splits by the parity of the last column, P = P_even + P_odd, and char_k splits into the characteristic polynomials of the two sectors. In μ = λ/2 the factors are H_d(μ) = Σ_i (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i} and V_d = H_{d+1} + μ² H_{d−1}, with char_{2d}(2μ) = 2^{2d} H_d V_d proved by Pascal's rule and a Lucas-type doubling computation. H_3 is the minimal polynomial of ψ² (ψ the plastic number), so ρ_6 = 2ψ². For k = 4m + 2 the even sector is 2^L times Hardin's counts of words in which every nonzero letter is at most a neighbor (A005251, A202882, A203094, A203184).
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-castle-factoring, oeis-encyclopedia]
 created: 2026-09-16
-updated: 2026-10-25
+updated: 2026-10-31
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -32,30 +32,30 @@ At `k = 1`, `M̃_1 = [[1, 1], [−1, 1]]`. With `e_0` the start at height 0 and 
 1 True ... 6 True
 ```
 
-**The involution.** Let `J` reverse the heights (`c ↦ k − c`) and `D = diag((−1)^c)` flip the sign of odd heights. Neither commutes with `M̃_k`, but their product does:
+**The involution.** Let `𝒥` reverse the heights (`c ↦ k − c`) and `D = diag((−1)^c)` flip the sign of odd heights. Neither commutes with `M̃_k`, but their product does:
 
 ```
->>> for name, X in [("J", J), ("D", D), ("JD", J*D)]:
+>>> for name, X in [("𝒥", 𝒥), ("D", D), ("𝒥D", 𝒥*D)]:
 ...     print(name, "commutes:", (X*M - M*X).is_zero_matrix)
-J commutes: False
+𝒥 commutes: False
 D commutes: False
-JD commutes: True                     # k = 4 and k = 6 shown; checked for all k <= 30
+𝒥D commutes: True                     # k = 4 and k = 6 shown; checked for all k <= 30
 ```
 
-The proof is one line. `(JD)_{a,b} = [b = k − a]·(−1)^b`, so `(JD)² = (−1)^k I` and
+The proof is one line. `(𝒥D)_{a,b} = [b = k − a]·(−1)^b`, so `(𝒥D)² = (−1)^k I` and
 
 ```
-(JD · M̃_k · JD)_{a,b}  =  (−1)^k (−1)^{a+b} (−1)^{max(0, b − a)}  =  (−1)^k (−1)^{max(0, a − b)},
+(𝒥D · M̃_k · 𝒥D)_{a,b}  =  (−1)^k (−1)^{a+b} (−1)^{max(0, b − a)}  =  (−1)^k (−1)^{max(0, a − b)},
 ```
 
-since `a + b + max(0, b − a) ≡ max(0, a − b) (mod 2)`: both sides are even when `b ≥ a`, and both are `≡ a − b` when `a > b`. So `JD·M̃_k·JD = (JD)²·M̃_k`, and `JD` commutes with `M̃_k`.[^1] Reflecting the heights turns descents into ascents, and flipping the signs of odd heights turns them back. [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] identifies `JD` as the reversal symmetry of the Kac-Murdock-Szegő matrix `K(i) = (i^{|a−b|})`, carried back through the diagonal similarity `diag(i^c)`, which is where `(JD)² = (−1)^k` comes from.
+since `a + b + max(0, b − a) ≡ max(0, a − b) (mod 2)`: both sides are even when `b ≥ a`, and both are `≡ a − b` when `a > b`. So `𝒥D·M̃_k·𝒥D = (𝒥D)²·M̃_k`, and `𝒥D` commutes with `M̃_k`.[^1] Reflecting the heights turns descents into ascents, and flipping the signs of odd heights turns them back. [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] identifies `𝒥D` as the reversal symmetry of the Kac-Murdock-Szegő matrix `K(i) = (i^{|a−b|})`, carried back through the diagonal similarity `diag(i^c)`, which is where `(𝒥D)² = (−1)^k` comes from.
 
-**Even `k`: two real sectors.** For even `k`, `JD` is an involution with trace `(−1)^{k/2}`, so `M̃_k` preserves its `+1` and `−1` eigenspaces, of dimensions `(k + 1 ± (−1)^{k/2})/2`, and `char_k` is the product of the characteristic polynomials of `M̃_k` on the two eigenspaces. The `+1` sector has dimension `k/2` when `k ≡ 2 (mod 4)` and `k/2 + 1` when `k ≡ 0 (mod 4)`.
+**Even `k`: two real sectors.** For even `k`, `𝒥D` is an involution with trace `(−1)^{k/2}`, so `M̃_k` preserves its `+1` and `−1` eigenspaces, of dimensions `(k + 1 ± (−1)^{k/2})/2`, and `char_k` is the product of the characteristic polynomials of `M̃_k` on the two eigenspaces. The `+1` sector has dimension `k/2` when `k ≡ 2 (mod 4)` and `k/2 + 1` when `k ≡ 0 (mod 4)`.
 
-**Odd `k`.** For odd `k`, `(JD)² = −I`, and `JD` has no real eigenvectors: its eigenspaces are the `±i` eigenspaces over `Q(i)`, each of dimension `(k + 1)/2`, and `char_k = g·ḡ` for a polynomial `g` over `Q(i)` and its complex conjugate. This rules out the sector split over the rationals but does not prove `char_k` irreducible, since `g` could factor further. Irreducibility is proved for `k = 2^m − 1` by Eisenstein's criterion at 2 after the rescaling `λ = 2μ` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]), and computed for odd `k ≤ 31`.
+**Odd `k`.** For odd `k`, `(𝒥D)² = −I`, and `𝒥D` has no real eigenvectors: its eigenspaces are the `±i` eigenspaces over `Q(i)`, each of dimension `(k + 1)/2`, and `char_k = g·ḡ` for a polynomial `g` over `Q(i)` and its complex conjugate. This rules out the sector split over the rationals but does not prove `char_k` irreducible, since `g` could factor further. Irreducibility is proved for `k = 2^m − 1` by Eisenstein's criterion at 2 after the rescaling `λ = 2μ` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]), and computed for odd `k ≤ 31`.
 
 ```
->>> # M̃_k restricted to each JD-eigenspace, k even: (eigenvalue of JD, dimension, char poly, root of largest modulus?)
+>>> # M̃_k restricted to each 𝒥D-eigenspace, k even: (eigenvalue of 𝒥D, dimension, char poly, root of largest modulus?)
 2  [(+1, 1, lam - 2, 'DOM'), (-1, 2, lam**2 - lam + 2, '')]
 4  [(+1, 3, lam**3 - 3*lam**2 + 2*lam - 4, 'DOM'), (-1, 2, lam**2 - 2*lam + 4, '')]
 6  [(+1, 3, lam**3 - 4*lam**2 + 4*lam - 8, 'DOM'), (-1, 4, lam**4 - 3*lam**3 + 8*lam**2 - 4*lam + 8, '')]
@@ -66,7 +66,7 @@ since `a + b + max(0, b − a) ≡ max(0, a − b) (mod 2)`: both sides are even
 
 For every even `k ≤ 40`, the root of largest modulus `ρ_k` lies in the `+1` sector.
 
-**What the sectors count: the parity of the last column.** For even `k`, the end vector splits as `v = v⁺ + v⁻` with `v⁺_b = [b even]` and `v⁻_b = −[b odd]`, and `JD v⁺ = v⁺`, `JD v⁻ = −v⁻`; the start vector splits as `e_0 = (e_0 + e_k)/2 + (e_0 − e_k)/2`, with `JD e_0 = e_k`. For even `k`, `JD` is symmetric, so its eigenspaces are orthogonal, and `M̃_k` preserves them, so the cross terms vanish:
+**What the sectors count: the parity of the last column.** For even `k`, the end vector splits as `v = v⁺ + v⁻` with `v⁺_b = [b even]` and `v⁻_b = −[b odd]`, and `𝒥D v⁺ = v⁺`, `𝒥D v⁻ = −v⁻`; the start vector splits as `e_0 = (e_0 + e_k)/2 + (e_0 − e_k)/2`, with `𝒥D e_0 = e_k`. For even `k`, `𝒥D` is symmetric, so its eigenspaces are orthogonal, and `M̃_k` preserves them, so the cross terms vanish:
 
 ```
 P(k, L)  =  P_even(k, L) + P_odd(k, L),
@@ -244,7 +244,7 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 | snippet | teaches | where |
 |---|---|---|
 | `M_signed(k)` | the signed transfer matrix `M̃_k`, with characteristic polynomial `char_k` | Part 1 |
-| `J`, `D`, `JD` commutation test | find a symmetry by testing candidate involutions | Part 1 |
+| `𝒥`, `D`, `𝒥D` commutation test | find a symmetry by testing candidate involutions | Part 1 |
 | `(X ± I).columnspace()` + restricted matrix | block-diagonalize along the eigenspaces of an involution | Part 1 |
 | `blocks(cc)` + parity filter | check by brute force that a sector is a sum over towers | Part 1 |
 | `H(d)` | a binomial closed form for a factor, tested against `sp.factor` | Part 2 |
@@ -263,7 +263,7 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the polynomials `num_k`, `den_k`, `char_k` and their roots.
 - [[plastic-number](pages/plastic-number.md)] - `ψ` and `ψ²`, the Padovan and Perrin numbers, and the Jacobi-Perron expansions.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` and the units `ρ_k/2` for `k ≡ 2 (mod 4)` were first found numerically.
-- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the transfer matrix with a weight `t` per block and its similarity to the Kac-Murdock-Szegő matrix, which accounts for `JD`.
+- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the transfer matrix with a weight `t` per block and its similarity to the Kac-Murdock-Szegő matrix, which accounts for `𝒥D`.
 - [[hardin-word-identity](pages/hardin-word-identity.md)] and [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the proof of the even-sector identity for `m ≤ 8`, and the seminar on it.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the irreducibility of `char_k` for `k = 2^m − 1`.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as the two components of `Spec Z[x]/(char_k)`; the minor sector `H_2` at `k = 4` gives `Z[ω]`.
@@ -281,7 +281,7 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16). (i) `JD·M̃_k = M̃_k·JD`, `(JD)² = (−1)^k I` and `JD·M̃_k·JD = (−1)^k M̃_k` for `k ≤ 30`; `char(M̃_k) = char_k` for `k ≤ 16`; `P(k, L) = e_0ᵀ M̃_k^L v` against the sum over towers for `k ≤ 4`, `L ≤ 5`. (ii) The sector polynomials of `M̃_k` for even `k ≤ 40`: `H_{k/2}` in the `+1` sector exactly when `k ≡ 2 (mod 4)`, and the root of largest modulus in the `+1` sector. (iii) `P_even`, `P_odd` by enumeration against the matrix for `k = 2, 4, 6`, `L ≤ 4`. (iv) Equation (1) for `k ≤ 40`; `H_{d+2} = −H_{d+1} + μ² H_d` for `d ≤ 40`; Equation (2) for `d ≤ 20`. (v) `H_d` and `V_d` irreducible, `V_d` primitive, for `d ≤ 20`; `H_d(±1)` and the constant terms for `d < 30`; `char_k` irreducible for odd `k ≤ 31`; the factor table and the coefficient lists for even `k ≤ 26`. (vi) `P_even(4m+2, L)/2^L` against `hardin_count(m, L+1)` for the stated lengths; the sector tables for `L ≤ 12`. (vii) The resultants and the reductions modulo 2 for `d ≤ 15`.
+[^1]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16). (i) `𝒥D·M̃_k = M̃_k·𝒥D`, `(𝒥D)² = (−1)^k I` and `𝒥D·M̃_k·𝒥D = (−1)^k M̃_k` for `k ≤ 30`; `char(M̃_k) = char_k` for `k ≤ 16`; `P(k, L) = e_0ᵀ M̃_k^L v` against the sum over towers for `k ≤ 4`, `L ≤ 5`. (ii) The sector polynomials of `M̃_k` for even `k ≤ 40`: `H_{k/2}` in the `+1` sector exactly when `k ≡ 2 (mod 4)`, and the root of largest modulus in the `+1` sector. (iii) `P_even`, `P_odd` by enumeration against the matrix for `k = 2, 4, 6`, `L ≤ 4`. (iv) Equation (1) for `k ≤ 40`; `H_{d+2} = −H_{d+1} + μ² H_d` for `d ≤ 40`; Equation (2) for `d ≤ 20`. (v) `H_d` and `V_d` irreducible, `V_d` primitive, for `d ≤ 20`; `H_d(±1)` and the constant terms for `d < 30`; `char_k` irreducible for odd `k ≤ 31`; the factor table and the coefficient lists for even `k ≤ 26`. (vi) `P_even(4m+2, L)/2^L` against `hardin_count(m, L+1)` for the stated lengths; the sector tables for `L ≤ 12`. (vii) The resultants and the reductions modulo 2 for `d ≤ 15`.
 [^2]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L104-108 - "In the column-height form, the block count is the total descent: blocks = ∑_{i=0}^{L} max(0, c_i - c_{i+1}), c_0 = c_{L+1} = 0".
 [^3]: https://oeis.org/A146559, https://oeis.org/A009545, https://oeis.org/A107920, https://oeis.org/A010892 (read 2026-10-16) - A146559: "Expansion of (1-x)/(1 - 2*x + 2*x^2)", `1, 1, 0, -2, -4, -4, 0, 8, 16, 16, 0, -32`; A009545: "Expansion of e.g.f. sin(x)*exp(x)", `0, 1, 2, 2, 0, -4, -8, -8, 0, 16`; A107920: "Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2", `0, 1, 1, -1, -3, -1, 5, 7, -3, -17`; A010892: "Inverse of 6th cyclotomic polynomial. A period 6 sequence", `1, 1, 0, -1, -1, 0, …`, offset 0.
 [^4]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): from the update of `num_k` and `den_k`, the constant term of `char_k` is `(−1)^{k+1} 2^k` for `k ≤ 20`.

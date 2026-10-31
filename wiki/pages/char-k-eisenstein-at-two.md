@@ -5,12 +5,12 @@ summary: Rescaling λ = 2μ turns char_k into Q_k(μ) = char_k(2μ)/2^k, an inte
 tags: [analysis, castle, characteristic-polynomial, irreducible-polynomial, eisenstein, newton-polygon, two-adic, fibonacci-polynomial, signed-tower-count, proof, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-10-31
 ---
 
 # Eisenstein at 2 - `char_k` is irreducible for `k = 2^m − 1`
 
-`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length ([[signed-tower-count](pages/signed-tower-count.md)]). For odd `k ≤ 31` it is irreducible over `Q`, each `k` proved by a prime `p` mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). For even `k` it has two factors, which [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives from the involution `JD` of the signed transfer matrix `M̃_k`. For odd `k`, `(JD)² = −I`, and `JD` makes `char_k` a product `g·ḡ` of conjugate polynomials over `Q(i)`, which does not decide whether `char_k` factors over `Q`.
+`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length ([[signed-tower-count](pages/signed-tower-count.md)]). For odd `k ≤ 31` it is irreducible over `Q`, each `k` proved by a prime `p` mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). For even `k` it has two factors, which [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives from the involution `𝒥D` of the signed transfer matrix `M̃_k`. For odd `k`, `(𝒥D)² = −I`, and `𝒥D` makes `char_k` a product `g·ḡ` of conjugate polynomials over `Q(i)`, which does not decide whether `char_k` factors over `Q`.
 
 **Theorem.** For `k + 1 = 2^m`, `m ≥ 1`, `char_k` is irreducible over `Q`, and 2 is totally ramified in `Q(ρ)` for every root `ρ` of `char_k`.
 
@@ -119,7 +119,7 @@ print([k for k in range(5001) if q[k] == 1])
 ## Related Concepts
 
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, ·)`, `char_k`, and the recurrence of `den_k` behind Equation (1).
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the involution `JD`, the factors of `char_k` for even `k`, and the product `g·ḡ` over `Q(i)` for odd `k`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the involution `𝒥D`, the factors of `char_k` for even `k`, and the product `g·ḡ` over `Q(i)` for odd `k`.
 - [[finite-fields](pages/finite-fields.md)] - the Frobenius map in characteristic `p`, used in Step 3.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - `char_1`, `char_3` and `char_5` as irreducible polynomials; the first two are proved irreducible here.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the discriminants of `char_k` for `k ≤ 10` and their odd prime factors.

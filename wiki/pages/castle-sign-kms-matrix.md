@@ -1,11 +1,11 @@
 ---
 title: The castle sign is a KMS matrix at ρ = i
 category: Analyses
-summary: Weight each block of towers by t. The block-weighted tower transfer matrix M_k(t) on tower heights 0..k, with entry t^max(0, b−a), is diagonally similar to the Kac-Murdock-Szegő matrix K(ρ) = (ρ^|a−b|) with ρ = √t, so t enters only as √t. At ρ = 1, K is the all-ones matrix, of rank one, which gives (k+1)^L. At ρ = i, K(i) has the tridiagonal inverse (E_∂ − iA_path)/2, which gives char_k(λ) = ½ det(λE_∂ − 2I − iλA_path) and the recurrence char_{k+1} = λ² char_{k−1} − 2 char_k. The reversal symmetry of K pulled back through the similarity is the involution of tower-parity-sectors, with (DJ)² = (−1)^k. For real 0 < ρ < 1 the Toeplitz symbol is the Poisson kernel, so the towers of any height weighted by t^blocks grow like ((1+√t)/(1−√t))^w, matching the first singularity of the Deutsch-Elizalde generating function, whose discriminant factors over Q(√y); at y = ±z it gives the unsigned and the signed semi-perimeter cubics.
+summary: Weight each block of towers by t. The block-weighted tower transfer matrix M_k(t) on tower heights 0..k, with entry t^max(0, b−a), is diagonally similar to the Kac-Murdock-Szegő matrix K(ρ) = (ρ^|a−b|) with ρ = √t, so t enters only as √t. At ρ = 1, K is the all-ones matrix, of rank one, which gives (k+1)^L. At ρ = i, K(i) has the tridiagonal inverse (E_∂ − iA_path)/2, which gives char_k(λ) = ½ det(λE_∂ − 2I − iλA_path) and the recurrence char_{k+1} = λ² char_{k−1} − 2 char_k. The reversal symmetry of K pulled back through the similarity is the involution of tower-parity-sectors, with (D𝒥)² = (−1)^k. For real 0 < ρ < 1 the Toeplitz symbol is the Poisson kernel, so the towers of any height weighted by t^blocks grow like ((1+√t)/(1−√t))^w, matching the first singularity of the Deutsch-Elizalde generating function, whose discriminant factors over Q(√y); at y = ±z it gives the unsigned and the signed semi-perimeter cubics.
 tags: [analysis, castle, sign, parity, transfer-matrix, toeplitz, kms-matrix, poisson-kernel, gaussian-integers, cayley-transform, characteristic-polynomial, signed-tower-count, semi-perimeter, motzkin]
 sources: [project-euler-502-solution, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin]
 created: 2026-09-27
-updated: 2026-10-16
+updated: 2026-10-31
 ---
 
 # The castle sign is a KMS matrix at ρ = i
@@ -69,13 +69,13 @@ of [[generating-function-gallery](pages/generating-function-gallery.md)], there 
 
 ## 3. The sector involution is the KMS reversal symmetry
 
-`K(ρ)` is symmetric Toeplitz, so it commutes with the reversal `J` (`c ↦ k − c`). Pulled back through the similarity at `ρ = i`,
+`K(ρ)` is symmetric Toeplitz, so it commutes with the reversal `𝒥` (`c ↦ k − c`). Pulled back through the similarity at `ρ = i`,
 
 ```
-D_i⁻¹ J D_i = i^k · D J,      D = diag((−1)^c),
+D_i⁻¹ 𝒥 D_i = i^k · D 𝒥,      D = diag((−1)^c),
 ```
 
-which commutes with `M_k(−1)`. This is the involution `JD` of [[tower-parity-sectors](pages/tower-parity-sectors.md)], up to the transpose and the scalar `i^k`. Since `(D_i⁻¹ J D_i)² = J² = I`, `(DJ)² = i^{−2k} I = (−1)^k I`. For even `k`, `DJ` is a real involution and `char_k` splits over `Q` into the characteristic polynomials of its two eigenspaces. For odd `k`, `DJ` squares to `−I`, its eigenvalues are `±i`, and `char_k` splits over `Q(i)` into two complex-conjugate factors of degree `(k+1)/2`, so `char_k` is a norm from `Q(i)`. Over `Q`, `char_k` is irreducible for odd `k ≤ 31` (computed) and for every `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). For `k ≤ 11` the irreducible factors of `char_k` have degrees `[2], [1, 2], [4], [2, 3], [6], [3, 4], …` over `Q` and `[1, 1], [1, 2], [2, 2], [2, 3], [3, 3], [3, 4], …` over `Q(i)` (computed). At `k = 1`, `K(i) = [[1, i], [i, 1]]` has eigenvalues `1 ± i`, which give `P(1, L) = Re((1+i)^{L+1})`.
+which commutes with `M_k(−1)`. This is the involution `𝒥D` of [[tower-parity-sectors](pages/tower-parity-sectors.md)], up to the transpose and the scalar `i^k`. Since `(D_i⁻¹ 𝒥 D_i)² = 𝒥² = I`, `(D𝒥)² = i^{−2k} I = (−1)^k I`. For even `k`, `D𝒥` is a real involution and `char_k` splits over `Q` into the characteristic polynomials of its two eigenspaces. For odd `k`, `D𝒥` squares to `−I`, its eigenvalues are `±i`, and `char_k` splits over `Q(i)` into two complex-conjugate factors of degree `(k+1)/2`, so `char_k` is a norm from `Q(i)`. Over `Q`, `char_k` is irreducible for odd `k ≤ 31` (computed) and for every `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). For `k ≤ 11` the irreducible factors of `char_k` have degrees `[2], [1, 2], [4], [2, 3], [6], [3, 4], …` over `Q` and `[1, 1], [1, 2], [2, 2], [2, 3], [3, 3], [3, 4], …` over `Q(i)` (computed). At `k = 1`, `K(i) = [[1, i], [i, 1]]` has eigenvalues `1 ± i`, which give `P(1, L) = Re((1+i)^{L+1})`.
 
 ## 4. The symbol is the Poisson kernel
 
@@ -118,7 +118,7 @@ and the full discriminants are `(z − 1)(z³ + z² + 3z − 1)` and `(z + 1)(z�
 
 In the three gradings the castle sign acts by putting `i` in the place of `√t`:
 
-- **by base length at bounded height** (`P(k, L)`): `M_k(−1)` is similar to `K(i)`, which gives Equations (4) and (5), the involution `DJ` and the splitting of `char_k` over `Q(i)` for odd `k`.
+- **by base length at bounded height** (`P(k, L)`): `M_k(−1)` is similar to `K(i)`, which gives Equations (4) and (5), the involution `D𝒥` and the splitting of `char_k` over `Q(i)` for odd `k`.
 - **on the Motzkin strip**: `I + √t·A_path` at `√t = i` ([[motzkin-castles](pages/motzkin-castles.md)] §3).
 - **by semi-perimeter**: the discriminant is a norm form in `ρ = √y`, and the sign is `ρ → iρ`.
 
@@ -127,7 +127,7 @@ In the three gradings the castle sign acts by putting `i` in the place of `√t`
 - [[motzkin-castles](pages/motzkin-castles.md)] - the Motzkin-path castles (§3), whose tridiagonal transfer matrix is the `|a − b| ≤ 1` part of `K(ρ)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)`, whose recurrence has the eigenvalues of `K(i)` as roots.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - Equation (5) from the update of `num_k` and `den_k`, and the estimate `ρ_k ~ k/log k`.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed transfer matrix `M̃_k` and the involution `JD`, here the KMS reversal pulled back through `D_i`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed transfer matrix `M̃_k` and the involution `𝒥D`, here the KMS reversal pulled back through `D_i`.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the growth constants `ρ_k` of `P(k, ·)` and their degrees over `Q`.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the two semi-perimeter cubics, one norm form here.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the quadratic in width and blocks whose discriminant factors over `Q(√y)`.
@@ -141,4 +141,4 @@ In the three gradings the castle sign acts by putting `i` in the place of `√t`
 [^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Notation" L8, §"The main formula" L52 - "P(k, L) - the signed version of T: sum over the same towers of (-1)^{blocks in tower}" and "P(k, L) = \sum_{towers of height ≤ k above L} (-1)^{blocks in tower}".
 [^3]: [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §2 L99-101 - "Using that B = y(M − 1), which is a consequence of the bijection ∆, we obtain xB^2 − (1 − x − y − xy)B + xy = 0."
 [^4]: https://arxiv.org/abs/1804.08140 (abstract read 2026-10-16) - G. Fikioris, "Spectral properties of Kac-Murdock-Szegö matrices with a complex parameter" (2018): "When 0 < ρ < 1, the Kac-Murdock-Szegö matrix K_n(ρ) = [ρ^{|j−k|}]_{j,k=1}^n is a Toeplitz correlation matrix with many applications and very well known spectral properties. We study the eigenvalues and eigenvectors of K_n(ρ) for the general case where ρ is complex".
-[^5]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16): Equation (1) symbolically for `k ≤ 5`; Equation (2) symbolically, and Equation (3) with `det K(i) = 2^k`, for sizes 2 to 8; Equation (4) against the characteristic polynomial of `M_k(−1)` for `k ≤ 10`, and Equation (5) for `k ≤ 9`; `D_i⁻¹ J D_i = i^k DJ` and its commutation with `M_k(−1)` for `k ≤ 8`; the factor degrees over `Q` and `Q(i)` for `k ≤ 11`; the largest eigenvalues at size 400 for `t = 0.09, 0.25, 0.49`; every entry of the table; the discriminant factorization and the two semi-perimeter discriminants.
+[^5]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16): Equation (1) symbolically for `k ≤ 5`; Equation (2) symbolically, and Equation (3) with `det K(i) = 2^k`, for sizes 2 to 8; Equation (4) against the characteristic polynomial of `M_k(−1)` for `k ≤ 10`, and Equation (5) for `k ≤ 9`; `D_i⁻¹ 𝒥 D_i = i^k D𝒥` and its commutation with `M_k(−1)` for `k ≤ 8`; the factor degrees over `Q` and `Q(i)` for `k ≤ 11`; the largest eigenvalues at size 400 for `t = 0.09, 0.25, 0.49`; every entry of the table; the discriminant factorization and the two semi-perimeter discriminants.
