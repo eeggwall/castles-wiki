@@ -5,7 +5,7 @@ summary: A seminar on Kac's drum question asked of castles, organized as a list 
 tags: [concept, castle, seminar, pedagogy, teaching, spectral, isospectral, adjacency, laplacian, kac, schwenk, sunada, trace-formula, matrix-tree-theorem, tree-castle, golden-ratio, silver-ratio]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Hear the shape of a castle - seminar
@@ -57,17 +57,17 @@ The Laplacian determines more:
 Search every castle, smallest first, for two non-isomorphic castle graphs with the same adjacency spectrum. The first pair has **10 cells**:
 
 ```
-A = (1,1,1,2,3,2)            B = (1,1,2,2,3,1)
+C_A = (1,1,1,2,3,2)          C_B = (1,1,2,2,3,1)
 ....#.                       ....#.
 ...###                       ..###.
 ######                       ######
 ```
 
-Both have characteristic polynomial `x¹⁰ − 11x⁸ + 34x⁶ − 36x⁴ + 12x²`. They agree on everything in Stop 2: 10 cells, 11 edges, two `2 × 2` squares, the traces `22, 0, 106` of `A², A³, A⁴`, and 15 spanning trees each, so both have the sandpile group `Z/15` in the sink model ([[sandpile-census](pages/sandpile-census.md)]). Yet the graphs differ. `A` has a cell with **four** neighbors, the second cell of its tallest column, with filled cells to the left, right, above and below, while no cell of `B` has more than three:[^2]
+Both have characteristic polynomial `x¹⁰ − 11x⁸ + 34x⁶ − 36x⁴ + 12x²`. They agree on everything in Stop 2: 10 cells, 11 edges, two `2 × 2` squares, the traces `22, 0, 106` of `A², A³, A⁴`, and 15 spanning trees each, so both have the sandpile group `Z/15` in the sink model ([[sandpile-census](pages/sandpile-census.md)]). Yet the graphs differ. `C_A` has a cell with **four** neighbors, the second cell of its tallest column, with filled cells to the left, right, above and below, while no cell of `C_B` has more than three:[^2]
 
 ```
-degrees(A) = 4, 3, 3, 2, 2, 2, 2, 2, 1, 1
-degrees(B) = 3, 3, 3, 3, 3, 2, 2, 1, 1, 1
+degrees(C_A) = 4, 3, 3, 2, 2, 2, 2, 2, 1, 1
+degrees(C_B) = 3, 3, 3, 3, 3, 2, 2, 1, 1, 1
 ```
 
 **The adjacency spectrum does not determine the degree sequence.** The Laplacian separates these two: their Laplacian polynomials differ.
@@ -79,13 +79,13 @@ degrees(B) = 3, 3, 3, 3, 3, 2, 2, 1, 1, 1
 The Laplacian first fails at **11 cells**, on two **tree castles**, castles with no filled `2 × 2` square, whose graphs have no cycles:
 
 ```
-S = (1,1,1,2,1,1,2,1,1)            T = (1,1,3,1,1,1,2,1)
+C_A = (1,1,1,2,1,1,2,1,1)          C_B = (1,1,3,1,1,1,2,1)
 ...#..#..                          ..#.....
 #########                          ..#...#.
                                    ########
 ```
 
-They have the same Laplacian spectrum, the same degree sequence, and one spanning tree each. `S` has two single-cell spikes on a row of 9 cells, and `T` has a two-cell spike and a single-cell spike on a row of 8. The diagonals of `L` and `L²` agree as multisets, since the diagonal entries are `d_v` and `d_v(d_v + 1)` and the degree sequences agree; the diagonal of `L³` is the first that differs.[^3] [[levy-flights](pages/levy-flights.md)] separates the pair in continuous time: the local return probabilities of the fractional walk (`0 < α ≤ 1`) at single cells differ, while every heat trace, a function of the spectrum, agrees.
+They have the same Laplacian spectrum, the same degree sequence, and one spanning tree each. `C_A` has two single-cell spikes on a row of 9 cells, and `C_B` has a two-cell spike and a single-cell spike on a row of 8. The diagonals of `L` and `L²` agree as multisets, since the diagonal entries are `d_v` and `d_v(d_v + 1)` and the degree sequences agree; the diagonal of `L³` is the first that differs.[^3] [[levy-flights](pages/levy-flights.md)] separates the pair in continuous time: the local return probabilities of the fractional walk (`0 < α ≤ 1`) at single cells differ, while every heat trace, a function of the spectrum, agrees.
 
 *Idea:* traces are spectral and diagonals are not; the diagonals separate what the spectrum misses.
 
@@ -191,31 +191,31 @@ def smallest_pair(op):                     # first cell count with two non-isomo
 (4, 15)
 >>> smallest_pair('adjacency')
 (10, [(1, 1, 1, 2, 3, 2), (1, 1, 2, 2, 3, 1)])
->>> A, B = (1, 1, 1, 2, 3, 2), (1, 1, 2, 2, 3, 1)
->>> charpoly(adj(A)) == charpoly(adj(B)), charpoly(adj(A))
+>>> C_A, C_B = (1, 1, 1, 2, 3, 2), (1, 1, 2, 2, 3, 1)
+>>> charpoly(adj(C_A)) == charpoly(adj(C_B)), charpoly(adj(C_A))
 (True, x**10 - 11*x**8 + 34*x**6 - 36*x**4 + 12*x**2)
->>> [((adj(A)**k).trace(), (adj(B)**k).trace()) for k in (2, 3, 4)], (spanning_trees(A), spanning_trees(B))
+>>> [((adj(C_A)**k).trace(), (adj(C_B)**k).trace()) for k in (2, 3, 4)], (spanning_trees(C_A), spanning_trees(C_B))
 ([(22, 22), (0, 0), (106, 106)], (15, 15))
->>> degrees(A), degrees(B)
+>>> degrees(C_A), degrees(C_B)
 ([4, 3, 3, 2, 2, 2, 2, 2, 1, 1], [3, 3, 3, 3, 3, 2, 2, 1, 1, 1])
->>> charpoly(lap(A)) == charpoly(lap(B))
+>>> charpoly(lap(C_A)) == charpoly(lap(C_B))
 False
 >>> smallest_pair('laplacian')
 (11, [(1, 1, 1, 2, 1, 1, 2, 1, 1), (1, 1, 3, 1, 1, 1, 2, 1)])
->>> S, T = (1, 1, 1, 2, 1, 1, 2, 1, 1), (1, 1, 3, 1, 1, 1, 2, 1)
->>> charpoly(lap(S)) == charpoly(lap(T)), degrees(S) == degrees(T), spanning_trees(S), spanning_trees(T)
+>>> C_A, C_B = (1, 1, 1, 2, 1, 1, 2, 1, 1), (1, 1, 3, 1, 1, 1, 2, 1)
+>>> charpoly(lap(C_A)) == charpoly(lap(C_B)), degrees(C_A) == degrees(C_B), spanning_trees(C_A), spanning_trees(C_B)
 (True, True, 1, 1)
->>> local_walks(lap(S), 2) == local_walks(lap(T), 2), local_walks(lap(S), 3) == local_walks(lap(T), 3)
+>>> local_walks(lap(C_A), 2) == local_walks(lap(C_B), 2), local_walks(lap(C_A), 3) == local_walks(lap(C_B), 3)
 (True, False)
 ```
 
 ## Exercises
 
-1. Find the cell with four neighbors in `A = (1,1,1,2,3,2)`, and check that no cell of `B = (1,1,2,2,3,1)` has four neighbors although `B` has the same number of `2 × 2` squares.
+1. Find the cell with four neighbors in `C_A = (1,1,1,2,3,2)`, and check that no cell of `C_B = (1,1,2,2,3,1)` has four neighbors although `C_B` has the same number of `2 × 2` squares.
 2. Explain from the chessboard coloring why `trace(A³) = 0` for every castle.
 3. Count the spanning trees of `(2, 2)` (4) and of `(2, 2, 2)` (15) by hand, and check them against `spanning_trees`.
 4. Why do two Laplacian-cospectral castles have the same number of `2 × 2` squares? (Use `trace(L)`.)
-5. Delete the cells with one neighbor from `A` and from `B` until none is left, and check that both leave the `3 × 2` rectangle. Conclude that `A` and `B` have the same Ihara zeta function.
+5. Delete the cells with one neighbor from `C_A` and from `C_B` until none is left, and check that both leave the `3 × 2` rectangle. Conclude that `C_A` and `C_B` have the same Ihara zeta function.
 
 ## Appearances in Sources
 
