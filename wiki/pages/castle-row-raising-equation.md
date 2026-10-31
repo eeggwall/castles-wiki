@@ -1,11 +1,11 @@
 ---
 title: The castle row-raising equation - castles by area and width through z -> qz
 category: Analyses
-summary: "A prime castle is a castle raised one row, so the free gluing monoid of prime castles gives a q-shift functional equation for castles by area q and width z. Unsigned it is 1 + qz B(z) = 1/(1 - qz B(qz)); with the block sign it is 1 + qz(2 - E(z)) = 1/(1 - qz E(qz)), which determines E one area at a time and computes the signed count even(n) - odd(n) of castles by area to n = 300. The signed count is C(-rho)^n up to a relative error O(0.7508^n), with rho = 1.62382967400459366939460437600... and C = 0.0985091749731156224089366266361..., from the simple zero q_0 = -1/rho of the q-Bessel denominator of castle-q-bessel-closed-form. Marking peaks gives a rational generating function whose one-peak column is A001924(n - 1); the convex case is U(q) = K(q, q)."
+summary: "A prime castle is a castle raised one row, so the free gluing monoid of prime castles gives a q-shift functional equation for castles by area q and width z. Unsigned it is 1 + qz B(z) = 1/(1 - qz B(qz)); with the block sign it is 1 + qz(2 - E(z)) = 1/(1 - qz E(qz)), which determines E one area at a time and computes the signed count even(n) - odd(n) of castles by area to n = 300. The signed count is C⋆(-rho)^n up to a relative error O(0.7508^n), with rho = 1.62382967400459366939460437600... and C⋆ = 0.0985091749731156224089366266361..., from the simple zero q_0 = -1/rho of the q-Bessel denominator of castle-q-bessel-closed-form. Marking peaks gives a rational generating function whose one-peak column is A001924(n - 1); the convex case is U(q) = K(q, q)."
 tags: [analysis, castle, area, width, prime-castle, monoid, functional-equation, q-shift, q-series, parity, sign, peaks, asymptotics, residue, oeis]
 sources: [prellberg-brak-1995-cluster-models, oeis-encyclopedia]
 created: 2026-09-22
-updated: 2026-10-25
+updated: 2026-10-31
 ---
 
 # The castle row-raising equation
@@ -52,16 +52,16 @@ For `n ≤ 12` these are the differences of the `even` and `odd` rows of [[castl
 At `z = 1` the right side of Equation (2) has a pole where `g(q) = q E(q, q) = 1`. `E(q, q)` is the signed generating function of the raised castles, with weight `q^{area + width}`. Its coefficients grow like `1.4574^n`, so it converges for `|q| < 0.686`, past the pole, and the pole is the dominant singularity of `E(q, 1)`.[^2] Near a simple zero `q_0` of `1 − g(q)`,
 
 ```
-even(n) − odd(n)  ~  C · q_0^{−n},        C = −1 / (q_0² g′(q_0))
+even(n) − odd(n)  ~  C⋆ · q_0^{−n},        C⋆ = −1 / (q_0² g′(q_0))
 
 q_0  =  −0.615828135184805773627625720697...
 ρ    =  −1/q_0  =  1.623829674004593669394604376006...
-C    =  0.098509174973115622408936626636...
+C⋆    =  0.098509174973115622408936626636...
 ```
 
-At `n = 16`, `C ρ^16 = 230.2` against `230`.
+At `n = 16`, `C⋆ ρ^16 = 230.2` against `230`.
 
-**Closed form.** The tower grammar graded by area and blocks gives `E(q, 1) = N(q)/M(q)` with explicit q-series `N` and `M` at block weight `−1`, built from the parallelogram series `J_0`, `J_1` ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]). `M` is analytic in `|q| < 1`, so the signed generating function is meromorphic there, and `q_0` is the first zero of `M`. The digits of `q_0`, `ρ` and `C` in this section come from the zero `q_0` of `M`, and `C = −N(q_0)/(q_0 M′(q_0))` is the residue. The second zero of `M` is `q_1 = −0.8202719776`, so the relative error of `C(−ρ)^n` is `O(|q_0/q_1|^n) = O(0.7508^n)`, about `4.5 × 10^{−38}` at `n = 300`; the ratio of consecutive terms at `n = 299, 300` agrees with `−ρ` in its first 38 significant digits.[^2]
+**Closed form.** The tower grammar graded by area and blocks gives `E(q, 1) = N(q)/M(q)` with explicit q-series `N` and `M` at block weight `−1`, built from the parallelogram series `J_0`, `J_1` ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]). `M` is analytic in `|q| < 1`, so the signed generating function is meromorphic there, and `q_0` is the first zero of `M`. The digits of `q_0`, `ρ` and `C⋆` in this section come from the zero `q_0` of `M`, and `C⋆ = −N(q_0)/(q_0 M′(q_0))` is the residue. The second zero of `M` is `q_1 = −0.8202719776`, so the relative error of `C⋆(−ρ)^n` is `O(|q_0/q_1|^n) = O(0.7508^n)`, about `4.5 × 10^{−38}` at `n = 300`; the ratio of consecutive terms at `n = 299, 300` agrees with `−ρ` in its first 38 significant digits.[^2]
 
 **A Prellberg-Brak equation.** Clearing the denominator, Equation (1) reads `B(z)B(qz) − B(z)/(qz) + B(qz)/(qz) = 0` and Equation (2) reads `E(z)E(qz) − E(z)/(qz) − (2 + 1/(qz)) E(qz) + 2/(qz) = 0`. Both have the shape `G(x)G(qx) + a(x)G(x) + b(x)G(qx) + c(x) = 0`, which [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] linearize with `G(x) = α H(qx)/H(x) − b(x)` into a three-term linear q-difference equation for `H`.[^3] Their bar-graph equation (3.11) is a second castle equation of this shape, with `x` marking width, `y` blocks and `q` area. Its series counts the castles by width, blocks and area, and at `y = −1`, with `E = 1 + B(z, −1, q)`, it satisfies Equation (2) through area 9.[^4]
 
@@ -120,7 +120,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 
 - [[prime-castles](pages/prime-castles.md)] - the gluing monoid, the prime generating function `π(q) = q B(q, q)`, and the primes as raised castles.
 - [[signed-prime-castles](pages/signed-prime-castles.md)] - the sign and the peaks as characters of the monoid.
-- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - `E(q, 1) = N(q)/M(q)`, the zeros `q_0`, `q_1`, and the residue `C`.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - `E(q, 1) = N(q)/M(q)`, the zeros `q_0`, `q_1`, and the residue `C⋆`.
 - [[prime-convex-castles](pages/prime-convex-castles.md)] - `U = K(q, q)`, the convex case.
 - [[castle-by-area](pages/castle-by-area.md)] - the `even` and `odd` rows to area 12, extended here to area 300.
 - [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter, where the sign halves the exponent.
@@ -132,7 +132,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 ## Footnotes
 
 [^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Equations (1) and (2) as bivariate series through area 11 against enumeration of all compositions, and Equation (2) with `1` in place of `2` fails; `B(q, z) = (1 − q)/(1 − q − qz)` to the same order; the recursion of the Computation section and a dynamic program over (area, last column height) with sign `(−1)^{Σ max(0, c_i − c_{i−1})}` give the same `even(n) − odd(n)` for `n ≤ 300`. Rechecked 2026-10-25 by enumerating all compositions of `n ≤ 16`: `even(n) = 0, 1, 2, 5, 8, 17, 30, 65, 122, 261, 502, 1043` and `odd(n) = 1, 1, 2, 3, 8, 15, 34, 63, 134, 251, 522, 1005` for `n ≤ 12`, with differences agreeing with the recursion through `n = 16`.
-[^2]: Verified by execution (Python 3.11 with mpmath, 60 digits, 2026-10-16): the coefficients of `E(q, q)` from a dynamic program to weight 80, with ratio `1.45738` at weight 80; `q_0` and `q_1` by `findroot` on the series `M(q)` of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] truncated at `k = 200`, `ρ = −1/q_0`, and `C = −N(q_0)/(q_0 M′(q_0))`; `(q_0/q_1)^300 = 4.47 × 10^{−38}`; the ratio `t_300/t_299` agrees with `−ρ` in 38 significant digits, and `C ρ^16 = 230.21`.
+[^2]: Verified by execution (Python 3.11 with mpmath, 60 digits, 2026-10-16): the coefficients of `E(q, q)` from a dynamic program to weight 80, with ratio `1.45738` at weight 80; `q_0` and `q_1` by `findroot` on the series `M(q)` of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] truncated at `k = 200`, `ρ = −1/q_0`, and `C⋆ = −N(q_0)/(q_0 M′(q_0))`; `(q_0/q_1)^300 = 4.47 × 10^{−38}`; the ratio `t_300/t_299` agrees with `−ρ` in 38 significant digits, and `C⋆ ρ^16 = 230.21`.
 [^3]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §4 L673-682 - "the functional equations for bar-graph polygons, alternating bar-graph polygons, staircase polygons, and ZL walks can all be linearized, as they are of the form G(x) G(qx) + a(x) G(x) + b(x) G(qx) + c(x) = 0 (4.1) which can be linearized by use of the transformation G(x) = α H(qx)/H(x) - b(x) (4.2)". Checked by execution (SymPy, 2026-09-23): for both of Equations (1) and (2), substituting (4.2) and multiplying by `H(x)` gives their (4.3), `α² H(q²x) + α[a(x) − b(qx)] H(qx) + [c(x) − a(x) b(x)] H(x) = 0`, identically.
 [^4]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §3.1 L401-402, L473 - "bar-graph polygons, that is, column-convex polygons with a horizontal lower boundary"; "B(x,y,q)=B(qx, y, q) y + {1 + B(qx, y, q)} qx {y + B(x, y, q)} (3.11)". Verified by execution (SymPy, 2026-10-16): the castle generating function by width, blocks and area satisfies (3.11) through area 9, and `E = 1 + B(z, −1, q)` satisfies Equation (2) through area 9.
 [^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the series of Equation (3) against castles of area `n ≤ 13` counted by peaks (maximal runs of columns of height `≥ 2`); the joint generating function of the signed and peak-marked monoid against enumeration of the padded castles through reduced area 10, with `t` symbolic. https://oeis.org/A001924 (read 2026-10-16) - "Apply partial sum operator twice to Fibonacci numbers", data `0, 1, 3, 7, 14, 26, 46, 79, 133, 221, 364, 596, 972, …` (offset 0).
