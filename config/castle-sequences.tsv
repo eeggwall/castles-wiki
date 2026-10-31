@@ -480,7 +480,7 @@ a067676			directed convex polyominoes by area					A067676			Number of fixed dire
 a069010			runs in a row, the Catalan index in Marin's state count					A069010			Number of runs of 1's in the binary representation of n.	supporting	
 a071521			the number of heights `2^i 3^j ≤ h`, the size of the largest class of the consonance rule on `{1, …, h}`					A071521			Number of 3-smooth numbers <= n.	supporting	
 a085478			|inverse generalized Ballot transform| = C(n+k, 2k), the DFF triangle					A085478			Triangle read by rows: T(n, k) = binomial(n + k, 2*k).	supporting	
-a086510			strip rules with a real principal square root: 13, 261, 15418 at heights 2, 3, 4 (fractional-width-and-height)					A086510			Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	supporting	
+a086510			strip rules with all eigenvalues real and nonnegative: 13, 261, 15418 at heights 2, 3, 4; those with no eigenvalue 0 have a real square root (fractional-width-and-height)					A086510			Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	supporting	
 a087130			trace for δ_5 (a=5)					A087130			a(n) = 5*a(n-1)+a(n-2) for n>1, a(0)=2, a(1)=5.	metallic	
 a088352		bala-2019-triangle-stacks-large-schroder-type	triangle stacks of large Schröder type by area		`1, 1, 2, 3, 5, 9, 16, 28`	`1/(1 − q − q²/(1 − q³ − q⁴/(1 − ⋯)))`		A088352	n		Expansion of continued fraction A(x) = 1/(1-x-x^2/(1-x^3-x^4/(1-x^5-x^6/(1-x^7-x^8/(1-...))))).	supporting	
 a088354		bala-2019-triangle-stacks-large-schroder-type	triangle stacks of large Schröder type by down triangles, all up triangles		`1, 2, 4, 10, 24, 60, 150`			A088354	n		Expansion of continued fraction A(x) = 1/(1-x-x/(1-x^2-x^2/(1-x^3-x^3/(1-x^4-x^4/(1-...))))).	supporting	
