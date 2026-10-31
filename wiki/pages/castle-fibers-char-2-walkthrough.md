@@ -1,7 +1,7 @@
 ---
 title: Castle fibers seminar - char_2 across the primes
 category: Concepts
-summary: A seminar that follows the signed tower count P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, …, with characteristic polynomial char_2 = (x − 2)(x² − x + 2), through the fibers F_p[x]/(char_2) of the ring A = Z[x]/(char_2). At p = 5 the fiber is a product of two fields and the period of P(2, ·) mod 5 is 24; p = 101 has the same shape, the idempotent 76x² + 25x + 51 isolates the root 2, and the period is 3400; at p = 11 the quadratic splits, as it does for odd p ≠ 7 exactly when p ≡ 1, 2, 4 (mod 7), giving three points, 8 idempotents and period 10; p = 7 divides disc(char_2) = −112, and its fiber has a nonzero nilpotent, 6 ideals against 4 idempotents, and period 21 = 3 · 7; at p = 2, x is not a unit. Over Q, P(2, L) = 2^L − U_L, the two parity sectors, with U_L the Lucas sequence of (1 ± √−7)/2 (A107920), split by the idempotent (x² − x + 2)/4. Over Z that idempotent and the inverse of x need 1/2, the sectors meet at the prime (2, x), A has no idempotents other than 0 and 1, and α·ᾱ = 2 splits the prime 2 in Q(√−7). One table collects the six primes.
+summary: A seminar that follows the signed tower count P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, …, with characteristic polynomial char_2 = (x − 2)(x² − x + 2), through the fibers F_p[x]/(char_2) of the ring 𝒪 = Z[x]/(char_2). At p = 5 the fiber is a product of two fields and the period of P(2, ·) mod 5 is 24; p = 101 has the same shape, the idempotent 76x² + 25x + 51 isolates the root 2, and the period is 3400; at p = 11 the quadratic splits, as it does for odd p ≠ 7 exactly when p ≡ 1, 2, 4 (mod 7), giving three points, 8 idempotents and period 10; p = 7 divides disc(char_2) = −112, and its fiber has a nonzero nilpotent, 6 ideals against 4 idempotents, and period 21 = 3 · 7; at p = 2, x is not a unit. Over Q, P(2, L) = 2^L − U_L, the two parity sectors, with U_L the Lucas sequence of (1 ± √−7)/2 (A107920), split by the idempotent (x² − x + 2)/4. Over Z that idempotent and the inverse of x need 1/2, the sectors meet at the prime (2, x), 𝒪 has no idempotents other than 0 and 1, and α·ᾱ = 2 splits the prime 2 in Q(√−7). One table collects the six primes.
 tags: [concept, castle, seminar, pedagogy, teaching, ring, spectrum, finite-field, chinese-remainder-theorem, idempotent, nilradical, frobenius, quadratic-reciprocity, signed-tower-count, parity-sector]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-26
@@ -10,7 +10,7 @@ updated: 2026-10-31
 
 # Castle fibers seminar - `char_2` across the primes
 
-**Thesis.** The recurrence of the signed tower count `P(2, ·)` is multiplication by `x` in the ring `A = Z[x]/(char_2)`, and its behavior mod a prime `p`, its period, idempotents and nilpotents, is read off the fiber `A/pA`. The seminar computes the fibers at `p = 5, 101, 11, 7, 2`, then the ring over `Q` and over `Z`.
+**Thesis.** The recurrence of the signed tower count `P(2, ·)` is multiplication by `x` in the ring `𝒪 = Z[x]/(char_2)`, and its behavior mod a prime `p`, its period, idempotents and nilpotents, is read off the fiber `𝒪/p𝒪`. The seminar computes the fibers at `p = 5, 101, 11, 7, 2`, then the ring over `Q` and over `Z`.
 
 **Structure.** Stop 0 defines the ring; Stops 1-5 take one prime each, Stop 6 the rationals and Stop 7 the integers, each with one computation and one *Idea:* line. The theory is on [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] and [[idempotent-decomposition](pages/idempotent-decomposition.md)], and the Snippet and the functions on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] reproduce the values.
 
@@ -22,9 +22,9 @@ The signed tower count `P(k, L)` ([[signed-tower-count](pages/signed-tower-count
 P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025        P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)
 ```
 
-Its characteristic polynomial is `char_2 = x³ − 3x² + 4x − 4 = (x − 2)(x² − x + 2)`.[^1] In the ring `A = Z[x]/(char_2)` of integer polynomials with `x³` replaced by `3x² − 4x + 4`, multiplication by `x` is one step of the recurrence ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 2).
+Its characteristic polynomial is `char_2 = x³ − 3x² + 4x − 4 = (x − 2)(x² − x + 2)`.[^1] In the ring `𝒪 = Z[x]/(char_2)` of integer polynomials with `x³` replaced by `3x² − 4x + 4`, multiplication by `x` is one step of the recurrence ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 2).
 
-Reducing mod a prime `p` gives the **fiber** `A/pA = F_p[x]/(char_2 mod p)`, whose points are the distinct irreducible factors of `char_2 mod p` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 1). Each stop reads one fiber.
+Reducing mod a prime `p` gives the **fiber** `𝒪/p𝒪 = F_p[x]/(char_2 mod p)`, whose points are the distinct irreducible factors of `char_2 mod p` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 1). Each stop reads one fiber.
 
 ## Stop 1 - `p = 5`: a product of two fields
 
@@ -103,15 +103,15 @@ and Stop 2's `e_1` is `e` reduced mod 101, with `1/4 ≡ 76`.
 
 ## Stop 7 - over `Z`: the whole ring
 
-The ring `A = Z[x]/(char_2)` itself:
+The ring `𝒪 = Z[x]/(char_2)` itself:
 
 - **The sectors meet at `(2, x)`.** The resultant of `x − 2` and `x² − x + 2` is the value `4 = 2²` of the quadratic at 2, so the two sector factors share a root mod `p` only at `p = 2`. Mod 2 they are `x` and `x(x + 1)`, which share the point `(2, x)`.[^8]
-- **`A` has no idempotents other than 0 and 1.** `A` is a subring of `Q[x]/(char_2) ≅ Q × Q(√−7)`, whose idempotents are `0`, `1`, `e` and `1 − e`, and `e = (x² − x + 2)/4` does not have integer coefficients. In terms of the spectrum, an idempotent of `A` other than 0 and 1 would split `Spec A` into two disjoint closed sets, and the two sectors meet at `(2, x)` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 5).
-- **`x` is not a unit of `A`.** Its norm, the product 4 of the roots, is not `±1`. Since `x · (x² − 3x + 4) = char_2 + 4`, `x · (x² − 3x + 4) = 4` in `A`, and `x^{−1} = (x² − 3x + 4)/4` exists in every fiber over an odd prime. The sector idempotent and the inverse of `x` both lie in `A[1/2]` and not in `A`.
+- **`𝒪` has no idempotents other than 0 and 1.** `𝒪` is a subring of `Q[x]/(char_2) ≅ Q × Q(√−7)`, whose idempotents are `0`, `1`, `e` and `1 − e`, and `e = (x² − x + 2)/4` does not have integer coefficients. In terms of the spectrum, an idempotent of `𝒪` other than 0 and 1 would split `Spec 𝒪` into two disjoint closed sets, and the two sectors meet at `(2, x)` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 5).
+- **`x` is not a unit of `𝒪`.** Its norm, the product 4 of the roots, is not `±1`. Since `x · (x² − 3x + 4) = char_2 + 4`, `x · (x² − 3x + 4) = 4` in `𝒪`, and `x^{−1} = (x² − 3x + 4)/4` exists in every fiber over an odd prime. The sector idempotent and the inverse of `x` both lie in `𝒪[1/2]` and not in `𝒪`.
 - **The fat fibers are over 2 and 7**, the primes dividing `disc(char_2) = −112`.
 - **2 splits in `Q(√−7)`.** Mod 2 the quadratic `x² − x + 2 ≡ x(x + 1)` has two distinct roots, so the prime 2 is the product of two distinct primes of norm 2 in the ring of integers `Z[α] = Z[(1 + √−7)/2]` of `Q(√−7)`; they are `(α)` and `(ᾱ)`, since `α · ᾱ = 2`.[^9] The relation `αᾱ = 2` also gives the two `d = 3` linear-complexity deficits of [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] (section 5): it makes the product of the roots `α` and `ᾱ` equal to the root 2, and it cancels the coefficient of `4 = 2αᾱ` in a product of three shifts.
 
-*Idea:* the periods mod `p` that [[mod-p-observatory](pages/mod-p-observatory.md)] combines are orders of `x` in the fibers of `A`, and `Spec A` has two components, the parity sectors, which meet only over 2, at `(2, x)`.
+*Idea:* the periods mod `p` that [[mod-p-observatory](pages/mod-p-observatory.md)] combines are orders of `x` in the fibers of `𝒪`, and `Spec 𝒪` has two components, the parity sectors, which meet only over 2, at `(2, x)`.
 
 ## Summary table
 
