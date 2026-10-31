@@ -16,7 +16,7 @@ updated: 2026-10-31
 
 ## Stop 0 - one series
 
-A castle of width `w` and height `h` is a skyline `(c_1, …, c_w)` with heights in `1..h` and some column of height `h`; its blocks are the maximal runs of cells in each row, and `A^e(w, h)` counts the castles with an even number of blocks, the count of Project Euler 502 ([[castle-counting-function](pages/castle-counting-function.md)]). Write a skyline as the polynomial `C(x) = Σ_i c_i x^i` and a count sequence as its generating function.
+A castle of width `w` and height `h` is a skyline `(c_1, …, c_w)` with heights in `1..h` and some column of height `h`; its blocks are the maximal runs of cells in each row, and `A^e(w, h)` counts the castles with an even number of blocks, the count of Project Euler 502 ([[castle-counting-function](pages/castle-counting-function.md)]). Write a skyline as the polynomial `𝒞(x) = Σ_i c_i x^i` and a count sequence as its generating function.
 
 - The **column difference** `c_i − c_{i−1}` is multiplication by `(1 − x)`. The block count is the sum of its positive parts, the total ascent, since a column of height `b` after one of height `a` starts `max(0, b − a)` new blocks.[^bf]
 - The **partial sum** of a count sequence is multiplication by `(1 − x)^{−1}`.
@@ -35,7 +35,7 @@ and their product is 1, so a half-difference followed by a half-sum gives the sk
 
 ## Stop 1 - between area and blocks
 
-The Grunwald-Letnikov difference of order `α` at column `i` is `Δ^α c_i = Σ_{k<i} (−1)^k C(α, k) c_{i−k}`, the coefficient of `x^i` in `(1 − x)^α C(x)`, and the **fractional block count** is `B_α = Σ_i max(0, Δ^α c_i)` ([[fractional-block-count](pages/fractional-block-count.md)]). At `α = 0` the weights are `1, 0, 0, …` and `B_0` is the area; at `α = 1` they are `1, −1, 0, …` and `B_1` is the total ascent, the block count. For `0 < α < 1` the weights after the first are negative with absolute values summing to 1, so the residual at column `i` is the amount by which `c_i` exceeds a power-law average of the columns to its left, the wall counting as height 0.
+The Grunwald-Letnikov difference of order `α` at column `i` is `∇^α c_i = Σ_{k<i} (−1)^k C(α, k) c_{i−k}`, the coefficient of `x^i` in `(1 − x)^α 𝒞(x)`, and the **fractional block count** is `B_α = Σ_i max(0, ∇^α c_i)` ([[fractional-block-count](pages/fractional-block-count.md)]). At `α = 0` the weights are `1, 0, 0, …` and `B_0` is the area; at `α = 1` they are `1, −1, 0, …` and `B_1` is the total ascent, the block count. For `0 < α < 1` the weights after the first are negative with absolute values summing to 1, so the residual at column `i` is the amount by which `c_i` exceeds a power-law average of the columns to its left, the wall counting as height 0.
 
 The castles `(1, 1, 1, 2)` and `(1, 1, 2, 1)` both have area 5 and two blocks. With the weights `1, −1/2, −1/8, −1/16` their residuals are `1, 1/2, 3/8, 21/16` and `1, 1/2, 11/8, −3/16`, so `B_{1/2} = 51/16 = 3.1875` and `23/8 = 2.875`; the second castle's last residual is negative and does not count. The ten even-block castles of width 4 and height 2 all have two blocks and four distinct areas, and `B_{1/2}` takes ten distinct values on them; over all 15 castles of that width and height it takes 14, and at the irrational order `√2 − 1` all 15.
 
@@ -270,7 +270,7 @@ def battlement_hor(h, ts):                 # E hor(t) on the extended battlement
 - [[levy-flights](pages/levy-flights.md)] - the space-fractional Laplacian of the castle graph, against the time-fractional comb of Stop 6.
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] - the weights of Stop 1 used in a strip rule instead of a statistic.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - fractional difference operators applied to recurrences.
-- [[castle-notation](pages/castle-notation.md)] - `A^e`, `P(k, L)`, `A_L`, `B_L`, `Δ^α`, `B_α`, `C(x)`, `H_h`, `G_h`, `K_4`, `hor(t)`, `msd(t)` and `rate(c)`.
+- [[castle-notation](pages/castle-notation.md)] - `A^e`, `P(k, L)`, `A_L`, `B_L`, `∇^α`, `B_α`, `𝒞(x)`, `H_h`, `G_h`, `K_4`, `hor(t)`, `msd(t)` and `rate(c)`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[song-as-castle](pages/song-as-castle.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 
 ## Footnotes

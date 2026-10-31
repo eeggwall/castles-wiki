@@ -1,11 +1,11 @@
 ---
 title: Fractional block count
 category: Analyses
-summary: B_alpha(C) = sum_i max(0, Delta^alpha c_i), with Delta^alpha the Grunwald-Letnikov fractional difference of the skyline (binomial weights (-1)^k C(alpha, k) over every earlier column), is the area at alpha = 0 and the block count at alpha = 1, checked on all 5460 castles with w <= 6, h <= 4. For 0 < alpha < 1 it is the sum of the amounts by which each column exceeds a power-law weighted average of the columns to its left. B_{1/2} separates the ten even-block castles of width 4 and height 2 and 14 of the 15 castles of that width and height; at alpha = sqrt 2 - 1 it separates all 15. For nondecreasing skylines B_alpha = [x^w] (1 - x)^{alpha - 1} C(x), decreasing in alpha; the box gives B_alpha = h C(w - alpha, w - 1), which at alpha = 1/2 is 2hw C(2w, w)/4^w ~ 2h sqrt(w/pi). Over all castles with w <= 6, h <= 4, on a grid of 201 orders in [0, 1], 829 have B_alpha increasing somewhere, and these are the 829 whose B_alpha falls below the block count. The phase sum S_alpha = sum_C e^{i pi B_alpha(C)} runs from the area-parity sum (-1)^{w+h+1} at alpha = 0 to the signed count S(w, h) at alpha = 1.
+summary: B_alpha(C) = sum_i max(0, nabla^alpha c_i), with nabla^alpha the Grunwald-Letnikov fractional difference of the skyline (binomial weights (-1)^k C(alpha, k) over every earlier column), is the area at alpha = 0 and the block count at alpha = 1, checked on all 5460 castles with w <= 6, h <= 4. For 0 < alpha < 1 it is the sum of the amounts by which each column exceeds a power-law weighted average of the columns to its left. B_{1/2} separates the ten even-block castles of width 4 and height 2 and 14 of the 15 castles of that width and height; at alpha = sqrt 2 - 1 it separates all 15. For nondecreasing skylines B_alpha = [x^w] (1 - x)^{alpha - 1} 𝒞(x), decreasing in alpha; the box gives B_alpha = h C(w - alpha, w - 1), which at alpha = 1/2 is 2hw C(2w, w)/4^w ~ 2h sqrt(w/pi). Over all castles with w <= 6, h <= 4, on a grid of 201 orders in [0, 1], 829 have B_alpha increasing somewhere, and these are the 829 whose B_alpha falls below the block count. The phase sum S_alpha = sum_C e^{i pi B_alpha(C)} runs from the area-parity sum (-1)^{w+h+1} at alpha = 0 to the signed count S(w, h) at alpha = 1.
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, block-count, area, statistic, memory, power-law, arfima, compression, parity, computation, verification]
 sources: [project-euler-502-castle-factoring, project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Fractional block count
@@ -17,13 +17,13 @@ The area `sum c_i` of a castle is the sum of its column heights, and its block c
 Write the skyline as `c = (c_1, ..., c_w)` with `c_i in {1, ..., h}`, and put `c_j = 0` for every `j <= 0` ([[castle-representations](pages/castle-representations.md)]). The **Grunwald-Letnikov difference of order `alpha`** at column `i` is[^1]
 
 ```
-Delta^alpha c_i  =  sum_{k = 0}^{i - 1}  w_k(alpha) c_{i - k},        w_k(alpha) = (-1)^k C(alpha, k),          (1)
+nabla^alpha c_i  =  sum_{k = 0}^{i - 1}  w_k(alpha) c_{i - k},        w_k(alpha) = (-1)^k C(alpha, k),          (1)
 ```
 
-where `C(alpha, k) = alpha (alpha - 1) ... (alpha - k + 1) / k!` is the generalized binomial coefficient. At `alpha = 1` the weights are `1, -1, 0, 0, ...` and `Delta^1 c_i = c_i - c_{i-1}`; at `alpha = 0` the weights are `1, 0, 0, ...` and `Delta^0 c_i = c_i`. The **fractional block count** is
+where `C(alpha, k) = alpha (alpha - 1) ... (alpha - k + 1) / k!` is the generalized binomial coefficient. At `alpha = 1` the weights are `1, -1, 0, 0, ...` and `nabla^1 c_i = c_i - c_{i-1}`; at `alpha = 0` the weights are `1, 0, 0, ...` and `nabla^0 c_i = c_i`. The **fractional block count** is
 
 ```
-B_alpha(C)  =  sum_{i = 1}^{w}  max(0, Delta^alpha c_i).                                                  (2)
+B_alpha(C)  =  sum_{i = 1}^{w}  max(0, nabla^alpha c_i).                                                  (2)
 ```
 
 At `alpha = 0`, `B_0 = sum c_i` is the area. At `alpha = 1`, `B_1 = sum max(0, c_i - c_{i-1})` with `c_0 = 0` is the total ascent of the skyline, which is the block count: a column of height `b` after a column of height `a` starts `max(0, b - a)` new blocks.[^2] The block count is also the total descent `sum max(0, c_i - c_{i+1})` with `c_{w+1} = 0`;[^3] the fractional version uses the ascent form, so its memory runs from left to right. Both identities hold on all 5460 castles with `w <= 6` and `h <= 4`.[^exec]
@@ -45,7 +45,7 @@ w_k(alpha)  =  -alpha (1 - alpha)(2 - alpha) ... (k - 1 - alpha) / k!  <  0     
 sum_{k >= 1} |w_k(alpha)|  =  1,            |w_k(alpha)|  ~  alpha / (Gamma(1 - alpha) k^{1 + alpha}).
 ```
 
-The sum is 1 because `sum_k w_k(alpha) = (1 - 1)^alpha = 0`. So `Delta^alpha c_i = c_i - (weighted average of c_{i-1}, c_{i-2}, ...)`, with weights that form a probability distribution with a power-law tail, and `B_alpha` adds up the amounts by which each column exceeds that weighted average of the columns to its left. At `alpha = 1/2` the partial sums of `|w_k|` are `0.727` through `k = 4`, `0.860` through 16, `0.930` through 64 and `0.982` through 1024; a castle of width 6 uses `k <= 5`, about three quarters of the total weight.[^exec]
+The sum is 1 because `sum_k w_k(alpha) = (1 - 1)^alpha = 0`. So `nabla^alpha c_i = c_i - (weighted average of c_{i-1}, c_{i-2}, ...)`, with weights that form a probability distribution with a power-law tail, and `B_alpha` adds up the amounts by which each column exceeds that weighted average of the columns to its left. At `alpha = 1/2` the partial sums of `|w_k|` are `0.727` through `k = 4`, `0.860` through 16, `0.930` through 64 and `0.982` through 1024; a castle of width 6 uses `k <= 5`, about three quarters of the total weight.[^exec]
 
 **Small `alpha`.** Since `(-1)^k C(alpha, k) = -alpha / k + O(alpha^2)` for `k >= 1`,
 
@@ -59,7 +59,7 @@ with `H_n = 1 + 1/2 + ... + 1/n` the harmonic numbers (`H_0 = 0`). The slope at 
 
 The even-block castles of width 4 and height 2 are the `A^e(4, 2) = 10` of the Project Euler statement (its `F(4, 2)`; [[castle-counting-function](pages/castle-counting-function.md)]). Their half-order residuals and fractional block counts:[^exec]
 
-| castle | area | blocks | `Delta^{1/2} c` | `B_{1/2}` |
+| castle | area | blocks | `nabla^{1/2} c` | `B_{1/2}` |
 |---|---|---|---|---|
 | `(2, 1, 1, 1)` | 5 | 2 | `2, 0, 0.25, 0.25` | **2.5** |
 | `(1, 2, 1, 1)` | 5 | 2 | `1, 1.5, -0.125, 0.1875` | **2.6875** |
@@ -103,7 +103,7 @@ The pair `(area, blocks)` takes a few percent as many values as there are castle
 Each residual is a polynomial in `alpha`, so `B_alpha(C)` is continuous and piecewise polynomial in `alpha`. On the 5460 castles with `w <= 6`, `h <= 4`, on a grid of 201 orders in `[0, 1]`:[^exec]
 
 - **It is not always decreasing.** 829 castles have an increase somewhere on the grid. The largest single step is `0.0138` per `0.005` of `alpha`, and the largest total increase over `[0, 1]` is `0.47`, on the three castles `(4, 3, 1, 4, 1, c_6)` with `c_6 = 2, 3, 4` (8, 9 and 10 blocks). Every nondecreasing castle is decreasing in `alpha` (section *Generating functions*), so every increase belongs to a castle with a descent.
-- **It is at most the area** for every castle and every `alpha` in `[0, 1]`: every weight after the first is at most 0 and the heights are positive, so `Delta^alpha c_i <= c_i`.
+- **It is at most the area** for every castle and every `alpha` in `[0, 1]`: every weight after the first is at most 0 and the heights are positive, so `nabla^alpha c_i <= c_i`.
 - **It can fall below the block count.** The 829 castles with an increase are exactly the castles with `B_alpha < blocks` somewhere on the grid. `(4, 3, 1, 4, 1, 2)` has 8 blocks and `B_{0.8} = 7.58`; its residuals at `alpha = 0.8` are `4.0, -0.2, -1.72, 2.83, -2.45, 0.75`, and the two positive ones, at columns 4 and 6, are smaller than the ascents 3 and 1 there, because the weight on the `4` in column 1 is still being subtracted.
 
 For the castles of each width and height below, the mean of `B_alpha` over the castles is convex and decreasing in `alpha` on a grid of step `0.01`, and the variance has an interior minimum:[^exec]
@@ -121,10 +121,10 @@ The argmin is on a grid of step `0.01`. The mean at `alpha = 1/2` is below the a
 
 ## Generating functions
 
-Write the skyline as the polynomial `C(x) = sum_{i=1}^{w} c_i x^i`. The weights `w_k(alpha)` are the coefficients of `(1 - x)^alpha`, so Equation (1) is a product of series:
+Write the skyline as the polynomial `𝒞(x) = sum_{i=1}^{w} c_i x^i`. The weights `w_k(alpha)` are the coefficients of `(1 - x)^alpha`, so Equation (1) is a product of series:
 
 ```
-sum_i (Delta^alpha c_i) x^i  =  (1 - x)^alpha C(x)          (mod x^{w+1}).                                (3)
+sum_i (nabla^alpha c_i) x^i  =  (1 - x)^alpha 𝒞(x)          (mod x^{w+1}).                                (3)
 ```
 
 **The fractional difference is invertible.** Since `(1 - x)^{-alpha} (1 - x)^alpha = 1`, multiplying by `(1 - x)^{-alpha}` inverts Equation (3): the map from skyline to residuals is a lower-triangular Toeplitz matrix with ones on the diagonal. So the residuals determine the castle, and `B_alpha` loses information only through the positive part.
@@ -132,12 +132,12 @@ sum_i (Delta^alpha c_i) x^i  =  (1 - x)^alpha C(x)          (mod x^{w+1}).      
 **Proposition (nondecreasing castles).** If `c_1 <= c_2 <= ... <= c_w` and `0 <= alpha <= 1`, then every residual is nonnegative,
 
 ```
-B_alpha(C)  =  [x^w] (1 - x)^{alpha - 1} C(x)  =  sum_{j=1}^{w} d_j [x^{w-j}] (1 - x)^{alpha - 2},          (4)
+B_alpha(C)  =  [x^w] (1 - x)^{alpha - 1} 𝒞(x)  =  sum_{j=1}^{w} d_j [x^{w-j}] (1 - x)^{alpha - 2},          (4)
 ```
 
 with `d_j = c_j - c_{j-1} >= 0` the ascents, and `B_alpha` is decreasing in `alpha`.
 
-*Proof.* `(1 - x)^alpha C(x) = (1 - x)^{-(1 - alpha)} D(x)` with `D(x) = (1 - x) C(x) = sum d_j x^j`, and `(1 - x)^{-(1 - alpha)}` has nonnegative coefficients for `0 <= alpha <= 1`. So every residual is nonnegative, `B_alpha` is the sum of the residuals, and summing the coefficients through `x^w` is multiplication by `1/(1 - x)`, which gives Equation (4). The coefficient `[x^n] (1 - x)^{-beta} = beta (beta + 1) ... (beta + n - 1) / n!` increases with `beta`, and `beta = 2 - alpha`, so every coefficient in Equation (4) decreases as `alpha` increases.
+*Proof.* `(1 - x)^alpha 𝒞(x) = (1 - x)^{-(1 - alpha)} D(x)` with `D(x) = (1 - x) 𝒞(x) = sum d_j x^j`, and `(1 - x)^{-(1 - alpha)}` has nonnegative coefficients for `0 <= alpha <= 1`. So every residual is nonnegative, `B_alpha` is the sum of the residuals, and summing the coefficients through `x^w` is multiplication by `1/(1 - x)`, which gives Equation (4). The coefficient `[x^n] (1 - x)^{-beta} = beta (beta + 1) ... (beta + n - 1) / n!` increases with `beta`, and `beta = 2 - alpha`, so every coefficient in Equation (4) decreases as `alpha` increases.
 
 Equation (4) agrees with the direct computation on all 791 nondecreasing castles with `w <= 7`, `h <= 5`, at 41 orders.[^exec]
 
@@ -198,9 +198,9 @@ written `S_alpha` because it sums over castles and `S_1 = S(w, h)` is the signed
 
 ## The residual cost
 
-Drop the positive part and take the total residual size `sum_i abs(Delta^alpha c_i)`. For `0 < alpha < 1`, Equation (1) is fractional differencing by `(1 - B)^alpha`, with `B` the backshift: the operation that defines ARFIMA long-memory time series, in which a process is fractionally integrated of order `d` when `(1 - B)^d` turns it into white noise.[^5] The order that minimizes the residual cost estimates the integration order of a skyline. On sequences of width 64, centered before differencing, with the minimum taken over a grid of step `0.01` in `[0, 2.5]` and 20 random samples of each random kind (NumPy `default_rng(502)`; the fractionally integrated noise is `(1 - B)^{-d}` applied to Gaussian noise with 2000 burn-in terms):[^exec]
+Drop the positive part and take the total residual size `sum_i abs(nabla^alpha c_i)`. For `0 < alpha < 1`, Equation (1) is fractional differencing by `(1 - B)^alpha`, with `B` the backshift: the operation that defines ARFIMA long-memory time series, in which a process is fractionally integrated of order `d` when `(1 - B)^d` turns it into white noise.[^5] The order that minimizes the residual cost estimates the integration order of a skyline. On sequences of width 64, centered before differencing, with the minimum taken over a grid of step `0.01` in `[0, 2.5]` and 20 random samples of each random kind (NumPy `default_rng(502)`; the fractionally integrated noise is `(1 - B)^{-d}` applied to Gaussian noise with 2000 burn-in terms):[^exec]
 
-| skyline | argmin of `sum abs(Delta^alpha c_i)`: median (range) |
+| skyline | argmin of `sum abs(nabla^alpha c_i)`: median (range) |
 |---|---|
 | i.i.d. uniform heights in `{1, ..., 8}` | `0.00` (`0.00` to `0.31`) |
 | 1-smooth random walk (steps `-1, 0, +1`) | `1.00` (`0.64` to `1.00`) |

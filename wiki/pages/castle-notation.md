@@ -258,6 +258,16 @@ Two families of castles stand on tilings other than the square grid: the **brick
 | triangle stack | a stack of A224704, a row of keystone castles side by side | [[keystone-castles](pages/keystone-castles.md)], [[bala-2019-area-beneath-small-schroder-paths](pages/bala-2019-area-beneath-small-schroder-paths.md)] |
 | `x_0`, `y_0` | the smallest zeros of the denominator and of the numerator in Bala's ratio of q-series for `F_stack`; the stacks grow at `1/x_0`, the keystone castles by cells at `1/y_0` | [[keystone-castles](pages/keystone-castles.md)] |
 
+## Fractional-order symbols
+
+The fractional-order pages set an order between the integers: a difference and a block count of order `α`, and sums of order 1/2 of a castle row in the width.
+
+| symbol | meaning | where |
+|---|---|---|
+| `∇^α` | the Grunwald-Letnikov difference of order `α`, `(∇^α a)_n = Σ_k (−1)^k C(α, k) a_{n−k}` with `a_j = 0` before the start; on a skyline, `∇^α c_i` is the coefficient of `x^i` in `(1 − x)^α 𝒞(x)`. Written `nabla^alpha` in plain ASCII text. Dhar's toppling matrix is `Δ`, and the bare `∇` of [[catalan-numbers](pages/catalan-numbers.md)] is the triangle atom of a triangulation | [[fractional-block-count](pages/fractional-block-count.md)], [[fractional-recurrences](pages/fractional-recurrences.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)] |
+| `B_α(C)` | the **fractional block count** `Σ_i max(0, ∇^α c_i)` of a castle `C`, the area at `α = 0` and the block count at `α = 1`; not the polynomial `B_L(k)` of the core table or the GF `B(x, y)` | [[fractional-block-count](pages/fractional-block-count.md)] |
+| `𝒞(x)` | the skyline polynomial `Σ_i c_i x^i` of a castle; script, since `C(n, k)` is the binomial coefficient and `C` a castle | [[fractional-block-count](pages/fractional-block-count.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)] |
+
 ## Other meanings of P, T, and other shared letters on the wiki
 
 These are local notations on specific pages. Each is unrelated to the tower counts or reuses a letter of an earlier table on this page:
@@ -266,7 +276,6 @@ These are local notations on specific pages. Each is unrelated to the tower coun
 |---|---|---|
 | `P_j(k, L)` | the sum of `ω^{j·blocks}` over the towers of height at most `k` on a base of length `L`, with `ω = e^{2πi/m}`; at `m = 2`, `P_1 = P` | [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] |
 | `S_α`, `S_0` | `S_α(w, h) = Σ_C e^{iπ B_α(C)}` over the castles of width `w` and height `h`, with `B_α` the fractional block count; `S_0 = Σ (−1)^{area}` and `S_1 = S(w, h)`, the signed count | [[fractional-block-count](pages/fractional-block-count.md)] |
-| `Δ^α`, `B_α`, `C(x)` | the Grunwald-Letnikov difference of order `α` of a skyline, `Δ^α c_i = Σ_{k<i} (−1)^k C(α, k) c_{i−k}`, the coefficient of `x^i` in `(1 − x)^α C(x)`, with `C(x) = Σ_i c_i x^i` the skyline polynomial (one argument; `C(n, k)` with two is a binomial coefficient); and the **fractional block count** `B_α(C) = Σ_i max(0, Δ^α c_i)`, the area at `α = 0` and the block count at `α = 1`. `Δ^α` always carries its order, unlike Dhar's toppling matrix `Δ` | [[fractional-block-count](pages/fractional-block-count.md)] |
 | `H_h(w)`, `G_h(x)` | the **half-sum** `Σ_k C(2k, k)/4^k · A^e(w − k, h)` of the height-`h` row in the width, and the row's generating function `G_h(x) = Σ_w A^e(w, h) x^w`, so `Σ_w H_h(w) x^w = G_h(x)/√(1 − x)`. Not the harmonic numbers `H_n`, the strip series `G_M(x)` of a rule, or the inscribed-polyomino series `G_w(x)` by height | [[half-sum-castles](pages/half-sum-castles.md)] |
 | `P_h(q)` | the polynomial `q² + q³ + … + q^h` in the tree-castle generating function | [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-graph](pages/castle-graph.md)] |
 | `P_h` | the path graph on `h` vertices | [[ramanujan-castles](pages/ramanujan-castles.md)] |

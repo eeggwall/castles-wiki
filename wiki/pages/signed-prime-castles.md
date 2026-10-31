@@ -5,7 +5,7 @@ summary: "On the free monoid of castles glued at a shared height-1 column, block
 tags: [analysis, castle, area, prime-castle, monoid, character, parity, block-count, sign, multinomial, peaks, records, fractional, q-series, oeis]
 sources: [project-euler-502]
 created: 2026-09-22
-updated: 2026-10-25
+updated: 2026-10-31
 ---
 
 # Signed prime castles
@@ -88,7 +88,7 @@ A statistic `f` is a character after a shift when `f(x ∘ y) = f(x) + f(y) − 
 | height | no | | the height of a product is a maximum, not a sum |
 | `B_α`, `0 < α < 1` | no | | at `α = 1/2`, `B(1, 2, 1, 3, 1) = 4.6875` but `B(1, 2, 1) + B(1, 3, 1) − B(1) = 5` |
 
-Records are characters when a record means a column that leaves the base, as on [[castle-foata-transform](pages/castle-foata-transform.md)]; read as left-to-right maxima of the column heights they compare against the whole prefix and are not. The fractional block count `B_α` of [[fractional-block-count](pages/fractional-block-count.md)] is not a character for `0 < α < 1`, because `Δ^α c_i` is a weighted sum over all earlier columns, so the terms of the right factor depend on the left one. Its endpoints `B_0 = area` and `B_1 = blocks` are characters.
+Records are characters when a record means a column that leaves the base, as on [[castle-foata-transform](pages/castle-foata-transform.md)]; read as left-to-right maxima of the column heights they compare against the whole prefix and are not. The fractional block count `B_α` of [[fractional-block-count](pages/fractional-block-count.md)] is not a character for `0 < α < 1`, because `∇^α c_i` is a weighted sum over all earlier columns, so the terms of the right factor depend on the left one. Its endpoints `B_0 = area` and `B_1 = blocks` are characters.
 
 **Weighted generating functions.** For characters `f_1, …, f_r`, weighting each prime `p` by `t_1^{f_1(p)} ⋯ t_r^{f_r(p)}` turns Equation (1) into the weighted sum over `𝓜`. Marking peaks gives a rational generating function for the castles by area and peaks, and marking peaks and the sign together gives a joint recursion; both are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
 
