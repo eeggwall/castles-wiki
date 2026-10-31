@@ -5,7 +5,7 @@ summary: For the recurrence ∇^α a_n = a_{n−1}, with ∇^α the Grunwald-Let
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, metallic-mean, golden-ratio, transcendental, algebraic, gelfond-schneider, plastic-number, supergolden, reachable-field, characteristic-equation]
 sources: [de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-21
-updated: 2026-10-22
+updated: 2026-10-31
 ---
 
 # Fractional recurrences and the metallic means
@@ -32,25 +32,25 @@ At `α = 1` it is `a_n = 2a_{n−1}`, with growth 2. At `α = 2` it is `a_n − 
 a_n  =  1, 1.5, 2.375, 3.8125, 6.1484, 9.9336, 16.0615, …,        a_60 / a_59  =  1.618034.
 ```
 
-The weights `(−1)^k C(α, k)` are the coefficients of `(1 − x)^α`, so with `A(x) = Σ_n a_n x^n`, Equation (1) and `a_0 = 1` give `(1 − x)^α A(x) = x A(x) + 1`, and
+The weights `(−1)^k C(α, k)` are the coefficients of `(1 − x)^α`, so with `a(x) = Σ_n a_n x^n`, Equation (1) and `a_0 = 1` give `(1 − x)^α a(x) = x a(x) + 1`, and
 
 ```
-A(x)  =  1 / D(x),        D(x)  =  (1 − x)^α − x.                                      (2)
+a(x)  =  1 / d(x),        d(x)  =  (1 − x)^α − x.                                      (2)
 ```
 
 **Growth.** For `α > 0`, expanding Equation (2) in powers of `x/(1 − x)^α` gives
 
 ```
-1 / D(x)  =  Σ_{k≥0}  x^k (1 − x)^{−α(k+1)},
+1 / d(x)  =  Σ_{k≥0}  x^k (1 − x)^{−α(k+1)},
 ```
 
-and every coefficient of `(1 − x)^{−β}` with `β > 0` is positive, so `A(x)` has positive coefficients. By Pringsheim's theorem, a power series with nonnegative coefficients has a singularity on the positive real axis at its radius of convergence. On `(0, 1)`, `D` is analytic and strictly decreasing, from `D(0) = 1` to `D(1) = −1`, so it has exactly one zero `r*(α)` there, and the radius of convergence of `A` is `r*(α)`. So the exponential growth rate of `a_n` is
+and every coefficient of `(1 − x)^{−β}` with `β > 0` is positive, so `a(x)` has positive coefficients. By Pringsheim's theorem, a power series with nonnegative coefficients has a singularity on the positive real axis at its radius of convergence. On `(0, 1)`, `d(x)` is analytic and strictly decreasing, from `D(0) = 1` to `D(1) = −1`, so it has exactly one zero `r*(α)` there, and the radius of convergence of `a(x)` is `r*(α)`. So the exponential growth rate of `a_n` is
 
 ```
 g(α)  =  1 / r*(α),        (1 − r*)^α  =  r*.                                          (3)
 ```
 
-**Monotonicity.** At fixed `r ∈ (0, 1)`, `(1 − r)^α` decreases in `α`, so `D` decreases in `α` and its zero `r*(α)` decreases. So `g` is continuous and strictly increasing, with `g(0) = 1` (at `α = 0`, `(1 − r)^0 = 1 = r`) and `g(1) = 2`. For large `α`, taking logarithms in Equation (3) gives `α r* (1 + O(r*)) = log(1/r*)`, so `α r* = W(α)(1 + o(1))`, with `W` the Lambert function, and `g(α) ~ α/W(α) ~ α/log α`. At `α = 10`, `r* = 0.1649` and `g = 6.064`, against `α/W(α) = 5.729`; at `α = 100`, `g = 29.93`, against `29.54`.[^exec] So `g` is a continuous, strictly increasing bijection from `[0, ∞)` onto `[1, ∞)`: every real number `≥ 1` is the growth constant of Equation (1) at exactly one order.
+**Monotonicity.** At fixed `r ∈ (0, 1)`, `(1 − r)^α` decreases in `α`, so `d(x)` decreases in `α` and its zero `r*(α)` decreases. So `g` is continuous and strictly increasing, with `g(0) = 1` (at `α = 0`, `(1 − r)^0 = 1 = r`) and `g(1) = 2`. For large `α`, taking logarithms in Equation (3) gives `α r* (1 + O(r*)) = log(1/r*)`, so `α r* = W(α)(1 + o(1))`, with `W` the Lambert function, and `g(α) ~ α/W(α) ~ α/log α`. At `α = 10`, `r* = 0.1649` and `g = 6.064`, against `α/W(α) = 5.729`; at `α = 100`, `g = 29.93`, against `29.54`.[^exec] So `g` is a continuous, strictly increasing bijection from `[0, ∞)` onto `[1, ∞)`: every real number `≥ 1` is the growth constant of Equation (1) at exactly one order.
 
 ## Rational orders
 
@@ -75,7 +75,7 @@ The supergolden constant, `ψ²` and `ψ³` are Perron roots of 0/1 strip matric
 
 ## Irrational orders
 
-The **Gelfond-Schneider theorem** says that if `a` and `b` are algebraic, `a ∉ {0, 1}` and `b` is irrational, then `a^b` is transcendental; equivalently, for nonzero algebraic `α` and `γ`, `log γ / log α` is rational or transcendental.[^2]
+The **Gelfond-Schneider theorem** says that if `β` and `γ` are algebraic, `β ∉ {0, 1}` and `γ` is irrational, then `β^γ` is transcendental; equivalently, for nonzero algebraic `β` and `γ`, `log γ / log β` is rational or transcendental.[^2]
 
 **Proposition.** If `α` is algebraic and irrational, then `g(α)` is transcendental.
 
@@ -107,7 +107,7 @@ At `a = 1`, `δ_1/(δ_1 − 1) = φ/(1/φ) = φ²`, so `α_1 = log φ / (2 log �
 *Proof.* `δ_a` and `1 − 1/δ_a` lie in the real quadratic field `Q(√(a² + 4))` (`a² + 4` lies strictly between `a²` and `(a + 2)²` and is not `(a + 1)²`, so it is not a square). The norm of `δ_a` is the product of the roots of `x² − ax − 1`, which is `−1`. The number `δ_a − 1` is a root of `(y + 1)² − a(y + 1) − 1 = y² + (2 − a)y − a`, so its norm is `−a`, and
 
 ```
-N(1 − 1/δ_a)  =  N(δ_a − 1) / N(δ_a)  =  a,        N(1/δ_a)  =  −1.
+Norm(1 − 1/δ_a)  =  Norm(δ_a − 1) / Norm(δ_a)  =  a,        Norm(1/δ_a)  =  −1.
 ```
 
 A rational `α_a = m/n` with `m, n > 0` gives `(1 − 1/δ_a)^m = (1/δ_a)^n`, and taking norms gives `a^m = (−1)^n`, which forces `a = 1`. For `a ≥ 2`, `α_a` is therefore irrational, and as the ratio of the logarithms of the algebraic numbers `1/δ_a` and `1 − 1/δ_a` it is transcendental by the Gelfond-Schneider theorem.
@@ -126,7 +126,7 @@ At `α = 0` it is `a_n = a_{n−1} + a_{n−2}`, the Fibonacci recurrence, with 
 
 **Proposition.** For `a ≥ 1` and rational `α > 0`, `g_2(α) = δ_a` holds only for `a = 2` and `α = 1`.
 
-*Proof.* Let `r = 1/δ_a`. By the norm computation in the section *The metallic means on the curve*, `N(1 − r) = a`, and `r + r² = r(1 + r)` has norm `N(r) N(1 + 1/δ_a) = (−1) · N(δ_a + 1)/N(δ_a) = N(δ_a + 1)`, where `δ_a + 1` is a root of `(y − 1)² − a(y − 1) − 1 = y² − (a + 2)y + a`, so `N(r + r²) = a`. A rational `α = m/n` gives `(1 − r)^m = (r + r²)^n`, so `a^m = a^n`. For `a = 1`, `r + r² = 1`, and `(1 − r)^m = 1` with `0 < 1 − r < 1` forces `m = 0`. For `a ≥ 2`, `m = n`, so `α = 1` and `1 − r = r + r²`, whose positive root is `r = √2 − 1`, so `δ_a = 1 + √2` and `a = 2`.
+*Proof.* Let `r = 1/δ_a`. By the norm computation in the section *The metallic means on the curve*, `Norm(1 − r) = a`, and `r + r² = r(1 + r)` has norm `Norm(r) Norm(1 + 1/δ_a) = (−1) · Norm(δ_a + 1)/Norm(δ_a) = Norm(δ_a + 1)`, where `δ_a + 1` is a root of `(y − 1)² − a(y − 1) − 1 = y² − (a + 2)y + a`, so `Norm(r + r²) = a`. A rational `α = m/n` gives `(1 − r)^m = (r + r²)^n`, so `a^m = a^n`. For `a = 1`, `r + r² = 1`, and `(1 − r)^m = 1` with `0 < 1 − r < 1` forces `m = 0`. For `a ≥ 2`, `m = n`, so `α = 1` and `1 − r = r + r²`, whose positive root is `r = √2 − 1`, so `δ_a = 1 + √2` and `a = 2`.
 
 So for every `a ≥ 3` the order at which `g_2` meets `δ_a` is irrational, and transcendental by the Gelfond-Schneider theorem; for bronze it is `α = 2.57943`. At `α = 1/2`, squaring Equation (5) gives `r⁴ + 2r³ + r² + r − 1 = 0`, an irreducible quartic, with `g_2(1/2) = 2.06599`.[^exec]
 
@@ -153,4 +153,4 @@ So for every `a ≥ 3` the order at which `g_2` meets `δ_a` is irrational, and 
 
 [^1]: [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] §3 L143-147 - "All the members of this family are positive quadratic irrational numbers that are the positive solutions of quadratic equations of the type (3.2) x² − px − q = 0".
 [^2]: https://en.wikipedia.org/wiki/Gelfond%E2%80%93Schneider_theorem (read 2026-10-16) §"Statement" - "If a and b are algebraic numbers with a ∉ {0,1} and b irrational, then any value of a^b is a transcendental number", and "if α and γ are nonzero algebraic numbers, and we take any non-zero logarithm of α, then (ln γ)/(ln α) is either rational or transcendental".
-[^exec]: Verified by execution (Python 3.11 with SymPy and mpmath, 2026-10-16): the first terms of Equation (1) at `α = 1/2` and the ratio `a_60/a_59`; the polynomials, roots, irreducibility and discriminants of the rational-order table; `r*` and `g` at `α = 10, 100` against `α/W(α)` and `α/log α`; `log 3 / log(3/2)`; the values of Equation (4) for `a ≤ 6`; `N(1 − 1/δ_a) = N(1/δ_a + 1/δ_a²) = a` for `a ≤ 6`; the bronze order on Equation (5); the irreducibility of `r⁴ + 2r³ + r² + r − 1` and `g_2(1/2)`, also as the limit of `a_80/a_79` for the recurrence (5).
+[^exec]: Verified by execution (Python 3.11 with SymPy and mpmath, 2026-10-16): the first terms of Equation (1) at `α = 1/2` and the ratio `a_60/a_59`; the polynomials, roots, irreducibility and discriminants of the rational-order table; `r*` and `g` at `α = 10, 100` against `α/W(α)` and `α/log α`; `log 3 / log(3/2)`; the values of Equation (4) for `a ≤ 6`; `Norm(1 − 1/δ_a) = Norm(1/δ_a + 1/δ_a²) = a` for `a ≤ 6`; the bronze order on Equation (5); the irreducibility of `r⁴ + 2r³ + r² + r − 1` and `g_2(1/2)`, also as the limit of `a_80/a_79` for the recurrence (5).
