@@ -41,7 +41,7 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 A005891 alone. The two open slots go to submissions outside this queue, so stage 2 waits
 until a slot is free for it; its top items are the reverse links A003410 back to A226136
 (A003410 is still at #69, Oct 13 2026) and A226274 back to A226136 (A226274 is still at #20,
-Feb 23 2025). Meanwhile the A283595 follow-up, the first item of stage 3, can be drafted.
+Feb 23 2025). Meanwhile the A283667 closed form, the first item of stage 3, can be drafted.
 Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is
 at the revision its draft was checked against, and the stage-2 verification scripts pass
 against the live b-files.
@@ -106,23 +106,21 @@ against the live b-files.
   A107920(n))/2`, the width-3 example, a linear-time Python program from the definition,
   `Cf. A001047, A038505, A107920, A146559`. Standalone: the array (stage 3) can follow it:
   `raw/oeis-pe502/new-sequence-F3.md` (`wiki/pages/new-sequence-fw3.md`).
+- [ ] **A283595 castles, column g.f. over `R(2k+2)`, trinomial form** (the column g.f. edit
+  is approved, #45): one comment, `T(n,k)` = castles of width `n+1` and height `k+1` whose
+  first column has height 1 and whose neighboring columns differ in height by at most 1; the
+  PE 502 link; one formula block, `R(k)*R(k+1) = R(2*k+2) + z^(k+1)`, the column g.f.
+  `z^k/(R(2*k+2) + z^(k+1))` and, for `k <= n <= 2*k`, `T(n,k) = A027907(n,n+k) +
+  A027907(n,n+k+1) - A027907(n,n+k+2) - A027907(n,n+k+3)`; and A027907 in the Cf. line. The
+  formulas go in without a novelty claim, since bounded-height path g.f.s are classical:
+  `raw/oeis-pe502/xrefs/A283595-castles.md` (`wiki/pages/1-smooth-castles.md` §3.3, §3.7).
 
 ### 3. Needs a draft (verified, worth submitting; in submission order)
 
-- [ ] **A283595 follow-up** (the column g.f. edit is approved, #45): the castle comment, `T(n,k)` = castles
-  of width `n+1` and height `k+1` whose first column is at height 1 and whose neighboring
-  columns differ by at most 1 (column 2 is the Pell castles, A094706); and two formula lines,
-  the column g.f. `z^k/(R(2k+2) + z^(k+1))`, since `R(k+1)*R(k) = R(2k+2) + z^(k+1)`
-  (a product-to-sum identity for the Chebyshev polynomials of the first and third kinds), and
-  for `k ≤ n ≤ 2k`, `T(n,k) = A027907(n,n+k) + A027907(n,n+k+1) − A027907(n,n+k+2) −
-  A027907(n,n+k+3)` (the reflection principle with one reflection in the ceiling), checked
-  against the castle counts that match the b-file for `k ≤ 11`, `n ≤ 22`
-  (`wiki/pages/1-smooth-castles.md` §3.3, §3.7). Present the formulas without a novelty
-  claim; bounded-height path g.f.s are classical.
-  - [ ] **A283667 closed form** (a separate entry; it can go before the follow-up): the
-    entry has only a recursion and an asymptotic, and `a(n) = A027907(2n,3n) +
-    A027907(2n,3n+1) − A027907(2n,3n+2) − A027907(2n,3n+3)`, checked against all 24 terms
-    of its data (2026-10-22; `wiki/pages/1-smooth-castles.md` §3.7).
+- [ ] **A283667 closed form** (a separate entry from A283595, whose diagonal `T(2n,n)` it
+  is): the entry has only a recursion and an asymptotic, and `a(n) = A027907(2n,3n) +
+  A027907(2n,3n+1) − A027907(2n,3n+2) − A027907(2n,3n+3)`, checked against all 24 terms of
+  its data (2026-10-22; `wiki/pages/1-smooth-castles.md` §3.7).
 - [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
   castles (exact height 3, first column 1, neighboring columns differing by at most 1) of
   width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
