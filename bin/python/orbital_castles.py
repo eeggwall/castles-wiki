@@ -178,11 +178,15 @@ for S in (s for r in (2, 4, 6) for s in combinations(range(1, 9), r)):   # at ev
     best = max(rise(p) for p in pers)
     peaks = lambda p: {p[i] for i in range(len(p)) if p[i] > p[i - 1] and p[i] > p[(i + 1) % len(p)]}
     ok9 &= all((rise(p) == best) == (alt_period(p) and peaks(p) == set(S[len(S) // 2:])) for p in pers)
+ex4 = sorted(c for N, per, c in orbitals(9, 4) if N == 4 and c[0] > c[1] and zigzag_type(c))
+ok9 &= ex4 == sorted([(4, 1, 3, 2) * 2 + (4,), (4, 2, 3, 1) * 2 + (4,), (3, 1, 4, 2) * 2 + (3,), (3, 2, 4, 1) * 2 + (3,)])
+ok9 &= Counter(N for N, per, c in orbitals(9, 4) if c[0] > c[1] and zigzag_type(c)) == Counter({2: 3, 4: 4})
 print('    alternating cyclic orders of 2, 4, 6, 8 heights:', alt)
+print('    the alternating orbital castles of order 4 at w = 9, h = 4:', ex4)
 check('[9] the alternating cyclic orders of 2m heights are A000182(m) for m <= 4; the Zigzag orbital castles of order 2m number '
       'C(h - 1, 2m - 1) 2m A000182(m) for h <= 5, w <= 10, and the alternating ones C(h - 1, 2m - 1) m A000182(m) at odd width; '
       'and for every set of 2, 4 or 6 heights from {1, ..., 8}, the periods of largest rise are the alternating ones whose '
-      'heights above both neighbors are the top half:', ok9)
+      'heights above both neighbors are the top half; at w = 9, h = 4, three alternating orbital castles of order 2 and the four listed of order 4:', ok9)
 
 # [10] up to the starting column, an orbital castle of width w >= 2h is a cyclic order: A000522(h - 1) of them
 A000522 = [1, 2, 5, 16, 65, 326, 1957, 13700]                              # oeis.org/A000522, read 2026-10-31
