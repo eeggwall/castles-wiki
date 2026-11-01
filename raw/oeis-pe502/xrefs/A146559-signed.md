@@ -1,6 +1,6 @@
 # Cross-link draft — A146559 as the signed count of height-2 castles
 
-Status: DRAFT for Charles to submit.
+Status: APPROVED (A146559 #167, Oct 11 2026; the live form is recorded in OEIS.md, *Done*).
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A146559 revision #152, Sep 28 2026).
 Rewritten 2026-10-04 to state every castle count at exact height 2.

@@ -1,6 +1,6 @@
 # New-sequence draft — `F(w,3)`, even-block castles of height 3
 
-Status: DRAFT for Charles to submit. Searched 2026-10-23: no OEIS match for the terms, for the
+Status: DRAFT for Charles to submit. Searched 2026-10-31: no OEIS match for the terms, for the
 odd-block companion `1, 5, 16, 44, 122, 358, 1082, 3274`, or for the signed difference
 `1, 5, 13, 23, 33, 51, 105, 243` (even minus odd, negated).
 Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.

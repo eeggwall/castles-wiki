@@ -1,6 +1,6 @@
 # Correction draft — A038503 castle comment at exact height
 
-Status: DRAFT for Charles to submit.
+Status: APPROVED (A038503 #99, Oct 04 2026; the live form is recorded in OEIS.md, *Done*).
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A038503 revision #93, Oct 03 2026).
 

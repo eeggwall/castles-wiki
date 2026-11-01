@@ -47,8 +47,8 @@ Rule 6 (even block count) is the parity filter. The even-parity count is
   offset-correct A-numbers and the linear recurrences. Start here.
 - **`binomial-vandermonde-identity.md`** — why `convex(w,h) = C(2h+w-3, w-1)` (the
   up/down decomposition + generalized Vandermonde), and why it is binomial, not Catalan.
-- **`oeis-xref-draft.md`** — draft cross-reference comment for A038505/A038503 (the
-  height-2 castle interpretation). **Draft only**.
+- **`oeis-xref-draft.md`** — cross-reference comment for A038505/A038503 (the
+  height-2 castle interpretation); submitted and approved.
 - **`new-sequence-F3.md`** — draft submission package for the new sequence `F(w,3)`
   (even-block castles of height 3): name, 50 terms, recurrence, g.f., program, crossrefs.
 - **`crosslink-avenues.md`** — the full cross-link submission menu (tier 1/2/3), including
@@ -108,16 +108,9 @@ Rule 6 (even block count) is the parity filter. The even-parity count is
 
 ## Status / next steps
 
-Done: computation + verification, tabulations, binomial proof, cross-ref draft, the
-tower/Narayana-polynomial finding, the cross-link menu, plan bug-fixes. Remaining (human action):
-
-1. **Submit cross-links** per `crosslink-avenues.md` — lead with the tier-1 trio
-   A038505 / A038503 / A146559 (from `oeis-xref-draft.md`; add the
-   `Cf. A000225` link).
-2. **Submit a new sequence.** `F(w,3)` is the cleanest candidate:
-   `0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, …`
-   (width `w`, height exactly 3, even number of blocks), 6th-order recurrence
-   `(x−3)(x−2)(x²−x+2)(x²−2x+2)`. Needs a name, definition, formula, program, b-file.
-
-Note the repo-wide `oeis-submission-process.md` for the submission mechanics
-(new contributors are throttled to a few open edits).
+The submission queue, the in-review edits and the approved ones are tracked in
+`../../OEIS.md` (*OEIS submissions*), with the procedure (3 open edits at a time). The tier-1
+trio A038505 / A038503 / A146559 and the tower edits on A063490, A160747 and A001263 are
+approved, and A005891 is in review; the new sequence `F(w,3)`,
+`0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, …` (width `w`, height exactly
+3, even number of blocks), is drafted in `new-sequence-F3.md` and waits in stage 2.

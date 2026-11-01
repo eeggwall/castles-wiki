@@ -1,6 +1,6 @@
 # Cross-link draft — A009545 as the signed count of height-2 castles ending at height 2
 
-Status: DRAFT for Charles to submit.
+Status: APPROVED (A009545 #203, Oct 14 2026; the live form is recorded in OEIS.md, *Done*).
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A009545 revision #193, Jul 27 2026).
 

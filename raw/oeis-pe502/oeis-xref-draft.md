@@ -1,6 +1,6 @@
 # OEIS cross-reference draft — height-2 PE 502 castles -> A038505 / A038503
 
-Status: SUBMITTED to OEIS as "Chaz Reid" on 2026-09-18. The draft below is retained as the pre-submission record; the final wording differs as noted below.
+Status: SUBMITTED to OEIS as "Chaz Reid" on 2026-09-18 and APPROVED (the live form is recorded in OEIS.md, *Done*). The draft below is retained as the pre-submission record; the final wording differs as noted below.
 Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
 
 **Changes made at submission (2026-09-18):**

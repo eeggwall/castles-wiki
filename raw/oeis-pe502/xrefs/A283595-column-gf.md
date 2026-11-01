@@ -1,6 +1,6 @@
 # Formula draft — A283595 (Motzkin prefixes by length and height), the column generating functions
 
-Status: DRAFT for Charles to submit.
+Status: APPROVED (A283595 #45, Oct 31 2026; the live form is recorded in OEIS.md, *Done*).
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-23 (A283595 revision #41, Mar 26 2018).
 
