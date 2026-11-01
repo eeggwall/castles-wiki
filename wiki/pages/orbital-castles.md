@@ -48,7 +48,7 @@ The first `N` columns of an orbital castle of order `N` are `N` distinct heights
 A_orbital(w, h; N)  =  C(h − 1, N − 1) · N!     for w ≥ 2N,  and 0 for w < 2N,
 ```
 
-at every width from `2N` on. Different periods give different castles, since the period is the first `N` columns, so[^exec1]
+at every width from `2N` on. These are the entries of the triangle A121757, Pascal's triangle multiplied by `1, 2, 6, 24, 120, …`, at row `h − 1` and column `N − 1`.[^a121757] Different periods give different castles, since the period is the first `N` columns, so[^exec1]
 
 ```
 A_orbital(w, h)  =  Σ_{N ≤ min(h, ⌊w/2⌋)}  C(h − 1, N − 1) · N!.
@@ -81,7 +81,7 @@ s_N − s_1   ≤   rise(c)   ≤   (s_N + s_{N−1} + ⋯ + s_{N−⌊N/2⌋+1}
 
 *Proof.* The cycle climbs from `s_1` to `s_N` and comes back, so it rises by at least `s_N − s_1`, with equality exactly when it climbs once and falls once; each of the `N − 2` other heights then lies on the way up or the way down, so `2^{N−2}` cyclic orders reach the minimum. For the upper bound, write the total variation as `Σ (larger − smaller)` over the `N` steps of the cycle. Each height is an end of two steps, so it enters the sum with coefficient `+2`, `0` or `−2`, and the coefficients add up to 0; the sum is largest when the top `⌊N/2⌋` heights get `+2` and the bottom `⌊N/2⌋` get `−2`, which an alternating high-low order achieves. ∎
 
-On the heights `1, …, N` the bounds are `N − 1` and `⌊N/2⌋ ⌈N/2⌉ = ⌊N²/4⌋`, which is `1, 2, 4, 6, 9, 12` for `N = 2, …, 7`. The period `(8, 1, 7, 2, 6, 3, 5)` alternates high and low on the heights `{1, 2, 3, 5, 6, 7, 8}` and has `rise = 6 + 4 + 2 + 3 = 15 = (8 + 7 + 6) − (1 + 2 + 3)`, the largest rise of the 720 cyclic orders of those heights; 72 of them reach it.[^exec3]
+On the heights `1, …, N` the bounds are `N − 1` and `⌊N/2⌋ ⌈N/2⌉ = ⌊N²/4⌋`, the quarter-squares `1, 2, 4, 6, 9, 12` for `N = 2, …, 7` (A002620).[^a002620] The period `(8, 1, 7, 2, 6, 3, 5)` alternates high and low on the heights `{1, 2, 3, 5, 6, 7, 8}` and has `rise = 6 + 4 + 2 + 3 = 15 = (8 + 7 + 6) − (1 + 2 + 3)`, the largest rise of the 720 cyclic orders of those heights; 72 of them reach it.[^exec3]
 
 ## Blocks and parity
 
@@ -134,6 +134,8 @@ the per-period parity rule as the sign character of [[signed-prime-castles](page
 
 [^bf]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L20-L24 - "A block is a maximal horizontal run of columns at a given level, so", "= c_1 + \sum_{i=2}^{w} \max(0, c_i - c_{i-1})".
 [^a001339]: https://oeis.org/A001339 (read 2026-10-31) - "a(n) = Sum_{k=0..n} (k+1)! binomial(n,k).", data `1, 3, 11, 49, 261, 1631, 11743, 95901, 876809, ...`, and "Number of arrangements of {1, 2, ..., n, n + 1} containing the element 1. - _Emeric Deutsch_, Oct 11 2001".
+[^a121757]: https://oeis.org/A121757 (read 2026-10-31) - "Triangle read by rows: multiply Pascal's triangle by 1,2,6,24,120,720,... = A000142.", offset 0, data `1, 1, 2, 1, 4, 6, 1, 6, 18, 24, ...`, and "Row sums are 1,3,11,49,261,1631,... = A001339".
+[^a002620]: https://oeis.org/A002620 (read 2026-10-31) - "Quarter-squares: a(n) = floor(n/2)*ceiling(n/2). Equivalently, a(n) = floor(n^2/4).", offset 0, data `0, 0, 1, 2, 4, 6, 9, 12, 16, 20, ...`.
 [^exec1]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [1], run log `bin/python/orbital_castles-run.log`. Every castle with `h ≤ 4`, `w ≤ 10` and `h = 5`, `w ≤ 8`: the orbital castles of order `N` number `C(h − 1, N − 1) N!` when `w ≥ 2N`, and each comes from exactly one period.
 [^exec2]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [2]. The totals for `w ≥ 2h` against A001339 for `h ≤ 9`, and against the arrangements of `{1, …, h}` containing 1 for `h ≤ 6`.
 [^exec3]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [3]. Every set of 2 to 7 heights from `{1, …, 8}` over all its cyclic orders: the minimum, the maximum, and `2^{N−2}` orders at the minimum; the heights `1, …, N` for `N ≤ 7`; and the 720 cyclic orders of `{1, 2, 3, 5, 6, 7, 8}`.
