@@ -72,7 +72,10 @@ against the live b-files.
     row is Deutsch's binary word, so it would restate Deutsch's comment:
     `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
     (`wiki/pages/fibonacci-castles-sub-families.md`).
-  - [ ] A226274: `Cf. A226136.` (A226136's Cf. line cites A226274).
+  - [ ] **A226274 → A226136** (A226136's Cf. line cites A226274): the formula
+    `a(n) = A226136(3*n-1) - 1`, equivalent to the entry's `a(n) = s(3n-3)` (1/n is
+    immediately followed by the integer `3n - 1`), and A226136 appended to the Cf. line:
+    `raw/oeis-pe502/xrefs/A226274-A226136.md`.
   - [ ] A038505: `Cf. A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
     already link both ways).
   - [ ] A097862: `Cf. A283595.` (A283595's column g.f. is built from A097862's `P(k)`).
