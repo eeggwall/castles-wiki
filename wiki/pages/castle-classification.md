@@ -1,11 +1,11 @@
 ---
 title: Castle classification
 category: Concepts
-summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (41 types from the Castle Types source plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert castles, and the 1-histograms, the sheared brick-wall castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression. The same scopes classify the castles on two other tilings, the brick-wall castles on the hexagonal tiling and the keystone castles on the triangular tiling: a brick-wall castle shears onto a square-grid shape type, a keystone castle's shape is its Schröder outline, and both families have growth types.
+summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (41 types from the Castle Types source plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg, Hilbert and orbital castles, and the 1-histograms, the sheared brick-wall castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression. The same scopes classify the castles on two other tilings, the brick-wall castles on the hexagonal tiling and the keystone castles on the triangular tiling: a brick-wall castle shears onto a square-grid shape type, a keystone castle's shape is its Schröder outline, and both families have growth types.
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
 sources: [project-euler-502-representations]
 created: 2026-09-15
-updated: 2026-10-30
+updated: 2026-10-31
 ---
 
 # Castle classification

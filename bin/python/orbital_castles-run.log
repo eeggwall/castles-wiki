@@ -1,0 +1,25 @@
+# python3 bin/python/orbital_castles.py  (2026-10-31, Python 3.11)
+[1] every castle with h <= 4, w <= 10 and h = 5, w <= 8: the orbital castles of order N number C(h - 1, N - 1) N! when w >= 2N, and each comes from exactly one period: True
+    A_orbital(w, h) for w >= 2h, h = 1..9: [1, 3, 11, 49, 261, 1631, 11743, 95901, 876809]
+    arrangements of {1, ..., h} containing 1, h = 1..6: [1, 3, 11, 49, 261, 1631]
+[2] A_orbital(w, h) = A001339(h - 1) for w >= 2h, h <= 9, and equals the arrangements of {1, ..., h} containing 1: True
+[3] every set of 2 to 7 heights from {1, ..., 8}: over its cyclic orders the rise runs from max - min to the top half minus the bottom half, and 2^(N - 2) cyclic orders reach the minimum: True
+    on the heights 1..N, N = 2..7, the minimum and maximum are N - 1 and floor(N^2/4): [(1, 1), (2, 2), (3, 4), (4, 6), (5, 9), (6, 12)] True
+    (8, 1, 7, 2, 6, 3, 5) repeated to width 21: order 7, rise 15, the largest of the 720 cyclic orders of its heights (72 reach it), blocks 50: True
+[4] every orbital castle with h <= 5, w <= 12: blocks = c_1 + q rise + the rises of the first t steps, with w - 1 = qN + t, and blocks = c_w + r rise for r whole periods starting at height h: True
+[5] h <= 5, w <= 10: the orbital tree castles are (1, h, 1, h, ...) and (h, 1, h, 1, ...) for w >= 4, and (1, ..., 1) at h = 1: True
+[6] 2 <= h <= 5, 4 <= w <= 12: the orbital castles that begin and end at height 1 are the k-fold gluings, k = (w - 1)/N >= 2, of the prime castles (1, a_2, ..., a_N, 1) with distinct a_i, C(h - 2, N - 2) (N - 1)! of order N; blocks - 1 = k rise, and the sign is the prime's sign to the power k: True
+    h = 1: A^e_orbital(w, h), w = 2..12: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    h = 2: A^e_orbital(w, h), w = 2..12: [1, 1, 1, 2, 3, 2, 1, 2, 3, 2, 1]
+    h = 3: A^e_orbital(w, h), w = 2..12: [0, 0, 2, 1, 2, 3, 4, 3, 2, 3, 4]
+    h = 4: A^e_orbital(w, h), w = 2..12: [1, 1, 3, 5, 13, 15, 25, 31, 33, 27, 25]
+    h = 5: A^e_orbital(w, h), w = 2..12: [0, 0, 4, 2, 16, 14, 52, 46, 92, 98, 108]
+    h = 6: A^e_orbital(w, h), w = 2..12: [1, 1, 5, 8, 35, 44, 149, 188, 455, 512, 853]
+[7] h <= 5: from w = 2h on, A^e_orbital(w, h) repeats with period 2 lcm(1, ..., h), checked over two periods, and with shortest period 4 at h = 2 and 3: True
+[8] every orbital castle with h <= 5, w <= 10: plateau-free iff N >= 2; zig-zag iff N = 2 on {h - 1, h}; Zigzag iff its period alternates around the cycle (so N is even); an alternating castle (odd width, a fall first) iff in addition the period starts on a fall; palindromic iff N = 1 or N = 2 at odd width; two-level iff N = 2; fence-post iff (h, 1, h, 1, ...) or h = 1; moated only (1, 1): True
+    alternating cyclic orders of 2, 4, 6, 8 heights: [1, 2, 16, 272]
+    the alternating orbital castles of order 4 at w = 9, h = 4: [(3, 1, 4, 2, 3, 1, 4, 2, 3), (3, 2, 4, 1, 3, 2, 4, 1, 3), (4, 1, 3, 2, 4, 1, 3, 2, 4), (4, 2, 3, 1, 4, 2, 3, 1, 4)]
+[9] the alternating cyclic orders of 2m heights are A000182(m) for m <= 4; the Zigzag orbital castles of order 2m number C(h - 1, 2m - 1) 2m A000182(m) for h <= 5, w <= 10, and the alternating ones C(h - 1, 2m - 1) m A000182(m) at odd width; and for every set of 2, 4 or 6 heights from {1, ..., 8}, the periods of largest rise are the alternating ones whose heights above both neighbors are the top half; at w = 9, h = 4, three alternating orbital castles of order 2 and the four listed of order 4: True
+[10] the orbital castles of width w >= 2h up to the rotation of their period number A000522(h - 1) for h <= 8, and by grouping the periods for h <= 6: True
+[11] 2 <= h <= 5, 3 <= w <= 10: the moated castles number (h - 1)^(w - 2) - (h - 2)^(w - 2) = A(w - 2, h - 1): True
+all checks passed: True

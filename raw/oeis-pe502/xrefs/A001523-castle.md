@@ -2,7 +2,7 @@
 
 Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
-Checked against the live entry 2026-10-23 (A001523 revision #135, May 30 2026).
+Checked against the live entry 2026-10-31 (A001523 revision #135, May 30 2026).
 
 ## Edits (lines to add)
 
