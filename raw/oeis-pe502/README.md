@@ -67,7 +67,8 @@ Rule 6 (even block count) is the parity filter. The even-parity count is
   2026-10-04); `A226136-A003410.md` and `A000931-plastic-strip.md` (2026-10-04);
   the links back `A226274-A226136.md`, `A038505-A146559.md`, `A097862-A283595.md`,
   `A094706-A283595.md` and `A271942-A001263.md` (2026-11-01); `A283595-castles.md` (the
-  castle comment and two formulas after the column g.f., 2026-11-01); plus `A001523-castle.md`
+  castle comment and two formulas after the column g.f., 2026-11-01); `A283667-closed-form.md`
+  (its trinomial closed form, 2026-11-01); plus `A001523-castle.md`
   from vein 9 and `A332578-castle.md`, `A115981-castle.md` from vein 9b.
 
 ## Results at a glance

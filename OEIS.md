@@ -41,7 +41,7 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 A005891 alone. The two open slots go to submissions outside this queue, so stage 2 waits
 until a slot is free for it; its top items are the reverse links A003410 back to A226136
 (A003410 is still at #69, Oct 13 2026) and A226274 back to A226136 (A226274 is still at #20,
-Feb 23 2025). Meanwhile the A283667 closed form, the first item of stage 3, can be drafted.
+Feb 23 2025). Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted.
 Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is
 at the revision its draft was checked against, and the stage-2 verification scripts pass
 against the live b-files.
@@ -114,13 +114,14 @@ against the live b-files.
   A027907(n,n+k+1) - A027907(n,n+k+2) - A027907(n,n+k+3)`; and A027907 in the Cf. line. The
   formulas go in without a novelty claim, since bounded-height path g.f.s are classical:
   `raw/oeis-pe502/xrefs/A283595-castles.md` (`wiki/pages/1-smooth-castles.md` §3.3, §3.7).
+- [ ] **A283667 closed form** (A283595's diagonal `T(2n,n)`; independent of the A283595
+  edit): the entry has only a recursion and an asymptotic; one formula line,
+  `a(n) = A027907(2*n,3*n) + A027907(2*n,3*n+1) - A027907(2*n,3*n+2) - A027907(2*n,3*n+3)`,
+  checked against all 1280 b-file terms, and A027907 in the Cf. line:
+  `raw/oeis-pe502/xrefs/A283667-closed-form.md` (`wiki/pages/1-smooth-castles.md` §3.7).
 
 ### 3. Needs a draft (verified, worth submitting; in submission order)
 
-- [ ] **A283667 closed form** (a separate entry from A283595, whose diagonal `T(2n,n)` it
-  is): the entry has only a recursion and an asymptotic, and `a(n) = A027907(2n,3n) +
-  A027907(2n,3n+1) − A027907(2n,3n+2) − A027907(2n,3n+3)`, checked against all 24 terms of
-  its data (2026-10-22; `wiki/pages/1-smooth-castles.md` §3.7).
 - [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
   castles (exact height 3, first column 1, neighboring columns differing by at most 1) of
   width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
