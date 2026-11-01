@@ -106,7 +106,7 @@ Zigzag:        C(h − 1, 2m − 1) · 2m · A000182(m),
 alternating:   C(h − 1, 2m − 1) · m · A000182(m)     (w odd).
 ```
 
-At order 2 the Zigzag ones are the crenellated castles, and the alternating ones are the `h − 1` that start at `h`, `(h, a, h, …, h)` at odd width. The period `(8, 1, 7, 2, 6, 3, 5)` has odd order and two rises in a row, from 3 to 5 to 8, so its castle is not Zigzag.
+At order 2 the Zigzag ones are the crenellated castles, and the alternating ones are the `h − 1` that start at `h`, `(h, a, h, …, h)` at odd width. At order 4 and height 4 the two alternating cycles `(4, 1, 3, 2)` and `(4, 2, 3, 1)` give four alternating castles at each odd width `w ≥ 9`, the rotations that start on a fall; at `w = 9` they are `(4, 1, 3, 2, 4, 1, 3, 2, 4)`, `(4, 2, 3, 1, 4, 2, 3, 1, 4)`, `(3, 1, 4, 2, 3, 1, 4, 2, 3)` and `(3, 2, 4, 1, 3, 2, 4, 1, 3)`, beside the three of order 2.[^exec9] No odd order gives any, since an odd cycle steps the same way twice in a row somewhere: `(1, 2, 3)` rises from 1 to 2 to 3, and the period `(8, 1, 7, 2, 6, 3, 5)` from 3 to 5 to 8.
 
 **At even order, the periods of largest rise alternate.** In the proof above, a period with `k` heights at coefficient `+2` and `k` at `−2` has total variation at most twice the sum of its top `k` heights minus twice the sum of its bottom `k`. For `k < N/2` that falls short of the bound, so a period of largest rise has `k = N/2`, every height above or below both neighbors. The alternating periods that reach the bound are exactly those whose heights above both neighbors are the top `N/2`.[^exec9]
 
@@ -184,5 +184,5 @@ the per-period parity rule as the sign character of [[signed-prime-castles](page
 [^exec6]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [6], for `2 ≤ h ≤ 5`, `4 ≤ w ≤ 12`.
 [^exec7]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [7]. The table for `h ≤ 6`, `w ≤ 12`, the period `2 lcm(1, …, h)` over two periods from `w = 2h` for `h ≤ 5`, and the shortest period 4 at `h = 2` and `3`.
 [^exec8]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [8], every orbital castle with `h ≤ 5`, `w ≤ 10`.
-[^exec9]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [9]. The alternating cyclic orders of 2, 4, 6 and 8 heights against A000182; the Zigzag and alternating counts for `h ≤ 5`, `w ≤ 10`; and the periods of largest rise over every set of 2, 4 or 6 heights from `{1, …, 8}`.
+[^exec9]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [9]. The alternating cyclic orders of 2, 4, 6 and 8 heights against A000182; the Zigzag and alternating counts for `h ≤ 5`, `w ≤ 10`, and the alternating castles of orders 2 and 4 at `w = 9`, `h = 4`; and the periods of largest rise over every set of 2, 4 or 6 heights from `{1, …, 8}`.
 [^exec10]: Verified by execution (Python 3.11, 2026-10-31): `bin/python/orbital_castles.py` item [10]. The sum against A000522 for `h ≤ 8`, and the rotation classes of the periods at `w = 2h` for `h ≤ 6`.
