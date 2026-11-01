@@ -159,7 +159,7 @@ for n in range(1, 17):
 - [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)]: the bijection that carries the prime factorization of Dyck paths to this one.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]: raising a castle one row adds one block, so the prime castles of semi-perimeter `s` are the castles of semi-perimeter `s − 1` raised, `A082582(s − 1)` of them for `s ≥ 3` (`1, 2, 5, 13, 35, …` from `s = 3`), with the sign `(−1)^{blocks}` reversed.
 - [[signed-prime-castles](pages/signed-prime-castles.md)]: the sign as a character of this monoid, the signed identity `π_χ/(1 − π_χ)` for the signed prime series `π_χ`, and the counts of castles per multiset of primes.
-- [[orbital-castles](pages/orbital-castles.md)]: the orbital castles that begin and end at height 1, each `k ≥ 2` glued copies of one prime whose inner heights are distinct.
+- [[orbital-castles](pages/orbital-castles.md)]: the orbital castles that begin and end at height 1; of order `N ≥ 2` each is `k ≥ 2` glued copies of one prime castle whose inner heights are distinct, and at height 1 `(1, …, 1)` is a power of the trivial prime.
 - [[prime-convex-castles](pages/prime-convex-castles.md)]: the one nontrivial prime of a convex castle, counted.
 - [[convex-castle](pages/convex-castle.md)]: the convex castles.
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: peaks, which count the nontrivial prime factors.

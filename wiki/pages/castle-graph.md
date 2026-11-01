@@ -234,7 +234,7 @@ def cycle_rank(c):
 - [[castle-avalanches](pages/castle-avalanches.md)] - avalanches on the castle graph; in the tide model, rectangles and battlements of the same height have the same mean avalanche, and the `2 × 2` squares change only the tail.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines counted by area.
 - [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] - the graph of a tree castle as a comb, the bottom row with a tooth on each column, and the simple random walk on it.
-- [[orbital-castles](pages/orbital-castles.md)] - the orbital castles, whose only tree castles are the battlements.
+- [[orbital-castles](pages/orbital-castles.md)] - the orbital castles, whose only tree castles of height `h ≥ 2` are the battlements.
 - [[hilbert-castles](pages/hilbert-castles.md)] - the Hilbert duality of strip rules, which gives the tree skylines by width and area from the strips with every column at height at least 2.
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the tree castles of height 2, and the signed Fibonacci tower count `P_F(w)` that gives the parity of the tree castles at every height.
 - [[padovan-families](pages/padovan-families.md)] - the palindromic tree castles by area, which give the tree castles up to mirror image.

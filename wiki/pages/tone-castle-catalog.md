@@ -236,7 +236,7 @@ Every key is detected correctly in both versions. The castle's margins differ fr
 - [[castle-phone-line](pages/castle-phone-line.md)] - the same voice-band channel, sampled 8000 times per second, carrying castles as frequency-stepping tones, and its 8-bit logarithmic encoding.
 - [[castle-representations](pages/castle-representations.md)] - the skyline (integer tuple) encoding used for every castle here.
 - [[castle-sign](pages/castle-sign.md)] - the block count as first column plus total rise, behind the burst-parity formula.
-- [[orbital-castles](pages/orbital-castles.md)] - the periodic castles whose period uses each height once, with the same block count `c_w + r · rise(c)` for whole periods from height `h`.
+- [[orbital-castles](pages/orbital-castles.md)] - the castles whose shortest period uses each height once, at least two periods long; for whole periods from height `h` they have the burst count `c_w + r · rise(c)`, with `c` one period.
 - [[castle-compression](pages/castle-compression.md)] - a periodic castle is described by one period and a repeat count, the parametric tier.
 - [[finite-fields](pages/finite-fields.md)] - arithmetic modulo a prime, used here to evaluate the height polynomial at roots of unity modulo primes `p ≡ 1 (mod 8000)`.
 

@@ -222,7 +222,7 @@ Types 19, 20, 22, 23, 28, 29, 33 and 34, the city-building type and the orbital 
 | **Prime-top** | `h` is prime | `(1, 3, 2)` | every castle of prime height |
 | **Integer-mean** | `w` divides `Σ c_i` | `(1, 3, 2)` | open |
 | **City-building** | with the ground `c_0 = 0` in front, every column sees exactly `c_j` of the columns `0, …, j − 1`, a top seeing an earlier one when every top between is on or below the segment joining them (the rule of the city-building sequence A400000) | `(1, 1, 2, 1, 2, 2, 1)` | finitely many at each height, `2, 12, 600, 965952, 31776964193520` for `h = 1, …, 5`; the prefixes of A400000 are members ([[city-building-castles](pages/city-building-castles.md)]) |
-| **Orbital** | `c_{i+N} = c_i` with `c_1, …, c_N` distinct and `w ≥ 2N`: a period of `N` distinct heights repeated from the first column | `(1, 2, 3, 1, 2, 3)` | [[orbital-castles](pages/orbital-castles.md)]: `C(h − 1, N − 1) · N!` of order `N` for `w ≥ 2N`, and `A001339(h − 1)` in all from `w = 2h`; the box and the crenellated castles are the orders 1 and 2 |
+| **Orbital** | `c_{i+N} = c_i` with `c_1, …, c_N` distinct and `w ≥ 2N`: a period of `N` distinct heights repeated from the first column | `(1, 2, 3, 1, 2, 3)` | [[orbital-castles](pages/orbital-castles.md)]: `C(h − 1, N − 1) · N!` of order `N` for `w ≥ 2N`, and `A001339(h − 1)` in all from `w = 2h`; the box and the crenellated castles of width at least 4 are the orders 1 and 2 |
 
 For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` has `c_w = h` and `c_1 = h − (w − 1)d ≥ 1`, so `d ≤ (h − 1)/(w − 1)`, and `d < 0` is its mirror image. So the linear castles number `2⌊(h−1)/(w−1)⌋ + 1`, which agrees with brute-force enumeration for `2 ≤ w ≤ 6`, `h ≤ 8`.[^5]
 

@@ -116,7 +116,7 @@ for n in range(1, N + 1):
 - [[castle-by-area](pages/castle-by-area.md)] - the even-block and odd-block castles by area, which Equation (1) reproduces.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - the definitions of peaks and records under which both are characters.
 - [[fractional-block-count](pages/fractional-block-count.md)] - `B_α`, a character only at `α = 0` and `α = 1`.
-- [[orbital-castles](pages/orbital-castles.md)] - the orbital castles in the monoid, powers of one prime castle, whose sign is the prime's sign to the power `k`.
+- [[orbital-castles](pages/orbital-castles.md)] - the orbital castles in the monoid, powers of one prime (a prime castle, or at height 1 the trivial prime), whose sign is the prime's sign to the power `k`.
 - [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)], [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the multiset side of counting the castles in a class.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar on castles by area, one of whose stops is this page.
 
