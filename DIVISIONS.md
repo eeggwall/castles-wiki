@@ -71,6 +71,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Symmetry on the census: mirror, cyclic shift, the dihedral group, and Burnside counts of shapes up to reflection.
 - Signal specimens: DTMF and MF tones as exactly periodic castles, image rows and waveforms placed in the zoo.
 - Specimens: the 10-cell and 11-cell isospectral pairs, the golden and silver castles, the bronze hole.
+- Orbits: the orbital castles, a period of distinct heights repeated from the first column, with the box and the crenellated castles as orders 1 and 2 and their overlaps with the tree and prime castles.
 - Comparative morphology: the convex core (unique hull above, no unique skeleton below), unimodal versus convex, statistical-physics cousins.
 - Public interpretation: eigenvalues by example and other pedagogy tours; seminars draw their exhibits here.
 
