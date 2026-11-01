@@ -16,4 +16,9 @@
     h = 5: A^e_orbital(w, h), w = 2..12: [0, 0, 4, 2, 16, 14, 52, 46, 92, 98, 108]
     h = 6: A^e_orbital(w, h), w = 2..12: [1, 1, 5, 8, 35, 44, 149, 188, 455, 512, 853]
 [7] h <= 5: from w = 2h on, A^e_orbital(w, h) repeats with period 2 lcm(1, ..., h), checked over two periods, and with shortest period 4 at h = 2 and 3: True
+[8] every orbital castle with h <= 5, w <= 10: plateau-free iff N >= 2; zig-zag iff N = 2 on {h - 1, h}; Zigzag iff its period alternates around the cycle (so N is even); an alternating castle (odd width, a fall first) iff in addition the period starts on a fall; palindromic iff N = 1 or N = 2 at odd width; two-level iff N = 2; fence-post iff (h, 1, h, 1, ...) or h = 1; moated only (1, 1): True
+    alternating cyclic orders of 2, 4, 6, 8 heights: [1, 2, 16, 272]
+[9] the alternating cyclic orders of 2m heights are A000182(m) for m <= 4; the Zigzag orbital castles of order 2m number C(h - 1, 2m - 1) 2m A000182(m) for h <= 5, w <= 10, and the alternating ones C(h - 1, 2m - 1) m A000182(m) at odd width; and for every set of 2, 4 or 6 heights from {1, ..., 8}, the periods of largest rise are the alternating ones whose heights above both neighbors are the top half: True
+[10] the orbital castles of width w >= 2h up to the rotation of their period number A000522(h - 1) for h <= 8, and by grouping the periods for h <= 6: True
+[11] 2 <= h <= 5, 3 <= w <= 10: the moated castles number (h - 1)^(w - 2) - (h - 2)^(w - 2) = A(w - 2, h - 1): True
 all checks passed: True
