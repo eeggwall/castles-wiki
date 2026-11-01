@@ -1,7 +1,7 @@
 ---
 title: Orbital castles
 category: Concepts
-summary: An orbital castle of order N repeats a period of N distinct heights from its first column, at width at least 2N, so every height appears at least twice, such as (1, 2, 3, 1, 2, 3). Each height has one successor, and the castle is the orbit of its first column. The orbital castles of order N and height h number C(h − 1, N − 1) N! at every width w ≥ 2N, and all orders together number A001339(h − 1) = 1, 3, 11, 49, 261, … from w = 2h on, the arrangements of {1, …, h} containing h. Each period adds the cyclic rise rise(c) to the block count, which lies between max − min and the sum of the top half of the period's heights minus the bottom half (N − 1 and ⌊N²/4⌋ on 1, …, N), so the block parity flips every period exactly when rise(c) is odd. The box and the battlement are the orbital castles of orders 1 and 2; the battlements are the only orbital tree castles, and the orbital castles that begin and end at height 1 are powers of one prime castle.
+summary: An orbital castle of order N repeats a period of N distinct heights from its first column, at width at least 2N, so every height appears at least twice, such as (1, 2, 3, 1, 2, 3). Each height has one successor, and the castle is the orbit of its first column. The orbital castles of order N and height h number C(h − 1, N − 1) N! at every width w ≥ 2N, and all orders together number A001339(h − 1) = 1, 3, 11, 49, 261, … from w = 2h on, the arrangements of {1, …, h} containing h. Each period adds the cyclic rise rise(c) to the block count, which lies between max − min and the sum of the top half of the period's heights minus the bottom half (N − 1 and ⌊N²/4⌋ on 1, …, N), so the block parity flips every period exactly when rise(c) is odd. The box is the orbital castle of order 1 and the crenellated castles, the battlement among them, are those of order 2; the battlements are the only orbital tree castles, and the orbital castles that begin and end at height 1 are powers of one prime castle.
 tags: [concept, castle, orbital-castle, periodic-castle, cyclic-permutation, arrangement, a001339, rise, block-count, parity, battlement, tree-castle, prime-castle, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-31
@@ -23,7 +23,7 @@ Each height in the period is followed by the next one, and the last by the first
 *Examples.*
 
 - **Order 1:** the box `(h, h, …, h)`.
-- **Order 2:** `(a, h, a, h, …)` and `(h, a, h, a, …)` with `a < h`, among them the battlements `(1, h, 1, h, …)` and `(h, 1, h, 1, …)`.
+- **Order 2:** the crenellated castles `(a, h, a, h, …)` and `(h, a, h, a, …)` with `a < h`, among them the battlements `(1, h, 1, h, …)` and `(h, 1, h, 1, …)`.
 - **Order 3:** `(1, 2, 3, 1, 2, 3)`, and `(1, 2, 3, 1, 2, 3, 1)`, which ends partway through a period.
 - **Order 7:** `(8, 1, 7, 2, 6, 3, 5)` repeated three times, a castle of width 21 and height 8.
 
@@ -108,7 +108,7 @@ At heights 2 and 3 the period is 4, `1, 2, 3, 2` and `2, 3, 4, 3` from `w = 2h`.
 
 ## Overlaps with other families
 
-**The box and the battlement.** The box `(h, …, h)` is the orbital castle of order 1, and the battlements `(1, h, 1, h, …)` and `(h, 1, h, 1, …)` are orbital castles of order 2 ([[castle-notation](pages/castle-notation.md)], the battlement row).
+**The box, the crenellated castles and the battlement.** The box `(h, …, h)` is the orbital castle of order 1. The orbital castles of order 2 are the crenellated castles `(a, h, a, h, …)` and `(h, a, h, a, …)` with `a < h` ([[castle-classification-shape](pages/castle-classification-shape.md)], Axis 7), `2(h − 1)` of them at each width `w ≥ 4`, and the battlements `(1, h, 1, h, …)` and `(h, 1, h, 1, …)` are the two with `a = 1` ([[castle-notation](pages/castle-notation.md)], the battlement row).
 
 **Tree castles.** A tree castle has no two neighboring columns both of height at least 2 ([[castle-graph](pages/castle-graph.md)]). The orbital tree castles are exactly the two battlements, at every width `w ≥ 4` and height `h ≥ 2`, and `(1, …, 1)` at height 1. A period of order `N ≥ 3` holds at most one height 1, so its other `N − 1` heights sit next to each other around the cycle, and the castle shows that pair; at order 2 the heights `{a, h}` give a tree castle only for `a = 1`. In the other direction most tree castles are not orbital: `(1, 2, 1, 3, 1)` is a tree castle, but height 1 is followed by both 2 and 3.[^exec5]
 
