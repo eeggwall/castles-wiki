@@ -709,6 +709,8 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | Keystone castles | height 2, by cells | `1, 0, 2, 1, 4, 3, 7, 8, 13, 17, 25, 35, 49` (from `n = 4`) | **known as a transform** (no match as a sequence, 2026-10-30): g.f. `q⁴/((1 − q²)(1 − q² − q³ − q⁴ + q⁶))`, the A143438 expansion convolved with `1/(1 − q²)`; growth Lehmer's Salem number `1.401268` of degree 6 (stage 4, the A143438 comment) |
 | Keystone castles | growth by cells and its reciprocal | `1.46274945341…`, `0.68364407702…` | **novel-candidate** constants (no match, 2026-10-30; stage 4, after the A393774 edit) |
 | Keystone castles | growth by cells at height 2, Lehmer's Salem number of degree 6 | `1.40126836793…` | **novel-candidate** constant (no match, 2026-10-30; stage 4) |
+| Orbital castles | even-block orbital castles of height 4, by width `w = 2…12` | `1, 1, 3, 5, 13, 15, 25, 31, 33, 27, 25` | no match (2026-10-31); periodic in `w` from `w = 2h` |
+| Orbital castles | even-block orbital castles of height 5, by width `w = 4…12` | `4, 2, 16, 14, 52, 46, 92, 98, 108` | no match (2026-10-31); periodic in `w` from `w = 2h` |
 
 ### No match in the first mining pass (`raw/oeis-pe502/mine-notes.md`, `crosslink-avenues.md`, `vein9-area.md`)
 
@@ -820,3 +822,6 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | Brick-wall castles | even-block and signed, height 2 | **interlink** → [A038505](https://oeis.org/A038505) (`w`), [A077860](https://oeis.org/A077860) (`w − 2`) (the height-2 rows of the 1-smooth castles with first column 1; no fountain reading) |
 | Keystone castles | by cells | **interlink** → [A393774](https://oeis.org/A393774) (`= A393774(n − 1)`; the entry has only its continued fraction, 2026-10-29; stage 4) |
 | Brick-wall castles | growth by cells, and the smallest zero `0.5761487691…` of `Σ (−1)^k q^{k²}/(q)_k` | **known** → [A379091](https://oeis.org/A379091) (`1.7356628245…`, `1/A347901`) and [A347901](https://oeis.org/A347901), the asymptotic constants of the fountains A005169 (2026-10-30) |
+| Orbital castles | every order, width `w ≥ 2h`, by `h` | **interlink** → [A001339](https://oeis.org/A001339) (`= A001339(h − 1)`; the period is an arrangement of `{1, …, h}` containing `h`, the reflection of the entry's arrangements containing 1) |
+| Orbital castles | by order `N`, width `w ≥ 2N` | **interlink** → [A121757](https://oeis.org/A121757) (`T(h − 1, N − 1) = C(h − 1, N − 1) · N!`) |
+| Orbital castles | the largest cyclic rise on the heights `1, …, N` | **interlink** → [A002620](https://oeis.org/A002620) (`= A002620(N)`, the alternating high-low periods) |
