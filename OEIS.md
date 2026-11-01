@@ -37,13 +37,14 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-10-31).** A001263 is approved (#792), so stage 1 holds A005891 alone and
-two slots are open: submit the first two reverse links of stage 2, A003410 back to A226136
+**Next step (2026-10-31).** A001263 (#792) and A283595 (#45) are approved, so stage 1 holds
+A005891 alone. The two open slots go to submissions outside this queue, so stage 2 waits
+until a slot is free for it; its top items are the reverse links A003410 back to A226136
 (A003410 is still at #69, Oct 13 2026) and A226274 back to A226136 (A226274 is still at #20,
-Feb 23 2025), neither with an open edit. The A283595 follow-up, the first item of stage 3,
-can now be drafted. Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every
-stage-2 target is at the revision its draft was checked against, and the stage-2 verification
-scripts pass against the live b-files.
+Feb 23 2025). Meanwhile the A283595 follow-up, the first item of stage 3, can be drafted.
+Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is
+at the revision its draft was checked against, and the stage-2 verification scripts pass
+against the live b-files.
 
 ### 1. In review (max 3)
 
@@ -57,9 +58,10 @@ scripts pass against the live b-files.
   `bin/python/tower_t_cores.py`.
   Still in review (checked 2026-10-31): Alper Ferudun (#142, Oct 21) added "without the rule
   that the number of blocks is even" to the castle comment and checked the counts and
-  formulas; Chaz Reid (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in
-  proposed. Michel Marcus (#148–#149, Oct 23) edited the Mathematica section only; Jason
-  Yuen (#150–#151, Oct 25) extended the Maple and Mathematica ranges to 50.
+  formulas; Michel Marcus (#144–#145, Oct 22) changed the Reiter link to https; Chaz Reid
+  (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in proposed. Michel
+  Marcus (#148–#149, Oct 23) edited the Mathematica section only; Jason Yuen (#150–#151,
+  Oct 25) extended the Maple and Mathematica ranges to 50; no change since.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
@@ -103,7 +105,7 @@ scripts pass against the live b-files.
 - [ ] **A283595 follow-up** (the column g.f. edit is approved, #45): the castle comment, `T(n,k)` = castles
   of width `n+1` and height `k+1` whose first column is at height 1 and whose neighboring
   columns differ by at most 1 (column 2 is the Pell castles, A094706); and two formula lines,
-  the column g.f. `z^k/(R_{2k+2}(z) + z^{k+1})`, since `R_{k+1} R_k = R_{2k+2} + z^{k+1}`
+  the column g.f. `z^k/(R(2k+2) + z^(k+1))`, since `R(k+1)*R(k) = R(2k+2) + z^(k+1)`
   (a product-to-sum identity for the Chebyshev polynomials of the first and third kinds), and
   for `k ≤ n ≤ 2k`, `T(n,k) = A027907(n,n+k) + A027907(n,n+k+1) − A027907(n,n+k+2) −
   A027907(n,n+k+3)` (the reflection principle with one reflection in the ceiling), checked
