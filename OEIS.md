@@ -76,14 +76,18 @@ against the live b-files.
     `a(n) = A226136(3*n-1) - 1`, equivalent to the entry's `a(n) = s(3n-3)` (1/n is
     immediately followed by the integer `3n - 1`), and A226136 appended to the Cf. line:
     `raw/oeis-pe502/xrefs/A226274-A226136.md`.
-  - [ ] A038505: `Cf. A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
-    already link both ways).
-  - [ ] A097862: `Cf. A283595.` (A283595's column g.f. is built from A097862's `P(k)`).
-  - [ ] A094706: `a(n) = A283595(n+1, 2) for n >= 1.` and `Cf. A283595.` (A283595's
-    `Column k=2 gives A094706(n-1).`; checked by `bin/python/a283595_column_gf.py`).
-  - [ ] A271942: `Cf. A001263.` and `Columns k=2..5 give A005408(n-3), A005891(n-4),
-    A063490(n-4), A160747(n-6).` (A001263's formula `= A271942(n+m, n)`; the width-2..5
-    castle counts; checked against the A271942 b-file by `bin/python/tower_t_cores.py`).
+  - [ ] **A038505 → A146559**: A146559 appended to the Cf. line (`A146559 = A038503 −
+    A038505`; A038503 and A146559 already link both ways):
+    `raw/oeis-pe502/xrefs/A038505-A146559.md`.
+  - [ ] **A097862 → A283595**: A283595 inserted into the Cf. line (A283595's column g.f. is
+    built from A097862's `P(k)`): `raw/oeis-pe502/xrefs/A097862-A283595.md`.
+  - [ ] **A094706 → A283595**: `a(n) = A283595(n+1, 2) for n >= 1.` and A283595 appended to
+    the Cf. line (A283595's `Column k=2 gives A094706(n-1).`; checked by
+    `bin/python/a283595_column_gf.py`): `raw/oeis-pe502/xrefs/A094706-A283595.md`.
+  - [ ] **A271942 → A001263**: `Columns k=2..5 give A005408(n-3), A005891(n-4),
+    A063490(n-4), A160747(n-6).` and A001263 inserted into the Cf. line (A001263's formula
+    `= A271942(n+m, n)`; the width-2..5 castle counts; checked against the A271942 b-file by
+    `bin/python/tower_t_cores.py`): `raw/oeis-pe502/xrefs/A271942-A001263.md`.
 - [ ] **A005408 3-cores by corners**: one comment, `a(n)` = 3-core partitions with `n`
   corners (Cho et al., Proposition 3.4, p. 14 "cc(3, m) = 2m + 1"), the Cho et al. link
   (after Hongwei Chen) and the t-core family Cf. line, which A160747 and A063490 already

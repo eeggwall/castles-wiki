@@ -65,7 +65,8 @@ Rule 6 (even block count) is the parity filter. The even-parity count is
   remaining tier-1 comment, added 2026-10-04); `A038503-exact-height.md` (correction of the
   live A038503 comment to exact height, 2026-10-04); `A009545-signed.md` (the k = 1 companion,
   2026-10-04); `A226136-A003410.md` and `A000931-plastic-strip.md` (2026-10-04);
-  `A226274-A226136.md` (the link back from A226274, 2026-11-01); plus `A001523-castle.md`
+  the links back `A226274-A226136.md`, `A038505-A146559.md`, `A097862-A283595.md`,
+  `A094706-A283595.md` and `A271942-A001263.md` (2026-11-01); plus `A001523-castle.md`
   from vein 9 and `A332578-castle.md`, `A115981-castle.md` from vein 9b.
 
 ## Results at a glance
