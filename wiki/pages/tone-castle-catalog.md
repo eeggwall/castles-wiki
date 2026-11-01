@@ -5,7 +5,7 @@ summary: Every DTMF key, every R1 MF signal, the Bell precise-tone-plan call-pro
 tags: [analysis, castle, audio, telephone, dtmf, mf-signaling, goertzel, dft, periodicity, sparse-spectrum, divisor-classes, block-parity, quantization, signal-processing]
 sources: [project-euler-502-representations]
 created: 2026-10-01
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Tone-castle catalog - telephone signaling tones as exactly periodic castles
@@ -236,6 +236,7 @@ Every key is detected correctly in both versions. The castle's margins differ fr
 - [[castle-phone-line](pages/castle-phone-line.md)] - the same voice-band channel, sampled 8000 times per second, carrying castles as frequency-stepping tones, and its 8-bit logarithmic encoding.
 - [[castle-representations](pages/castle-representations.md)] - the skyline (integer tuple) encoding used for every castle here.
 - [[castle-sign](pages/castle-sign.md)] - the block count as first column plus total rise, behind the burst-parity formula.
+- [[orbital-castles](pages/orbital-castles.md)] - the periodic castles whose period uses each height once, with the same block count `c_w + r · rise(c)` for whole periods from height `h`.
 - [[castle-compression](pages/castle-compression.md)] - a periodic castle is described by one period and a repeat count, the parametric tier.
 - [[finite-fields](pages/finite-fields.md)] - arithmetic modulo a prime, used here to evaluate the height polynomial at roots of unity modulo primes `p ≡ 1 (mod 8000)`.
 
