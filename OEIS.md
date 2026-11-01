@@ -37,10 +37,13 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-10-31).** A283595 is approved (#45), so stage 1 holds A005891 and A001263
-and one slot is open: submit the first reverse link of stage 2, A003410 back to A226136
-(A003410 is still at #69, Oct 13 2026, with no open edit). The A283595 follow-up, the first
-item of stage 3, can now be drafted.
+**Next step (2026-10-31).** A001263 is approved (#792), so stage 1 holds A005891 alone and
+two slots are open: submit the first two reverse links of stage 2, A003410 back to A226136
+(A003410 is still at #69, Oct 13 2026) and A226274 back to A226136 (A226274 is still at #20,
+Feb 23 2025), neither with an open edit. The A283595 follow-up, the first item of stage 3,
+can now be drafted. Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every
+stage-2 target is at the revision its draft was checked against, and the stage-2 verification
+scripts pass against the live b-files.
 
 ### 1. In review (max 3)
 
@@ -57,25 +60,11 @@ item of stage 3, can now be drafted.
   formulas; Chaz Reid (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in
   proposed. Michel Marcus (#148–#149, Oct 23) edited the Mathematica section only; Jason
   Yuen (#150–#151, Oct 25) extended the Maple and Mathematica ranges to 50.
-- [~] **A001263 castles of width `n` with `m` blocks** (submitted 2026-10-23, #788–#789). One
-  comment block: `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width `n`
-  with `m` blocks, of any height and without the even-blocks rule, with the column-height
-  definition and `See A005408, A005891, A063490, A160747 for n = 2..5`; a proof line from
-  Deutsch-Elizalde eq. (2). The Deutsch-Elizalde and PE 502 links; a Python program for
-  `T(n,k)`: `raw/oeis-pe502/xrefs/A001263-tower.md` (`wiki/pages/tower-narayana-polynomial.md`),
-  checked by `bin/python/tower_t_cores.py`.
-  Michel Marcus asked (Oct 23) why the castles of width `n` with `m` blocks are not submitted
-  as a new array: they are A271942 (bargraphs by semiperimeter and width) at
-  `(n + m, n)`, since the semiperimeter is the width plus the blocks. Chaz Reid (#790–#791,
-  Oct 23) added the formula `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1) = A271942(n+m, n)`
-  for `n, m >= 1` and `Cf. A005408, A005891, A063490, A160747, A271942.`, and answered in the
-  discussion; back in proposed. No change since #791 (checked 2026-10-31).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Reverse links**, one edit each, each adding only the lines shown. The first five
-  point at approved entries; the last, A271942, answers the A001263 edit and waits for its
-  approval.
+- [ ] **Reverse links**, one edit each, each adding only the lines shown. All six point at
+  approved entries; the last, A271942, answers the A001263 edit (#792).
   - [ ] **A003410 → A226136** (the link back for the approved A226136 edit, #29): the formula
     `a(n) = A226136(n) for n >= 4` and `Cf. A226136`. No castle comment: the castle's second
     row is Deutsch's binary word, so it would restate Deutsch's comment:
@@ -103,7 +92,7 @@ item of stage 3, can now be drafted.
   refers to): the complementary comment and the PE 502 link (after Weisstein):
   `raw/oeis-pe502/xrefs/A115981-castle.md`.
 - [ ] **New sequence `F(w,3)`**, the even-block castles of width `n` and height 3,
-  `0, 0, 3, 21, 89, 307, …` (no match, nor for the odd-block companion, 2026-10-23): the
+  `0, 0, 3, 21, 89, 307, …` (no match, nor for the odd-block companion, 2026-10-31): the
   factored g.f., the order-6 recurrence, `a(n) = (3^n − 2^(n+1) + A146559(n+1) +
   A107920(n))/2`, the width-3 example, a linear-time Python program from the definition,
   `Cf. A001047, A038505, A107920, A146559`. Standalone: the array (stage 3) can follow it:
@@ -159,14 +148,14 @@ item of stage 3, can now be drafted.
     2026-10-04). **Draft not written.**
   - [ ] **Column `w = 3`, `F(3,h)`** = `0, 6, 3, 31, 10, 76, 21, 141, 36, 226, …`: `C(h,2)` at
     odd `h`, `5·C(h,2) + 1` at even `h` (`wiki/pages/sum-of-three-cubes-castles.md`). No match
-    (searched 2026-10-04). **Draft not written.** The halves and the odd-block column, for
+    (searched 2026-10-31). **Draft not written.** The halves and the odd-block column, for
     the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
-    even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
+    even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-10-31); and
     `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
 - [ ] **Tower-spacing new sequences** (`wiki/pages/tower-spacing-castles.md`): the six
   unfiled cells `(h,g)` for `h in {5,6}`, `g in {4,5,6}` (Hardin's "0..(h-1) arrays, each
   element the minimum of `g` adjacent elements", never filed at these parameters; no match
-  2026-09-20).
+  2026-10-31).
 - [ ] **Tower-spacing table comments**: one comment each on the tables A217839 / A217883 /
   A217954 / A228461 giving the castle reading and the running-minimum proof (A217839 is the
   row `h = 2`). The twenty matched cells, with `(h, g) = (2, 7)` = A217838, are covered by
@@ -175,6 +164,8 @@ item of stage 3, can now be drafted.
 ### 4. Candidates (found on the wiki, not yet assessed)
 
 Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with the reason).
+The no-match searches below whose terms are given here were run again on 2026-10-31, still
+with no match.
 
 - [ ] **Castles that never drop by two, by semi-perimeter** (moved from IDEAS.md): `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157, …`
   (columns never more than one lower than the column before, any ends) is absent from OEIS (searched 2026-09-27) and has two
@@ -465,6 +456,22 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 
 ### Done (live on OEIS)
 
+Checked live 2026-10-31: every edit below is in place, and none of these entries has an open
+edit.
+
+- [x] **A001263 castles of width `n` with `m` blocks** (submitted 2026-10-23, approved: A001263
+  #792, Oct 31 2026, Sean A. Irvine, with no editor changes). One comment block:
+  `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width `n` with `m`
+  blocks, of any height and without the even-blocks rule, with the column-height definition
+  and `See A005408, A005891, A063490, A160747 for n = 2..5`; a proof line from
+  Deutsch-Elizalde eq. (2). The Deutsch-Elizalde and PE 502 links; a Python program for
+  `T(n,k)`. Michel Marcus asked (Oct 23) why the castles of width `n` with `m` blocks are not
+  submitted as a new array: they are A271942 (bargraphs by semiperimeter and width) at
+  `(n + m, n)`, so Chaz Reid (#790–#791, Oct 23) added the formula
+  `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1) = A271942(n+m, n)` for `n, m >= 1` and
+  `Cf. A005408, A005891, A063490, A160747, A271942.`:
+  `raw/oeis-pe502/xrefs/A001263-tower.md` (`wiki/pages/tower-narayana-polynomial.md`),
+  checked by `bin/python/tower_t_cores.py`.
 - [x] **A283595 column g.f.** (submitted 2026-10-23, approved: A283595 #45, Oct 31 2026, Sean
   A. Irvine). One formula block: the g.f. of column `k` is `z^k/(R(k)*R(k+1))` with
   `R(2*j) = P(j) − z*P(j−1)`, `R(2*j+1) = P(j+1) − z^2*P(j−1)` (`P(k)` of A097862), and the
@@ -496,9 +503,10 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   A146559 #152, Sep 28 2026): castle comments, the A000225 decomposition formulas,
   `A146559 = A038503 − A038505`, `Cf. A000225` on both, the PE 502 link on A038505.
 - [x] A038505 typo fix, "Project 502" → "Problem 502" (A038505 #140, Oct 04 2026).
-- [x] **A038503 exact-height correction** (submitted 2026-10-04, approved; confirmed
-  2026-10-06). The "height at most 2" comment, which counted the `r = 0` term `C(n,0)` as a
-  castle, is replaced by `a(n) − 1` = odd-block castles of width `n−1` and height 2:
+- [x] **A038503 exact-height correction** (submitted 2026-10-04, approved: A038503 #99,
+  Oct 04 2026, Michael De Vlieger). The "height at most 2" comment, which counted the
+  `r = 0` term `C(n,0)` as a castle, is replaced by `a(n) − 1` = odd-block castles of width
+  `n−1` and height 2:
   `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
 - [x] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
   submitted 2026-10-04, approved (A146559 #167, Oct 11 2026). Comment only, exact height:
