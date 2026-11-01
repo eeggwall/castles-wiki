@@ -128,6 +128,9 @@ for h in range(1, 6):
     P = 2 * lcm(*range(1, h + 1))
     seq = [sum(1 for _, _, c in orbitals(w, h) if blocks(c) % 2 == 0) for w in range(2 * h, 2 * h + 2 * P)]
     ok7 &= all(seq[i] == seq[i + P] for i in range(P))
-check('[7] h <= 5: from w = 2h on, A^e_orbital(w, h) repeats with period 2 lcm(1, ..., h), checked over two periods:', ok7)
+    if h in (2, 3):                        # the shortest period is 4 at these heights
+        ok7 &= all(seq[i] == seq[i + 4] for i in range(2 * P - 4)) and any(seq[i] != seq[i + 2] for i in range(2 * P - 2))
+check('[7] h <= 5: from w = 2h on, A^e_orbital(w, h) repeats with period 2 lcm(1, ..., h), checked over two periods, '
+      'and with shortest period 4 at h = 2 and 3:', ok7)
 
 print('all checks passed:', ok_all)
