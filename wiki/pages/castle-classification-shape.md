@@ -1,11 +1,11 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert types and the 1-histograms, the brick-wall castles sheared onto the square grid; the m-disparate castles are counted as the duals of the (m − 1)-smooth castles. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg, Hilbert and orbital types and the 1-histograms, the brick-wall castles sheared onto the square grid; the m-disparate castles are counted as the duals of the (m − 1)-smooth castles. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
-updated: 2026-10-30
+updated: 2026-10-31
 ---
 
 # Castle classification - shape types
@@ -209,19 +209,20 @@ The even-peak condition is a parity of the number of local maxima, not of the bl
 
 ### Axis 7: Value patterns
 
-Types 19, 20, 22, 23, 28, 29, 33 and 34, and the city-building type:
+Types 19, 20, 22, 23, 28, 29, 33 and 34, the city-building type and the orbital type:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
 | **Equal-block** | all blocks have the same length | `(2, 2, 2)` | open |
 | **Two-level** | exactly two distinct heights | `(1, 2, 2, 1, 2)` | at `h = 2`, every castle but the skyline `(2, …, 2)`: `2^w − 2`; the Fibonacci castles ([[castle-graph](pages/castle-graph.md)]) are a subset |
-| **Crenellated** | `c_i ∈ {a, h}` and `c_i ≠ c_{i+1}`: `(a, h, a, h, …)` | `(2, 4, 2, 4)` | open; at even width its discrete Fourier transform is supported on the frequencies `0` and `w/2` ([[spectral-analysis](pages/spectral-analysis.md)]) |
+| **Crenellated** | `c_i ∈ {a, h}` and `c_i ≠ c_{i+1}`: `(a, h, a, h, …)` | `(2, 4, 2, 4)` | `2(h − 1)` for `w ≥ 2` (a low height `a < h`, and a first column `a` or `h`), the orbital castles of order 2 when `w ≥ 4` ([[orbital-castles](pages/orbital-castles.md)]); at even width its discrete Fourier transform is supported on the frequencies `0` and `w/2` ([[spectral-analysis](pages/spectral-analysis.md)]) |
 | **Moated** | `c_1 = c_w = 1`, and every other `c_i ≥ 2` | `(1, 2, 3, 2, 1)` | open |
 | **Fence-post** | `c_i = 1` for every even `i` | `(3, 1, 2, 1, 3)` | open |
 | **Linear** | `c_i = a + (i − 1)d` | `(1, 3, 5)` | `2⌊(h−1)/(w−1)⌋ + 1` castles for `w ≥ 2` |
 | **Prime-top** | `h` is prime | `(1, 3, 2)` | every castle of prime height |
 | **Integer-mean** | `w` divides `Σ c_i` | `(1, 3, 2)` | open |
 | **City-building** | with the ground `c_0 = 0` in front, every column sees exactly `c_j` of the columns `0, …, j − 1`, a top seeing an earlier one when every top between is on or below the segment joining them (the rule of the city-building sequence A400000) | `(1, 1, 2, 1, 2, 2, 1)` | finitely many at each height, `2, 12, 600, 965952, 31776964193520` for `h = 1, …, 5`; the prefixes of A400000 are members ([[city-building-castles](pages/city-building-castles.md)]) |
+| **Orbital** | `c_{i+N} = c_i` with `c_1, …, c_N` distinct and `w ≥ 2N`: a period of `N` distinct heights repeated from the first column | `(1, 2, 3, 1, 2, 3)` | [[orbital-castles](pages/orbital-castles.md)]: `C(h − 1, N − 1) · N!` of order `N` for `w ≥ 2N`, and `A001339(h − 1)` in all from `w = 2h`; the box and the crenellated castles are the orders 1 and 2 |
 
 For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` has `c_w = h` and `c_1 = h − (w − 1)d ≥ 1`, so `d ≤ (h − 1)/(w − 1)`, and `d < 0` is its mirror image. So the linear castles number `2⌊(h−1)/(w−1)⌋ + 1`, which agrees with brute-force enumeration for `2 ≤ w ≤ 6`, `h ≤ 8`.[^5]
 
@@ -240,6 +241,7 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 - [[castle-snippets](pages/castle-snippets.md)] - Python predicates for the types on this page.
 - [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - the hoodoo and monadnock castles in full.
 - [[euler-castles](pages/euler-castles.md)] - the Euler castles, Euler's pentagonal number theorem as their block parity, and Franklin's move.
+- [[orbital-castles](pages/orbital-castles.md)] - the orbital castles, which repeat a period of distinct heights from the first column.
 - [[konigsberg-castles](pages/konigsberg-castles.md)] - the castles traced in one closed stroke, the double staircases, and those traced in one open stroke.
 - [[aocp-permutations](pages/aocp-permutations.md)], [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the count `h!` of the rainbow castles and its grading by inversions.
 - [[castle-compression](pages/castle-compression.md)] - how short a description of a castle can be.
