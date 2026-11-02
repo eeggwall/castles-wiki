@@ -32,7 +32,10 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   line is the bare formula, with at most a citation in parentheses, and any explanation goes
   in a comment (Sean A. Irvine removed the words after the Narayana-numerator formulas on
   A160747 and A063490); subscripts are written as arguments, `R(2*j)` and `P(j-1)` for
-  `R_{2j}` and `P_{j-1}` ("In general R(k) works better than R_k", Sean A. Irvine, A283595).
+  `R_{2j}` and `P_{j-1}` ("In general R(k) works better than R_k", Sean A. Irvine, A283595);
+  additions to the cross-references are not signed, and a new A-number joins an existing Cf.
+  line ("You don't need to sign additions to the cross-references field. (that practice is
+  historical)", Andrew Howroyd, A003410).
 - The OEIS status of each castle sequence (known / interlink / novel-candidate / unchecked)
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
@@ -51,6 +54,11 @@ against, and the stage-2 verification scripts pass against the live b-files.
   A226136 edit (#29): the formula `a(n) = A226136(n) for n >= 4` and `Cf. A226136`, each
   signed: `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
   (`wiki/pages/fibonacci-castles-sub-families.md`).
+  Andrew Howroyd (#72–#74, Nov 01) wrote the name as "Expansion of g.f. (1 + x)*(1 + x^2)/(1 -
+  x - x^3)." and moved A226136 into Emeric Deutsch's line, `Cf. A171855, A226136. -
+  _Emeric Deutsch_, Feb 15 2010`, without the new signature: "You don't need to sign additions
+  to the cross-references field. (that practice is historical)". Back in proposed (checked
+  2026-11-01).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
