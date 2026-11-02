@@ -37,41 +37,25 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-10-31).** A001263 (#792) and A283595 (#45) are approved, so stage 1 holds
-A005891 alone. The two open slots go to submissions outside this queue, so stage 2 waits
-until a slot is free for it; its top items are the reverse links A003410 back to A226136
-(A003410 is still at #69, Oct 13 2026) and A226274 back to A226136 (A226274 is still at #20,
-Feb 23 2025). Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted.
-Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is
-at the revision its draft was checked against, and the stage-2 verification scripts pass
-against the live b-files.
+**Next step (2026-11-01).** A005891 is approved (#152), and the A003410 link back to A226136
+is in review, so stage 1 holds A003410 alone. The two other slots go to submissions outside
+this queue, so stage 2 waits until a slot is free for it; its top item is the reverse link
+A226274 back to A226136 (A226274 is still at #20, Feb 23 2025). Meanwhile the A094706 castle
+comment, the first item of stage 3, can be drafted. Checked 2026-10-31: no other entry in
+stages 2 to 4 has an open edit, every stage-2 target is at the revision its draft was checked
+against, and the stage-2 verification scripts pass against the live b-files.
 
 ### 1. In review (max 3)
 
-- [~] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21, #138–#141), the
-  A160747 form at `t = 4`: `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1`
-  blocks. Formula block: Cho et al.'s Prop. 3.4 sum and `a(n) = A271942(n+4, 3)`; the Narayana
-  row-3 line was cut in #140, Oct 21, since the entry's "triangular numbers convolved with
-  [1, 3, 1, 0, 0, 0, ...]" comment (Adamson and Povolotsky, May 29 2009) already states it.
-  Links to Cho et al. and PE 502; `A001263, A271942` added to the first Cf. line, and the
-  t-core family line: `raw/oeis-pe502/xrefs/A005891-tower.md`, checked by
-  `bin/python/tower_t_cores.py`.
-  Still in review (checked 2026-10-31): Alper Ferudun (#142, Oct 21) added "without the rule
-  that the number of blocks is even" to the castle comment and checked the counts and
-  formulas; Michel Marcus (#144–#145, Oct 22) changed the Reiter link to https; Chaz Reid
-  (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in proposed. Michel
-  Marcus (#148–#149, Oct 23) edited the Mathematica section only; Jason Yuen (#150–#151,
-  Oct 25) extended the Maple and Mathematica ranges to 50; no change since.
+- [~] **A003410 → A226136** (submitted 2026-11-01, #70–#71), the link back for the approved
+  A226136 edit (#29): the formula `a(n) = A226136(n) for n >= 4` and `Cf. A226136`, each
+  signed: `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
+  (`wiki/pages/fibonacci-castles-sub-families.md`).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Reverse links**, one edit each, each adding only the lines shown. All six point at
+- [ ] **Reverse links**, one edit each, each adding only the lines shown. All five point at
   approved entries; the last, A271942, answers the A001263 edit (#792).
-  - [ ] **A003410 → A226136** (the link back for the approved A226136 edit, #29): the formula
-    `a(n) = A226136(n) for n >= 4` and `Cf. A226136`. No castle comment: the castle's second
-    row is Deutsch's binary word, so it would restate Deutsch's comment:
-    `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
-    (`wiki/pages/fibonacci-castles-sub-families.md`).
   - [ ] **A226274 → A226136** (A226136's Cf. line cites A226274): the formula
     `a(n) = A226136(3*n-1) - 1`, equivalent to the entry's `a(n) = s(3n-3)` (1/n is
     immediately followed by the integer `3n - 1`), and A226136 appended to the Cf. line:
@@ -464,9 +448,22 @@ with no match.
 
 ### Done (live on OEIS)
 
-Checked live 2026-10-31: every edit below is in place, and none of these entries has an open
-edit.
+Checked live 2026-10-31, and A005891 2026-11-01: every edit below is in place, and none
+of these entries has an open edit.
 
+- [x] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21, approved: A005891
+  #152, Nov 01 2026, Sean A. Irvine, with no editor changes), the A160747 form at `t = 4`:
+  `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1` blocks. Formula block:
+  Cho et al.'s Prop. 3.4 sum and `a(n) = A271942(n+4, 3)`; the Narayana row-3 line was cut in
+  #140, Oct 21, since the entry's "triangular numbers convolved with [1, 3, 1, 0, 0, 0, ...]"
+  comment (Adamson and Povolotsky, May 29 2009) already states it. Links to Cho et al. and
+  PE 502; `A001263, A271942` added to the first Cf. line, and the t-core family line. In
+  review, Alper Ferudun (#142, Oct 21) added "without the rule that the number of blocks is
+  even" to the castle comment and checked the counts and formulas; Michel Marcus (#144–#145,
+  Oct 22) changed the Reiter link to https; Chaz Reid (#146–#147, Oct 22) changed "castles"
+  to "castle polyominoes"; Michel Marcus (#148–#149, Oct 23) edited the Mathematica section;
+  Jason Yuen (#150–#151, Oct 25) extended the Maple and Mathematica ranges to 50:
+  `raw/oeis-pe502/xrefs/A005891-tower.md`, checked by `bin/python/tower_t_cores.py`.
 - [x] **A001263 castles of width `n` with `m` blocks** (submitted 2026-10-23, approved: A001263
   #792, Oct 31 2026, Sean A. Irvine, with no editor changes). One comment block:
   `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width `n` with `m`
