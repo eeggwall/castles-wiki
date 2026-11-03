@@ -40,25 +40,17 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-01).** A005891 is approved (#152), and the A003410 link back to A226136
-is in review, so stage 1 holds A003410 alone. The two other slots go to submissions outside
-this queue, so stage 2 waits until a slot is free for it; its top item is the reverse link
-A226274 back to A226136 (A226274 is still at #20, Feb 23 2025). Meanwhile the A094706 castle
-comment, the first item of stage 3, can be drafted. Checked 2026-10-31: no other entry in
-stages 2 to 4 has an open edit, every stage-2 target is at the revision its draft was checked
-against, and the stage-2 verification scripts pass against the live b-files.
+**Next step (2026-11-02).** A003410 is approved (#76), so stage 1 is empty and one slot is
+free; the two other slots go to submissions outside this queue. The free slot takes the top
+item of stage 2, the reverse link A226274 back to A226136 (A226274 is still at #20, Feb 23
+2025). Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted.
+Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is
+at the revision its draft was checked against, and the stage-2 verification scripts pass
+against the live b-files.
 
 ### 1. In review (max 3)
 
-- [~] **A003410 → A226136** (submitted 2026-11-01, #70–#71), the link back for the approved
-  A226136 edit (#29): the formula `a(n) = A226136(n) for n >= 4` and `Cf. A226136`, each
-  signed: `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
-  (`wiki/pages/fibonacci-castles-sub-families.md`).
-  Andrew Howroyd (#72–#74, Nov 01) wrote the name as "Expansion of g.f. (1 + x)*(1 + x^2)/(1 -
-  x - x^3)." and moved A226136 into Emeric Deutsch's line, `Cf. A171855, A226136. -
-  _Emeric Deutsch_, Feb 15 2010`, without the new signature: "You don't need to sign additions
-  to the cross-references field. (that practice is historical)". Back in proposed (checked
-  2026-11-01).
+None (2026-11-02).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
@@ -456,9 +448,17 @@ with no match.
 
 ### Done (live on OEIS)
 
-Checked live 2026-10-31, and A005891 2026-11-01: every edit below is in place, and none
-of these entries has an open edit.
+Checked live 2026-10-31, A005891 2026-11-01 and A003410 2026-11-02: every edit below is in
+place, and none of these entries has an open edit.
 
+- [x] **A003410 → A226136** (submitted 2026-11-01, approved: A003410 #76, Nov 02 2026,
+  Michael De Vlieger, reviewed by Joerg Arndt, #75), the link back for the approved A226136
+  edit (#29): the formula `a(n) = A226136(n) for n >= 4. - _Chaz Reid_, Nov 01 2026` and
+  A226136 in Emeric Deutsch's Cf. line, `Cf. A171855, A226136.`, unsigned. In review, Andrew
+  Howroyd (#72–#74, Nov 01) wrote the name as "Expansion of g.f. (1 + x)*(1 + x^2)/(1 - x -
+  x^3)." and moved the signed `Cf. A226136` line into Emeric Deutsch's line:
+  `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
+  (`wiki/pages/fibonacci-castles-sub-families.md`).
 - [x] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21, approved: A005891
   #152, Nov 01 2026, Sean A. Irvine, with no editor changes), the A160747 form at `t = 4`:
   `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1` blocks. Formula block:
