@@ -22,7 +22,7 @@ A city-building castle with its last column removed is again city-building, sinc
 
 ## The city-building sequence
 
-A400000 builds a skyline one column at a time: `a(1) = 0`, and `a(n)` is the lowest height `k ≥ 0` at which a new column sees exactly `k` of the columns before it.[^name] So `a(1)` is the ground, every later term is at least 1, and for each width `w` the terms `a(2), …, a(w + 1)` form a city-building castle `C_w`, of height the largest term so far. The `C_w` are the city-building castles obtained by always taking the lowest legal next column. A spike of the sequence is a castle with no low continuation: `C_14 = (1, 1, 2, 1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1)` has height 3 and no legal next column of height 1 to 9, so `a(16) = 10`.[^exec1]
+A400000 builds a skyline one column at a time: `a(1) = 0`, and `a(n)` is the lowest height `k ≥ 0` at which a new column sees exactly `k` of the columns before it.[^name] So `a(1)` is the ground, every later term is at least 1, and for each width `w` the terms `a(2), …, a(w + 1)` form a city-building castle `C_w`, of height the largest term so far. The `C_w` are the city-building castles obtained by always taking the lowest legal next column. A spike of the sequence is a castle with no low continuation: `C_14 = (1, 1, 2, 1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1)` has height 3 and no legal next column of height 0 to 9, so `a(16) = 10`.[^exec1]
 
 Rémy Sigrist proved in the entry that the sequence is infinite and unbounded.[^sigrist] A city-building castle need not take the lowest legal column, and the castles below count all of them.
 
