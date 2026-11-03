@@ -40,26 +40,30 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-02).** A003410 is approved (#76), so stage 1 is empty and one slot is
-free; the two other slots go to submissions outside this queue. The free slot takes the top
-item of stage 2, the reverse link A226274 back to A226136 (A226274 is still at #20, Feb 23
-2025). Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted.
+**Next step (2026-11-03).** The A226274 link back to A226136 is in review (#21–#23), so
+stage 1 holds A226274 and the two other slots go to submissions outside this queue; stage 2
+waits until a slot is free for it, and its top item is the reverse link A038505 back to
+A146559. Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted.
 Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is
 at the revision its draft was checked against, and the stage-2 verification scripts pass
 against the live b-files.
 
 ### 1. In review (max 3)
 
-None (2026-11-02).
+- [~] **A226274 → A226136** (submitted 2026-11-03, #21–#23), the link back for the approved
+  A226136 edit (#29), with the proof of Hasler's observation: one signed comment block (1/n
+  is the last element of generation `3n - 2` and is immediately followed by `3n - 1`, proved
+  from Lemmas 3 and 5, Theorem 8 and Corollary 9(c) of the Reid link), links to Kimberling
+  and Moses (Example 4.2, p. 141), the Reid proof and the linear-recurrence index, signature
+  `(5,-7,4,-1)`, one signed formula block ("Formulas above proved (see comments)",
+  `a(n) = A226136(3*n-1) - 1` and the order-4 recurrence for `n >= 6`), a Python program, and
+  A226136 appended to the Cf. line: `raw/oeis-pe502/xrefs/A226274-A226136.md`
+  (`wiki/pages/fibonacci-castles-sub-families.md`). Proposed (checked 2026-11-03).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Reverse links**, one edit each, each adding only the lines shown. All five point at
+- [ ] **Reverse links**, one edit each, each adding only the lines shown. All four point at
   approved entries; the last, A271942, answers the A001263 edit (#792).
-  - [ ] **A226274 → A226136** (A226136's Cf. line cites A226274): the formula
-    `a(n) = A226136(3*n-1) - 1`, equivalent to the entry's `a(n) = s(3n-3)` (1/n is
-    immediately followed by the integer `3n - 1`), and A226136 appended to the Cf. line:
-    `raw/oeis-pe502/xrefs/A226274-A226136.md`.
   - [ ] **A038505 → A146559**: A146559 appended to the Cf. line (`A146559 = A038503 −
     A038505`; A038503 and A146559 already link both ways):
     `raw/oeis-pe502/xrefs/A038505-A146559.md`.
