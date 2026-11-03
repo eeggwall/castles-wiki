@@ -161,6 +161,7 @@ the sum running over all Euler castles. So at each area and semi-perimeter the e
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^blocks`, which on an Euler castle is the sign of the pentagonal number theorem.
 - [[brick-wall-castles](pages/brick-wall-castles.md)] - the Euler castles, mirrored and sheared, are the brick-wall castles whose every row is one block ending at the right end of its row.
 - [[castle-notation](pages/castle-notation.md)] - the symbols of this page.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the Euler type sits among the shape types.
 
 ## Footnotes
 

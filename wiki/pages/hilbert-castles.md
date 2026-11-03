@@ -236,6 +236,7 @@ the generating function of [[castle-graph](pages/castle-graph.md)] and [[tree-ca
 - [[castle-graph](pages/castle-graph.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines, the dual of the strips with every column at height at least 2.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth by width; the Hilbert castles of height 3 are copper by width and those of height 4 grow at `φ²`.
 - [[castle-notation](pages/castle-notation.md)] - `G_M(x)`, `J − M`, `hstrips(w, h)` and `A_hilbert(w, h)`.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the Hilbert type sits among the shape types.
 
 ## Footnotes
 

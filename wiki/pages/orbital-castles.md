@@ -166,6 +166,7 @@ the per-period parity rule as the sign character of [[signed-prime-castles](page
 - [[castle-graph](pages/castle-graph.md)] - the tree castles, which meet the orbital castles in the battlements.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types, among them the orbital castles, and the plateau-free, zig-zag, Zigzag, palindromic, two-level, fence-post and moated types they meet.
 - [[castle-notation](pages/castle-notation.md)] - `A_X(w, h)`, the cyclic rise, the battlement, and `N` as the order of an orbital castle.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the orbital type sits among the shape types.
 
 ## Footnotes
 

@@ -166,6 +166,7 @@ print([ridge(4, w) for w in range(1, 6)])   # [(1, 1), (7, 7), (31, 25), (118, 7
 - [[quadratic-min-height](pages/quadratic-min-height.md)], [[reachable-field-census](pages/reachable-field-census.md)] - the smallest height at which a strip rule grows at a given quadratic number; for `δ_a` it is `a + 1`.
 - [[castle-strip](pages/castle-strip.md)] - strips, transfer matrices, and growth by width.
 - [[castle-notation](pages/castle-notation.md)] - the ridge castle entry, `R_h`, and the tilde for signed transfer matrices.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the ridge type sits among the shape types.
 
 ## Footnotes
 

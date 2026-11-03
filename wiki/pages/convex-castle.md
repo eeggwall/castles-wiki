@@ -108,6 +108,7 @@ Every castle `c` lies under a unique smallest convex castle, its **convex core**
 - [[euler-castles](pages/euler-castles.md)] - the convex castles that fall by 0 or 1 at each step to height 1, whose rows are partitions into distinct parts; their block parity by area is Euler's pentagonal series.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Vandermonde's convolution, Knuth's equation (21).
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the multinomial coefficient, of which the stars-and-bars count is a case.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, whose section *Parity* uses the `h` blocks of a convex castle.
 
 ## Footnotes
 

@@ -191,6 +191,7 @@ Every entry agrees with brute-force enumeration. The row `h₀ = 2` is the even-
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the Mersenne type among the rate-of-change types.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types by width; the Mersenne castles of height 4 grow at the cubic `3.17008…`.
 - [[castle-notation](pages/castle-notation.md)] - `M_cons(h)`, `A_Mersenne(w, h)`, `h₀`, `𝒱(n)` and `ρ_cons(n)`.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the Mersenne type sits among the shape types.
 
 ## Footnotes
 

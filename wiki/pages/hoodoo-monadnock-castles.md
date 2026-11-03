@@ -154,6 +154,7 @@ The exact count divided by this estimate is `1.33, 1.16, 1.08, 1.04` at `N = 10,
 - [[multiset-partitions](pages/multiset-partitions.md)] - partitions into distinct parts as Bender's `c*` count on a one-element multiset.
 - [[euler-castles](pages/euler-castles.md)] - the castles whose rows, rather than the steps of a side, are a partition into distinct parts.
 - [[castle-gray-code](pages/castle-gray-code.md)] - the loopless Gray algorithm (Knuth's §7.2.1.1 Algorithm H), not to be confused with the Hindenburg algorithm used here.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the hoodoo and monadnock types sit among the shape types.
 
 ## Footnotes
 

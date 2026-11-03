@@ -175,6 +175,7 @@ At height 4 the generating function of A027557 is `(1 + x − x²)/((1 − x −
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the path eigenvalues `2cos(jπ/(n+1))` as spectral radii of castle graphs.
 - [[hilbert-castles](pages/hilbert-castles.md)] - the dual rule `J − A_path`, which allows exactly the pairs the zig-zag rule forbids; by the Hilbert duality the Hilbert strips have the series `1/Z_h(−x)`, with `Z_h(x)` the series of the zig-zag strips, the empty strip included.
 - [[castle-notation](pages/castle-notation.md)] - `A_path`, `θ_k`, `M ⊙ M′`, `zstrips(w, h)` and `A_zigzag(w, h)`.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the zig-zag type sits among the shape types.
 
 ## Footnotes
 

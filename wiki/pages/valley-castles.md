@@ -162,6 +162,7 @@ The castles of height 3 and 4 by number of valleys, for `w = 3, …, 8`:[^exec7]
 - [[castle-by-area](pages/castle-by-area.md)] - the vee castles, whose valleys all nest.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalog entries for the valley and k-valley castles.
 - [[castle-notation](pages/castle-notation.md)] - the valley symbols and the other meanings of "valley" on the wiki.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the valley and k-valley types sit among the shape types.
 
 ## Footnotes
 

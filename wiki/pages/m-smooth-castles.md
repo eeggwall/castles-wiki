@@ -277,6 +277,7 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the status of each row.
 - [[castle-notation](pages/castle-notation.md)] - `strips_m`, `smooth_m`, `w_min`, `ρ_{h,m}`.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of a set of castles into even-block and odd-block members.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the m-smooth type sits among the shape types.
 
 ## Footnotes
 

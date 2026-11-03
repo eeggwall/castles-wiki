@@ -145,6 +145,7 @@ For `h ≤ 12`, by computation and with no proof yet, the even widths total `(2h
 - [[euler-castles](pages/euler-castles.md)] - the castles that fall by 0 or 1 at each step to height 1; the falling half `(k, …, 2, 1)` of a double staircase is one.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^blocks` of the parity split.
 - [[castle-notation](pages/castle-notation.md)] - the symbols of this page.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the Königsberg type sits among the shape types.
 
 ## Footnotes
 

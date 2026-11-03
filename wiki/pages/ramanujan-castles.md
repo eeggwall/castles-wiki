@@ -246,6 +246,7 @@ With `rho_cover` from the section *Two methods to compute ρ(T)*, `ramanujan_sta
 - [[spectral-analysis](pages/spectral-analysis.md)] - the castle spectra, with the definition of the Ihara zeta function.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph` and `castle_graph_radius`.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - the taxicab number 1729 as a castle count (`A^e(6, 4) = 1729`) and as a castle; its digit castle `(1, 7, 2, 9)` is Ramanujan in the sense of this page (`λ_2 = 1.898 ≤ ρ(T) = 2.576`).
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where the Ramanujan castles sit among the spectral types.
 
 ## Footnotes
 

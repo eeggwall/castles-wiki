@@ -137,6 +137,7 @@ A castle is silver by spectrum when its castle graph has spectral radius `1 + âˆ
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of every castle with at most 16 cells, and which cospectral groups they separate.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock periods, whose sink spectrum separates 62 adjacency and 5 Laplacian groups.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity configurations, whose sink avalanche profile separates every group.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification, where isospectral pairs show that a spectral type is coarser than the skyline.
 
 ## Footnotes
 
