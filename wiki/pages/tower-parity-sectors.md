@@ -12,7 +12,7 @@ updated: 2026-10-31
 
 ## The question
 
-`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). For even `k ≤ 40` it has two irreducible factors, of degrees `k/2` and `k/2 + 1`, and for odd `k ≤ 31` it is irreducible ([[generating-function-gallery](pages/generating-function-gallery.md)]), each `k` proved by a prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). At `k = 6` its root of largest modulus is `2ψ²`, with `ψ` the [[plastic-number](pages/plastic-number.md)]. This page derives the factorization from a symmetry of the transfer matrix (Part 1), gives the two factors in closed form and proves the product formula (Part 2), and identifies the sequences of the two sectors (Part 3). For `k ≡ 2 (mod 4)` the even-last-column part of `P(k, L)` is `2^L` times a word count that R. H. Hardin entered in the OEIS with an "empirical" recurrence; [[hardin-word-identity](pages/hardin-word-identity.md)] proves the identity for each `k ≤ 34`.
+`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). For even `k ≤ 40` it has two irreducible factors, of degrees `k/2` and `k/2 + 1`, and for odd `k ≤ 31` it is irreducible ([[generating-function-gallery](pages/generating-function-gallery.md)]), each `k` proved by a prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). At `k = 6` its root of largest modulus is `2ψ²`, with `ψ` the [[plastic-number](pages/plastic-number.md)]. This page derives the factorization from a symmetry of the transfer matrix (Part 1), gives the two factors in closed form and proves the product formula (Part 2), and identifies the sequences of the two sectors (Part 3). For `k ≡ 2 (mod 4)` the even-last-column part of `P(k, L)` is `2^L` times a word count that R. H. Hardin entered in the OEIS with an "empirical" recurrence; [[hardin-word-identity](pages/hardin-word-identity.md)] proves the identity for every `k ≡ 2 (mod 4)`.
 
 Every printed value on this page was recomputed.[^1]
 
@@ -114,7 +114,7 @@ k=10 (k mod 4 = 2): [(5, 1, -1, 'DOMINANT'), (6, 2, 1, '')]
 k=12 (k mod 4 = 0): [(6, 1, 1, ''), (7, 2, -1, 'DOMINANT')]
 ```
 
-One factor is monic of degree `k/2` with constant term `(−1)^{k/2}`, the other has leading coefficient 2 and degree `k/2 + 1`; the section *The product formula* proves this for every even `k`. For even `k ≤ 40` the root of largest modulus is in the monic factor exactly when `k ≡ 2 (mod 4)`. Then `ρ_k/2` is a root of a monic integer polynomial with constant term `±1`, an algebraic unit; for `k ≡ 0 (mod 4)` and `k ≤ 40` it is a root of an irreducible primitive polynomial with leading coefficient 2, so it is not an algebraic integer.
+One factor is monic of degree `k/2` with constant term `(−1)^{k/2}`, the other has leading coefficient 2 and degree `k/2 + 1`; the section *The other factor and the product formula* proves this for every even `k`. For even `k ≤ 40` the root of largest modulus is in the monic factor exactly when `k ≡ 2 (mod 4)`. Then `ρ_k/2` is a root of a monic integer polynomial with constant term `±1`, an algebraic unit; for `k ≡ 0 (mod 4)` and `k ≤ 40` it is a root of an irreducible primitive polynomial with leading coefficient 2, so it is not an algebraic integer.
 
 ### The monic factor: `H_d`
 
@@ -227,7 +227,7 @@ m=1 (k=6):  words(L+1) = [1, 2, 4, 7, 12, 21, 37, 65, 114]     P_even/2^L = [1, 
 m=2 (k=10): words(L+1) = [1, 3, 9, 22, 51, 121, 292, 704, 1691] P_even/2^L = [1, 3, 9, 22, 51, 121, 292, 704, 1691]
 ```
 
-Hardin's entries give their recurrences as "Empirical", for example "a(n) = 3*a(n-1) -3*a(n-2) +4*a(n-3) -a(n-4) +a(n-5)" on A202882, and the recurrences of A202882, A203094 and A203184 are `H_5`, `H_7` and `H_9`. On the castle side, `H_{k/2}` is the characteristic polynomial of the even sector (by the section *Which factor is which sector*), so the recurrence holds for `P_even(k, ·)/2^L`. [[hardin-word-identity](pages/hardin-word-identity.md)] proves that the two sequences agree for each `m ≤ 8`, by an explicit change of basis between the word automaton and the halved even-sector matrix; for general `m` the check is a finite case analysis on the matrix entries, not written out.
+Hardin's entries give their recurrences as "Empirical", for example "a(n) = 3*a(n-1) -3*a(n-2) +4*a(n-3) -a(n-4) +a(n-5)" on A202882, and the recurrences of A202882, A203094 and A203184 are `H_5`, `H_7` and `H_9`. On the castle side, `H_{k/2}` is the characteristic polynomial of the even sector (by the section *Which factor is which sector*), so the recurrence holds for `P_even(k, ·)/2^L`. [[hardin-word-identity](pages/hardin-word-identity.md)] proves that the two sequences agree for every `m`, by an explicit change of basis between the word automaton and the halved even-sector matrix.
 
 **`k ≡ 0 (mod 4)`: the odd sector carries `H_{k/2}`.**[^1]
 
@@ -245,10 +245,8 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 |---|---|---|
 | `M_signed(k)` | the signed transfer matrix `M̃_k`, with characteristic polynomial `char_k` | Part 1 |
 | `𝒥`, `D`, `𝒥D` commutation test | find a symmetry by testing candidate involutions | Part 1 |
-| `(X ± I).columnspace()` + restricted matrix | block-diagonalize along the eigenspaces of an involution | Part 1 |
 | `blocks(cc)` + parity filter | check by brute force that a sector is a sum over towers | Part 1 |
 | `H(d)` | a binomial closed form for a factor, tested against `sp.factor` | Part 2 |
-| `sp.solve` on coefficient equations | recover a polynomial recurrence `H_{d+2} = A H_{d+1} + B H_d` from data | Part 2 |
 | `sectors(k, Lmax)` | the sequences of the invariant subspaces | Part 3 |
 | `hardin_count(m, L)` | check an OEIS interpretation by brute force | Part 3 |
 
@@ -264,7 +262,7 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 - [[plastic-number](pages/plastic-number.md)] - `ψ` and `ψ²`, the Padovan and Perrin numbers, and the Jacobi-Perron expansions.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` and the units `ρ_k/2` for `k ≡ 2 (mod 4)` were first found numerically.
 - [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the transfer matrix with a weight `t` per block and its similarity to the Kac-Murdock-Szegő matrix, which accounts for `𝒥D`.
-- [[hardin-word-identity](pages/hardin-word-identity.md)] and [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the proof of the even-sector identity for `m ≤ 8`, and the seminar on it.
+- [[hardin-word-identity](pages/hardin-word-identity.md)] and [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the proof of the even-sector identity for every `m`, and the seminar on it.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the irreducibility of `char_k` for `k = 2^m − 1`.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as the two components of `Spec Z[x]/(char_k)`; the minor sector `H_2` at `k = 4` gives `Z[ω]`.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the order `k + 1` of the recurrence in `L`, which the sector dimensions split.
