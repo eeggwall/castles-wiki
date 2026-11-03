@@ -43,6 +43,7 @@ The entries state the castle readings. `A038505` gives "a(n) is the number of ca
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the other matches of castle counts against the OEIS.
 - [[project-euler-502](pages/project-euler-502.md)] - the problem statement.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - a seminar whose stops 1 to 4 follow this identification from the table of counts to its proof.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the parity sectors of `P(k, ·)`, with `P_even(1, L) = A146559(L)`.
 
 ## Footnotes
 

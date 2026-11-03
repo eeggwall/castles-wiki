@@ -68,6 +68,11 @@ The sign of a permutation `σ` of `n` points with `c` cycles is `sgn(σ) = (−1
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - a seminar on the tower count and the sign.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the even-block count modulo primes, and modulo 2 from the mirror pairing.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the even-block condition as one bit, and the cells whose raising changes the sign of a castle.
+- [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the signed q-shift equation for castles by area and width, where gluing loses one block and so flips the sign.
+- [[a005251-bijection](pages/a005251-bijection.md)] - the tree castles as binary strings, where a tree castle of area `n` and width `w` has sign `−(−1)^{n−w}`.
+- [[fibonacci-castle](pages/fibonacci-castle.md)] - the Fibonacci castles, whose even-block castles are counted by the odd-block Fibonacci towers.
+- [[castle-graph](pages/castle-graph.md)] - the signed count `Σ (−1)^{blocks}` of the tree skylines by width.
+- [[1-smooth-castles](pages/1-smooth-castles.md)] and [[m-smooth-castles](pages/m-smooth-castles.md)] - the signed count as the transfer-matrix count with each rise by `r` weighted `(−1)^r`.
 
 ## Footnotes
 

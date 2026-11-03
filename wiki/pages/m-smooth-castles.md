@@ -276,6 +276,7 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's `σ_p^q`, of which the diagonal growth constants are `σ_{m+1}^m`; only `m = 1` is on the row `q = 1`.
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the status of each row.
 - [[castle-notation](pages/castle-notation.md)] - `strips_m`, `smooth_m`, `w_min`, `ρ_{h,m}`.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of a set of castles into even-block and odd-block members.
 
 ## Footnotes
 

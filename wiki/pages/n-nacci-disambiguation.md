@@ -182,6 +182,12 @@ The castles by semi-perimeter (the bargraphs, A082582) grow like `τ²`, and the
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types such as "golden by width" and "tribonacci by area".
 - [[castle-notation](pages/castle-notation.md)] - `τ` and the Fibonacci castle entries.
 - [[oeis-index](pages/oeis-index.md)] - every A-number on this page, with the pages that cite it.
+- [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)] - sub-families of the Fibonacci castles, among them the spaced castles, `A000930(w + 2) − 1` and supergolden by width.
+- [[totient-castles](pages/totient-castles.md)] - castles whose neighboring columns have coprime heights, which at height 2 are the Fibonacci castles.
+- [[a005251-bijection](pages/a005251-bijection.md)] - the tree castles of area `n`, `A005251(n + 2)` of them, as compositions with no two neighboring parts at least 2.
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - golden, silver, bronze and plastic compared by width, area, semi-perimeter and spectrum.
+- [[endicott-may-shacklette-2018-stacks-of-spheres](pages/endicott-may-shacklette-2018-stacks-of-spheres.md)] - Wilf's block fountains, `(1 − 2y)/(1 − 3y + y²)`, the odd-indexed Fibonacci numbers.
+- [[gessel-2013-carlitz-scoville-vaughan](pages/gessel-2013-carlitz-scoville-vaughan.md)] - Gessel's first example, the words with no two neighboring `x`, which are the tree skylines of height at most 2.
 
 ## Footnotes
 

@@ -158,6 +158,7 @@ Hardin's two-dimensional tables are the rows `h = 2` (A217839, "0..1 arrays"), `
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the snippet `tower_spacing_matrix(h, g)`.
 - [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] - the binary words of the row `h = 2` as strings with no short run of 1s, and their OEIS entries through `g = 7`.
 - [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] and [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] - the castles on the heights 1 and `h` by semi-perimeter, counted by `spacing_h(s − h, 2) − 1`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the even sector `P_even(k, ·)` of the signed tower count and its factor `H_{k/2}`.
 
 ## Footnotes
 

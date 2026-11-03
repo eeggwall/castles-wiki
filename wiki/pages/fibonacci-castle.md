@@ -210,6 +210,7 @@ print(tower.count("1") + 1)          # 22 blocks
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = Re((1 + i)^{L+1})`, which gives the signed count of all castles of height 2.
 - [[castle-entropy](pages/castle-entropy.md)] - `log₂ φ` among the entropy rates of castle families.
 - [[kitamasa](pages/kitamasa.md)], [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the Fibonacci recurrence and its generating function as worked examples.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of a set of castles into even-block and odd-block members.
 
 ## Footnotes
 

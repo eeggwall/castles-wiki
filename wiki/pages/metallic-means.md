@@ -120,6 +120,7 @@ By area, the castles of height at most 3 grow at the tribonacci constant, and th
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the growth of the recurrence `∇^α a_n = a_{n−1}` as a function of its order `α`, which equals `φ` at `α = 1/2`.
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles of height `h` by area, which grow at the `h`-nacci constants; only the case `h = 2`, golden, is a metallic mean.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `metallic_ring(a)`, which computes `D0` and `f` for `Z[δ_a]`.
+- [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] - the polyominoes inscribed in a `2 × h` rectangle, which grow like silver in `h`.
 
 ## Footnotes
 

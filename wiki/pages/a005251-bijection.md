@@ -151,6 +151,8 @@ Padovan numbers also correct the count up to mirror image: [[castle-graph](pages
 - [[unique-tournament](pages/unique-tournament.md)] - the tree skylines of height at most 4, counted by A000570 through compositions into `{1, 3, 4, 5}`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - Stop 7 lists these readings of A005251.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower counts `P(k, ·)`; their even sector at `k = 6` is `2^L A005251(L + 3)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of a set of castles into even-block and odd-block members.
+- [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - the Fibonacci, tribonacci and higher n-nacci numbers across the wiki, grouped by the mechanism that produces them.
 
 ## Footnotes
 

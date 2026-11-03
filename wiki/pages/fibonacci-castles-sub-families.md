@@ -172,6 +172,7 @@ print([castles(n, lambda a: a <= 3, lambda g: 1 <= g <= 3) for n in range(1, 11)
 - [[castle-entropy](pages/castle-entropy.md)] - entropy rates of castle families; the Fibonacci castles have `log₂ φ` bits per column, and the Fibonacci-word and balanced castles, which grow polynomially, have rate 0.
 - [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - the Fibonacci castles counted by area, which the spaced castles count by width.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - skylines whose raised regions, which may be wide, are separated by wide valleys.
+- [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - the Fibonacci, tribonacci and higher n-nacci numbers across the wiki, grouped by the mechanism that produces them.
 
 ## Footnotes
 

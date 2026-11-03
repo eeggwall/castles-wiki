@@ -244,6 +244,7 @@ def cycle_rank(c):
 - [[castle-by-area](pages/castle-by-area.md)] - castles counted by area, the number of vertices of the castle graph.
 - [[castle-representations](pages/castle-representations.md)] - the other encodings of a castle.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph`, `is_tree_castle`, `cycle_rank`.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of a set of castles into even-block and odd-block members.
 
 ## Footnotes
 

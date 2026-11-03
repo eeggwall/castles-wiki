@@ -190,6 +190,7 @@ At height 2 the signed count repeats `1, 2, 2, 1, 0, 0` with period 6, the parit
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles of area `n` as compositions of `n`, the reading behind `A167606`.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^blocks` and the signed transfer matrix.
 - [[castle-notation](pages/castle-notation.md)] - the symbols of this page.
+- [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - the Fibonacci, tribonacci and higher n-nacci numbers across the wiki, grouped by the mechanism that produces them.
 
 ## Footnotes
 

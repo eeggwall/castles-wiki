@@ -128,6 +128,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the linearizable shape of Equations (1) and (2), and the bar-graph equation (3.11), the castle generating function by width, blocks and area.
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the sequences and constants here.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - a seminar on castles by area whose Stop 4 is this equation.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of a set of castles into even-block and odd-block members.
 
 ## Footnotes
 

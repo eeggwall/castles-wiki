@@ -205,6 +205,8 @@ where `e(s)` repeats `−1, 2, 3, 1, −2, −3` from `s = 4`, since `1 − x + 
 - [[area-growth-census](pages/area-growth-census.md)] - the area census and the smallest-growth lemma.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the semi-perimeter grading.
 - [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] - every growth constant by semi-perimeter through height 4, silver at height 5, the bronze bound.
+- [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - the Fibonacci, tribonacci and higher n-nacci numbers across the wiki, grouped by the mechanism that produces them.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_k` factors into two sectors, and where `ρ_6 = 2ψ²` comes from.
 
 ## Footnotes
 

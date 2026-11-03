@@ -276,6 +276,9 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 - [[castle-notation](pages/castle-notation.md)] - the tower height `k = h − 1` and the argument orders of `P(k, L)` and `A^e(w, h)`.
 - [[tower-heap](pages/tower-heap.md)] - towers counted by blocks without sign, through Narayana polynomials.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched against the OEIS, among them the characteristic polynomials of `P(k, ·)`.
+- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the skylines of height at most `m + 1` with tower spacing at least 2, counted by `P_even(4m + 2, L)/2^L`.
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - the four constants on the signed transfer matrices, where plastic enters only as `ρ_6 = 2ψ²`.
+- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the castles of height 2 by block parity, `A038505` and `A038503`, tied to `P(1, ·)` through `A146559`.
 
 ## Footnotes
 
