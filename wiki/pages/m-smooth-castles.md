@@ -5,7 +5,7 @@ summary: An m-smooth castle is a castle whose neighboring columns differ in heig
 tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, parity, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-06
-updated: 2026-10-28
+updated: 2026-11-03
 ---
 
 # m-smooth castles
@@ -62,7 +62,7 @@ Sections 2 and 3 extend these to `m ≥ 2`; the section *Facts that hold only at
 | `Σ_w smooth_m(w, 4) x^w` | `x⁴/((1 − 3x + x²)(1 − 2x − x²))` | `2x³/((1 − 3x − 2x²)(1 − 3x))` |
 | growth | `φ² ≈ 2.618` | `(3 + √17)/2 ≈ 3.562` |
 
-At `m = 2` the ceiling `h = 4` is the first non-vacuous one (3.3), and its strip generating function has the two-term Pell shape (3.6).
+At `m = 2` the ceiling `h = 4` is the first non-vacuous one (3.3), and its strip generating function has the two-term Pell shape (3.6). At `h = 5` the strips are A088132(`w − 1`), with generating function `(1 − x)/(1 − 4x + x³)`, so the castles of height 5 number `smooth_2(w, 5) = A088132(w − 1) − A007482(w − 1)`: `0, 0, 1, 8, 46, 233, …`.[^a088132][^exec]
 
 ## 3. Every m
 
@@ -280,6 +280,7 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 ## Footnotes
 
 [^a007482]: https://oeis.org/A007482 (read 2026-10-16) - "a(n) is the number of subsequences of [ 1, ..., 2n ] in which each odd number has an even neighbor."; "G.f.: 1/(1-3*x-2*x^2)."; data `1, 3, 11, 39, 139, 495, 1763, 6279, 22363, 79647, …`, offset 0.
+[^a088132]: https://oeis.org/A088132 (read 2026-11-03) - "G.f.: (1-x)/(1-4*x+x^3)."; "a(n) = 4*a(n-1) - a(n-3) for n>3."; data `1, 3, 12, 47, 185, 728, 2865, 11275, …`, offset 0.
 [^a015530]: https://oeis.org/A015530 (read 2026-10-16) - "Expansion of x/(1 - 4*x - 3*x^2)."; offset 0.
 [^a015537]: https://oeis.org/A015537 (read 2026-10-16) - "Expansion of x/(1 - 5*x - 4*x^2)."; offset 0.
-[^exec]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) for `m = 1, 2, 3, 4` and `h = 2, …, 12`, from the generating functions `x e_1ᵀ(I − xB)^{−1}𝟙` of the band matrices `B` and their signed versions: every row of the tables in 3.7 (counts, numerators, reduced denominator degrees, growth constants and their degrees), the strip denominator degrees `≤ ⌈h/2⌉` and the rows where the degree for `smooth_m(·, h)` is below `h`; the parity rows, signed denominators of degree `2h − 1` for `m = 2, 3, 4`, signed growth and the even/odd orders for `m = 2, 3, 4`, and the `m = 1` signed orders `3, 5, 7, 7, 9, …`; the free and both-ends tables for `m = 2`, with the first pinned width `2w_min − 1` and the squared binomial; the free count `(2m + 1)^{w−1}` for `(w − 1)m ≤ h − 1` (`m ≤ 3`, `h ≤ 8`, `w ≤ 8`); both diagonal generating functions for `m ≤ 5`; the first-width binomial by the code block; A007482, A015530 and A015537 checked on oeis.org. On 2026-10-22 (Python 3.11 with NumPy and SymPy): every table of 3.7, 3.8 and the boundary conditions recomputed; the denominator drops of 3.2 attributed by diagonalizing the symmetric part of the band matrix at `h` and `h − 1` (zero eigenvalues, and eigenvectors orthogonal to `𝟙`, to `10^{−9}`); the signed spectral radii for `m = 2`, `h ≤ 12`, with every eigenvalue's coefficient nonzero; the atom series to 40 coefficients for `m ≤ 4`, `h ≤ 12`, in exact rational arithmetic.
+[^exec]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) for `m = 1, 2, 3, 4` and `h = 2, …, 12`, from the generating functions `x e_1ᵀ(I − xB)^{−1}𝟙` of the band matrices `B` and their signed versions: every row of the tables in 3.7 (counts, numerators, reduced denominator degrees, growth constants and their degrees), the strip denominator degrees `≤ ⌈h/2⌉` and the rows where the degree for `smooth_m(·, h)` is below `h`; the parity rows, signed denominators of degree `2h − 1` for `m = 2, 3, 4`, signed growth and the even/odd orders for `m = 2, 3, 4`, and the `m = 1` signed orders `3, 5, 7, 7, 9, …`; the free and both-ends tables for `m = 2`, with the first pinned width `2w_min − 1` and the squared binomial; the free count `(2m + 1)^{w−1}` for `(w − 1)m ≤ h − 1` (`m ≤ 3`, `h ≤ 8`, `w ≤ 8`); both diagonal generating functions for `m ≤ 5`; the first-width binomial by the code block; A007482, A015530 and A015537 checked on oeis.org. On 2026-10-22 (Python 3.11 with NumPy and SymPy): every table of 3.7, 3.8 and the boundary conditions recomputed; the denominator drops of 3.2 attributed by diagonalizing the symmetric part of the band matrix at `h` and `h − 1` (zero eigenvalues, and eigenvectors orthogonal to `𝟙`, to `10^{−9}`); the signed spectral radii for `m = 2`, `h ≤ 12`, with every eigenvalue's coefficient nonzero; the atom series to 40 coefficients for `m ≤ 4`, `h ≤ 12`, in exact rational arithmetic. On 2026-11-03 (Python 3.11 with SymPy): `strips_2(w, 5) = A088132(w − 1)` and `smooth_2(w, 5) = A088132(w − 1) − A007482(w − 1)` for `w ≤ 30`, A088132 checked on oeis.org.
