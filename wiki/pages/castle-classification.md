@@ -26,7 +26,7 @@ A castle of width `w` and height `h` is determined by its skyline, the column he
 
 | scope | what is classified | the invariant | named types | page |
 |---|---|---|---|---|
-| **shape** | one castle | a predicate on the skyline `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, …: 41 types from the Castle Types source in seven groups, plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert castles; the 1-histograms, the sheared brick-wall castles | [[castle-classification-shape](pages/castle-classification-shape.md)] |
+| **shape** | one castle | a predicate on the skyline `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, …: 41 types from the Castle Types source, the 7 base types and 34 proposed types in seven axes, plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg, Hilbert and orbital castles; the 1-histograms, the sheared brick-wall castles | [[castle-classification-shape](pages/castle-classification-shape.md)] |
 | **spectrum** | one castle | a spectrum of its castle graph ([[castle-graph](pages/castle-graph.md)]) or of its skyline | tree castles; castles golden by spectrum (spectral radius `φ`) and silver by spectrum (`1 + √2`); spectral radius `φ²`; isospectral pairs; Ramanujan castles; sparse-spectrum castles | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
 | **growth** | a family of castles defined by a rule | the growth constant of the family's count along a named axis: width, height, area or semi-perimeter | golden, silver, bronze, copper and nickel by width; `δ_4`, `δ_5`, … by width; tribonacci, tetranacci, supergolden, plastic and `ψ²` by area; on other tilings, 4 and the silver mean squared `(1 + √2)²` by width | [[castle-classification-growth](pages/castle-classification-growth.md)] |
 
@@ -54,7 +54,7 @@ Project Euler 502 counts the castles with an even number of blocks. Every type i
 
 ## Source
 
-The shape types are taken from `charlesreid1.com/wiki/Project_Euler/502/Castle_Types` (fetched 2026-09-15, cached at `raw/castle-types.wiki`). It defines 42 types as predicates on the skyline: 7 base types from the polyomino literature (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate) and 35 further types.[^3] [[castle-classification-shape](pages/castle-classification-shape.md)] groups 41 of them into seven groups and links each to the wiki page that treats it. The spectral, growth and compressibility scopes are the wiki's own.
+The shape types are taken from `charlesreid1.com/wiki/Project_Euler/502/Castle_Types` (fetched 2026-09-15, cached at `raw/castle-types.wiki`). It defines 42 types as predicates on the skyline: 7 base types from the polyomino literature (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate) and 35 further types.[^3] [[castle-classification-shape](pages/castle-classification-shape.md)] gives 41 of them, the 7 base types and 34 proposed types in seven axes, and links each to the wiki page that treats it. The spectral, growth and compressibility scopes are the wiki's own.
 
 ## Related Concepts
 
