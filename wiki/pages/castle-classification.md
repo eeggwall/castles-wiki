@@ -77,6 +77,7 @@ The shape types are taken from `charlesreid1.com/wiki/Project_Euler/502/Castle_T
 - [[castle-snippets](pages/castle-snippets.md)] - tested Python snippets for the shape predicates and the castle graph.
 - [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - Gray tours on the even-block castles of small width and height.
 - [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules through height 5; the smallest above 1 at height `h ≥ 2` is the root of `z^{h(h+1)/2} − z − 1`, the plastic number at `h = 2`, and it first appears at height `h`.
+- [[city-building-castles](pages/city-building-castles.md)] - the castles in which every column sees as many earlier columns as its height, under the visibility rule of A400000.
 
 ## Footnotes
 
