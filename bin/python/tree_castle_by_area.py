@@ -1,7 +1,9 @@
 # Tree skylines and tree castles counted by width and area: Equations (1)-(4), the height-2 triangle,
 # Tables 1 and 2 with their OEIS shifts, denominators and growth constants by area, the composition,
-# bit-string and 010-avoiding bijections, and the castles of height 2 with tower spacing at least 2.
-# Page: wiki/pages/tree-castle-by-area.md.  Needs sympy.  OEIS data below: the full data field of each entry, read 2026-10-17.
+# bit-string and 010-avoiding bijections, the castles of height 2 with tower spacing at least 2, and the
+# fence tilings of Edwards and Allen (2021) at height 3.
+# Page: wiki/pages/tree-castle-by-area.md.  Needs sympy.  OEIS data below: the full data field of each entry, read 2026-10-17
+# (A059259 and A335964 read 2026-11-03).
 from itertools import product
 from math import comb
 import sympy as sp
@@ -151,3 +153,45 @@ print("[5] castles of height 2 with tower spacing at least 2 = A005251(w + 3) - 
 # [6] the tournament recurrence: A000570's characteristic polynomial is the h = 4 reversed denominator
 assert all(a('A000570', n) == a('A000570', n - 1) + a('A000570', n - 3) + a('A000570', n - 4) + a('A000570', n - 5) for n in range(6, 24))
 print("[6] A000570(n) = A000570(n-1) + A000570(n-3) + A000570(n-4) + A000570(n-5) for 6 <= n <= 23, growth", sp.N(growth[4], 10), ": True")
+
+# [7] Edwards and Allen's fence tilings at height 3: squares and (1, 1)-fences, metatiles of lengths 1, 3, 4.
+#     With the leading column, a skyline of area A and width w is a tiling of an (A + 1)-board by w + 1 tiles
+#     with A - w fences. Their triangles: <n, k> = n-tilings with k fences (A059259, rows read by n),
+#     [n, k] = tilings of an n-board with k fences (A335964).
+A059259 = [1,1,0,1,1,1,1,2,2,0,1,3,4,2,1,1,4,7,6,3,0,1,5,11,13,9,3,1,1,6,16,24,22,12,4,0,1,7,22,40,46,34,16,4,1,1,8,29,62,86,80,50,20,5,0,1,9,37,91,148,166,130,70,25,5,1,1,10,46,128,239,314,296,200]
+A335964 = [1,1,0,1,0,0,1,1,0,0,1,2,1,0,0,1,3,2,0,0,0,1,4,4,0,0,0,0,1,5,7,2,0,0,0,0,1,6,11,6,1,0,0,0,0,1,7,16,13,3,0,0,0,0,0,1,8,22,24,9,0,0,0,0,0,0,1,9,29,40,22,3,0,0,0,0,0,0]
+def tri(data):
+    rows, i, n = [], 0, 0
+    while i + n + 1 <= len(data): rows.append(data[i:i + n + 1]); i += n + 1; n += 1
+    return rows
+def fence_tilings(n):  # tilings of an n-board as tuples of metatiles 'S', 'FS', 'FF'
+    if n == 0: yield (); return
+    for m, l in (('S', 1), ('FS', 3), ('FF', 4)):
+        if l <= n:
+            for r in fence_tilings(n - l): yield r + (m,)
+def tiles(t): return sum(1 if m == 'S' else 2 for m in t)
+def fences(t): return sum({'S': 0, 'FS': 1, 'FF': 2}[m] for m in t)
+def sky_to_tiling(c):  # the composition map of [4] at h = 3, parts 1, 3, 4 read as S, FS, FF
+    return tuple({1: 'S', 3: 'FS', 4: 'FF'}[p] for p in to_comp(c))
+def tree_skylines(w, h=3):
+    return [c for c in product(range(1, h + 1), repeat=w) if tree(c)]
+ang, sq = tri(A059259), tri(A335964)
+J = lambda n: a('A001045', n)
+for A in range(1, 15):
+    src = [c for c in comps(A) if tree(c) and max(c) <= 3]
+    img = [sky_to_tiling(c) for c in src]
+    assert sorted(img) == sorted(fence_tilings(A + 1)) and len(set(img)) == len(img), A
+    assert all(tiles(sky_to_tiling(c)) == len(c) + 1 and fences(sky_to_tiling(c)) == A - len(c) for c in src)
+    assert all(sum(max(0, u - v) for u, v in zip(c, (0,) + c)) == fences(sky_to_tiling(c)) + 1 for c in src)
+    if A + 1 < len(sq):
+        assert all(sum(1 for c in src if A - len(c) == k) == sq[A + 1][k] for k in range(A + 2)), A
+for w in range(0, 11):
+    S = tree_skylines(w)
+    assert len(S) == J(w + 2), w
+    if w + 1 < len(ang):
+        assert all(sum(1 for c in S if sum(c) - w == k) == ang[w + 1][k] for k in range(w + 2)), w
+assert all(sum(1 for _ in fence_tilings(2 * n)) == fib(n + 1)**2 and sum(1 for _ in fence_tilings(2 * n + 1)) == fib(n + 1) * fib(n + 2) for n in range(10))
+print("[7] h = 3: the composition map sends the tree skylines of area A onto the fence tilings of an (A + 1)-board, width + 1 tiles,"
+      " area - width = blocks - 1 fences (A <= 14); by area and fences = A335964 row A + 1 (A <= 10); by width = A001045(w + 2)"
+      " (w <= 10), by width and fences = A059259 row w + 1 (w <= 9); fence tilings of 2n and 2n + 1 cells = F(n+1)^2, F(n+1) F(n+2), n <= 9: True")
+

@@ -3,9 +3,9 @@ title: The castle graph - bridge to graph theory
 category: Concepts
 summary: The castle graph of a castle has its cells as vertices and an edge between cells that share a side. It is connected, bipartite and planar, with at most 4 neighbors per cell, and its cycle rank is the number of 2×2 squares of cells, whose boundary cycles are an integer basis of the cycle lattice of every castle, in the sink and tide models. It is a tree exactly when no two neighboring columns both have height at least 2; these tree castles number F_{w+2} − 1 at height 2, and the tree skylines of height at most h satisfy T_h(w+2) = T_h(w+1) + (h−1)T_h(w), Jacobsthal at h = 3, so the tree castles of height h grow like σ_1^{h−1} = (1 + √(4h−3))/2 by width. A tree castle with n cells has 1 + n − w blocks, so its even-block and odd-block counts differ by (−1)^h(1 − P_F(w)), of period 6 in the width at every height; up to mirror image, 6,963 of the 33,150 castles with at most 16 cells are tree castles.
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy, cycle-lattice, parity, burnside, padovan]
-sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile]
+sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile, edwards-allen-2021-fibonacci-squared-fence-tiles]
 created: 2026-09-17
-updated: 2026-10-31
+updated: 2026-11-03
 ---
 
 # The castle graph - bridge to graph theory
@@ -109,7 +109,7 @@ de Spinadel's metallic mean with `p = 1` and `q = h − 1` ([[de-spinadel-1999-f
 | 3 | `0, 1, 2, 6, 13, 30, 64, 137, 286` |
 | 4 | `0, 1, 2, 8, 19, 54, 132, 337, 818` |
 
-Every entry agrees with brute-force enumeration.[^3] At height 2, `T_1(w) = 1`, so `A_tree(w, 2) = F_{w+2} − 1 = A000071(w+2)`: these are the Fibonacci castles, the castles of height 2 with no two neighboring columns of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)]). The sequences `A006130` and `A006131` satisfy `a(n) = a(n−1) + 3a(n−2)` and `a(n) = a(n−1) + 4a(n−2)`, the cases `h = 4` and `h = 5` of Equation (1).
+Every entry agrees with brute-force enumeration.[^3] At height 2, `T_1(w) = 1`, so `A_tree(w, 2) = F_{w+2} − 1 = A000071(w+2)`: these are the Fibonacci castles, the castles of height 2 with no two neighboring columns of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)]). The sequences `A006130` and `A006131` satisfy `a(n) = a(n−1) + 3a(n−2)` and `a(n) = a(n−1) + 4a(n−2)`, the cases `h = 4` and `h = 5` of Equation (1). At `h = 3` the tree skylines of width `w` are Edwards and Allen's tilings by `w + 1` squares and `(1, 1)`-fences, which they count as the Jacobsthal numbers `J_{w+2}` ([[edwards-allen-2021-fibonacci-squared-fence-tiles](pages/edwards-allen-2021-fibonacci-squared-fence-tiles.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)]).
 
 [[tree-castle-by-area](pages/tree-castle-by-area.md)] counts the tree skylines by area. With `q` marking area, `x` marking width and `P_h(q) = q² + q³ + ⋯ + q^h`, their generating function is `(1 + P_h(q)x)/(1 − qx − qP_h(q)x²)`, since a tree skyline is a sequence of columns of height 1, each followed or not by one taller column. At `x = 1`, the tree castles of height 2 counted by area are `A077868`, one less than Narayana's cows `A000930`; the tree skylines of height at most 3 and 4 are `A006498` and `A000570`; and the tree skylines of any height are `A005251`.[^4]
 
@@ -218,6 +218,7 @@ def cycle_rank(c):
 
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the skyline encoding of a castle, whose cells are the vertices of the castle graph.
 - [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the sandpile group of a graph and the dual-graph theorem.
+- [[edwards-allen-2021-fibonacci-squared-fence-tiles](pages/edwards-allen-2021-fibonacci-squared-fence-tiles.md)] - the tree skylines of height at most 3 as tilings by squares and `(1, 1)`-fences, counted by width as the Jacobsthal numbers.
 
 ## Related Concepts
 

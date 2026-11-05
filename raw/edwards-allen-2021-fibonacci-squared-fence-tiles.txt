@@ -1,0 +1,1056 @@
+                                           New Combinatorial Interpretations of the
+                                              Fibonacci Numbers Squared, Golden
+                                          Rectangle Numbers, and Jacobsthal Numbers
+                                                   Using Two Types of Tile
+
+
+
+
+arXiv:2009.04649v3 [math.CO] 4 Oct 2020
+                                                                  Kenneth Edwards and Michael A. Allen1
+                                                                           Physics Department
+                                                                            Faculty of Science
+                                                                            Mahidol University
+                                                                              Rama 6 Road
+                                                                             Bangkok 10400
+                                                                                Thailand
+                                                                      kenneth.edw@mahidol.ac.th
+                                                                           maa5652@gmail.com
+
+                                                                                        Abstract
+                                                     We consider the tiling of an n-board (a board of size n × 1) with squares of unit
+                                                 width and (1, 1)-fence tiles. A (1, 1)-fence tile is composed of two unit-width square
+                                                 subtiles separated by a gap of unit width. We show that the number of ways to tile an
+                                                 n-board using unit-width squares and (1, 1)-fence tiles is equal to a Fibonacci number
+                                                 squared when n is even and a golden rectangle number (the product of two consecutive
+                                                 Fibonacci numbers) when n is odd. We also show that the number of tilings of boards
+                                                 using n such square and fence tiles is a Jacobsthal number. Using combinatorial tech-
+                                                 niques we prove identities involving sums of Fibonacci and Jacobsthal numbers in a
+                                                 straightforward way. Some of these identities appear to be new. We also construct
+                                                 and obtain identities for a known Pascal-like triangle (which has alternating ones and
+                                                 zeros along one side) whose (n, k)th entry is the number of tilings using n tiles of which
+                                                 k are fence tiles. There is a simple relation between this triangle and the analogous
+                                                 one for tilings of an n-board. Connections between the triangles and Riordan arrays
+                                                 are also demonstrated. With the help of the triangles, we express the Fibonacci num-
+                                                 bers squared, golden rectangle numbers, and Jacobsthal numbers as double sums of
+                                                 products of two binomial coefficients.
+                                           1
+                                               Corresponding author.
+
+
+
+
+                                                                                             1
+1     Introduction
+The (n + 1)th Fibonacci number (A000045), defined by Fn+1 = δn,1 + Fn + Fn−1 , Fn<1 = 0,
+where δi,j is 1 if i = j and zero otherwise, can be interpreted as the number of ways to tile
+an n-board (a board of size n × 1 composed of 1 × 1 cells) with 1 × 1 squares (henceforth
+referred to simply as squares) and 2 × 1 dominoes [4, 3]. More generally, the number of ways
+to tile an n-board with all the r × 1 r-ominoes from r = 1 up to r = k is the k-step (or
+                                           (k)             (k)    (k)          (k)          (k)
+k-generalized) Fibonacci number Fn+1 = δn,1 + Fn + Fn−1 + · · · + Fn−k+1, with Fn<1 = 0
+[3]. Edwards [5] showed that it is possible to obtain a combinatorial interpretation of the
+tribonacci numbers (the 3-step Fibonacci numbers, A000073) as the number of tilings of an
+n-board using just two types of tiles, namely, squares and ( 21 , 1)-fence tiles. A (w, g)-fence
+tile is composed of two subtiles (called posts) of size w × 1 separated by a gap of size g × 1.
+We presented a bijection between the Fibonacci numbers squared (A007598) and the tilings
+of an n-board with half-squares (i.e., 21 × 1 tiles always oriented so that the shorter side
+is horizontal) and ( 12 , 21 )-fence tiles [7] and this was used to formulate combinatorial proofs
+of various identities [7, 8]. We also identified a bijection between tiling an n-board with
+( 12 , g)-fence tiles where g ∈ {0, 1, 2, . . .} and strongly restricted permutations and then used
+it to obtain results concerning the permutations [6].
+       Here we show that the number of ways to tile an n-board using square and (1, 1)-fence
+tiles is a Fibonacci number squared if n is even and a golden rectangle number (the product of
+two successive Fibonacci numbers, A001654) if n is odd. We also consider the number of ways
+to tile boards using a total of n of these tiles and refer to this as an n-tiling. We show that
+enumerating n-tilings yields the Jacobsthal numbers Jn≥0 = 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, . . .
+(A001045) where the nth Jacobsthal number is defined via
+
+                             Jn = δn,1 + Jn−1 + 2Jn−2,      Jn<1 = 0.                           (1)
+
+We use both types of tiling to formulate straightforward combinatorial proofs of identities
+involving the Fibonacci numbers squared, golden rectangle numbers, and Jacobsthal num-
+bers. We also obtain two Pascal-like triangles (one for n-tilings, the other for tilings of an
+n-board) whose entries are the number of tilings with squares and (1, 1)-fences which use a
+given number of fences. A number of properties of the triangles are derived including their
+relation to Riordan arrays. Finally, the triangles are used to express the Fibonacci numbers
+squared, golden rectangle numbers, and Jacobsthal numbers as double sums of a product of
+two binomial coefficients.
+
+
+2     Tiling boards with squares and fences
+When tiling a board with fences it is helpful to first determine the types of metatile since
+any tiling of the board can be expressed as a tiling using metatiles [5]. A metatile is an
+arrangement of tiles that exactly covers an integral number of adjacent cells and cannot
+be split into smaller metatiles [5, 6]. When tiling with squares (S) and (1, 1)-fence tiles
+
+                                                 2
+                                       1 2 3 4 5 6 7 8
+
+
+Figure 1: An 8-board tiled with the three possible metatiles: a free square (cell 1), a filled
+fence (cells 2–4), and a bifence (cells 5–8). The symbolic representation of this tiling is
+SF SF F .
+
+(henceforth referred to simply as fences or F ), the simplest metatile is the square. To tile
+adjacent cells by starting with a single fence we must fill the gap with either a square or
+the post of another fence. These generate what we will refer to as the filled fence (F S) and
+bifence (F F ) metatiles, respectively (Fig. 1). The bifence clearly has a length of 4. The
+filled fence has length 3 and the square inside will be called a captured square. A square
+which is not captured (and is therefore a metatile) is called a free square.
+Theorem 1. Let An be the number of ways to tile an n-board using squares and fences.
+Then
+                  An = δn,0 + An−1 + An−3 + An−4 , An<0 = 0.                     (2)
+Proof. We condition on the last metatile [2, 6]. If the last metatile is of length l there will
+be An−l ways to tile the remaining n − l cells. The result (2) follows from the fact that there
+are three possible metatiles and these have lengths of 1, 3, and 4. If n = l there is exactly
+one tiling (which corresponds to that metatile filling the entire board) so we make A0 = 1.
+There is no way to tile an n-board if n < l and so An<0 = 0.
+    An≥0 = 1, 1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156, . . . is A006498. As we
+will shortly prove combinatorially, the even (odd) terms of this sequence are the Fibonacci
+numbers squared A007598 (golden rectangle numbers A001654).
+Lemma 1. There is a bijection between the fence-square tilings of a 2n-board (a (2n + 1)-
+board) and the square-domino tilings of an ordered pair of n-boards (an (n + 1)-board and an
+n-board).
+Proof. Tile an n-board (an (n + 1)-board) with the contents of the odd-numbered cells of the
+given 2n-board ((2n + 1)-board) fence-square tiling and tile a second n-board (an n-board)
+with the contents of the even-numbered cells. The posts of any fence (which always lie on
+two consecutive odd or even cells) get mapped to a domino. The procedure is reversed by
+splicing the two square-domino tilings.
+Theorem 2. For n ≥ 0,
+
+                                           A2n = fn2 ,                                           (3a)
+                                          A2n+1 = fn fn+1 ,                                      (3b)
+
+where fn = Fn+1 .
+
+                                                  3
+Proof. There are fn ways to tile an n-board using squares and dominoes [3]. From Lemma 1,
+A2n is the same as the number of ways to tile an ordered pair of n-boards using squares and
+dominoes which is fn2 , and A2n+1 is the same as the number of ways to tile an n-board and
+(n + 1)-board using squares and dominoes which is fn fn+1 .
+    As it is easily done and the result will be used in future work, in the following theorem
+we generalize Theorem 2 to the case of tiling an n-board with squares and (1, m − 1)-fences
+for some fixed m ∈ {2, 3, . . .}.
+                    (m)
+Theorem 3. If An is the number of ways to tile an n-board using squares and (1, m − 1)-
+fences then for n ≥ 0,
+                             (m)
+                           Amn+r = fnm−r fn+1
+                                          r
+                                              ,     r = 0, . . . , m − 1,
+where fn = Fn+1 .
+Proof. We identify the following bijection between the tilings of a (mn + r)-board using
+squares and (1, m − 1)-fences and the square-domino tilings of an ordered m-tuple of r
+(n + 1)-boards followed by m − r n-boards. For convenience we number the boards in this
+m-tuple from 0 to m − 1 and the cells in the (mn + r)-board from 0 to mn + r − 1. Tile board
+j in the m-tuple with the contents (taken in order) of the cells of the given (mn + r)-board
+fence-square tiling whose cell number modulo m is j. The posts of any (1, m−1)-fence (which
+will always lie on two consecutive cells with the same cell number modulo m) get mapped to
+a domino in board j. The procedure is reversed by splicing the square-domino tilings of the
+m-tuple of boards, hence establishing the bijection. The number of square-domino tilings of
+                           r
+the m-tuple of boards is fn+1  fnm−r and the result follows.
+Theorem 4. If Bn is the number of n-tilings using squares and fences then
+                                           Bn = Jn+1 .                                        (4)
+Proof. As in the proof of Theorem 1, we condition on the last metatile. If the last metatile
+contains m tiles, there are Bn−m possible (n − m)-tilings. As the three possible metatiles
+contain 1, 2, and 2 tiles we have
+                            Bn = δn,0 + Bn−1 + 2Bn−2 ,      Bn<0 = 0.                         (5)
+where the δn,0 is to ensure that B0 = 1 so that when an n-tiling is just one metatile we count
+precisely one tiling. Comparing (5) with (1) gives the result.
+
+
+3     Combinatorial proofs of identities involving the Fi-
+      bonacci squares and golden rectangle numbers
+The proofs of Identities 1, 2, and 3 (and of Identities 6, 7, 8, and 9 in the next section) follow
+the techniques of Benjamin and Quinn [3].
+
+                                                4
+Identity 1. For n ≥ 0,
+                                                n
+                                                X
+                                                      fj2 = fn fn+1 .
+                                                j=0
+
+Proof. How many tilings of a (2n+1)-board are there? Answer 1: A2n+1 = fn fn+1 . Answer 2:
+condition on the position of the last metatile which is not a bifence. The tiles after this
+metatile must be bifences and thus occupy 4m cells (0 ≤ m ≤ ⌊n/2⌋). If the last non-bifence
+                                               2
+metatile is a square there are A2n+1−4m−1 = fn−2m    tilings. If it is a filled fence there are
+                2
+A2n+1−4m−3 = fn−1−2m tilings. Summing over all possible values of m for both cases gives
+the result.
+Identity 2. For n ≥ 0,
+                                           2n−1
+                                           X
+                                                             2
+                                                  fj fj+1 = f2n − 1.
+                                           j=0
+
+Proof. How many tilings of a 4n-board use at least 1 square? Answer 1: A4n − 1 =
+ 2
+f2n − 1 since the only way to tile a 4n-board without using squares is to use only bifences.
+Answer 2: condition on the position of the last metatile which is not a bifence. This
+gives A4n−4m−1 = f2n−2m f2n−2m−1 tilings if the last non-bifence metatile is a square and
+A4n−4m−3 = f2n−2m−1 f2n−2m−2 if it is a filled fence for 0 ≤ m < n. Summing over m for both
+cases gives the result.
+Identity 3.
+                    n−2
+                    X
+                2         fj fj+2 − fn−2 fn−1 = fn2 − 1,                n > 1,            (6a)
+                    j=0
+                          n−2
+                          X
+                                           2
+                      2         fj fj+2 + fn−1 = fn fn+1 − 1,           n > 0.            (6b)
+                          j=0
+
+Proof. How many tilings of an m-board use at least 1 fence? Answer 1: Am − 1 since only
+the tiling using just squares does not use any fences. Answer 2: condition on the location
+of the last fence. If the last fence is in a metatile of length l starting at cell k + 1 (where
+0 ≤ k ≤ m − l) there will be Ak possible tilings since the cells after the metatile must all be
+occupied by squares. The two metatiles containing fences are of length 3 and 4. Summing
+numbers of tilings over all positions and types of the last fence-containing metatile and
+equating the two answers gives
+                                          m−4
+                                          X
+                                      2         Ak + Am−3 = Am − 1.
+                                          k=0
+
+Replacing m in this by 2n and 2n + 1 leads to (6a) and (6b), respectively, after using (3)
+and fj2 + fj fj+1 = fj fj+2 .
+
+                                                          5
+    The proofs of Identities 4 and 5 (and of Identities 10, 11, and 12 in the next section)
+follow the techniques used in [1, 8]. As far as we know, all these identities are new.
+Identity 4. For n ≥ 0,
+                                                         n
+                                                         X
+                           fn fn+1 = 1 + ⌊n/2⌋ +               jfn−j fn−j+1 .
+                                                         j=1
+
+Proof. How many tilings of a (2n+1)-board contain at least two squares? Answer 1: A2n+1 −
+1
+2
+  n − 1 (A2n+1 − 12 (n + 1)) if n is even (odd) since the only possible tilings with less than 2
+squares when n is even (odd) is one free square (filled fence) among n/2 ( 12 (n − 1)) bifences
+and there are 21 n − 1 ( 12 (n + 1)) such tilings. Answer 2: condition on the location of the
+second square. The metatile containing this must end on an even cell, 2j. Written in terms
+of symbols (see the caption to Fig. 1), the tiling of the first 2j cells must end in S. This
+leaves one S that may be placed anywhere among the F symbols which number j − 1. The
+number of ways P  to tile the cells to the right of the 2jth cell is A2n+1−2j . Summing over all
+possible j gives nj=1 jA2(n−j)+1 . Equating this to Answer 1 and simplifying gives
+                                                         n
+                                                         X
+                             A2n+1 − ⌊n/2⌋ − 1 =               jA2(n−j)+1 .
+                                                         j=1
+
+The identity follows from (3b).
+    Note that if we consider the tilings of a 2n-board that contain at least two squares we
+obtain Identity 2.1 of [8].
+                                              (r)
+    To generalize Identity 4 we first define Cn as the number of ways to tile a (2n + 1)-board
+using 2r + 1 squares (and n − r fences).
+Lemma 2. For n ≥ r ≥ 0,
+                                                      
+                                     (r)           n+r             (r)
+                            Cn(r) = Cn−2 +              ,        Cn<0 = 0.                  (7)
+                                                    2r
+Proof. In symbolic form, a tiling can end in either S or F F . If S, the number of ways to
+                                                                                 (r)
+place the remaining 2r squares and n − r fences is n+r  2r
+                                                           . If F F , there are Cn−2 ways to
+place the remaining tiles. There are no tilings if n < 0.
+                                             (r)
+    As will be shown in Theorem 6, Cn is the (n, r)th element of the (1/[(1 − x)(1 −
+x2 )], x/(1 − x)2 ) Riordan array (A158909).
+Identity 5. For p > 0,
+                                  p−1             n              
+                                  X               X    j +p−1
+                      fn fn+1 =         Cn(r) +                   fn−j fn+1−j .
+                                  r=0             j=p
+                                                          2p − 1
+
+                                                    6
+Proof. How many tilings of a (2n + 1)-board have at least 2p squares? Answer 1: the total
+number of tilings minus the tilings that contain less than 2p squares, i.e.,
+                                                     p−1
+                                                     X
+                                           A2n+1 −         Cn(r) .
+                                                     r=0
+
+Answer 2: we condition on the location of the 2pth square. If the metatile containing this
+lies on the 2jth cell, in the symbolic representation, there are 2p − 1 S and j − p F that
+precede the 2pth S and hence j+p−12p−1
+                                         ways to arrange them. There are A2n+1−2j ways to
+place the remaining tiles after the 2jth cell. Summing over all possible j and equating the
+result to Answer 1 gives
+                                 p−1               n          
+                                 X                X   j +p−1
+                       A2n+1 −         Cn(r) =                  A2(n−j)+1 ,
+                                 r=0              j=p
+                                                        2p − 1
+
+and the identity follows from (3b).
+
+
+4    Combinatorial proofs of identities involving the Ja-
+     cobsthal numbers
+Identity 6. For n ≥ 0,
+                                           n
+                                           X
+                                       2         Jr = Jn+2 − 1.
+                                           r=1
+
+Proof. How many (n + 1)-tilings use at least 1 fence? Answer 1: Bn+1 − 1. Answer 2:
+condition on the last metatile containing a fence. If this last metatile contains the (j + 1)th
+and (j + 2)th tiles (0 ≤ j ≤ n − 1) then there remain j unspecified tiles. As there are two
+types of metatile containing a fence there are a total of 2Bj tilings for each j. Summing over
+j we have
+                                     n−1
+                                     X
+                                         2Bj = Bn+1 − 1,
+                                       j=0
+
+and the identity follows from Theorem 4.
+
+Identity 7. For n ≥ 0,
+                                       2n
+                                       X
+                                              Jr = J2n+1 − 1.
+                                        r=1
+
+Proof. How many 2n-tilings use at least 1 square? Answer 1: B2n − 1 since there is only one
+2n-tiling without a square (the all-bifence tiling). Answer 2: condition on the last square
+which must be the 2(n − m)th tile (0 ≤ m ≤ n − 1) since any metatiles after the last square
+
+                                                    7
+are bifences. If this last square is a free square there are 2n − 2m − 1 remaining unspecified
+tiles. There are 2n − 2m − 2 if it is inside a filled fence. Summing over all possible m and
+equating to Answer 1 gives
+                                                   2n−1
+                                                   X
+                                        B2n − 1 =       Br .
+                                                      r=0
+
+The identity follows from (3b).
+
+Identity 8. For n ≥ 0,
+                                          2n−1
+                                          X
+                                                 Jr = J2n .
+                                          r=1
+
+Proof. The proof follows that for Identity 7 but we count the number of (2n − 1)-tilings by
+conditioning on the last square.
+
+Identity 9. For m, n ≥ 0,
+
+                                  Jm+n+1 = Jm+1 Jn+1 + 2Jm Jn .
+
+Proof. The number of (m + n)-tilings is Bm+n . Of these there are Bm Bn tilings where the
+mth tile is the last tile in a metatile. If the mth tile is the first tile in a metatile containing
+two tiles, there are m − 1 unspecified tiles before it and n − 1 unspecified tiles after the
+metatile. As there are two kinds of two-tile metatiles we have Bm+n = Bm Bn + 2Bm−1 Bn−1 .
+The identity then follows from (3b).
+
+Identity 10. For n ≥ 0,
+                                                            n−1
+                                                            X
+                                Jn+1 = ⌈ 12 (n + 1)⌉ +            jJn−j .
+                                                            j=1
+
+Proof. How many n-tilings have at least two squares? Answer 1: Bn − 21 (n + 1) (Bn − 21 n − 1)
+when n is odd (even) since the possible tilings with one square when n is odd (even) are one
+filled fence (free square) placed among 21 (n − 1) ( 12 (n − 2)) bifences and there are 12 (n + 1)
+(n/2) such tilings, and the only possible tiling with no squares is the all-bifence tiling which
+only occurs when n is even. Answer 2: condition on the second metatile containing an S.
+The symbolic representation of the tiling up to and including this must end in an S. If this
+S is the jth tile, there are j − 1 ways to order the symbols preceding it and thus (j − 1)Bn−j
+n-tilings. Summing over all possible j, equating to Answer 1, and simplifying gives
+                                                      n
+                                                      X
+                              Bn − ⌈ 12 (n + 1)⌉ =      (j − 1)Bn−j .
+                                                      j=2
+
+
+The identity is obtained on replacing j by j + 1 and using Theorem 4.
+
+
+                                                  8
+   As before, we can generalize Identity 10. We need the following definition and lemma.
+     (r)
+Let Dn be the number of n-tilings that contain exactly r squares. As the only tilings with
+                                                    (0)
+no squares are the all-bifence tilings, for n > 0, Dn is 1 (0) when n is even (odd). For
+convenience we make D (0) (0) = 1.
+
+Lemma 3. For n ≥ r > 0,                                           
+                                            (r)               n−1
+                                   Dn(r) = Dn−2 +                   .                       (8)
+                                                               r−1
+Proof. The symbolic representation of a tiling must end in either S or F F . If S, we are free
+to place the remaining n − 1 tiles (of which r − 1 are squares) in any order; this gives n−1
+                                                                                         r−1
+                                 (r)
+possibilities. If F F , there are Dn−2 ways to place the remaining tiles.
+                                         (r)
+   As will be shown in Theorem 5, Dn is the (1/(1−x2 ), x/(1−x)) Riordan array (A059260).
+
+Identity 11. For p > 0,
+                                       p−1              n        
+                                       X               X   k−1
+                            Jn+1 =           Dn(r) +               Jn+1−k .
+                                       r=0             k=p
+                                                            p − 1
+
+Proof. How many n-tilings have at least p squares? Answer 1: the total number of tilings
+minus the tilings that contain less than p squares, i.e.,
+                                                      p−1
+                                                      X
+                                               Bn −          Dn(r) .
+                                                       r=0
+
+
+Answer 2: we condition on the location of the pth square. If it is the kth tile, there are k−1
+                                                                                               
+                                                                                           p−1
+ways to place the first k tiles and Bn−k ways to place the remaining tiles. Summing over all
+possible k and equating the result to Answer 1 gives
+                                     p−1               n            
+                                     X                 X       k−1
+                             Bn −            Dn(r) =                  Bn−k ,
+                                       r=0             k=p
+                                                                p−1
+
+and the identity follows from Theorem 4.
+
+Identity 12. For n > 0,
+                                                        n
+                                                        X
+                            Jn+1 = n + Jn−1 +             (2k − 5)Jn+1−k .
+                                                        k=3
+
+Proof. For n > 0, how many n-tilings have at least two fences? Answer 1: Bn −1−(n−2+1)
+since only the all-square tiling and tilings with 1 filled fence among n − 2 squares have less
+than two fences. Answer 2: condition on the location of the second fence. If it is the kth tile
+
+                                                       9
+(k = 3, . . . , n − 1) and part of a filled fence or the first tile in a bifence, the first fence is part
+of a filled fence among k − 3 squares and hence there are 2(k − 2)Bn−(k+1) tilings for these
+cases. If the second fence is the end of bifence and is the kth tile (k = 2, . . . , n), the tiles
+before the bifence are all squares and hence there are Bn−k tilings in this case. Summing
+over all possible k, changing k to k − 1 in the first sum, and equating to Answer 1 gives
+                           n
+                           X                     n
+                                                 X                           n
+                                                                             X
+              Bn − n = 2         (k − 3)Bn−k +         Bn−k = Bn−2 +               (2k − 5)Bn−k .
+                           k=4                   k=2                         k=3
+
+The identity then follows from Theorem 4.
+Identity 13. For n ≥ 0,
+                                                       n
+                                                       X
+                                   Jn+1 = Fn+1 +             Jj−1 Fn+1−j .
+                                                       j=2
+
+Proof. First note that the number of n-tilings with no bifences is given by Sn = δ0,n +
+Sn−1 + Sn−2 and hence Sn = Fn+1 . How many n-tilings have at least one bifence? Answer 1:
+Bn − Sn . Answer 2: condition on the last bifence. When the second fence it contains is the
+jth tile (j = 2, . . . , n) then the number of tilings is Bj−2 Sn−j . Summing over all possible j
+and equating this to Answer 1 gives
+                                                   n
+                                                   X
+                                      Bn − Sn =          Bj−2 Sn−j .
+                                                   j=2
+
+The identity follows from applying Sn = Fn+1 and Theorem 4.
+
+
+5     A Pascal-like triangle giving the number of n-tilings
+      using k fences
+We define h nk i as the number of n-tilings which contain exactly k fences. We define h 00 i = 1
+so that the result                              n  
+                                              X     n
+                                         Bn =                                                (9)
+                                                    k
+                                                   k=0
+
+is valid for n ≥ 0. The first 12 rows of the triangle whose entries are h nk i are shown in
+Figure 2. As will be shown later via its connection with a Riordan array, the triangle is
+sequence A059259.
+Identity 14. For n ≥ 0,                        
+                                               n
+                                                  = 1.
+                                               0
+Proof. There is only one way to tile without using any fences.
+
+                                                   10
+ n\k       0     1      2     3        4       5        6      7         8     9   10   11   12
+   0       1
+   1       1     0
+   2       1     1     1
+   3       1     2     2   0
+   4       1     3     4   2   1
+   5       1     4     7   6   3   0
+   6       1     5    11 13    9   3   1
+   7       1     6    16 24 22 12      4   0
+   8       1     7    22 40 46 34 16       4   1
+   9       1     8    29 62 86 80 50 20        5   0
+  10       1     9    37 91 148 166 130 70 25      5                                1
+  11       1    10    46 128 239 314 296 200 95 30                                  6    0
+  12       1    11    56 174 367 553 610 496 295 125                               36    6    1
+
+                Figure 2: A Pascal-like triangle with entries h nk i (A059259).
+
+Identity 15. For n ≥ 1,                     
+                                            n
+                                               = n − 1.
+                                            1
+Proof. If only one of the n tiles is a fence, there must be 1 filled fence and n − 2 free squares
+making a total of n − 1 metatile positions. The filled fence can be placed in any of these.
+   The following two identities describe, respectively, the entries in the first and second
+diagonal of the triangle.
+
+Identity 16. For n ≥ 0,
+                                          (
+                                         n   1,              n even;
+                                           =
+                                         n   0,              n odd.
+
+Proof. An all-fence tiling must be composed of just bifences. This can only occur if the
+number of tiles is even.
+
+Identity 17. For m > 0,                                          
+                                      2m − 1                2m
+                                                   =                    = m.
+                                      2m − 2               2m − 1
+Proof. If there are 2m − 1 or 2m fences and 1 square, there must be m − 1 bifences. The
+remaining metatile is then, respectively, a free square or a filled fence. There are m possible
+positions for this remaining metatile.
+   The following identity shows that the third diagonal of the triangle is A002620.
+
+
+
+                                                       11
+Identity 18. For m > 0,
+                                                       
+                            2m             2     2m + 1
+                                        =m ;                  = m(m + 1).
+                           2m − 2                2m − 1
+
+Proof. When 2 out of 2m tiles are squares there must be either m − 1 bifences and 2 free
+squares (totalling m + 1 metatile positions)    or m − 2 bifences and 2 filled fences (giving
+                                                                                           m
+metatile positions). There are m+1                                                      m
+                                      
+                                    2
+                                        places to put the squares in the first case and    ways
+                                                                                m
+                                                                                   m+12
+to place the filled fences in the second. The total number of tilings is thus 2 + 2 = m2 .
+When 2 out of 2m + 1 tiles are squares, there must be m − 1 bifences, 1 filled fence, and 1
+free square, and thus m + 1 metatile positions. There are therefore 2 m+1  2
+                                                                                = m(m + 1) ways
+to place the free square and filled fence.
+  The following two identities show that the third and fourth columns of the triangle are
+A000124 and A003600, respectively.
+
+Identity 19. For n ≥ 2,                   
+                                     n   n−2
+                                       =       + n − 1.
+                                     2    2
+Proof. If there are 2 fences, there are either 2 filled fences or 1 bifence. In the first case there
+are n − 4 free squares and hence
+                               a total of n − 2 metatile positions in which to place the filled
+                           n−2
+fences. There are thus 2 ways to place the filled fences. In the second case there are
+n − 2 free squares and thus n − 1 metatile positions in which the bifence can be placed.
+
+Identity 20. For n ≥ 3,                       
+                                  n   n−3       n−2
+                                    =       +2       .
+                                  3    3         2
+Proof. If there are 3 fences, there are either 3 filled fences or 1 bifence and 1 filled fence. In
+the first case there are n − 6 free squares and 3 filled fences giving a total n − 3 metatile
+positions to place the filled fences. In the second case there are n − 4 free squares and thus
+n − 2 metatile positions to place the filled fence and bifence.
+
+Identity 21. For n ≥ k > 0,
+                                             
+                                     n   n    n−1
+                                       =   +        .                                          (10)
+                                     k   k    k−1
+
+Proof. Interpret nk as the tilings of an (n+ k)-board with k dominoes (D) and n−k squares
+                   
+
+(S). Proceeding from left to right along the board, replace DD by a bifence, DS by a filled
+fence, and then leave any of the remaining S as they are. Except for the case of a ‘left over’
+single D at the right end of the board, this generates all possible n-tilings using k fences.
+If the (n + k)-board ends in an isolated D, ignore it and hence obtain a (n − 1)-tiling with
+k − 1 fences. In both cases the scheme is reversible.
+
+                                                12
+Identity 22. For n > k > 0,
+                                             
+                                 n    n−1    n−1
+                                   =       +        .                                       (11)
+                                 k     k      k−1
+
+Proof. An n-tiling such that n > k must contain a free square or filled fence. Construct a
+bijection between n-tilings using k fences and (n−1)-tilings using k or k −1 fences as follows.
+In the n-tiling find the final square. If it is free, remove it to obtain an (n − 1)-tiling with
+k fences. If the square is part of a filled fence, remove the fence to obtain an (n − 1)-tiling
+with k − 1 fences.
+                               n           (r)
+Identity 23. For n ≥ r ≥ 0, h n−r i = Dn .
+                                                      (r)    n
+Proof. The result follows from the definition of Dn since h n−r i is also the number of n-tilings
+containing r squares.
+
+Identity 24.                                          
+                      n                  n−1     n−2     n−2
+                         = δn,0 δk,0 +        +       +        .                            (12)
+                      k                   k      k−1     k−2
+
+Proof. We count h nk i by conditioning on the last metatile on the board. If the metatile
+contains m tiles of which j are fences, for the remaining tiles the number of (n − m)-tilings
+is h n−m
+     k−j i. Summing these for the three types of metatile gives the result.
+
+   A (p(x), q(x)) Riordan array is a lower triangular matrix whose (n, k)th entry is the
+coefficient of xn in the series for p(x){q(x)}k [9].
+
+Theorem 5. If R(n, k) is the (n, k)th entry of the (1/(1 − x2 ), x/(1 − x)) Riordan array then
+                                    
+                                     n
+                                         = R(n, n − k).                                   (13)
+                                     k
+
+Proof. Let p = 1/(1 − x2 ), q = x/(1 − x). Then R(n − l, k − j) is the coefficient of xn in
+the expansion of xl pq k−j . Multiplying the identity q = x + x2 + x2 q by pq k−1 and taking the
+coefficient of xn gives R(n, k) = R(n−1, k −1) + R(n−1, k −1) + R(n−2, k −1) + R(n−2, k)
+for n > 2, k > 0. Taking R(n < 0, k) = R(n < k, k) = 0 and including terms to arrive at a
+relation that is also compatible with the values of R(k, n) for 0 ≤ n ≤ 2 and k = 0 gives
+
+ R(n, k) = δn,0 δk,0 + R(n − 1, k − 1) + R(n − 1, k − 1) + R(n − 2, k − 1) + R(n − 2, k), (14)
+
+which is then valid for all n and k. Substituting (13) into (12), replacing k by n − k, and
+noting that δn,0 δn−k,0 can be rewritten as δn,0 δk,0 , gives (14).
+
+
+
+
+                                                 13
+                                       (k)
+   From Identity 23, R(n, k) = Dn . In other words, a combinatorial interpretation of
+R(n, k) is the number of n-tilings that use k squares (and n − k (1, 1)-fences). Then from
+Lemma 3 we have for n ≥ k ≥ 0,
+                                                          
+                                                       n−1
+                            R(n, k) = R(n − 2, k) +          .                         (15)
+                                                       k−1
+
+This allows us to prove a conjecture given in the OEIS entry for A059259 concerning A071921
+which is the square array a(n, m) given by a(0, m ≥ 0) = 1,
+                                             m−1
+                                             X                
+                                                    n − 1 + 2r
+                                 a(n, m) =                      .                           (16)
+                                             r=0
+                                                      n−1
+
+Using our notation, the conjecture is as follows.
+
+Identity 25.                               
+                                      n + 2m
+                                              = a(n, m + 1).
+                                        2m
+
+Proof. From Theorem 5, h n+2m
+                          2m i = R(n + 2m, n). Repeatedly applying (8) gives
+                                                                   
+                   n − 1 + 2m      n − 1 + 2(m − 1)           n−1+2
+  R(n + 2m, m) =                +                     +···+                + R(n, n).
+                      n−1                n−1                     n−1
+
+Using the fact that R(n, n) = 1 the result follows from (16).
+   If b, f , and s are, respectively, the numbers of bifences, filled fences, and free squares in
+an n-tiling using k fences then it is easily seen that
+
+                                         n = 2b + 2f + s,                                  (17a)
+                                         k = 2b + f.                                       (17b)
+
+Identity 26.             
+                           bX
+                            max                 
+                              n − k + b   k − b
+                                                    ,           bmin ≤ bmax ,
+                         
+                      n
+                         
+                        = b=b      k−b         b                                            (18)
+                      k     min
+                         0,
+                         
+                                                                bmin > bmax ,
+where bmin = max(0, ⌈k − n/2⌉) and bmax = ⌊k/2⌋.
+
+Proof. For given values of n and k we sum the number of tilings for all possible values of b.
+The maximum number of bifences bmax is obtained from (17b) when f is 0 or 1 depending
+on whether k is even or odd, respectively. Eliminating f from (17) gives
+
+                                       b = 21 (2k − n + s).
+
+                                               14
+If 2k − n is negative, the minimum possible value of b is zero. Otherwise bmin is obtained
+when s is 0 or 1 when 2k − n is even or odd, respectively. From (25) we have that the
+total number of metatiles, b + f + s = n − k + b. The number of ways of tiling          using b
+                                                                             b+f +s
+                                                                                    
+bifences, f filled fences, and s free squares is the multinomial coefficient b, f, s which may
+be re-expressed as a product of binomial coefficients written in terms of b, n, and k. There
+will be no possible values of b and therefore no tilings if bmin > bmax .
+Corollary 1.
+                                n        ⌊k/2⌋                 
+                                X         X             n−k+b k−b
+                       Jn+1 =                                      .
+                                                         k−b    b
+                                k=0 b=max(0,⌈k−n/2⌉)
+
+
+Proof. The result follows from (9), Theorem 4, and Identity 26.
+    The (n, k)th entry, which we will denote here by [ nk ]1/2 , of the Pascal-like triangle A123521
+is the number of ways to tile an n-board using k ( 21 , 12 )-fences and 2(n − k) half-squares
+(with the shorter sides always horizontal) [8]. We now show that the [ nk ]1/2 triangle can be
+obtained from the h nk i triangle by removing the odd downward diagonals of the latter which
+is equivalent to the following identity.
+Identity 27. For n ≥ k ≥ 0,                          
+                                       n         2n − k
+                                             =            .
+                                       k 1/2       k
+
+Proof. The total post length of a ( 21 , 21 )-fence is 1. The entry [ nk ]1/2 can also be viewed as
+counting the number of tilings that use k ( 21 , 12 )-fences and 2(n − k) half-squares since the
+total length occupied by the n tiles is k + 2(n − k) 12 = n. The entry h 2n−k        k i counts the
+number of tilings using k (1, 1)-fences and 2(n − k) squares. This latter tiling differs from
+the former only in that the tiles are twice the length.
+
+
+6     A Pascal-like triangle giving the number of tilings of
+      an n-board using k fences
+We define [ nk ] as the number of tilings of an n-board which contain exactly k fences (Fig. 3).
+We define [ 00 ] = 1 so that the result
+                                                 n  
+                                                 X  n
+                                          An =                                                 (19)
+                                                        k
+                                                 k=0
+
+is valid for n ≥ 0.
+    As a result of the following identity, the upward diagonals of the h nk i triangle are the
+rows of the [ nk ] triangle. Equivalently, column k of the [ nk ] triangle is obtained by displacing
+
+                                                 15
+ n\k       0      1     2      3     4      5       6      7   8      9    10    11     12
+   0       1
+   1       1     0
+   2       1     0      0
+   3       1     1      0     0
+   4       1     2      1     0      0
+   5       1     3      2     0      0     0
+   6       1     4      4     0      0     0        0
+   7       1     5      7     2      0     0        0      0
+   8       1     6     11     6      1     0        0      0   0
+   9       1     7     16    13      3     0        0      0   0      0
+  10       1     8     22    24      9     0        0      0   0      0     0
+  11       1     9     29    40     22     3        0      0   0      0     0      0
+  12       1    10     37    62     46    12        1      0   0      0     0      0     0
+
+                 Figure 3: A Pascal-like triangle with entries [ nk ] (A335964).
+
+column k of the h nk i triangle downwards by k (and filling the entries above with zeros).
+Thus we again obtain sequences A000124 and A003600 for the k = 2 and k = 3 columns,
+respectively (Identities 32 and 33).
+Identity 28.                                   
+                                          n   n−k
+                                            =       .
+                                          k    k
+Proof. If a tiling contains n − k tiles of which k are fences, the total length is n.
+   The even rows of the triangle [ nk ] give the triangle [ nk ]1/2 (defined just before Identity 27).
+Identity 29.                                
+                                          2n   n
+                                             =       .
+                                           k   k 1/2
+
+Proof. The number of tilings of a 2n-board with squares and (1, 1)-fences is the same as the
+number of tilings of an n-board with tiles of half the length.
+
+Identity 30. For n > 0,                          
+                                                 n
+                                                    = 1.
+                                                 0
+Proof. There is only one way to tile a board without using any fences.
+Identity 31. For n > 2,                     
+                                            n
+                                               = n − 2.
+                                            1
+
+                                                  16
+Proof. If there is only one fence, there must be 1 filled fence (and n − 3 free squares). The
+filled fence can be placed in any of the n − 2 metatile positions.
+
+Identity 32. For n > 3,                   
+                                     n   n−4
+                                       =       + n − 3.
+                                     2    2
+Proof. If there are 2 fences, there are either 2 filled fences or 1 bifence. In the first case there
+are n − 6 free squares
+                      and thus a total of n − 4 metatile positions to place the filled fences.
+There are thus n−4 2
+                       ways to place the filled fences. In the second case there are n − 4 free
+squares and thus n − 3 metatile positions in which the bifence can be placed.
+
+Identity 33. For n > 5,                         
+                                   n   n−6        n−5
+                                     =       +2        .
+                                   3    3          2
+Proof. If there are 3 fences, there are either 3 filled fences or 1 bifence and a filled fence. In
+the first case there are n − 9 free squares and 3 filled fences giving a total n − 6 metatile
+positions for the filled fences. In the second case there are n − 7 free squares and thus n − 5
+metatile positions for the filled fence and bifence.
+                                            (r)
+Identity 34. For n ≥ r ≥ 0, [ 2n+1
+                               n−r ] = Cn .
+
+                                                       (r)
+Proof. The result follows from the definition of Cn since [ 2n+1
+                                                             n−r ] is also the number of ways
+to tile a (2n + 1)-board using 2r + 1 squares.
+
+Identity 35.                                
+                           n   n−1    n−3     n−4
+                             =      +       +        + δ0,k δ0,n .                             (20)
+                           k    k      k−1     k−2
+
+Proof. We count [ nk ] by conditioning on the last metatile on the board. If the metatile is
+of length l and contains j fences, the number of ways to tile the remaining n − l cells with
+                  n−l
+k − j fences is [ k−j ]. Summing these for the three types of metatile gives the result.
+                    (r)
+   To show that Cn is a Riordan array we first need a recursion relation that involves only
+the odd rows of the triangle.
+
+Identity 36.
+                                                     
+     2n + 1     2n − 1    2n − 1    2n − 3    2n − 3     2n − 5
+             =          +         +         +         −           + δ0,k δ0,n .                (21)
+       k          k        k−1       k−1       k−2        k−3
+
+Proof. Let E(n, k) denote (20). Then E(2n + 1, k) + E(2n, k) − E(2n − 1, k − 1) gives the
+identity.
+
+
+
+                                                  17
+Theorem 6. If R̄(n, k) is the (n, k)th entry of the (1/[(1 − x)(1 − x2 )], x/(1 − x)2 ) Riordan
+array then                              
+                                   2n + 1
+                                           = R̄(n, n − k).                                 (22)
+                                      k
+
+Proof. Let p = 1/[(1 − x)(1 − x2 )], q = x/(1 − x)2 . The recursion relation without in-
+corporating boundary conditions for a Riordan array with this particular q is R̄(n, k) =
+R̄(n − 1, k) + R̄(n − 1, k − 1) + R̄(n − 2, k) + R̄(n − 2, k − 1) − R̄(n − 3, k) for n > 2, k > 0 [8].
+Including terms to obtain a relation valid for all n and k (and taking R(n, k) = 0 if n < 0
+or n < k) we arrive at
+
+ R̄(n, k) = δn,0 δk,0 + R̄(n−1, k)+ R̄(n−1, k−1)+ R̄(n−2, k)+ R̄(n−2, k−1)−R̄(n−3, k). (23)
+
+Substituting (22) into (21), replacing k by n − k, and noting that δn,0 δn−k,0 can be rewritten
+as δn,0 δk,0 , gives (23).
+                                        (k)
+    From Identity 34, R̄(n, k) = Cn . In other words, a combinatorial interpretation of
+R̄(n, k) is the number of tilings of a (2n + 1)-board that use 2k + 1 squares (and 2(n − k)
+(1, 1)-fences). Then from Lemma 2 we have for n ≥ k ≥ 0,
+                                                            
+                                                         n+k
+                              R̄(n, k) = R̄(n − 2, k) +        .                       (24)
+                                                          2k
+
+    If b, f , and s are, respectively, the numbers of bifences, filled fences, and free squares in
+a tiling of an n-board using k fences then it is easily seen that
+
+                                          n = 4b + 3f + s,                                      (25a)
+                                          k = 2b + f.                                           (25b)
+
+Identity 37. For m ≥ 0,
+                                
+                              1,
+                                                   p = q = 0;
+                        4m + p
+                               = m + 1,             p = 1, q = 0 or p = 3, q = 1;
+                        2m + q  
+                                  (m + 1)2 ,        p = 2, q = 0;
+                                
+
+and for m > 0,
+                                    (
+                            4m + p      m,                p = −1, q = −1;
+                                     =
+                             2m + q     m(m + 1),         p = 0, q = −1.
+
+Proof. Substituting n = 4m + p and k = 2m + q into (25) and eliminating m gives
+
+                                              p − 2q = f + s,
+
+
+
+                                                    18
+in which the only possible values of f and s are non-negative integers. The number of
+bifences may then be expressed as
+
+                                          b = m + 12 (q − f ).                            (26)
+
+Thus when p = q = 0 we must have f = s = 0 which corresponds to a tiling using m
+bifences only. When p = 1, q = 0 then we must have f = 0, s = 1 since (26) would imply
+a non-integral number of bifences if f = 1, s = 0. With the allowed case there are m + 1
+metatile positions in which to place the free square. When p = 3, q = 1 we must have f = 1,
+s = 0 and again there are m + 1 places for the filled fence.  For p = 2, q = 0, either s = 2,
+                                                     m+2
+                                                         
+f = 0 or s = 0, f = 2. In the first case there are 2  ways of placing the 2 free squares.
+In the second there are m − 1 bifences and hence m+1  2
+                                                           ways of placing the 2 filled fences.
+Adding gives the required result. With p = q = −1 the only possibility is s = 0, f = 1.
+There are then m − 1 bifences and hence m ways to place the filled fence. Finally, if p = 0,
+q = −1 we must have f = s = 1. With m + 1 metatile positions, there are a total of 2 m+1   2
+ways to place the filled fence and free square.
+Identity 38.            
+                          bX
+                           max                
+                             n − 2k + b k − b
+                                                  ,                 bmin ≤ bmax ,
+                        
+                     n
+                        
+                       = b=b      k−b        b                                            (27)
+                     k     min
+                        0,
+                        
+                                                                    bmin > bmax ,
+where bmin = max(0, ⌈ 21 (3k − n)⌉) and bmax = ⌊k/2⌋.
+Proof. For given values of n and k we sum the number of tilings for all possible values of b,
+the number of bifences. The maximum number of bifences is obtained from (25b) when f is
+0 or 1 depending on whether k is even or odd, respectively. Eliminating f from (25) gives
+
+                                          b = 21 (3k − n + s).
+
+If 3k − n is negative, the minimum possible value of b is zero. Otherwise bmin is obtained
+when s is 0 or 1 when 3k − n is even or odd, respectively. From (25) we have that the total
+number of metatiles, b+ f + s = n−2k + b. The proof is then the same as for Identity 26.
+Corollary 2.
+                            2n          ⌊k/2⌋                          
+                            X           X                2n − 2k + b k − b
+                    fn2 =                                                  ,
+                            k=0 b=max(0,⌈ 1 (3k−2n)⌉)
+                                                            k−b        b
+                                          2
+
+                            2n+1          ⌊k/2⌋                               
+                            X             X                2n + 1 − 2k + b k − b
+               fn fn+1 =                                                          .
+                                                                k−b          b
+                            k=0 b=max(0,⌈ 1 (3k−2n−1)⌉)
+                                           2
+
+
+Proof. The result follows from (19), Theorem 2, and Identity 38.
+
+                                                    19
+Identity 39. For n ≥ k ≥ 0,
+                               m                    
+                      2n + 1     X   n+1−j   n − (k − j)
+                               =                          ,
+                        k              j        k−j
+                                    j=k−m
+
+
+where m = min(⌊(n + 1)/2⌋, k).
+Proof. From Lemma 1, [ 2n+1
+                          k ] is also the number of square-domino tilings of an (n+1)-board
+and an n-board using k dominoes in total. The number         of ways to tile an (n + 1)-board
+                                               n+1−j
+                                                     
+with j dominoes (and n + 1 − 2j squares) is      j
+                                                       . If the (n + 1)-board has j dominoes
+then the
+       n-board
+               will have k − j dominoes (and n − 2(k − j) squares). Hence there are
+ n+1−j n−(k−j)
+    j     k−j
+                ways to tile the boards if the (n + 1)-board has j dominoes. Evidently j
+cannot exceed k or ⌊(n + 1)/2⌋ and so m ≥ j ≥ k − m. We then sum over all possible values
+of j.
+Identity 40. For n ≥ k ≥ 0,
+                            m                  
+                         2n   X   n−j   n − (k − j)
+                            =                        ,
+                          k        j       k−j
+                                    j=k−m
+
+
+where m = min(⌊n/2⌋, k).
+Proof. The proof is analogous to that of Identity 39.
+   Identity 40 is equivalent to Identity 3.2 in [8]. Summing Identities 39 and 40 over all
+possible k will, respectively, give alternative ways of expressing fn fn+1 and fn2 as double
+sums of products of two binomial coefficients.
+
+
+References
+[1] A. T. Benjamin, J. Crouch, and J. A. Sellers, Unified tiling proofs of a family of Fibonacci
+    identities, Fibonacci Quart. 57 (2019), 29–31.
+
+[2] A. T. Benjamin, C. R. H. Hanusa, and F. E. Su, Linear recurrences through tilings and
+    Markov chains, Utilitas Math. 64 (2003), 3–17.
+
+[3] A. T. Benjamin and J. J. Quinn, Proofs That Really Count: The Art of Combinatorial
+    Proof, Mathematical Association of America, Washington, 2003.
+
+[4] R. C. Brigham, R. M. Caron, P. Z. Chinn, and R. P. Grimaldi, A tiling scheme for the
+    Fibonacci numbers, J. Recreational Math. 28 (1996), 10–16.
+
+[5] K. Edwards, A Pascal-like triangle related to the tribonacci numbers, Fibonacci Quart.
+    46/47 (2008/2009), 18–25.
+
+                                              20
+[6] K. Edwards and M. A. Allen, Strongly restricted permutations and tiling with fences,
+    Discrete Appl. Math. 187 (2015), 82–90.
+
+[7] K. Edwards and M. A. Allen, A new combinatorial interpretation of the Fibonacci num-
+    bers squared, Fibonacci Quart. 57(5) (2019), 48–53.
+
+[8] K. Edwards and M. A. Allen, A new combinatorial interpretation of the Fibonacci num-
+    bers squared. Part II., Fibonacci Quart. 58 (2020), 169–177.
+
+[9] L. W. Shapiro, S. Getu, W.-J. Woan, and L. C. Woodson, The Riordan group, Discrete
+    Appl. Math. 34 (1991), 229–239.
+
+
+
+2010 Mathematics Subject Classification: Primary 05A19, 11B39
+Keywords: Fibonacci identities, Jacobsthal identities, combinatorial proof, combinatorial
+identities, n-tiling, Pascal-like triangle, Riordan array
+
+(Concerned with sequences A000045, A000124, A000930, A001045, A001654, A002620, A003269,
+A003600, A006498, A007598, A017817, A059259, A059260, A071921, A123521, A158909,
+and A335964.)
+
+
+
+
+                                           21
+
