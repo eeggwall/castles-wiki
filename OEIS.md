@@ -40,13 +40,13 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-03).** The A226274 link back to A226136 is in review (#21–#23), so
-stage 1 holds A226274 and the two other slots go to submissions outside this queue; stage 2
-waits until a slot is free for it, and its top item is the reverse link A038505 back to
-A146559. Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted.
-Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is
-at the revision its draft was checked against, and the stage-2 verification scripts pass
-against the live b-files.
+**Next step (2026-11-04).** The A226274 link back to A226136 (#21–#23) and the A038505 link
+back to A146559 (#141–#142) are in review, and the third slot goes to A129972, a submission
+outside this queue; stage 2 waits until a slot is free for it, and its top item is the reverse
+link A097862 back to A283595. Meanwhile the A094706 castle comment, the first item of stage
+3, can be drafted. Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit,
+every stage-2 target is at the revision its draft was checked against, and the stage-2
+verification scripts pass against the live b-files.
 
 ### 1. In review (max 3)
 
@@ -59,14 +59,16 @@ against the live b-files.
   `a(n) = A226136(3*n-1) - 1` and the order-4 recurrence for `n >= 6`), a Python program, and
   A226136 appended to the Cf. line: `raw/oeis-pe502/xrefs/A226274-A226136.md`
   (`wiki/pages/fibonacci-castles-sub-families.md`). Proposed (checked 2026-11-03).
+- [~] **A038505 → A146559** (submitted 2026-11-04, #141–#142), the link back for the approved
+  A146559 comment: A146559 appended to the Cf. line, `Cf. A000225, A000749, A009116,
+  A009545, A038503, A038504, A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
+  already link both ways): `raw/oeis-pe502/xrefs/A038505-A146559.md`. Proposed (checked
+  2026-11-04).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Reverse links**, one edit each, each adding only the lines shown. All four point at
+- [ ] **Reverse links**, one edit each, each adding only the lines shown. All three point at
   approved entries; the last, A271942, answers the A001263 edit (#792).
-  - [ ] **A038505 → A146559**: A146559 appended to the Cf. line (`A146559 = A038503 −
-    A038505`; A038503 and A146559 already link both ways):
-    `raw/oeis-pe502/xrefs/A038505-A146559.md`.
   - [ ] **A097862 → A283595**: A283595 inserted into the Cf. line (A283595's column g.f. is
     built from A097862's `P(k)`): `raw/oeis-pe502/xrefs/A097862-A283595.md`.
   - [ ] **A094706 → A283595**: `a(n) = A283595(n+1, 2) for n >= 1.` and A283595 appended to
