@@ -5,7 +5,7 @@ summary: Ten ways to draw random castles and the objects beside them, each imple
 tags: [concept, castle, sampling, monte-carlo, transfer-matrix, rejection-sampling, rank-unrank, gray-code, mcmc, coupling-from-the-past, wilson-algorithm, spanning-tree, lgv, wang-landau, random-matrix, sattolo, foata, verification]
 sources: [project-euler-502-brute-force, project-euler-502-castle-factoring, aocp-generating-permutations-tuples]
 created: 2026-09-27
-updated: 2026-10-25
+updated: 2026-11-05
 ---
 
 # Castle samplers
@@ -251,6 +251,7 @@ The first five are within 1.3 standard errors of the exact value, and the Wang-L
 - [[castle-entropy](pages/castle-entropy.md)] - `log₂ A^e = log₂ A − 1 + log₂(1 + S/A)`, behind `A^e/A → 1/2`.
 - [[castle-notation](pages/castle-notation.md)] - the block weight `t`, the area weight `q`, `V(w, h)`, `N_i(state)`, `g(b)` and `H_n`.
 - [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - exercise 47, the Nijenhuis-Wilf uniform random-partition generator, which also draws from a table of completion counts.
+- [[feistel-network](pages/feistel-network.md)] - the rank/unrank of section 5 between a cipher on `[0, A^e − 1]` and `V(w, h)`, a keyed permutation of the even-block castles; [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)] bounds the mixing of its card shuffle by a coupling, where section 7 uses one to draw exact samples.
 
 ## Footnotes
 

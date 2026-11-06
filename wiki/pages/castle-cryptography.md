@@ -5,7 +5,7 @@ summary: A three-seminar series on a toy public-key system built from the signed
 tags: [analysis, seminar, cryptography, public-key, finite-field, kitamasa, berlekamp-massey, discrete-log, diffie-hellman, cryptanalysis, red-team, blue-team, pedagogy, implementation, castle]
 sources: [project-euler-502-representations]
 created: 2026-09-18
-updated: 2026-10-31
+updated: 2026-11-05
 ---
 
 # Castle cryptography
@@ -128,6 +128,7 @@ The key exchange `castle_dh` (the functions `mulmod` and `powmod`), round two's 
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group of `R` as a product of cyclic groups; Pohlig-Hellman runs on its primary decomposition, and at a prime where `char_k` has a repeated factor `R` gains a `p`-group beside the field factor.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` summed in `P(k, L)`.
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - the programs of the series.
+- [[feistel-network](pages/feistel-network.md)] - secret-key ciphers that map castles to castles: Feistel rounds on the column halves of a skyline or on the ranks of `V(w, h)`, with cycle walking; the series on this page is public-key.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[song-as-castle](pages/song-as-castle.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)] - the other seminar pages.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the rows `P(k, ·)` and their characteristic polynomials `char_1` to `char_5`.
 

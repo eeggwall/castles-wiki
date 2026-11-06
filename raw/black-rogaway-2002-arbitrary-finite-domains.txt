@@ -1,0 +1,871 @@
+            Ciphers with Arbitrary Finite Domains
+
+                            John Black1 and Phillip Rogaway2
+       1
+        Dept. of Computer Science, University of Nevada, Reno NV 89557, USA,
+          jrb@cs.unr.edu, WWW home page: http://www.cs.unr.edu/~jrb
+    2
+      Dept. of Computer Science, University of California at Davis, Davis, CA 95616,
+                 USA, rogaway@cs.ucdavis.edu, WWW home page:
+                       http://www.cs.ucdavis.edu/~rogaway
+
+
+
+           Abstract. We explore the problem of enciphering members of a ﬁnite
+           set M where k = |M| is arbitrary (in particular, it need not be a power
+           of two). We want to achieve this goal starting from a block cipher (which
+           requires a message space of size N = 2n , for some n). We look at a few
+           solutions to this problem, focusing on the case when M = [0, k − 1]. We
+           see ciphers with arbitrary domains as a worthwhile primitive in its own
+           right, and as a potentially useful one for making higher-level protocols.
+
+
+           Keywords: Ciphers, Modes of Operation, Provable security, Symmetric
+           Encryption.
+
+
+1      Introduction
+A Motivating Example. Consider the following problem: a company wishes
+to generate distinct and unpredictable ten-digit credit-card numbers. One way
+to accomplish this involves keeping a history of all previously-issued numbers.
+But the company wishes to avoid storing a large amount of sensitive information.
+Another approach is to use some block cipher E under a randomly-selected key
+K and then issue credit-card numbers EK (0), EK (1), · · ·. But the domains of
+contemporary block ciphers are inconvenient for this problem: this company
+needs distinct numbers in [0, 1010 − 1] but block cipher have a domain [0, 2n − 1]
+for some n such as 64 or 128. Is there an elegant solution to this problem?
+
+Enciphering with Arbitrary Domains. More generally now, we have good
+tools—block ciphers—to encipher points when the message space M is strings
+                                          n
+of some particular length, M = {0, 1} . But what if you want to encipher a
+                                                                 ∗
+number between one and a million? Or a point in ZN or ZN           , where N is a
+1024-bit number? Or a point from some elliptic-curve group? This paper looks
+                                                                         n
+at the question of how to construct ciphers whose domain is not {0, 1} .
+    That is, we are interested in how to make a cipher which has some desired
+but “weird” domain: F : K × M → M where K is the key space and M is the
+ﬁnite message space that we have in mind. A tool from which we may start our
+                                                       n         n
+construction is a block cipher: a map E : K × {0, 1} → {0, 1} where K is the
+key space and n is the block length. A solution to this problem immediately solves
+the credit-card problem: for a block cipher F : K×[0, 1010 −1] → [0, 1010 −1], the
+company chooses a random K ∈ K and issues the (distinct) credit-card numbers
+FK (0), FK (1), FK (2), . . . , FK (i), and has only to remember the last i value used.
+
+Measuring Success. We would like to make clear right away what is the
+security goal that we are after. Let’s do this by way of an example. Suppose
+that you want to encipher numbers between one and a million: M = [1, 106 ].
+Following [2, 7], we imagine two games. In the ﬁrst game one chooses a random
+key K from K and hands to an adversary an oracle EK (·). In the second game one
+chooses a random permutation π on [1, 106 ] and hands the adversary an oracle
+for π(·). The adversary should be unable to distinguish these two types of oracles
+without spending a huge amount of time. Note that the domain is so small that
+the adversary might well ask for the value of the oracle f (·) ∈ {EK (·), π(·)}
+at every point in the domain. This shouldn’t help the adversary win. So, for
+example, if the adversary asks the value of EK (·) at all points except 1 and 2 (a
+total of 106 −2 points), then the adversary will know what are the two “missing”
+numbers, c1 and c2 , but the adversary won’t be able to ascertain if EK (1) = c1
+and EK (2) = c2 , or if EK (1) = c2 and EK (2) = c1 , instead.
+
+Our Contributions. Though the problem of enciphering on an arbitrary do-
+main has been considered before [13], here we draw attention to this problem
+and give the ﬁrst rigorous treatment, providing a few solutions together with
+their analyses. Our solutions focus on the case in which the message space is
+M = [0, k − 1], though we sketch extensions to some other message spaces, like
+  ∗
+Zpq  and common elliptic-curve groups.
+    Our ﬁrst method assumes that we have a block cipher E that acts on N = 2n
+points, where N ≥ k. To encipher M = [0, k − 1] one just enciphers these points
+with block cipher E and uses the ordering of EK (0), EK (1), up to EK (k − 1)
+to name the desired permutation on [0, k − 1]. This method is computationally
+reasonable only for small k, such as k < 230 .
+    A second method, similar to known techniques used in other settings, enci-
+phers a message m ∈ M by repeatedly applying the block cipher, starting at m,
+until one gets back to a point in M. (Assume once again that N ≥ k.) This
+                                                                             n
+method is good if M is “dense” in the domain of the block cipher, {0, 1} . So,
+for example, one can use this method to encipher a string in ZN , where N is a
+1024-bit number, using a block cipher with block length of 1024 bits. (A block
+cipher with a long block length, like this, can be constructed from a “standard”
+block cipher by following works like [3, 9, 11].) This construction has been sug-
+gested before [13]; our main contribution here is the analysis of the construction.
+    A ﬁnal method which we look at chooses an a, b where ab ≥ k and performs a
+Feistel construction on the message m, but uses a left-hand side in Za and a right-
+hand side in Zb . Our analysis of this is an adaptation of Luby and Rackoﬀ’s [9].
+This method can be quite eﬃcient, though the proven bounds are weak when
+the message space is small (eg, k < 2128 ).
+    With each of our ciphers we provide a deciphering algorithm, though this
+may not be required in all domains (eg, in our credit-card example above).
+    Note that the three methods above solve our problem for small and large
+domains, but there is a gap which remains: intermediate-sized values where our
+ﬁrst method requires too much space and time, and our second method requires
+too many block-cipher invocations, and our third method may work but the
+bound is too weak. This gap occurs roughly from k = 230 up to about k = 260 ,
+depending on your point of view. Our credit-card example (k = 1010 ≈ 233.2 )
+falls into this gap. This problem remains open.
+
+Why Ciphers on Non-Standard Sets? Popular books on cryptography
+speak of enciphering the points in the message space M, whatever that mes-
+sage space may be, but few seem to have thought much about how to actually
+do this when the message space is something other than a set of bit strings,
+often of one particular length. This omission is no doubt due to the fact that
+it is usually ﬁne to embed the desired message space into a larger one, using
+some padding method, and then apply a standard construction to encipher in
+the larger space. For example, suppose you want to encipher a random num-
+ber m between one and a million. Your tool is a 128-bit block cipher E. You
+could encode m as a 128-bit string M by writing m using 20 bits, prepending 108
+zero-bits, and computing C = EK (M ). Ignoring the fact that the ciphertext C
+“wastes” 108 bits, this method is usually ﬁne. But not always.
+    One problem with the method above is that it allows one to tell if a candidate
+key K  might have been used to produce C. To illustrate the issue, suppose
+that the key space is small, say |K| = 230 . Suppose the adversary sees a point
+C = EK (M ). Then the adversary has everything she needs to decrypt ciphertext
+                                                                               −1
+C = EK (M ): she just tries all keys K  ∈ K until she ﬁnds one for which EK      (C)
+
+begins with 108 zeros. This is almost certainly the right key. The objection that
+“we shouldn’t have used a small key space” is not a productive one if the point
+of our eﬀorts was to make due with a small key space.
+    If we had used a cipher with message space M = [1, 106 ] we would not
+have had this problem. Every ciphertext C, under every possible key K, would
+correspond to a valid message M . The ciphertext would reveal nothing about
+which key had been used.
+    Of course there are several other solutions to the problem we have described,
+but many of them have diﬃculties of their own. Suppose, for example, that
+one pads with random bits instead of zero bits. This is better, but still not
+perfect: in particular, an adversary can tell that a candidate key K  could not
+have been used to encipher M if decrypting C under K  yields a ﬁnal 20 bits
+whose decimal value exceeds 1,000,000. If one had 1,000 ciphertexts of random
+plaintexts enciphered in the manner we have described, the adversary could,
+once again, usually determine the correct key.
+    As a more realistic example related to that above, consider the Bellovin-
+Merritt “EKE” protocol [4]. This entity-authentication protocol is designed to
+defeat password-guessing attacks. The protocol involves encrypting, under a pos-
+sibly weak password K, a string g x mod p, where p is a large prime number and g
+is a generator of Zp∗ . In this context it is crucial that from the resulting cipher-
+text C one can not ascertain if a candidate password K  could possibly have
+produced the ciphertext C. This can be easily and eﬃciently done by encipher-
+ing with message space M = Zp∗ . Ordinary encryption methods won’t work.
+    Another problem with ciphertext-expansion occurs when we are constrained
+by an existing record format: suppose we wish to encrypt a set of ﬁelds in a
+database, but the cost of changing the record size is prohibitive. Using a cipher
+whose domain is the set of values for the existing ﬁelds allows some measure of
+added security without requiring a complete restructuring of the database. And
+if the data have additional restrictions beyond size (eg, the ﬁelds must contain
+printable characters), we can further restrict the domain as needed.
+    In addition to these (modest) applications, the question is interesting from a
+theoretical standpoint: how can we construct new ciphers from existing ones? In
+particular, can we construct ciphers with arbitrary domains without resorting
+to creating new ciphers from scratch? It certainly “feels” like there should be a
+good way to construct a block cipher on 32 bits given a block cipher on 64 bits,
+but, even for this case, no one knows how to do this in a practical manner with
+good security bounds.
+
+
+Related Work. We assume that one has in hand a good block cipher for any
+desired block length. Since “standard” block ciphers come only in “convenient”
+block lengths, such as n = 128, here are some ways that one might create a
+block cipher for some non-standard block length. First, one could construct
+the block cipher from scratch. But it is probably better to start with a well-
+studied primitive like SHA-1 or AES. These could then be used within a balanced
+Feistel network [14], which creates a block cipher for any (even) block length 2n,
+starting with something that behaves as a pseudorandom function (PRF) from
+n bits to n bits. Luby and Rackoﬀ [9] give quantitative bounds on the eﬃcacy
+of this construction (when using three and four rounds), and their work has
+spawned much related analysis, too. Naor and Reingold [11] provide a diﬀerent
+construction which extends a block cipher on n bits to a block cipher on 2ni
+bits, for any i ≥ 1. A variation on their construction due to Patel, Ramzan and
+Sundaram [12] yields a cipher on ni bits for any i ≥ 1. Lucks [10] generalizes
+Luby-Rackoﬀ to consider a three-round unbalanced Feistel network, using hash
+functions for round functions. This yields a block cipher for any given length
+N starting with a PRF from r bits to  bits and another from  bits to r bits,
+where  + r = N . Starting from an n-bit block cipher, Bellare and Rogaway [3]
+                                                                       ≥n
+construct and analyze a length-preserving cipher with domain {0, 1} . This is
+something more than making a block cipher on arbitrary N ≥ n bits. Anderson
+and Biham [1] provide two constructions for a block cipher (BEAR and LION)
+which use a hash function and a stream cipher. This again uses an unbalanced
+Feistel network.
+    It is unclear how to make any of the constructions above apply to message
+spaces which are not sets of strings. Probably several of the constructions can
+modiﬁed, and in multiple ways, to deal with a message space M = [0, k − 1], or
+with other message spaces.
+    The Hasty Pudding Cipher of Schroeppel and Orman [13] is a block cipher
+which works on any domain [0, k − 1]. They use what is essentially “Method 2,”
+internally iterating the cipher until a proper domain point is reached. Schroeppel
+believes that the idea underlying this method dates back to the rotor machines
+used in the early 1900’s.
+    Our notion of a pseudorandom function is due to Goldreich, Goldwasser and
+Micali [6]. Pseudorandom permutations are deﬁned and constructed by Luby and
+Rackoﬀ [9]. We use the adaptation of these notions to deal with ﬁnite objects,
+which ﬁrst appears in Bellare, Kilian and Rogaway [2].
+
+2   Preliminaries
+Notation. If A and B are sets then Rand(A, B) is the set of all functions from A
+to B. If A or B is a positive number, n, then the corresponding set is [0, n − 1].
+We write Perm(A) to denote the set of all permutations on the set A and if n is
+                                                                   R
+a positive number then the set is assumed to be [0, n − 1]. By x ← A we denote
+the experiment of choosing a random element from A.
+                                                                                 ∗
+    A function family is a multiset F = {f : A → B}, where A, B ⊆ {0, 1} .
+Each element f ∈ F has a name K, where K ∈ Key. So, equivalently, a function
+family F is a function F : Key × A → B. We call A the domain of F and B the
+range of F . The ﬁrst argument to F will be written as a subscript. A cipher is a
+function family F : Key × A → A where FK (·) is always a permutation; a block
+                                             n         n
+cipher is a function family F : Key × {0, 1} → {0, 1} where FK (·) is always a
+permutation. An ideal block cipher is a block cipher in which each permutation
+         n
+on {0, 1} is realized by exactly one K ∈ Key.
+    An adversary is an algorithm with an oracle. The oracle computes some
+function. We write Af (·) to indicate an adversary A with oracle f (·). Adversaries
+are assumed to never ask a query outside the domain of the oracle, and to never
+repeat a query.
+    Let F : Key × A → B be a function family and let A be an adversary. In
+this paper, we measure security as the maximum advantage obtainable by some
+adversary; we use the following statistical measures:
+                             f (·)
+                                   = 1] − Pr[R ← Rand(A, B) : AR(·) = 1] ,
+                  def      R                          R
+     Advprf
+        F (A) = Pr[f ← F : A
+
+and when A = B
+                             f (·)
+                                   = 1] − Pr[π ← Perm(A) : Aπ(·) = 1] .
+                  def       R                         R
+     Advprp
+        F (A) = Pr[f ← F : A
+
+
+Useful Facts. It is often convenient to replace random permutations with
+random functions, or vice versa. The following proposition lets us easily do this.
+For a proof see Proposition 2.5 in [2].
+Lemma 1. [PRF/PRP Switching] Fix n ≥ 1. Let A be an adversary that
+asks at most p queries. Then
+                                                             
+                                                             
+ Pr[π ← Perm(n) : Aπ(·) = 1] − Pr[ρ ← Rand(n, n) : Aρ(·) = 1] ≤ p2 /2n+1 .
+       R                             R
+                                                                Algorithm PxK (m)
+    Algorithm Init PxK                                           return Jm
+     for j ← 0 to k − 1 do Ij ← EK (j)
+     for j ← 0 to k − 1 do Jj ← Ord(Ij , {Ij }j∈[0,k−1] )
+     for j ← 0 to k − 1 do LJj ← j                              Algorithm Px−1
+                                                                            K (m)
+                                                                 return Lm
+
+
+Fig. 1. Algorithms for the Preﬁx Cipher. First the initialization algorithm Init PxK is
+run. Then encipher with PxK (m) and decipher with Px−1   K (m).
+
+
+
+
+3    Method 1: Preﬁx Cipher
+Fix some integer k and let M be the set [0, k − 1]. Our goal is to build a cipher
+with domain M.
+    Our ﬁrst approach is a simple, practical method for small values of k. We
+name this cipher Px. Our cipher will use some existing block cipher E with
+keyspace K and whose domain is a superset of M. The key space for Px will
+also be K. To compute PxK (m) for some m ∈ M and K ∈ K we ﬁrst compute
+the tuple
+                     I = (EK (0) EK (1) · · · EK (k − 1)).
+Since each element of I is a distinct string, we may replace each element in I
+with its ordinal position (starting from zero) to produce tuple J. And now to
+encipher any m ∈ M we compute PxK (m) as simply the m-th component of
+J (again counting from zero). The enciphering and deciphering algorithms are
+given in Figure 1.
+
+Example. Suppose we wish to encipher M = {0, 1, 2, 3, 4}. We choose some
+random key K for some block cipher E. Let’s assume E is an 8-bit ideal block
+cipher; therefore EK is a uniformly chosen random permutation on [0, 255]. Next
+we encipher each element of M. Let’s say EK (0) = 166, EK (1) = 6, EK (2) =
+130, EK (3) = 201, and EK (4) = 78. So our tuple I is (166 6 130 201 78) and J
+is (3 0 2 4 1). We are now ready to encipher any m ∈ M: we return the m-th
+element from J, counting from zero. For example we encipher 0 as 3, and 1 as
+0, etc..
+
+Analysis. Under the assumption that our underlying block cipher E is ideal, I
+is equally likely to be any of the permutations on M. The proof of this fact is
+trivial and is omitted. The method remains good when E is secure in the sense
+of a PRP. The argument is standard and is omitted.
+
+Practical Considerations. Enciphering and deciphering are constant-time
+operations. The cost here is O(k) time and space used in the initialization step.
+This clearly means that this method is practical only for small values of k. A
+further practical consideration is that, although this initialization is a one-time
+cost, it results in a table of sensitive data which must be stored somewhere.
+         Algorithm CyK (m)                     Algorithm Cy−1 K (m)
+                                                          −1
+             c ← EK (m)                            c ← EK    (m)
+             if c ∈ M return c                     if c ∈ M return c
+             else return CyK (c)                   else return Cy−1K (c)
+
+
+
+Fig. 2. Algorithms for the Cycle-Walking Cipher. We encipher with CyK (·) and deci-
+pher with Cy−1
+             K (·).
+
+
+
+
+4   Method 2: Cycle-Walking Cipher
+This next method uses a block cipher whose domain is larger than M, and then
+handles those cases where a point is out of range. Again we ﬁx an integer k, let
+M be the set [0, k − 1], and devise a method to encipher M.
+    Let N be the smallest power of 2 larger or equal to k, let n be lg N , and
+let EK (·) be an n-bit block cipher. We construct the block cipher CyK on the
+set M by computing t = EK (m) and iterating if c ∈ M. The enciphering and
+deciphering algorithms are shown in Figure 2.
+
+Example. Let M = [0, 106 ]. Then N = 220 and so n = 20. We use some
+known method to build a 20-bit block cipher EK (·) on the set T = [0, 220 − 1].
+Now suppose we wish to encipher the point m = 314159; we compute c1 =
+EK (314159) which yields some number in T , say 1040401. Since c1 ∈ M, we
+iterate by computing c2 = EK (1040401) which is, say, 1729. Since c2 ∈ M,
+we output 1729 as CyK (314159). Decipherment is simply the reverse of this
+procedure.
+
+Analysis. Let’s view the permutation EK (·) as a family of cycles: any point
+m ∈ M lies on some cycle and repeated applications of EK (·) can be viewed as
+a particle walking along the cycle, starting at m. In fact, we can now think of
+our construction as follows: to encipher any point m ∈ M walk along the cycle
+containing m until you encounter some point c ∈ M. Then c = CyK (m). Of
+course this method assumes that one can eﬃciently test for membership in M.
+This is trivial for our case when M = [0, k − 1], but might not be for other sets.
+    Now we may easily see that CyK (·) is well-deﬁned: given any point m ∈ M
+if we apply EK (·) enough times, we will arrive at a point in M. This is because
+walking on m’s cycle must eventually arrive back at some point in M, even if
+that point is m itself. We can also see that CyK (·) is invertible since inverting
+CyK (m) is equivalent to walking backwards on m’s cycle until ﬁnding some
+element in M. Therefore, we know CyK (·) is a permutation on M. However the
+question arises, “how much security do we lose in deriving this permutation?”
+The fortunate answer is, “nothing.”
+Theorem 1. [Security of Cycle-Walking Cipher] Fix k ≥ 1 and let M =
+[0, k − 1]. Let EK (·) be an ideal block cipher on the set T where M ⊆ T . Choose
+a key K uniformly at random and then construct CyK (·) using EK (·). Then
+CyK (·) is a uniform random permutation on M.
+Proof. Fix some permutation π on the set M. We will show that an equal number
+of keys K will give rise to π; this will imply the theorem.
+    We proceed by induction, showing that the number of permutations on
+{0, . . . , k − 1, x} which give rise under our construction to π is constant. Since
+M ⊆ T we can repeatedly add all elements x ∈ T − M while maintaining that
+the number of permutations which give rise to π is constant.
+    Decompose π into r cycles of lengths l1 , l2 , · · · , lr . We count the number of
+ways to insert the new element x. There are li ways to insert x into the ith orbit
+corresponding to the ith cycle, and one way to insert x into a         new orbit of its
+                                                                         r
+own (ie, the permutation which ﬁxes x). Therefore there are i=1 li + 1 = k
+ways to add element x to π yielding a permutation which will give rise to π by
+repeated iterations. This holds no matter what π we choose.              t
+    Let |T | = t. Then by induction we see that there are exactly i=k i keys K
+under which our construction reduces EK (·) to π.
+Similar to the Preﬁx Cipher, our construction has retained all of the security of
+the underlying block cipher.
+    Theorem 1 is an information-theoretic result. Passing to the correspond-
+ing complexity-theoretic result is standard. Because no security is lost in the
+information-theoretic setting, and because we apply E an expected two times
+(or fewer), an adversary’s maximal advantage to distinguish EK (·) from a ran-
+dom permutation of Z2n in expected time 2t approximately upper bounds an
+adversary’s maximal advantage to distinguish CyK (·) from a random permuta-
+tion on M in time t.
+
+
+5    Method 3: Generalized-Feistel Cipher
+Our ﬁnal method works as follows: we decompose all the numbers in M into pairs
+of “similarly sized” numbers and then apply the well-known Feistel construction
+[14] to produce a cipher. Again we ﬁx an integer k, let M be the set [0, k − 1],
+and devise a method to encipher M.
+    We call our cipher Fe[r, a, b] where r is the number of rounds we use in our
+Feistel network and a and b are positive numbers such that ab ≥ k. We use a
+and b to decompose any m ∈ M into two numbers for use as the inputs into
+the network. Within the network we use r random functions F1 , . . . , Fr whose
+ranges contain M. The algorithms to encipher and decipher are given in Figure 3.
+Notice that if using the Feistel construction results in a number not in M, we
+iterate just as we did for the Cycle-Walking Cipher.
+
+Example. In order to specify some particular Fe[r, a, b]K (·) we must specify the
+numbers a and b, the number of Feistel rounds r, and the choice of underlying
+functions F1 , · · · , Fr we will use.
+    As a concrete example, let’s take k = 235 , r = 3, and a = 185360 and
+b = 185368 (methods for ﬁnding a and b will be discussed later). Note that
+ab ≥ k as required. Since ab is 74112 larger than k, our Feistel construction
+will be on the set M = [0, (235 − 1) + 74112], meaning there are 74112 values
+               Algorithm Fe[r, a, b]K (m)
+                  c ← fe[r, a, b]K (m)
+                  if c ∈ M return c
+                  else return Fe[r, a, b]K (c)
+
+               Algorithm fe[r, a, b]K (m)
+                  L ← m mod a; R ← m/a
+                  for j ← 1 to r do
+                       if (j is odd) then tmp ← (L + Fj (R)) mod a
+                       else tmp ← (L + Fj (R)) mod b
+                       L ← R; R ← tmp
+                  if (r is odd) then return aL + R
+                  else return aR + L
+
+                Algorithm Fe[r, a, b]−1
+                                     K (m)
+                   c ← fe[r, a, b]−1
+                                  K (m)
+                   if c ∈ M return c
+                   else return Fe[r, a, b]−1
+                                          K (c)
+
+
+                Algorithm fe[r, a, b]−1
+                                     K (m)
+                   if (r is odd) then R ← m mod a; L ← m/a
+                   else L ← m mod a; R ← m/a
+                   for j ← r to 1 do
+                        if (j is odd) then tmp ← (R − Fj (L)) mod a
+                        else tmp ← (R − Fj (L)) mod b
+                        R ← L; L ← tmp
+                   return aR + L
+
+Fig. 3. Algorithms for the Generalized-Feistel Cipher. We encipher with Fe[r, a, b]K (·)
+and decipher with Fe[r, a, b]−1
+                             K (·). Here a and b are the numbers used to bijectively map
+all m ∈ M into L, and R, and r is the number of rounds of Feistel we will apply. The
+key K is implicitly used to select the r functions F1 , . . . , Fr .
+
+
+
+which are in M − M for which we will have to iterate (just as we did for the
+Cycle-Walking Cipher). Let’s use DES with independent keys as our underlying
+PRFs. DES is a 64-bit cipher which uses a 56-bit key; we will regard the 64-bit
+strings on which DES operates as integers in the range [0, 264 − 1] in the natural
+way. We need three PRFs so our key K = K1 K2 K3 will be 3 × 56 = 168
+bits. Now to compute Fe[3, 185360, 185368](m) we compute L = m mod 185360,
+and R = m/185360 , and then perform three rounds of Feistel using DESK1 (·),
+DESK2 (·), and DESK3 (·) as our underlying PRFs. The ﬁrst round results in L ←
+ m/185360 and R ← (m mod 185360+DESK1 ( m/185360 )) mod 185360, and
+so on.
+
+Analysis. First we note that Fe[r, a, b](·) is a permutation: it is well-known that
+the Feistel construction produces a permutation, and we showed previously that
+iterating any permutation is a permutation. We now analyze the how good is
+this Generalized-Feistel Cipher for the three-round case.
+    Assuming the underlying functions F1 , F2 , and F3 used in our construction
+are truly random functions, we will compare how close Fe[3, a, b](·) is to a truly
+random permutation. Passing to the complexity-theoretic setting is then stan-
+dard, and therefore omitted.
+Theorem 2. [Security of Generalized-Feistel Cipher] Fix k ≥ 1 and let
+M = [0, k − 1]. Fix two numbers a, b > 0 such that ab ≥ k. Let ∆ = ab − k. Fix
+an n such that 2n > a and 2n > b. Let D be an adversary which asks q queries
+of her oracle. Then
+
+                                   R    n n
+    Advprf
+       Fe (D) = Pr[F1 , F2 , F3 ← Rand(2 , 2 ) : D
+                                                   Fe[3,a,b](·)
+                                                                = 1]
+
+                                               − Pr[ρ ← Rand(k, k) : Dρ(·) = 1]
+                                                       R
+
+
+
+                    (q + ∆)2
+                ≤            ( 2n /a + 2n /b ) .
+                      2n+1
+    The proof is an adaptation of Luby’s analysis from Lecture 13 of [8], which
+is in-turn based on [9]. It can be found in Appendix A.
+    Finally, we must adjust this bound to account for the fact that we have com-
+pared Fe[3, a, b]K (·) with a random function instead of a random permutation.
+We can invoke Lemma 1 which gives us a ﬁnal bound quantifying the quality of
+our construction:
+                                       R n n
+     Advprp
+        Fe (D) = Pr[F1 , F2 , F3 ← Rand(2 , 2 ) : D
+                                                    Fe[3,a,b](·)
+                                                                 = 1]
+
+                                               − Pr[π ← Perm(k) : Dπ(·) = 1]
+                                                       R
+
+
+
+                        (q + ∆)2 + q 2
+                    ≤                  ( 2n /a + 2n /b ) .
+                            2n+1
+
+6    Discussion
+Prefix Cipher. Our ﬁrst method, the Preﬁx Cipher, is useful only for suitably
+small k. Since enciphering one point requires enciphering all k points in [0, k −1],
+many applications would ﬁnd this prohibitively expensive for all but fairly small
+values of k.
+
+Cycle-Walking Cipher. Our second method, the Cycle-Walking Cipher, can
+be quite practical. If k is just smaller than some power of 2, the number of points
+we have to “walk through” during any given encipherment is correspondingly
+small. In the worst case, however, k is one larger than a power of 2, and (with
+extremely bad luck) might require k calls to the underlying block cipher to
+encipher just one point. But if the underlying block cipher is good we require,
+in the worst case, an expected two calls to it in order to encipher and decipher
+any point.
+Generalized-Feistel Cipher. To get the best bound we should select a and
+b such that these numbers are somewhat close together and
+                                                        √ such that ∆ = ab−k
+is small. One
+           √  obvious technique  is to try numbers near  k; for
+                                                             √ example, taking
+a=b=         k means that ab − k will never be more than 2 k + 1. But often
+one can do better.
+    Another way to improve the bound is to ensure n is suitably large. The “tail
+eﬀects” spoken of in the proof are diminished as n grows (because as 2n gets
+larger 2n /a /2n gets closer to 1/a).
+
+The One-Off Construction. Another method, not mentioned above, works
+well for domains which are one element larger than a domain we can accommo-
+date eﬃciently. Say we have a cipher E with domain [0, k − 1] and we wish to
+construct a cipher E  with domain [0, k]. We choose a key K  = {K, r} for E 
+by choosing a key K for E and a random number r ∈ [0, k]. We then compute
+  
+EK   (X) as follows:
+
+                                 
+                                  r        if X = k
+                                                    −1
+                      EK  (X) =     k      if X = EK   (r)
+                                 
+                                   EK (X) otherwise
+The security of this construction is tightly related to the security of E and the
+method for selecting r. The analysis is omitted.
+   Of course we can use this method to repeatedly extend the domain of any
+cipher to the size of choice, but for most settings it is impractical to do this
+more than a few times. A typical method for generating r would be to take
+r = EK ∗ (0) mod (k + 1) where K ∗ is a new randomly-selected key. The “tail
+eﬀect” here is not too bad, but will cause a rapid deterioration of the security
+bound when used too often. Also, the scheme begins to become quite ineﬃcient
+when we extend the domain in this way too many times.
+
+Other Domains. Though we have spoken in terms of the domain [0, k − 1] the
+                                                                                   ∗
+same methods work for other domains, too. For example, to encipher in ZN             ,
+where N = pq is a 1024-bit product of two primes, one can use either cycle-
+walking or the generalized-Feistel construction, iterating in the highly unlikely
+                                            ∗
+event that a point is in ZN but not in ZN     .
+    We may also use our methods to encipher points from an elliptic curve group
+(EC group). There are well-known “compact” representations of the points in
+EC groups, and these representations form our starting point. For example, one
+ﬁnds in [5] simple algorithms to compress the representation of a point in an EC
+group. Consider the EC group G over the ﬁeld Fq where q is either a power of
+two or a prime. Then any point (x, y) ∈ G may be represented as a member of Fq
+together with a single bit. Let’s consider ﬁrst the case where q = 2m with
+                                                                         √ m > 0.
+The Hasse theorem (see [5], page 8) guarantees at least d(r) = r +1−2 r points
+in G. Since it is possible to represent any point in G with m + 1 bits and it is also
+possible to eﬃciently test for membership in G, we could use the cycle-walking
+construction over a 2m+1 -bit cipher. The expected number of invocations of this
+cipher to encipher a point in G is then 2m+1 /d(2m ) ≈ 2.
+    If q is instead a prime p, we can represent any point in G as a number
+x ∈ [0, p − 1] and a single bit y. We may again use any of our methods to
+encipher these 2p points. Here the Hasse theorem ([5], page 7) guarantees at
+least d(p) points in G and once again an eﬃcient test for membership in G
+exists. Therefore we may use the cycle-walking construction over some lg 2p -
+bit cipher. However if 2p is not close to a power of 2, we may wish to instead
+use the generalized-Feistel construction.
+
+Open Problems. As mentioned already, we have not provided any construc-
+tion which works well (and provably so) for intermediate-sized values of k. For
+example, suppose you are given an ideal block cipher Π on 128-bit strings, and
+you want to approximate a random permutation π on, say, 40-bit strings. Prob-
+ably enough rounds of Feistel work, but remember that our security goal is that
+even if an adversary inquires about all 240 points, still she should be unable to
+distinguish π from a random permutation on 40 bits. Known bounds are not
+nearly so strong. Of course the preﬁx method works, but spending 240 time and
+space to encipher the ﬁrst point is not practical.
+
+
+Acknowledgments
+Special thanks to Richard Schroeppel who made many useful comments on an
+earlier draft. Thanks also to Mihir Bellare, David McGrew, and Silvio Micali for
+their helpful comments. This paper was written while Rogaway was on leave of
+absence from UC Davis, visiting the Department of Computer Science, Faculty of
+Science, Chiang Mai University. This work was supported under NSF CAREER
+award CCR-9624560, and by a generous gift from Cisco Systems.
+
+
+References
+ 1. Anderson, R., and Biham, E. Two practical and provably secure block ciphers:
+    BEAR and LION. In Fast Software Encryption (1996), vol. 1039 of Lecture Notes
+    in Computer Science, Springer-Verlag, pp. 114–120.
+ 2. Bellare, M., Kilian, J., and Rogaway, P. The security of the cipher
+    block chaining message authentication code. Journal of Computer and Sys-
+    tem Sciences 61, 3 (2000), 362–399. Earlier version in CRYPTO ’94. See
+    www.cs.ucdavis.edu/˜rogaway.
+ 3. Bellare, M., and Rogaway, P. On the construction of variable-input-length ci-
+    phers. In Fast Software Encryption (1999), vol. 1636 of Lecture Notes in Computer
+    Science, Springer-Verlag. See www.cs.ucdavis.edu/˜rogaway.
+ 4. Bellovin, S., and Merritt, M. Encrypted key exchange: password-based pro-
+    tocols secure against dictionary attacks. In 1992 IEEE Computer Society Sympo-
+    sium on Research in Security and Privacy (1992), IEEE Computer Society Press,
+    pp. 72–84.
+ 5. Certicom Research. Standards for eﬃcient cryptography, SEC1: Elliptic curve
+    cryptography, version 1, Sept. 2000. Available on-line at www.secg.org.
+ 6. Goldreich, O., Goldwasser, S., and Micali, S. How to construct random
+    functions. Journal of the ACM 33, 4 (1986), 210–217.
+ 7. Goldwasser, S., Micali, S., and Rivest, R. A digital signature scheme secure
+    against adaptive chosen-message attacks. SIAM Journal of Computing 17, 2 (Apr.
+    1988), 281–308.
+ 8. Luby, M. Pseudorandomness and cryptographic applications. Princeton University
+    Press, Princeton, New Jersey, 1996.
+ 9. Luby, M., and Rackoff, C. How to construct pseudorandom permutations from
+    pseudorandom functions. SIAM Journal of Computing 17, 2 (Apr. 1988).
+10. Lucks, S. Faster Luby-Rackoﬀ ciphers. In Fast Software Encryption (1996),
+    vol. 1039 of Lecture Notes in Computer Science, Springer-Verlag.
+11. Naor, M., and Reingold, O. On the construction of pseudorandom permuta-
+    tions: Luby-Rackoﬀ revisited. Journal of Cryptology 12, 1 (1999), 29–66.
+12. Patel, S., Ramzan, Z., and Sundaram, G. Towards making Luby-Rackoﬀ ci-
+    phers optimal and practical. In Fast Software Encryption (1999), vol. 1636 of
+    Lecture Notes in Computer Science, Springer-Verlag.
+13. Schroeppel, R., and Orman, H. Introduction to the hasty pudding ci-
+    pher. In Proceedings from the First Advanced Encryption Standard Candidate
+    Conference, National Institute of Standards and Technology, Aug. 1998. See
+    http://www.cs.arizona.edu/~rcs/hpc/.
+14. Smith, J. L. The design of Lucifer: A cryptographic device for data communi-
+    cations. Tech. Rep. IBM Research Report RC 3326, IBM T.J. Watson Research
+    Center, Yorktown Heights, N.Y., 10598, U.S.A., Apr. 1971.
+
+
+A      Proof of Theorem 2
+Proof. To simplify the exposition, we will initially assume that k = ab. In other
+words, that no iterating is required to compute Fe[3, a, b]K (·). Once we establish
+the result in this setting, we can make some minor changes to get the general
+result.
+    We begin by deﬁning a couple of games. Let us call “Game Fe” the game
+in which we choose three random functions F1 , F2 , F3 ← Rand(2n , 2n ) and then
+answer D’s queries according to Fe[3, a, b](·) using F1 , F2 , and F3 as our under-
+lying functions. Let us call “Game Rn” the game in which we choose a random
+function ρ ∈ Rand(k, k) and then answer D’s queries according to ρ(·). Let’s
+denote by PFe the probability that D outputs 1 in Game Fe, and denote by PRn
+the probability that D outputs 1 in Game Rn. We are trying to show that
+                                       (q + ab − k)2
+                     PFe − PRn ≤                     ( 2n /a + 2n /b ) .
+                                           2n+1
+    Without loss of generality, assume D never repeats a query. We begin by
+describing a new game called “Game B ”. Game B will look the same to adver-
+sary D as Game Fe, but Game B will be played completely diﬀerently. Instead of
+choosing three random functions F1 , F2 , F3 , we’ll choose only some random num-
+bers x1 , . . . , xq , y1 , . . . , yq , and z1 , . . . , zq . Each of these numbers is in [0, 2n − 1].
+The only random choices we will make in playing game B  is in the choice of
+the xi , yi , and zi . We describe Game B in Figure 4. It is played as follows: ﬁrst
+choose random numbers x1 , . . . , xq , y1 , . . . , yq , and z1 , . . . , zq . Now answer the
+i-th query with aβi + γi , where βi and γi are described in the ﬁgure.
+             Li                              Ri
+
+
+                                                                  Let u i = min{j ε {1,...,i} : Ri = R j }
+
+
+                                                     xu
+                                                              i
+
+
+                                                 + (mod a)
+
+
+             Ri                             αi
+
+
+                                                                  Let v i = min{j ε {1,...,i} : α = α }
+                                                                                                 i   j
+
+
+
+                                                     yv
+                                                          i
+
+
+                                                 + (mod b)
+
+
+            αi                              βi
+
+                                                                  Let wi = min{j ε {1,...,i} : β i = β j }
+
+
+                                                     z wi
+
+                                                 + (mod a)
+
+
+            βi                              γi
+
+
+Fig. 4. Game B . This game is identical, as far as the adversary can tell, to Game Fe.
+Begin by choosing x1 , . . . , xq , y1 , . . . , yq , and z1 , . . . , zq at random. Then answer the
+i-th query, Li , Ri , by βi , γi , computed as in the ﬁgure.
+
+
+
+    It should be obvious that Game B is the same, as far as the adversary can
+                                   
+see, to Game Fe. Thus PFe = Pr[DB = 1].
+   We now modify Game B to a Game B which is identical, from the adversary’s
+point of view, to Game B (and therefore to Game Fe). This modiﬁcation is
+unusual: we will subtract Rvi from the second sum, and we will subtract αwi
+from the ﬁnal sum. The new game is shown in Figure 5.
+   The reason that these new addends do not change the adversary’s view of
+the game stems from the fact that the ((yvi − Rvi ) mod b, (zwi − αwi ) mod a) in
+Game B retain the same distribution as (yvi , zwi ) had in game B  .
+   We now have that PFe = Pr[DB = 1]. The probability is taken over the
+random q-vectors x, y, and z with coordinates in [0, 2n − 1].
+   We now consider one ﬁnal game, Game C. This game is identical to B except
+that we output ayi + zi (instead of aβi + γi ). Obviously PRn = Pr[DC = 1].
+Again the probability is over the random vectors x, y, z.
+            Li                           Ri
+
+
+                                                               Let u i = min{j ε {1,...,i} : Ri = R j }
+
+
+                                                  xu
+                                                           i
+
+
+                                              + (mod a)
+
+
+            Ri                           αi
+
+
+                                                               Let v i = min{j ε {1,...,i} : α = α }
+                                                                                              i   j
+
+
+
+                                                  yv
+                                                       i
+
+
+                                              + (mod b)                        - Rv
+                                                                                      i
+
+
+
+           αi                            βi
+
+                                                               Let wi = min{j ε {1,...,i} : β i = β j }
+
+
+                                                  z wi
+
+                                              + (mod a)                         - αw
+                                                                                          i
+
+
+
+
+           βi                            γi
+
+
+Fig. 5. Game B. We modify B by adding the quantities indicated by the emboldened
+arrows. This game is once again identical, from the adversary’s perspective, to Game Fe.
+
+
+    We will now make some observations and calculations about Games B and C
+which will allow us to conclude with the theorem. The idea is that Games B and
+C usually coincide. We will manage to bound adversarial advantage by looking
+at the chance that games B and C do not coincide.
+    First we deﬁne some events. These events are deﬁned in Game C. (It is
+important that we do this in Game C, not Game B.) Deﬁne the event REPEATα
+as true if αi = αj for some i < j–that is, some αi arises twice. Deﬁne the event
+REPEATβ as true if βi = βj for some i < j–that is, some βi arises twice. Deﬁne
+the event REPEAT as the disjunct of αi and βi –that is, either an αi repeats or
+a βi repeats. Again, these events are deﬁned in Game C.
+
+                           q 2 2n /a
+Claim. Pr[REPEATα ] ≤                .
+                              2n+1
+Look at query i. If Ri itself is a repetition of an earlier Rj , then we know for sure
+that αi = αj , since all queries are assumed to be distinct. It is possible, however,
+that αi could coincide with some αj where Rj was diﬀerent from Ri . But we
+have provided the adversary no information about internal xi and αi values. If
+the cardinality of [0, 2n − 1] were evenly divisible by a then we would know the
+chance for any particular αj to coincide with αi would be 1/a. This is because
+we are taking the sum of Li with a random member of [0, 2n −1] and then taking
+this (mod a). But of course 2n may not be divisible by a and this modulus will
+create an “tail eﬀect” slightly biasing the probability. We can easily measure
+this, however, as follows: the amount of probability mass on some points will be
+ 2n /a /2n and on the others it will be 2n /a /2n . We will simply take the latter
+as a bound. If Ri is a new, unrepeated value, then xui will be a random number
+in [0, 2n − 1] and so the chance that αi will collide with any particular prior αj is
+again bounded by 2n /a /2n . Thus the chance that αi will collide with an earlier
+query is at most (i − 1) 2n /a /2n , and the chance that there will eventually be
+                                    q                          2
+a collision in αi -values is at most i=1 (i − 1) 2n /a /2n ≤ q2 2n /a /2n .      ♦
+
+                                      q 2 2n /b
+Claim. Pr[REPEATβ |REPEATα ] ≤                  .
+                                         2n+1
+By assumption, the vi values are all distinct, so y is being evaluated on distinct
+points. The chance that two βi values coincide is determined similar to the case
+in the previous claim where the Ri values were distinct. So analogously we have
+q              n     n  q2  n       n
+   i=1 (i − 1) 2 /b /2 ≤ 2 2 /b /2 .       ♦
+
+Putting this together we have that
+
+                          q2
+Claim. Pr[REPEAT] ≤             ( 2n /a + 2n /b ).
+                         2n+1
+The reason is that
+
+   Pr[REPEAT] = Pr[REPEATα ] + Pr[REPEATβ ∧ REPEATα ]
+                 = Pr[REPEATα ] + Pr[REPEATβ | REPEATα ] · Pr[REPEATα ]
+                 ≤ Pr[REPEATα ] + Pr[REPEATβ | REPEATα ],
+
+and we have just bounded each of the above addends.          ♦
+
+Now for the key observation:
+
+Claim. Pr[DB = 1 | REPEAT] = Pr[DC = 1 | REPEAT].
+
+Both probabilities are over random choices of x, y, z. On the right-hand we output
+yi , zi in response to the ith query. On the left-hand side, assuming that REPEAT
+does not hold in Game C, once again we output yi , zi . This would be clear if we
+had said “assuming that REPEAT does not hold in Game B,” and we deﬁned this
+even in Game B in the obvious manner. But notice that as long as REPEAT does
+not hold in Game C, Game C and Game B behave identically, always returning
+yi , zi in response to query i. This is easily established by induction.   ♦
+We claim that, because of the last claim,
+
+                     PFe − PRn = Pr[DB = 1] − Pr[DC ] = 1
+                                ≤ Pr[REPEAT]
+
+Let A, B, C be arbitrary events and assume Pr[A | C] = Pr[B | C]. Now
+
+             Pr[A] − Pr[B] = Pr[A | C] Pr[C] + Pr[A | C] Pr[C]
+                               − Pr[B | C] Pr[C] − Pr[B | C] Pr[C]
+
+and so Pr[A | C] = Pr[B | C] tells us that ﬁrst and third addends cancel. Now
+upperbound the second addend by dropping the Pr[A|C] (that is, upperbound
+this by 1) and drop the ﬁnal addend (which is negative) entirely, thereby getting
+an upperbound of Pr[C], as desired.
+
+We now address the case where we iterate the cipher. In other words, what hap-
+pens when ab − k > 0? In this case we may invoke fe[3, a, b]K (·) multiple times
+per encipherment, and we must account for this in the bound. The crucial point
+in the proof aﬀected by iterating is when we are calculating REPEATα . In the
+worst case, the ﬁrst encipherment could cause us to compute fe[3, a, b](m) for all
+m ∈ [k, ab − 1]. In this case up to ab − k values of αi may already have been com-
+puted. We therefore include these points in the computation of Pr[REPEATα ].
+                               q+(ab−k)                                2
+The new bound is therefore i=1             (i − 1) 2n /a /2n ≤ (q+ab−k)
+                                                                    2     2n /a /2n
+for Pr[REPEATα ] and similarly for Pr[REPEATβ | REPEATα ]. So the overall
+bound is now
+                                (q + ab − k)2
+                Pr[REPEAT] ≤                  ( 2n /a + 2n /b ) .
+                                    2n+1
+And setting ∆ = ab − k we obtain the bound of Theorem 2.
+

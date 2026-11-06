@@ -5,7 +5,7 @@ summary: The even-block castles V(w, h) as a binary decision diagram (BDD) or ze
 tags: [concept, castle, bdd, zdd, decision-diagram, representation, dfa, generation]
 sources: [castle-count-algorithms, castle-representations, castle-strip]
 created: 2026-09-20
-updated: 2026-10-16
+updated: 2026-11-05
 ---
 
 # Castle BDD / ZDD
@@ -119,6 +119,7 @@ The castle diagrams have `O(h)` nodes per variable level because the castle auto
 - [[castle-gray-code](pages/castle-gray-code.md)], [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - walking orders on the cube and on `V(w, h)`.
 - [[castle-entropy](pages/castle-entropy.md)] - `log₂ A^e = log₂ A − 1 + log₂(1 + S/A)`, the number of bits of a ZDD rank.
 - [[castle-samplers](pages/castle-samplers.md)] - the top-down sampling and rank/unrank of this page implemented on the automaton, with exactness checked in rational arithmetic.
+- [[feistel-network](pages/feistel-network.md)] - rank, encipher, unrank: the rank operation carries a cipher on `[0, A^e(w, h) − 1]` to a cipher on `V(w, h)`.
 
 ## Footnotes
 

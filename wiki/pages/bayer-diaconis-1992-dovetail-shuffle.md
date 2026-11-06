@@ -5,7 +5,7 @@ summary: Bayer and Diaconis show that an a-shuffle of n cards (cut into a packet
 tags: [source, paper, permutations, descents, eulerian-numbers, worpitzky, stars-and-bars, tower, narayana, markov-chain, mixing]
 sources: [bayer-diaconis-1992-dovetail-shuffle]
 created: 2026-10-08
-updated: 2026-10-16
+updated: 2026-11-05
 ---
 
 # Bayer & Diaconis (1992) - Trailing the dovetail shuffle to its lair
@@ -85,7 +85,7 @@ The index ranges differ: `r` runs over `1, …, n = L − 1` and `k` over `1, �
 
 ## Relation to Other Wiki Pages
 
-[[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] records the Narayana numerator and [[narayana-numbers](pages/narayana-numbers.md)] the descent refinement; this paper gives Worpitzky's identity, with the same binomial, and its proof by stars and bars. [[castle-samplers](pages/castle-samplers.md)] runs a heat-bath chain on castles, with coupling from the past for exact draws; the total-variation computation here uses the exact formula of Theorem 3 on one sufficient statistic. [[sandcastle-relaxation](pages/sandcastle-relaxation.md)] compares the relaxation time of a castle sandpile with the riffle shuffle, whose second-largest eigenvalue is `1/2` at every deck size.
+[[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] records the Narayana numerator and [[narayana-numbers](pages/narayana-numbers.md)] the descent refinement; this paper gives Worpitzky's identity, with the same binomial, and its proof by stars and bars. [[castle-samplers](pages/castle-samplers.md)] runs a heat-bath chain on castles, with coupling from the past for exact draws; the total-variation computation here uses the exact formula of Theorem 3 on one sufficient statistic. [[sandcastle-relaxation](pages/sandcastle-relaxation.md)] compares the relaxation time of a castle sandpile with the riffle shuffle, whose second-largest eigenvalue is `1/2` at every deck size. [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)], which lists this paper among its references, analyzes the Thorp shuffle, whose cut is exactly in half, as a cipher: its security is a bound on how fast the cards an attacker sees mix, proved by coupling.
 
 ## Footnotes
 

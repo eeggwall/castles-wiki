@@ -5,7 +5,7 @@ summary: How to encode a song as a castle, with every number computed. Rung 0, t
 tags: [analysis, castle, encoding, compression, audio, pcm, lpc, flac, mp3, aac, opus, finite-field, ntt, berlekamp-massey, entropy, youtube, beethoven, cd, dtmf, seminar, pedagogy]
 sources: [project-euler-502-representations, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-10-31
+updated: 2026-11-05
 ---
 
 # A song as a castle
@@ -297,6 +297,7 @@ It has 7 blocks; the mean block count over all castles of width 15 and height 5 
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT and the spectra of castle graphs.
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] - sparse-spectrum and crenellated castles.
 - [[castle-cryptography](pages/castle-cryptography.md)], [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the rings `F_p[x]/(Q)` used for encryption, and the attacks on them.
+- [[feistel-network](pages/feistel-network.md)] - a secret-key cipher on castles placed between a rank and an unrank like the ones on this page.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and `blocks`, used to verify the bijections.
 - [[isospectral-castles](pages/isospectral-castles.md)] - non-isomorphic castle graphs with the same spectrum.
 - [[image-as-castle](pages/image-as-castle.md)] - the same map for JPG and PNG: an image as a stack of row castles or one two-dimensional castle.

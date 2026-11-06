@@ -1,0 +1,43 @@
+# python3 bin/python/feistel_castle_ciphers.py  (2026-11-05, Python 3.10 with NumPy 2.2 and SciPy 1.15)
+[1] Fe[t, N_left, N_right] with N_left = h^ceil(w/2), N_right = h^floor(w/2) on the skylines {1, ..., h}^w, t = 3, 4, 5
+    (w, h) = (4, 3), (5, 3), (6, 2), (5, 4), (7, 2): m mod N_left is the first ceil(w/2) columns, floor(m/N_left) the rest; fe is a permutation of [0, h^w - 1] inverted by fe^-1: True
+[2] cycle walking from Fe onto the even-block castles V(w, h)
+    (w, h) = (4, 3), (5, 3), (6, 2), (5, 4), t = 4: the walk is a permutation of V(w, h) whose cycles are the cycles of Fe with the points outside V(w, h) erased: True
+[3] induced permutations of an N-point domain inside an N'-point set (u = N', k = N below)
+    u = 6, k = 3: 6 permutations, each from [120] of the 720
+    u = 7, k = 4: 24 permutations, each from [210] of the 5040
+    u = 6, k = 2: 2 permutations, each from [360] of the 720
+    every permutation of the domain arises from exactly u!/k! permutations: True
+[4] walk lengths
+    u = 6, k = 3: mean calls over all permutations and starts 1.750000, (u + 1)/(k + 1) = 1.750000
+    u = 7, k = 4: mean calls over all permutations and starts 1.600000, (u + 1)/(k + 1) = 1.600000
+    u = 7, k = 2: mean calls over all permutations and starts 2.666667, (u + 1)/(k + 1) = 2.666667
+    for the uniform permutation the mean is (u + 1)/(k + 1); for any one permutation the walks from V(w, h) cover each cycle meeting V(w, h) exactly once: True
+[5] A^e(w, h) and the cost of walking onto V(w, h)
+    A^e(4, 2) = 10, A^e(13, 10) = 3729050610636, A^e(10, 13) = 37959702514 (the Project Euler 502 values): True
+    the DP agrees with enumeration at (10, 2), (8, 3), (7, 4), (6, 5): True
+    (w, h) = (10, 2): h^w = 1024, A^e = 528, share 0.5156, expected calls (h^w + 1)/(A^e + 1) = 1.9376
+    (w, h) = (8, 3): h^w = 6561, A^e = 3031, share 0.4620, expected calls (h^w + 1)/(A^e + 1) = 2.1642
+    (w, h) = (7, 4): h^w = 16384, A^e = 7063, share 0.4311, expected calls (h^w + 1)/(A^e + 1) = 2.3195
+    (w, h) = (6, 5): h^w = 15625, A^e = 5478, share 0.3506, expected calls (h^w + 1)/(A^e + 1) = 2.8520
+    (w, h) = (13, 10): h^w = 10000000000000, A^e = 3729050610636, share 0.3729, expected calls (h^w + 1)/(A^e + 1) = 2.6816
+[6] Theorem 2 (PRP form) at (w, h) = (13, 10), n = 64
+    (a) all skylines, N_left = 10^7, N_right = 10^6, no surplus: bound <= 1/2 up to nu = 674 (2^9.40)
+    (b) V(13, 10) inside [0, 10^13 - 1] directly: surplus 6270949389364, bound at nu = 1 is 2.163e+19
+    (c) V(13, 10) ranked, N_left = N_right = ceil(sqrt(A^e)) = 1931075: surplus 44989, bound at nu = 1 is 1.048e+03
+    (d) V(13, 10) ranked, N_left = 1742569, N_right = 2139973 (least surplus for N_left within 200000 below sqrt(A^e)): surplus 1, bound <= 1/2 up to nu = 692 (2^9.43)
+    (e) the paper's example k = 2^35, a = 185360, b = 185368: ab - k = 74112, bound at nu = 0 is 29631
+    (a) and (d) top out near 2^9.4 queries; (b), (c) and (e) exceed 1: True
+[7] Thorp round vs maximally unbalanced Feistel
+    for n = 2..8 the Thorp move equals the Feistel round that moves the first bit to the end and flips it when f of the other n - 1 bits is 1: True
+[8] Theorem 1 at N = 64 (n = 6), two cards: exact worst-case total variation after r(2n - 1) rounds
+    r = 1, 11 rounds: exact 1.166e-02, bound 7.500e-01
+    r = 2, 22 rounds: exact 5.692e-06, bound 3.750e-01
+    r = 3, 33 rounds: exact 3.252e-09, bound 2.109e-01
+    r = 4, 44 rounds: exact 1.703e-12, bound 1.266e-01
+    the exact distance stays below the bound: True
+[9] Theorem 5: the query count at CCA advantage 1/2 with 16 passes (16n rounds, r = floor(16n/(4n - 2)))
+    N = 2^40: r = 4, lg nu = 26.21;  N = 2^42: r = 4, lg nu = 27.75
+    V(13, 10) ranked into [0, 2^42): 2^42 / A^e(13, 10) = 1.1794, expected calls (2^42 + 1)/(A^e + 1) = 1.1794
+    N = 2^40 gives 2^26.2 (the paper's example); N = 2^42 gives about 2^27.7, and 2^41 < A^e(13, 10) <= 2^42: True
+ALL OK

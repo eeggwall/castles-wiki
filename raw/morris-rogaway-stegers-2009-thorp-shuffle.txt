@@ -1,0 +1,965 @@
+Appears in Advances in Cryptology – CRYPTO 2009
+
+
+
+
+                        How to Encipher Messages on a Small Domain
+                             Deterministic Encryption and the Thorp Shuﬄe
+
+                                      Ben Morris1 , Phillip Rogaway2 , and Till Stegers2
+                        1
+                          Dept. of Mathematics, University of California, Davis, California 95616, USA
+                    2
+                        Dept. of Computer Science, University of California, Davis, California 95616, USA
+
+
+
+                             Abstract. We analyze the security of the Thorp shuﬄe, or, equivalently,
+                             a maximally unbalanced Feistel network. Roughly said, the Thorp shuﬄe
+                             on N cards mixes any N 1−1/r of them in O(r lg N ) steps. Correspond-
+                             ingly, making O(r) passes of maximally unbalanced Feistel over an n-bit
+                             string ensures CCA-security to 2n(1−1/r) queries. Our results, which em-
+                             ploy Markov-chain techniques, enable the construction of a practical and
+                             provably-secure blockcipher-based scheme for deterministically encipher-
+                             ing credit card numbers and the like using a conventional blockcipher.
+
+                             Key words: card shuﬄing, coupling, modes of operation, symmetric
+                             encryption, Thorp shuﬄe, unbalanced Feistel network.
+
+
+                   1        Introduction
+
+                   Small-space encryption. Suppose you want to encrypt a 9-decimal-digit
+                   plaintext, say a U.S. social-security number, into a ciphertext that is again a
+                   9-decimal-digit number. A shared key K is used to control the encryption. Syn-
+                   tactically, you seek a cipher E: K × M → M where M = {0, 1, . . . , N − 1},
+                   N = 109 , and EK = E(K, ·) is a permutation for each key K ∈ K. You aim to
+                   construct your scheme from a well-known primitive, say AES, and to prove your
+                   scheme is as secure as the primitive from which you start.
+                       The problem is harder than it sounds. You can’t just encode each plaintext
+                   M ∈ M as a 128-bit string and then apply AES, say, as that will return a
+                   128-bit string and projecting back onto M will destroy permutivity. Standard
+                   blockcipher modes of operation are of no use, and constructions like balanced
+                   Feistel [17, 31] or Benes [1, 30] have security that falls oﬀ by, at best, the square
+                   root of the size of the domain, N . Here N is so small that such a result may
+                   provide no practically-useful guarantee.
+                       The above small-space encryption problem was ﬁrst investigated by Black
+                   and Rogaway [6], but those authors  √ could ﬁnd no practical and provably-secure
+                   solution for N -values where q > N queries are feasible but having an encryp-
+                   tion take N computational steps is not—values like 220 ≤ N ≤ 250 . This paper
+                   provides a solution for these troublesome domains.
+                   Thorp shuffle. Our approach is based on the Thorp shuﬄe [41], which works
+                   like this. Suppose you want to shuﬄe N cards, where N is even. Cut the deck
+2           Ben Morris, Phillip Rogaway, and Till Stegers
+
+0   1   2   3   4   5   6   7   8   9 10 11 12 13 14 15     1 bit            n − 1 bits
+                                                             b          x
+
+                                                                        FK
+
+
+
+
+0   1   2   3   4   5   6 7     8   9 10 11 12 13 14 15             x              d
+
+
+Fig. 1. Two views of the Thorp shuﬄe (one round). Left: each card is paired
+with the one N/2 positions away. For cards at positions x and x + N/2, a random bit c
+(not shown) determines if the cards get mapped to 2x and 2x + 1 or to 2x + 1 and 2x.
+Right: each card is regarded as an n-bit string X (assume N = 2n ). Now card b  x
+gets sent to x  b ⊕ FK (x) for a uniform (and round-dependent) random function FK .
+
+
+into two equal piles. Drop the bottom card from either the left or right pile
+according to the outcome of a fair coin ﬂip, and then drop the card from the
+bottom of the other pile. Continue in this way, ﬂipping N/2 independent coins
+and using each to decide if you drop cards left-then-right or right-then-left. This
+is one round of the shuﬄe; repeat for as many rounds as you like. Expressed a
+bit more algebraically, for each round r = 1, 2, . . . , R the cards at positions x
+and x + N/2, where x ∈ {0, . . . , N/2 − 1}, are moved either to positions 2x
+and 2x + 1 or else to positions 2x + 1 and 2x, which ones being determined by a
+uniform coin ﬂip c ∈ {0, 1}. See the left-hand side of Fig. 1. Let Th[N, R] denote
+the Thorp shuﬄe with message space M = {0, . . . , N − 1} and R rounds.
+    The potential utility of the Thorp shuﬄe to cryptography and complexity
+theory was ﬁrst noticed by Naor some 20 years ago [27, p. 62], [34, p. 17]. He
+observed that the Thorp shuﬄe is oblivious in the following sense: one can trace
+the route of any given card in the deck without attending to the remaining
+cards in the deck. If the Thorp shuﬄe mixes cards quickly enough, this property
+would make it suitable for small-space encryption. Namely, the random bit c
+used for cards x and x + N/2 at round r could be determined by applying
+a pseudorandom function F , keyed by some underlying key K, to x and r.
+Conceptually, the string K compactly names all of the (N/2) · R random bits
+that would be needed to shuﬄe the entire deck. But because the Thorp shuﬄe
+is oblivious, only R of these bits, so that many PRF calls, would be needed to
+encipher a message x.
+Feistel connection. There are a variety of alternative views of what goes on
+in the Thorp shuﬄe. The one most resonant to cryptographers is this. Suppose
+that N = 2n is a power of two. In this case the Thorp shuﬄe coincides with a
+maximally unbalanced Feistel network. In an unbalanced Feistel network [18, 36],
+the left and right portions in the n-bit string that is acted on may have diﬀerent
+lengths. Throughout this paper, “maximally unbalanced Feistel” means that the
+round function takes in n − 1 bits and outputs a single bit, a “source-heavy”
+scheme. See the right-hand side of Fig. 1. A moment’s reﬂection will make clear
+                                                Thorp-Shuﬄe Encryption        3
+
+that, if the round function FK provides uniform random bits, independently
+selected for each round, then unbalanced Feistel is the Thorp shuﬄe.
+    As it takes n rounds of maximally unbalanced Feistel until each bit gets its
+turn in being replaced, we term n rounds of maximally unbalanced Feistel (or
+lg N  rounds of Thorp) a pass. One might hope that the Thorp shuﬄe mixes
+the deck well after a small number of passes.
+
+Our results. Assume N = 2n is a power of two, r ≥ 1, and let E = Th[N, R] be
+the Thorp shuﬄe with R = 2rn rounds (that is, 2r passes). We will show that an
+adversary mounting a nonadaptive chosen-plaintext attack and making q queries
+will have advantage that is at most (q/(r + 1)) · (4nq/N )r at distinguishing E
+from a random permutation on n bits. We prove this bound by regarding the
+Thorp shuﬄe of a designated q out of N cards as a Markov chain and applying a
+coupling argument. To the best of our knowledge, this is the ﬁrst time that cou-
+pling has been used to prove security for a symmetric cryptographic primitive.
+Using a result of Maurer, Pietrzak, and Renner [21], we can infer that 4r passes
+are enough so that a q-query adversary making an adaptive chosen-ciphertext
+attack will have advantage at most (2q/(r + 1)) · (4nq/N )r at distinguishing E
+from a random permutation and its inverse. Put in asymptotic terms, one can
+construct an n-bit permutation that is CCA-secure to 2n(1−1/r) queries by mak-
+ing 4r passes of a maximally unbalanced Feistel (its round function being a uni-
+formly random function from n − 1 bits to 1 bit). This far exceeds what balanced
+Feistel can achieve, providing a demonstrable separation between the security of
+balanced and unbalanced Feistel. Finally, we consider a weaker notion of secu-
+rity than customary—withstanding a (nonadaptive) designated-point attack. For
+achieving this, just two passes of unbalanced Feistel are already enough.
+    In applying the results above to solve the small-space encryption problem
+using a blockcipher like AES, the number of rounds R becomes the number
+of blockcipher calls. We describe a trick to reduce this by a factor of ﬁve (for
+a 128-bit blockcipher). We sketch other such “engineering” improvements, like
+making the constructed cipher tweakable [16], and we tabulate the number of
+blockcipher calls needed for various provable-security guarantees.
+
+Further related work. Morris proved that the mixing time for the Thorp
+shuﬄe—roughly, the number of steps until all q = N cards are ordered nearly
+uniformly—is polylogarithmic: it is O(lg44 N ) [25]. This was subsequently im-
+proved to O(lg19 N ) [22] and then to O(lg4 N ) [23].
+    Naor and Reingold analyzed unbalanced Feistel constructions, showing, in
+particular, that one pass over a maximally unbalanced Feistel network that op-
+erates on n bits remains secure to nearly 2n/2 queries.
+    For balanced Feistel, the classical analysis by Luby and Rackoﬀ [17] shows
+that three rounds provide CPA-security (four rounds for CCA-security) to nearly
+2n/4 queries. This was improved by Maurer and Pietrzak [20], who showed
+that r rounds of balanced Feistel could withstand about 2n/2−1/r queries (in
+the CCA setting). Patarin [29, 31] went on to show that a constant number
+of rounds (six for CCA-security) was already enough to withstand about 2n/2
+4         Ben Morris, Phillip Rogaway, and Till Stegers
+
+queries. He also suggested that enough rounds of maximally unbalanced Feistel
+ought to achieve security for up to 2n(1−ε) queries [29, p. 527], a conjecture that
+our work now proves.
+    Granboulan and Pornin [12] describe a method to perfectly realize a ran-
+dom permutation using a clever shuﬄing procedure due to Czumaj, Kanarek,
+Kutylowski, and Loryś [8]. The shuﬄe requires one to repeatedly sample in a
+hypergeometric distribution using parameters that are large and vary during
+the shuﬄe. In an implementation, Granboulan and Pornin employ an arbitrary-
+precision ﬂoating-point package to help achieve the needed sampling. In the end,
+about 109 machine cycles are used to encipher on a space of N < 232 points.
+While improvements may come [42], the approach is currently impractical.
+    Kaplan, Naor, and Reingold describe a method to reduce the number of bits
+needed to specify a permutation that will appear uniform against some number q
+of queries [14]. They do this by derandomizing a construction such as the Thorp
+shuﬄe. They discuss this case, invoking the result of Morris [25].
+    Håstad analyzes the mixing time of the following square lattice shuﬄe: given
+an m × m array, uniformly permute the entries in each row, and then uniformly
+permute the entries in each column [13]. He shows that a constant number of such
+passes are enough to mix well. The shuﬄe is oblivious, and a recursive realization
+of it would give rise to another solution to the small-space encryption problem.
+    The problem of enciphering on a small or unusual-size domain is a special
+case of format-preserving encryption, a goal informally described by Brightwell
+and Smith [7], named by Spies [39], and recently formalized by Bellare and
+Ristenpart [5] and by Rogaway [33].
+    In a recent proposal to NIST, Spies [38] describes a blockcipher mode of
+operation, FFSEM, to encipher on an arbitrary intermediate-size domain M =
+{0, 1, . . . , N −1}. The mechanism combines the use of a balanced Feistel network
+and the folklore cycle-walking approach.3
+    Finally, we mention that one could always solve small-domain encryption by
+de novo construction, creating a confusion/diﬀusion primitive with an unusually
+rich domain. This is what Schroeppel did with Hasty Pudding [37], anticipating
+by several years even a formulation of the general problem.
+The problem with balanced Feistel. It seems likely that, for any even n,
+enough rounds of balanced Feistel using a pseudorandom round function yield a
+computationally-secure small-domain encryption scheme, even up to q = 2n −2
+queries (recall that a Feistel-determined permutation is always even [28, Th 6.1]).
+No remotely practical attack is known [28], and the construction is of course
+quite old. But proofs of security for ciphers made from pseudorandom functions
+invariably work by proving information-theoretic security and then passing to the
+complexity-theoretic setting. Since balanced Feistel is information-theoretically
+insecure beyond 2n/2 queries, such an approach is inherently doomed. More
+3
+    Cycle-walking works like this. To construct a cipher EK that enciphers on M =
+                                          
+    {0, 1, . . . , N − 1} using a cipher EK that works on M = {0, 1, . . . , N  − 1}, where
+                          
+    N ≥ N , iterate EK (X) until the ﬁrst point is found that lies in M. Return this.
+    The method is eﬃcient if E  is and N  is not too much larger than N .
+                                                 Thorp-Shuﬄe Encryption         5
+
+precisely, if the adversary may ask q = 2θ+n/2 queries for some θ ≥ 0, then,
+to have any chance of information-theoretic security, one will need a number of
+rounds that is at least r = 2θ+1 . See Appendix B for a simple analysis giving
+this bound.
+
+2   Preliminaries
+Ciphers. By a cipher we mean a map E: K × M → M where K and M are
+ﬁnite nonempty sets (the key space and the domain) and EK (·) = E(K, ·) is
+a permutation on M for every K ∈ K. Let A be an adversary, meaning an
+algorithm with access to an oracle. For the game used to deﬁne E’s indistin-
+guishability from a random permutation, the oracle will depend on a permuta-
+tion f : M → M. It will respond to a query (enc, x) with f (x) and it will respond
+to a query (dec, y) with f −1 (y). Queries outside of {enc, dec} × M are ignored.
+                              $         ±EK                  $
+Deﬁne Advcca E (A) = P (K ← K : A               ⇒ 1) − P (π ← Perm(M) : A±π ⇒ 1)
+          ±f
+where A      denotes A interacting with the f -dependent oracle just described
+and Af ⇒ 1 is the event that it outputs a 1.
+    We say that adversary A is nonadaptive if its queries are the same on each and
+every run. It carries out a chosen-plaintext attack if each query is an encryption
+query, and a chosen-ciphertext attack if queries may be either encryption or
+decryption queries. Let Advncpa E  (q) = maxA Advcca    E (A) where the maximum
+is taken over all nonadaptive adversaries that ask at most q encryption queries
+and no decryption queries. By the standard averaging argument, the notion
+is unchanged if nonadaptive adversaries are assumed to be deterministic: they
+statically choose their queries x1 , . . . , xq . Let Advcca                 cca
+                                                          E (q) = maxA AdvE (A)
+where the maximum is taken over all adversaries that ask at most q queries.
+Markov chains. The next section assumes some familiarity with Markov chains
+and how to show rapid mixing for them using coupling arguments. See any text
+on the subject, such as Levin, Peres, and Wilmer [15], for some background on
+this topic.
+    Let Ω be a ﬁnite nonempty set and let μ, ν be probability distributions on Ω.
+A coupling of μ and ν is a pair of random variables (X, Y ), deﬁned on the same
+probability space, such that the marginal distributions of X and Y are μ and ν,
+respectively. Let
+                μ − ν = max μ(S) − ν(S) =        min      P(X = Y )           (1)
+                          S⊂Ω                 X∼μ, Y ∼ν
+
+be the total variation distance between μ and ν, where Z ∼ τ means that Z
+has distribution τ . The minimum in the right-hand side of (1) is taken over all
+couplings (X, Y ) of μ and ν. We shall call a coupling that achieves the minimum
+an optimal coupling of μ and ν.
+
+3   Variational Distance of the Projected Thorp Shuﬄe
+Fix N = 2n . Let {Tht : t ≥ 0} be the Markov chain representing the Thorp
+shuﬄe with N cards. More formally, let C be a set of cardinality N , whose
+6        Ben Morris, Phillip Rogaway, and Till Stegers
+
+elements we call cards. For concreteness, C = {0, 1}n . The state space of {Tht }
+is the set of bijections from C to {0, 1}n . For a card z ∈ C, we interpret Tht (z)
+as the position of card z at time t.
+    Let A be a deterministic adversary that makes exactly q queries. Our proof
+is based on an analysis of the mixing rate of the Thorp shuﬄe. However, since A
+makes only q ≤ N queries, we need only bound the rate at which some q-element
+subset of the cards mixes. So let z1 , . . . , zq be distinct cards in C, and let Xt be the
+vector of positions of cards z1 , . . . , zq at time t. For j in {1, . . . , q} we write Xt (j)
+for the position of card zj at time t, and deﬁne Xt (1, . . . , j) = (Xt (1), . . . , Xt (j)).
+    We shall call Xt the projected Thorp shuﬄe. Note that since the Thorp
+shuﬄe is a random walk on a group (see, e.g., [35]), it has uniform stationary
+distribution. Hence the stationary distribution of Xt , which we denote by π, is
+uniform over the set of distinct q-tuples of elements from {0, 1}n . Equivalently, π
+is the distribution of q samples without replacement from {0, 1}n . Let τt denote
+the distribution of Xt .
+
+Theorem 1 (Rapid mixing). Let N = 2n and q ∈ {1, . . . , N }, {Xt : t ≥ 0}
+the corresponding projected Thorp shuﬄe, π its stationary distribution, and τt
+the distribution of Xt . Then, for any r ≥ 1,
+                                                   r
+                                            q   4nq
+                          τr(2n−1) − π ≤               .
+                                          r+1 N
+Proof. For a distribution ν on distinct q-tuples of Ω, deﬁne
+
+                 ν(u1 , . . . , uj ) = P (Z1 = u1 , . . . , Zj = uj )
+          ν(uj | u1 , . . . , uj−1 ) = P ( Zj = uj | Z1 = u1 , . . . , Zj−1 = uj−1 )
+
+where (Z1 , . . . , Zq ) ∼ ν. For example, τt (u1 , . . . , uj ) is the probability that, in
+the Thorp shuﬄe, cards z1 , . . . , zj land in positions u1 , . . . , uj at time t, while
+τt (uj | u1 , . . . , uj−1 ) is the probability that at time t card zj is in position uj
+given that cards z1 , . . . , zj−1 are in positions u1 , . . . , uj−1 . On the other hand,
+π(uj | u1 , . . . uj−1 ) is the probability that, in a uniform random ordering, card zj
+is in position uj given that cards z1 , . . . , zj−1 land in positions u1 , . . . , uj−1 .
+     Each of the conditional distributions τt ( · | u1 , . . . , uj−1 ) converges to uniform
+as t → ∞. When all of these distributions are “close” to uniform, then τt will
+be close to π. In fact, we only need the conditional distributions to be close “on
+average,” as is formalized in the following lemma, which is proved in Appendix A.
+
+Lemma 2 Fix a ﬁnite nonempty set Ω and let μ and ν be probability distribu-
+tions supported on q-tuples of elements of Ω, and suppose that (Z1 , . . . , Zq ) ∼ μ.
+Then
+                       q−1 
+                                                                               
+           μ−ν ≤           E μ( · | Z1 , . . . , Zl ) − ν( · | Z1 , . . . , Zl ) . (2)
+                           l=0
+
+Note that in the above lemma, since Z1 , . . . , Zq are random variables (whose
+joint distribution is governed by μ), so is μ( · | Z1 , . . . , Zl ) − ν( · | Z1 , . . . , Zl )
+                                                       Thorp-Shuﬄe Encryption             7
+
+for every l ≤ q; each summand in the right-hand side of (2) is the expectation
+of one of these random variables.
+
+                
+Coupling arguments.          Later in the proof, we will be using a coupling argument
+to bound E μ( · | Y1 , . . . , Yl ) − ν( · | Y1 , . . . , Yl ) . Typically, such arguments
+are used in the following way. There is a Markov chain with transition matrix P
+and stationary distribution π, started from state x. One wants to estimate the
+total variation distance P t (x, ·) − π between the distribution of the chain at
+time t and the stationary distribution. To do so, one constructs a pair process
+{(Xt , Yt ) : t ≥ 0}, the coupling, that satisﬁes the following conditions:
+ 1. Individually, {Xt } and {Yt } are Markov chains with transition matrix P .
+ 2. For every t ≥ 0, if Xt = Yt then Xt+1 = Yt+1 .
+ 3. We have X0 = x and Y0 ∼ π.
+The random variable T = min{t : Xt = Yt } is called the coupling time. Note
+that condition (3) implies that Yt ∼ π for all t ≥ 0. Hence equation (1) implies
+
+                             P t (x, · ) − π ≤ P (Xt = Yt )
+                                              = P (T > t) .
+
+The idea is to deﬁne the coupling in such a way that T is unlikely to be large.
+Defining the coupling. Let τt be the distribution of Xt . We wish to use
+coupling to bound the expected distance between τt ( · | Xt (1), . . . , Xt (l)) and the
+uniform distribution on {0, 1}n \ {Xt (1), . . . , Xt (l)}, for each l ∈ {1, . . . , q − 1}.
+   Our approach will be as follows. For each value of l we will construct a process
+{Ut } on the same probability space as {Xt }, to get a coupling {(Xt , Ut ) : t ≥ 0}.
+The process {Ut } will satisfy the following conditions.
+ • The positions of the ﬁrst l cards in Ut always agree with Xt .
+ • For every t, the distribution of the position of card zl+1 at time t, given the
+   positions of cards z1 , . . . , zl , is uniform.
+We begin with a key deﬁnition. Say that two cards are adjacent at time t if their
+positions (viewed as elements of {0, 1}n ) are the same except for the ﬁrst bit (or,
+viewed as elements of {0, . . . , N − 1}, they diﬀer by N/2).
+   Let Xt be the projected Thorp shuﬄe. It will be convenient to use a rule for
+generating the evolution of Xt that uses q fair coins, c1 , . . . , cq , each of which is
+ﬂipped at each step. Formally, each cj is a sequence {cjt : t ≥ 0} of Bernoulli(1/2)
+random variables, where we interpret cjt as the outcome of coin cj at time t. We
+assume that all of the cjt are independent.
+   Note that for a given step, it is enough to describe, for each pair zi , zj of
+adjacent cards, i < j, how the position of zi is updated (since this dictates how
+the position of zj must be updated). We shall use the following update rule:
+    Update rule For each pair of cards zi , zj with i < j that are adjacent
+    at time t, we determine the position of zi at time t + 1 using coin ci and
+    coin ﬂip cit as follows:
+8           Ben Morris, Phillip Rogaway, and Till Stegers
+
+        1. the ﬁrst (leftmost) bit of the position of zi is set to cit , and then
+        2. the position of zi undergoes a cyclic left bit shift.
+Thus if ci is at position x at time t then at time t+1 it will be at position 2(x mod
+N/2) + cit , or, in string-oriented notation, at position x[2..N ] cit . We claim that
+if t ≥ n − 1 then for any pair of cards zi and zj we have
+
+                         P (zi and zj are adjacent at time t) ≤ 21−n .                                  (3)
+
+To verify this claim, note that (by reordering if necessary) we may assume that
+i = 1, j = 2, and the evolution of Xt is governed by the update rule described
+above. Let E be the event that z1 and z2 are adjacent at time t. In order for E to
+happen, at each step during times t−1, . . . , t−n+1, when their bits are changed
+(in step 1 of the update rule), the same change must occur for both z1 and z2 .
+Thus E = A ∩ B, where A is the event that z1 and z2 were not adjacent at any of
+the times t−1, . . . , t−n+1, and B is the event that coins ci and cj had the same
+outcomes at times t − 1, . . . , t − n + 1. It follows that P (E) ≤ P (B) = 21−n ,
+and the claim is veriﬁed.
+    We are now ready to describe {Ut : t ≥ 0}. The starting state U0 is con-
+structed as follows.
+ 1. We set U0 (1, . . . , l) = X0 (1, . . . , l). That is, cards z1 , . . . , zl have the same
+    initial positions in U0 as X0 .
+ 2. The distribution of U0 (l + 1) is uniform over {0, 1}n \ {U0 (1), . . . , U0 (l)}.
+(We may assume without loss of generality that the probability space on which
+{Xt : t ≥ 0} is deﬁned is rich enough to allow us to construct such a U0 .) Note
+that the ﬁnal condition implies that for every time t the conditional distribution
+of Ut (l) given Ut (1, . . . , l) is uniform over {0, 1}n \ {Ut (1), . . . , Ut (l)}.
+    We now describe the rule for generating (Xt+1 , Ut+1 ) from (Xt , Ut ). Note
+that the rule for generating {Xt : t ≥ 0} using coins c1 , . . . , cq leads to a natural
+way to generate the evolution of {(Xt , Ut ) : t ≥ 0}. Namely, we use the same
+coins c1 , . . . , cq to update both Xt and Ut in each step. Since the positions of
+cards z1 , . . . , zl initially agree in both X0 and U0 , and we are using the same
+coin ﬂips c1t , . . . , clt to update them each step, the positions of these cards remain
+matched for all times t. Furthermore, note that if at any point the position of
+card zl+1 becomes matched, then it remains matched from then on. Recall that τt
+is the distribution of Xt , and let Z1 , . . . , Zl be the positions of cards z1 , . . . , zl
+at time t. (Note that these positions are the same in both Xt and Ut .) By (1),
+we have
+
+    τt ( · | Z1 , . . . , Zl ) − π( · | Z1 , . . . , Zl ) ≤ P ( Xt (l + 1) = Ut (l + 1) | Z1 , . . . , Zl )
+                                                          = P (T > t | Z1 , . . . , Zl ) ,
+
+where T = min{t : Xt (l + 1) = Ut (l + 1)} is the coupling time. Taking expecta-
+tions gives
+                                                                
+            E τt ( · | Z1 , . . . , Zl ) − π( · | Z1 , . . . , Zl ≤ P (T > t) . (4)
+                                                      Thorp-Shuﬄe Encryption               9
+
+We claim that
+                                P (T > 2n − 1) ≤ p ,                                      (5)
+where p = nl2  2−n
+                  . Let A be the event that at some time in {n − 1, n, . . . , 2n − 2}
+card zl+1 is adjacent to some card of smaller index in the Y or Z process.
+Unless A occurs, coupling occurs by time 2n − 1. Summing equation (3) over
+2 processes, n timesteps, and l smaller indices veriﬁes the claim by showing that
+                               P (A) ≤ 2nl · 21−n = p .                                   (6)
+Note that equation (5) holds regardless of the initial state (X0 , U0 ), and that the
+process {(Xt , Ut ) : t ≥ 0} is itself a Markov chain. Now imagine that we have a
+sequence of trials where in each trial we run the coupling for an additional 2n−1
+steps. The probability that card zl+1 remains unmatched after the ﬁrst trial is at
+most p. Furthermore, by the memoryless property of Markov chains, given that
+card zl+1 remained unmatched after the ﬁrst r − 1 trials, the conditional prob-
+ability that it remains unmatched after the r-th trial is again at most p. Hence,
+by induction, P (card zl+1 remains unmatched after r trials) ≤ pr = (nl22−n )r ,
+that is,
+
+                         P (T > r(2n − 1)) ≤ (nl22−n )r .                                 (7)
+
+Summing over l ∈ {0, . . . , q − 1} and using Lemma 2 gives
+                                 q−1
+                                                         q
+          τr(2n−1) − π     ≤           (nl22−n )r ≤           (n22−n )r xr dx
+                                 l=0                  0
+                                                                                r
+                                    q r+1                q                 4nq
+                                  ≤       · nr 22r−nr =                               .   
+                                                                                          
+                                    r+1                 r+1                 N
+
+4    Pseudorandomness of the Thorp Shuﬄe
+CPA-security. The total variation distance is identical to the advantage with
+respect to a (deterministic) nonadaptive chosen-plaintext attack. So, reformu-
+lating Theorem 1 in cryptographic terms, what we have shown is the following.
+Theorem 3 (nCPA-security, concrete). Let N = 2n and 1 ≤ q ≤ N . Then,
+for any r ≥ 1,                                r
+                                       q   4nq
+               Advncpa
+                  Th[N,r(2n−1)] (q) ≤             .
+                                      r+1 N
+
+Time reversal. Let Th−1 [N, R] = (Th[N, R])−1 denote the time-reverse Thorp
+shuﬄe on N cards with R rounds: in round r ∈ {1, . . . , R} it sends cards 2x and
+2x + 1, where 0 ≤ x < N/2, either to x and x + N/2, or to x + N/2 and x,
+depending on a random bit c(x, r). For N a power of two the forward and
+reverse Thorp shuﬄe are “isomorphic” Markov chains in the sense that there is
+a relabeling of states from Th[N, R] to Th−1 [N, R] that preserves the transition
+rule. As a consequence, the bound of Theorem 1 applies to the reverse Thorp
+shuﬄe as well, giving us the following.
+10      Ben Morris, Phillip Rogaway, and Till Stegers
+
+
+     nCPA                                  nCPA
+     n = 30                                n = 40
+
+
+
+
+     CCA                                   CCA
+     n = 30                                n = 40
+
+
+
+
+Fig. 2. Proven security of the Thorp shuﬄe. The x-axis gives the log (base 2)
+of the number of queries. The y-axis gives an upper bound on an adversary’s nCPA
+advantage by Theorem 3 (top) or its CCA advantage by Theorem 5 (bottom). The
+curves are for N = 230 points (left) or N = 240 points (right). The curves, from left to
+right, are for 4, 8, 16, 32, and 64 passes.
+
+
+Corollary 4 (nCPA-security, reverse Thorp) Let N = 2n and 1 ≤ q ≤ N .
+                                                                     r
+Then, for any r ≥ 1, Advncpa
+                        Th−1 [N,r(2n−1)] (q) ≤ (q/(r + 1)) · (4nq/N ) .
+
+CCA-security. A lovely result of Maurer, Pietrzak, and Renner [21] allows us
+to easily extend Theorem 3 to a larger class of adversaries, namely, we can trade
+our nCPA-adversaries for CCA ones. The cost of doing so will be a doubling in
+the number of rounds, as well as in the advantage bound.
+
+Theorem 5 (CCA-security, concrete). Let N = 2n and 1 ≤ q ≤ N . Then,
+for any r ≥ 1,
+                                               r
+                                       2q   4nq
+               AdvTh[N,r(4n−2)] (q) ≤
+                  cca
+                                                   .
+                                      r+1 N
+
+Proof. We use the second half of Corollary 5 from Maurer et al. [21]. In their
+notation, we have that F = Th[N, R/2], which is stateless, G = Th−1 [N, R/2],
+which also stateless, and thus Δq (F  G−1 , P) = AdvccaTh[N,R] (q) is bounded
+above by ΔNA
+           q  (F, P)+Δ  NA
+                        q  (G, P) =  Adv  ncpa
+                                          Th[N,R/2] (q)+Adv   ncpa
+                                                              Th−1 [N,R/2]
+                                                                           (q). Note
+that nonadaptive adversaries in [21] may be probabilistic, but that the best deter-
+ministic adversary must do at least as well. Applying Theorem 3 and Corollary 4
+to bound the last two summands yields the result.                                 
+                                                                                  
+
+Graphical illustration. The bounds of Theorems 3 and 5 are illustrated in
+Fig. 4. For example, for 16 passes and N = 240 points (third curve on the bottom
+                                                  Thorp-Shuﬄe Encryption         11
+
+right), an adversary must ask at least 226.2 queries to have CCA advantage 0.5.
+For comparison, when applied to a maximally unbalanced Feistel network, the
+earlier analysis of Naor and Reingold [27, Th 6.2] would have topped out—with
+one pass—at 216.8 queries. Had we enciphered strings using a balanced Feistel
+network instead, then the result of Maurer and Pietrzak [20, Th 1], would give
+a family of curves (depending, like ours, on how many rounds were performed)
+that would top out by 218.5 queries. Patarin’s result for six-round Feistel [31]
+would apparently be similar, but the concrete security is not explicitly given in
+that work, and the quantitative bounds are diﬃcult to infer.
+Asymptotic interpretation. For an asymptotic interpretation of Theorem 3,
+ﬁx r > 0 and suppose that q = N 1−1/r and where, as before, N = 2n . Then
+                                           r
+                                   q    4nq      4r nr     1
+              Advncpa
+                  Th[N,2rn] (q) ≤              =       ·      .
+                                  r+1 N          r + 1 N 1/r
+
+In other words, we have upper-bounded the advantage by an expression of the
+form (a logb N )/N 1/r for r-dependent constants a and b. Since this goes to 0 as
+n → ∞, we conclude the following.
+
+Corollary 6 (nCPA-security, asymptotic) Let r ≥ 1 be an integer. Then
+                                                 
+                                         n(1−1/r)
+                  lim Advncpa
+                          Th[2n ,2rn]   2           =0.
+                      n→∞
+
+In English, a maximally-unbalanced Feistel network on n bits employing 2r passes
+maintains security to nearly 2n queries: speciﬁcally, to 2n(1−1/r) queries for large
+enough n. Said diﬀerently, you can achieve security up to N 1−ε nonadaptive
+queries, for any ε > 0, provided you make at least 2 · 1/ε passes. This is far
+better than what a balanced Feistel network can achieve (see Appendix B). The
+asymptotic version of Theorem 5 is similar.
+
+Corollary 7 (CCA-security, asymptotic) Let r ≥ 1 be an integer. Then
+                                                
+                                        n(1−1/r)
+                  lim Advcca  n
+                          Th[2 ,4rn]   2           =0.
+                      n→∞
+
+Designated-point security. The PRP notion of security formalizes an ad-
+versary’s inability to detect non-uniform behavior when it sees a population of
+plaintext/ciphertext pairs. Many security notions instead demand that the ad-
+versary ﬁgure something out about a designated point that it selects: the custom-
+ary formulations for ﬁnd-then-guess security, semantic security, unforgeability,
+and non-malleability are all this way. Weakening the security notion along these
+lines facilitates a stronger bound for the Thorp shuﬄe.
+    Let E: K × M → M be a cipher and let A be an adversary. We mea-
+                    G of A
+sure the eﬀectiveness        in carrying
+                                   H     out
+                                            a designated-point attack on E by
+AdvdpaE  (A)  =  P  A   ⇒  1  − P  A   ⇒  1  where oracles G and H behave like
+                                     $
+this. Both begin by choosing K ← K and then answering queries (enc, x) by
+EK (x). Oracle G answers the same way for a query (test, x), but H answers
+12      Ben Morris, Phillip Rogaway, and Till Stegers
+
+
+
+       DPA                                    DPA
+       n = 30                                 n = 40
+
+
+
+
+Fig. 3. Proven security of the Thorp shuﬄe, continued. The x-axis gives the log
+(base 2) of the number of queries. The y-axis gives an upper bound on an adversary’s
+DPA advantage by Theorem 8, both for N = 230 points (left) and N = 240 points
+(right). The curves, from left to right, are for two passes and then four.
+
+
+such a query by a uniformly chosen value that has not yet been returned to A.
+No other types of queries are allowed. The adversary may ask a single test
+query, its last: once a test query is asked, any subsequent query returns ⊥. Let
+Advdpa                     dpa
+      E (q) = maxA AdvE (A) where the maximum is taken over all determin-
+istic nonadaptive adversaries that ask exactly q enc queries. The DPA notion is
+similar to, but weaker than, the IUP notion investigated by Desai and Miner [9].
+
+Theorem 8 (Designated-point security). Let N = 2n and 1 ≤ q ≤ N .
+Then, for any r ≥ 1,
+                                                 r
+                                              4nq
+                     Advdpa
+                        Th[N,r(2n−1)] (q) ≤          .
+                                               N
+
+The proof follows immediately from equations (4) and (7). The bounds are il-
+lustrated in Fig. 3. An asymptotic counterpart for the result is as follows.
+
+Corollary 9 (Designated-point security, asymptotic) For any ε > 0,
+                                                
+                                          n(1−ε)
+                   lim Advdpa n
+                          Th[2 ,2n−2)]   2         =0.
+                      n→∞
+
+More general message spaces. We emphasize that our results on the Thorp
+shuﬄe have assumed that the size of the message is a power of two. By using the
+cycle-walking construction [6], this suﬃces to encipher messages on any message
+space {0, . . . , N − 1}. But the cost of applying this domain transformation can
+be nearly as bad as an expected doubling in the encryption and decryption time.
+It would be more desirable for the results to directly apply to Thorp-enciphering
+for any even N . We expect the full version of this paper to report on such results.
+
+
+5    Eﬃciently Realizing the Thorp Shuﬄe
+
+Encrypting data in such a way that its format is preserved can lead to a sim-
+pler migration path when encryption is added to legacy systems; for example,
+                                                       Thorp-Shuﬄe Encryption           13
+
+
+
+   p=          n = 20            n = 30            n = 40
+  #passes #AES dpa ncpa cca #AES dpa ncpa cca #AES dpa ncpa cca
+     2         8     12.7   6.9 —       12     22.1   11.6 —      16    31.7   16.4 —
+     4        16     13.2   9.4 6.4     24     22.6   15.7 11.2   32    32.2   22.1 15.9
+     8        32     13.4   11.3 9.1    48     22.8   18.8 15.3   64    32.4   26.5 21.7
+     16       64     13.6   12.4 11.1   96     23.0   20.8 18.6   128   32.6   29.3 26.3
+     32       128    13.6   13.4 13.0   192    23.1   22.5 20.0   256   32.6   31.8 30.9
+     64       256    13.6   13.4 13.0   384    23.1   22.6 21.9   512   32.6   31.8 30.9
+
+Fig. 4. Security and its cost. The columns indicate the domain size N = 2n , the
+number of passes p, the number of AES calls per encryption (with 5x-speedup), and val-
+ues lg q such that our bound on Advxxx
+                                   Th[2n ,np] (q) is about 0.5, for xxx ∈ {dpa, ncpa, cca}.
+
+
+
+
+a database’s schema can remain unchanged when some of its ﬁelds get enci-
+phered [7]. Small-space encryption enables a realization of this idea. The prob-
+lem has already attracted the interest of industry, with companies like Voltage
+Security already making products in this space.
+   In this section we sketch a practical realization of Thorp-shuﬄe encryption.
+We assume a pseudorandom function f : K × Σ ∗ → {0, 1}128 . In the analysis,
+ρ = f (K, ·) is regarded as a uniform random function. The translation to the
+complexity-theoretic setting is standard, the PRF’s key K naming a particular ρ.
+A natural instantiation of f would be the CBC MAC of AES (after a preﬁx-free
+encoding of the input [32]). Typically, only one AES call would be needed per
+PRF invocation.
+
+Update rule. Our realization of Th[N, R] will eﬀectively use a diﬀerent update
+rule than that of Section 3: to each x, x + N/2 ∈ {0, . . . , N − 1} and each round r
+we associate a coin ﬂip c(x, r) that is used to map the card occupying position x
+in round r to position 2x + c(x, r) if x < N/2 and to 2x − N + 1 − c if x ≥ N/2.
+When N is a power of two and c(x, r) = ρ(x mod N/2, r), this corresponds to
+an unbalanced Feistel network.
+
+Five rounds at once. We now describe a technique that lets one compute
+several rounds of the Thorp shuﬄe with a single call to the underlying PRF.
+With a PRF outputting 128 bits, one call will let us do ﬁve rounds of enciphering
+or deciphering instead of just one. We call this the 5x trick. With it, one needs
+R/5 PRF calls to realize Th[N, R]. See Fig. 4 for a representation of how many
+AES calls would be needed to make various numbers of passes over domains of
+various sizes, and our proven security bounds in each case.
+    To explain the idea behind the 5x trick, assume for now that we are enci-
+phering N = 2n points for some n ≥ 5. We will use the following notation. If
+X ∈ {0, 1} and i, j ∈ {0, . . . , − 1}, we write X[i] for its i-th bit, where the
+leftmost bit of X is X[0]. The substring consisting of the i-th through j-th bit
+14      Ben Morris, Phillip Rogaway, and Till Stegers
+
+
+
+
+Fig. 5. The 5x trick. The lines show successive n-bit strings Xj as we encipher
+(going down) or decipher (going up) using Th[2n , R]. For any A ∈ {0, 1}n−5 and round
+j divisible by 5, a single call computes the coins associated to all (n − 1)-bit strings
+    A for round j,    A  for round j + 1,   A   for round j + 2,  A    for
+round j +3, and A     for round j +4, where each  may be 0 or 1.
+
+
+of X is written X[i..j]. It is empty if i > j. If v1 , . . . , vk are bitstrings or integers,
+v1 , . . . , vk  is the tuple (v1 , . . . , vk ) encoded as a bitstring in some ﬁxed way.
+     Denote the ciphertext of X ∈ {0, 1}n after i rounds of Thorp-enciphering by
+Xi , with X0 = X. Instead of evaluating ρ at Xi [1 .. n−1], i and using only one
+of the resulting 128 bits as c(Xi [1 .. n−1], i), we will instead extract a suﬃcient
+number of bits to determine all coin ﬂips c(U, r) that may be needed in the same
+group of ﬁve consecutive rounds. Realizing this idea is slightly tricky because
+it is essential that each coin c(U, r) taken from ρ’s output be well-deﬁned no
+matter how this value may arise, and, at the same time, that it be independent
+from c(V, s) unless (U, r) = (V, s).
+     Our strategy is illustrated by Fig. 5. We group the round into runs of ﬁve
+which we call phases, beginning with the ﬁrst. (The last group of ﬁve may be
+shorter.) We exploit the fact that, for j ∈ {0, 1, 2, 3, 4}, the strings X5i and X5i+j
+have at least an (n − 5)-bit substring A in common. We evaluate ρ only on A, i,
+obtaining 128 random bits. The coin ﬂip c(Xt [1..n−1], t) used to encrypt Xt in
+round t = 5i + j is then picked out of these 128 bits using B, j where B is the
+concatenation of bits 1 .. (4−j) and (n−j +4) .. (n−1) of the string X5i+j . For
+example, in round 2 we have A = X2 [3 .. n−3] and B = X2 [1..2] X2 [n−2 .. n−1],
+whereas in round 14 we have B = X14 [n−4 .. n−1]. The independence requirement
+is satisﬁed since the tuple (A, B, i, j) uniquely determines (X5i+j [1 .. n−1], 5i+j).
+     The real complexity comes when N is not a power of 2. Carefully generalizing
+the idea just sketched by replacing string operations with modulo arithmetic
+gives rise to the same 5x speedup for Thorp-enciphering any number of points N
+provided that N is a multiple of 32. We specify this case in Fig. 6. The cycle-
+walking trick (see footnote 3 on p. 4) can then be used to extend the domain
+to arbitrary N while never enciphering on a domain that exceeds the size of the
+original one by more than 31 points. The 5x trick uses 5 · 24 = 80 of the 128 bits
+output by the PRF. It generalizes to yield a k-fold speedup if the PRF outputs
+at least k · 2k−1 bits, though this necessitates rounding N to the next multiple
+of 2k .
+Theorem 10. Suppose 32 | N and R ≥ 1. If ρ : Σ ∗ → {0, 1}128 is a uniform
+random function then the permutation Encρ deﬁned in Fig. 6 realizes Th[N, R].
+                                                            Thorp-Shuﬄe Encryption              15
+
+Also, Decρ is its inverse. Furthermore, computing Encρ (x) or Decρ (x) requires ρ
+to be evaluated on at most R/5 points.
+Proof. For the ﬁrst claim, it suﬃces to show that if N, R are positive integers
+and 32 | N, then Fρ is a random function on pairs (r, x) where r ∈ {0, . . . , R − 1},
+and 0 ≤ x < N/2. Let (r , x ) = (r , x ) be tuples of this form. If v is a variable
+                                                                                              
+in the code of Fρ in Fig. 6, we denote its value at the end of executing Fρr (x )
+           
+and Fρr (x ) by v and v , respectively. If Y  = Y  or 16j  + b = 16j  + b then
+the bits c , c output at line 41 are independent as random variables over the
+choice of ρ and we are done.
+     So suppose Y  = Y  and 16j  + b = 16j  + b . Since we have x < N/2 in
+any execution of Fρ we get hi = (x div 2j ) div N/25 ≤ (N/2j+1 )/(N/25 ) = 24−j ;
+clearly lo < 2j . It follows that b < 16, in particular b , b < 16. Hence the
+index 16j  + b = 16j  + b uniquely determines (j  , b ) = (j  , b ) and thus
+(lo , hi ) = (lo , lo ). From Y  = Y  we get N  = N  , i = i , and a = a . Since
+the values of a, hi, lo uniquely determine the value of x and i, j determine r, we
+conclude (r , x ) = (r , x ).
+     Let x ∈ {0, . . . , N − 1}. Denote by Yi and ai the value of the variables Y
+and a, respectively, when executing Fρ in the i-th round of Encρ (x). We prove the
+second claim of the theorem by showing that a5i+j = a5i whenever j ∈ {0, . . . , 4}
+and 0 ≤ 5i+j < R, since this and the deﬁnition of i in line 31 imply Y5i+j = Y5i .
+Note that if xk is the encryption of x after k rounds then by lines 13–14
+                                  xk+1 div 2 ≡ xk (mod N/2) .                                   (8)
+Since 32 | N we have 2j | N for j ∈ {0, . . . , 4}. Thus y ≡ y  (mod N/2j )
+implies y div 2 ≡ y  div 2 (mod N/2j+1 ) for any integers y, y  . Using (8) and this
+fact, we obtain x5i+1 div 2 ≡ x5i+2 div 22 (mod N/22 ), and since (8) is also valid
+mod N/25 , we get x5i ≡ x5i+2 div 22 (mod N/25 ). Continuing this way, we get
+x5i ≡ x5i+j div 2j (mod N/25 ), which implies a5i = a5i+j .                         
+                                                                                    
+Tweaking. A practical realization for small-space encryption should be tweak-
+able, a notion formalized by Liskov, Rivest, and Wagner [16]. The syntax of the
+cipher is extended to take an additional argument, the tweak, and each tweak
+eﬀectively names a random independent cipher. The algorithm of Fig. 6 is easily
+modiﬁed to accommodate a tweak by adding it to the tuple Y in line 37. As a
+simple example, an application might need to encipher the upper ﬁve digits of
+a U.S. social security number using a tweak that is the lower four digits.
+Variable input length. In Fig. 6, we included the domain size N within
+the scope of ρ’s input (lines 37–38). This makes the scheme secure in the sense
+of a variable-input-length (VIL) cipher. The property allows to, for example,
+encipher under a common key database ﬁelds that have diﬀerent domain sizes.
+
+Acknowledgments
+Many thanks to Terence Spies, and Voltage Security, for renewing the second
+author’s interest in the small-space encryption problem; without their interest,
+this work would not exist.
+16      Ben Morris, Phillip Rogaway, and Till Stegers
+
+
+ 10 algorithm Encρ (x)                       30   algorithm Fρr (x)
+ 11 for r ← 0 to R − 1 do                    31   i ← r div 5
+ 12   c ← Fρr (x mod N/2)                    32   j ← r mod 5
+ 13   if x < N/2 then x ← 2x + c             33   a ← (x div 2j ) mod N/32
+ 14   else x ← 2(x mod N/2) + 1 − c          34   hi ← (x div 2j ) div N/32
+ 15 return x                                 35   lo ← x mod 2j
+                                             36   b ← hi · 2j + lo
+ 20 algorithm Decρ (y)
+                                             37   Y ← N, i, a
+ 21 for r ← R − 1 downto 0 do
+                                             38   table ← ρ(Y )
+ 22   c ← Fρr (y div 2)
+                                             39   k ← 16j + b
+ 23   if c = y mod 2 then y ← y div 2
+                                             40   c ← table[k]
+ 24   else y ← y div 2 + N/2
+                                             41   return c
+ 25 return x
+
+Fig. 6. Realization of Th[N, R] that incorporates the 5x trick. We assume that 32 | N
+and ρ : {0, 1}∗ → {0, 1}128 . Line 38 need only be evaluated once every ﬁve rounds.
+
+
+References
+
+ 1. W. Aiello and R. Venkatesan. Foiling birthday attacks in length-doubling transfor-
+    mations: Benes: a non-reversible alternative to Feistel. EUROCRYPT 1996, LNCS
+    vol. 1070, Springer, pp. 307–320, 1996.
+ 2. D. Aldous and P. Diaconis. Shuﬄing cards and stopping times. American Mathe-
+    matical Monthly, 93, pp. 333–348, 1986.
+ 3. D. Aldous and P. Diaconis. Strong uniform times and ﬁnite random walks. Ad-
+    vances in Applied Mathematics, 8(1), pp. 69–97, 1987.
+ 4. D. Bayer and P. Diaconis. Tracing the dovetail shuﬄe to its lair. Annals of Applied
+    Probability, 2(2), pp. 294–313, 1992.
+ 5. M. Bellare and T. Ristenpart. Format-preserving encryption. Cryptology ePrint
+    report 2009/251.
+ 6. J. Black and P. Rogaway. Ciphers with arbitrary ﬁnite domains. Topics in Cryp-
+    tology – CT-RSA 2002, LNCS vol. 2271, Springer, pp. 114–130, 2002.
+ 7. M. Brightwell and H. Smith. Using datatype-preserving encryption to enhance
+    data warehouse security. 20th National Information Systems Security Conference
+    Proceedings (NISSC), pp. 141–149, 1997.
+ 8. A. Czumaj, P. Kanarek, M. Kutylowski, and K. Loryś. Fast generation of random
+    permutations via networks simulation. Algorithmica, 21(1), Springer, May 1998.
+ 9. A. Desai and S. Miner. Concrete security characterizations of PRFs and PRPs: re-
+    ductions and applications. ASIACRYPT 2000, LNCS vol. 1976, Springer, pp. 503–
+    516, 2000.
+10. P. Diaconis. Group representations in Probability and Statistics, vol. 11 of Lecture
+    Notes—Monograph series. Institute of Mathematical Statistics, Hayward, Califor-
+    nia, 1988.
+11. P. Diaconis and J. Fill. Strong stationary times via a new form of duality. Annals
+    of Probability, 18(4), pp. 1483–1522, 1990.
+12. L. Granboulan and T. Pornin. Perfect block ciphers with small blocks. Fast Soft-
+    ware Encryption (FSE 2007), LNCS vol. 4593, Springer, pp. 452-465, 2007.
+13. J. Håstad. The square lattice shuﬄe. Random Structures and Algorithms, 29(4),
+    pp. 466–474, 2006.
+                                                     Thorp-Shuﬄe Encryption          17
+
+14. E. Kaplan, M. Naor, and Omer Reingold. Derandomized constructions of
+    k-wise (almost) independent permutations. Randomization and Computation
+    (RANDOM 2005), LNCS vol. 3624, Springer, pp. 354–365, 2005.
+15. D. Levin, Y. Peres, and E. Wilmer. Markov chains and mixing times. American
+    Mathematical Society, 2008.
+16. M. Liskov, R. Rivest, and D. Wagner. Tweakable block ciphers. CRYPTO 2002,
+    LNCS vol. 2442, Springer, pp. 31–46, 2002.
+17. M. Luby and C. Rackoﬀ. How to construct pseudorandom permutations from pseu-
+    dorandom functions. SIAM J. on Computing, 17(2), pp. 373–386, 1988.
+18. S. Lucks. Faster Luby-Rackoﬀ ciphers. Fast Software Encryption (FSE 1996),
+    LNCS vol. 1039, Springer, pp. 180–203, 1996.
+19. U. Maurer. A simpliﬁed and generalized treatment of Luby-Rackoﬀ pseudorandom
+    permutation generators. EUROCRYPT 1992, LNCS vol. 658, pp. 239–255, 1992.
+20. U. Maurer and K. Pietrzak. The security of many-round Luby-Rackoﬀ pseudo-
+    random permutations. EUROCRYPT 2003, LNCS vol. 2656, Springer, pp. 544–
+    561, 2003.
+21. U. Maurer, K. Pietrzak, and R. Renner. Indistinguishability ampliﬁcation.
+    CRYPTO 2007, LNCS vol. 4622, Springer, pp. 130–149, 2007.
+22. R. Montenegro and P. Tetali. Mathematical aspects of mixing times in Markov
+    chains. Foundations and Trends in Theoretical Computer Science, 1(3), Now Pub-
+    lishers, 2006.
+23. B. Morris. Improved mixing time bounds for the Thorp shuﬄe and L-reversal chain.
+    February 4, 2008. arXiv:0802.0339
+24. B. Morris. The mixing time for simple exclusion. Annals of Applied Probability,
+    16(2), 2006.
+25. B. Morris. The mixing time of the Thorp shuﬄe. SIAM J. on Computing, 38(2),
+    pp. 484–504, 2008. Earlier version in STOC 2005.
+26. B. Morris and Y. Peres. Evolving sets, mixing and heat kernel bounds. Probability
+    Theory and Related Fields, 133(2), pp. 245–266, 2005.
+27. M. Naor and O. Reingold. On the construction of pseudo-random permutations:
+    Luby-Rackoﬀ revisited. J. of Cryptology, 12(1), pp. 29-66, 1999.
+28. J. Patarin. Generic attacks on Feistel schemes. Cryptology ePrint report 2008/036.
+29. J. Patarin. Luby-Rackoﬀ: 7 rounds are enough for 2n(1−ε) security. CRYPTO 2003,
+    LNCS vol. 2729, Springer, pp. 513–529, 2003.
+30. J. Patarin. A proof of security in O(2n ) for the Benes scheme. Progress in Cryp-
+    tology – AFRICACRYPT 2008, LNCS vol. 5023, Springer, pp. 209–220, 2008.
+31. J. Patarin. Security of random Feistel schemes with 5 or more rounds. CRYPTO
+    2004, LNCS vol. 3152, Springer, pp. 106–122, 2004.
+32. E. Petrank and C. Rackoﬀ. CBC MAC for real-time data sources. J. of Cryptology,
+    13(3), pp. 315–338, 2000.
+33. P. Rogaway. A synopsis of format-preserving encryption. Manuscript, Sept. 2008.
+34. S. Rudich. Limits on the provable consequences of one-way functions. Ph.D. Thesis,
+    UC Berkeley, 1989.
+35. L. Saloﬀ-Coste. Random walks on ﬁnite groups. In Probability on Discrete Struc-
+    tures, Encyclopedia of Mathematical Sciences, vol. 110, H. Kesten, editor, Springer,
+    pp. 263–346, 2004.
+36. B. Schneier and J. Kelsey. Unbalanced Feistel networks and block-cipher design.
+    Fast Software Encryption (FSE 1996), LNCS vol. 1039, Springer,pp. 121–144, 1996.
+37. R. Schroeppel. Hasty Pudding Cipher speciﬁcation. Manuscript available at
+    http://richard.schroeppel.name:8015/hpc/hpc-spec. June 1998 (revised 5/99).
+18       Ben Morris, Phillip Rogaway, and Till Stegers
+
+38. T. Spies. Feistel ﬁnite set encryption. NIST submission, February 2008. Available
+    at csrc.nist.gov/groups/ST/toolkit/BCM/modes development.html.
+39. T. Spies. Personal communications, February 2009.
+40. W. Steiger. A best possible Kolmogoroﬀ-type inequality for martingales and a
+    characteristic property. Annals of Mathematical Statistics, 40, pp. 764–769, 1969.
+41. E. Thorp. Nonrandom shuﬄing with applications to the game of Faro. Journal of
+    the American Statistical Association, 68, pp. 842–847, 1973.
+42. H. Zechner. Eﬃcient sampling from continuous and discrete distributions.
+    Ph.D. Thesis, Institute for Statistics, TU Graz, 1997.
+
+
+
+A     Lemma about Total Variation Distance
+
+The following Lemma was used in the proof of Theorem 1. It is essentially
+Lemma 12 in [24]. We reproduce it here for the convenience of the reader.
+
+Lemma 2. Fix a ﬁnite set Ω and let μ and ν be probability distributions
+supported on q-tuples of elements of Ω, and suppose that (Z1 , . . . , Zq ) ∼ μ.
+Then
+                     q−1 
+                                                                            
+           μ−ν ≤        E μ( · | Z1 , . . . , Zl ) − ν( · | Z1 , . . . , Zl ) . (9)
+                            l=0
+
+
+Proof. For probability distributions μ and ν, the total variation distance is
+
+                            μ−ν =             min        P(W1 = W2 ) .                                (10)
+                                         W1 ∼μ, W2 ∼ν
+
+
+Thus for every l and z1 , . . . , zl , we can construct W1 ∼ μ( · | z1 , . . . , zl ) and
+W2 ∼ ν( · | z1 , . . . , zl ) such that
+
+                 P(W1 = W2 ) = μ( · |z1 , . . . , zl ) − ν( · | z1 , . . . , zl ) .
+
+We couple Z ∼ μ with Y ∼ ν as follows. Choose (X1 , Z1 ) according to the
+optimal coupling (i.e., a coupling that achieves the minimum in the RHS of (10)),
+and subsequently for all l with 1 ≤ l ≤ q − 1, if (Z1 , . . . , Zl ) = (X1 , . . . , Xl ), then
+choose (Zl+1 , Xl+1 ) according to the optimal coupling of μ( · | Z1 , . . . , Zl ) and
+ν( · | Z1 , . . . , Zl ); else couple (Xl+1 , Zl+1 ) in an arbitrary way. Note that
+
+                            q−1 
+                                                                                    
+           P(Z = Y ) =         P (Z1 , . . . , Zl ) = (Y1 , . . . , Yl ), Zl+1 = Yl+1 .               (11)
+                            l=0
+
+
+But on the event that (Z1 , . . . , Zl ) = (Y1 , . . . , Yl ), the pair (Zl+1 , Yl+1 ) is chosen
+according to the optimal coupling       of μ( · | Z1 , . . . , Zl ) and ν( · | Z1 , . . . , Zl ), so
+                                     q−1
+the RHS of (11) is at most           l=0 E      μ( · | Z1 , . . . , Zl ) − ν( · | Z1 , . . . , Zl )   . 
+                                                                                                        
+                                                              Thorp-Shuﬄe Encryption             19
+
+B       An Attack on Balanced Feistel
+Let us describe an attack on balanced Feistel that takes q = 2θ+n/2 queries,
+where θ ≥ 0, and see what it implies. The attack is simply to ask q random
+                                                n                                         n
+but distinct queries x1 , . . . , xq ∈ {0, 1} , getting responses y1 , . . . , yq ∈ {0, 1} ,
+                                                                                     n/2
+and then see if there is any sequence of round functions f1 , . . . , fr : {0, 1}         →
+       n/2
+{0, 1}     that are consistent with the gathered query/response pairs. If there is
+one, output 1, else output 0. Obviously this is not eﬃcient, but we are only trying
+to evidence that an information-theoretic proof is impossible, not that a practical
+attack is in hand. To lower-bound the adversary’s eﬀectiveness, note that for
+                                            n          n
+a random permutation π : {0, 1} → {0, 1} there are N !/(N − q)! possible
+tuples (x1 , y1 ), . . . , (xq , yq ) that the adversary might observe, where N = 2n ,
+whereas an n-bit, r-round balanced Feistel cipher, Φ[n, r], encompasses at most
+          n/2
+2r·(n/2)·2    possible permutations. So the adversary A we have described has at
+least advantage
+                                                                   n   n/2
+                                                       2 r· 2 ·2
+                                Advprp
+                                   Φ[n,r] (A)    ≥ 1−                                          (12)
+                                                      N !/(N − q)!
+
+To illustrate numerically, when n = 30 and q = 220 , one needs r = 64 rounds
+of Feistel so that A’s advantage will not be large; in fact, with r = 63 rounds
+the adversary’s advantage is essentially 1 (it exceeds 1 − 10−10000 ). To verify the
+earlier claim that you need r = 2θ+1 rounds to withstand q = 2θ+n/2 queries,
+set r = 2θ and notice that 2n/2 ≤ 2n − q = 2n − 2θ+n/2 for n ≥ 2, so
+    n      n/2                                                       N!                     n    n/2
+2r· 2 ·2         = (2n/2 )q ≤ 2n · 2n−1 · · · · · (2n − q + 1) =            ≤ (2n )q = 22r· 2 ·2
+                                                                   (N − q)!
+
+Therefore, letting r∗ (n, q) denote the minimum r ≥ 1 such that such that the
+lower bound in (12) is 0, we have 2θ ≤ r∗ (n, q) ≤ 2θ+1 .
+
