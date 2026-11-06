@@ -5,7 +5,7 @@ summary: A seminar on Project Euler 502's even-block clause read as information,
 tags: [concept, castle, seminar, pedagogy, teaching, entropy, information, parity, castle-sign, steganography, compression, topological-entropy]
 sources: [project-euler-502-observations, project-euler-502-solution]
 created: 2026-09-26
-updated: 2026-11-05
+updated: 2026-11-06
 ---
 
 # One bit seminar - the parity clause as information
@@ -207,7 +207,6 @@ True
 - [[half-derivative-seminar](pages/half-derivative-seminar.md)] - a seminar on the block count, the partial sum, the transfer matrix and the walk on a tree castle at order 1/2.
 - [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the seminar pages on the Pell strip, castle cryptography, and audio as castles.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the projector for the block count modulo `m`, with `m`-th roots of unity.
-- [[feistel-network](pages/feistel-network.md)] - a cipher on the `h^w` skylines walked onto the even-block castles takes `(h^w + 1)/(A^e + 1)` calls on average, `2^{1.42} = 2.68` at `w = 13, h = 10`: the parity bit and the height correction of this page.
 
 ## Footnotes
 

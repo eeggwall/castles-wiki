@@ -5,7 +5,7 @@ summary: The wiki's symbols in one place. Castle counts are written width first:
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-11-05
+updated: 2026-11-06
 ---
 
 # Castle notation - castles, towers, and signed counts
@@ -243,7 +243,7 @@ The secret-key cipher pages ([[feistel-network](pages/feistel-network.md)] and i
 
 | symbol | meaning | where |
 |---|---|---|
-| `N` | the size of a cipher's domain `[0, N − 1]`; on castles `A^e(w, h)` or `h^w`. Not the norm `N(y)`, which always carries its argument | [[feistel-network](pages/feistel-network.md)], [[black-rogaway-2002-arbitrary-finite-domains](pages/black-rogaway-2002-arbitrary-finite-domains.md)], [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)] |
+| `N` | the size of a cipher's domain `[0, N − 1]`; on castles `A(w, h)` or `h^w`. Not the norm `N(y)`, which always carries its argument | [[feistel-network](pages/feistel-network.md)], [[black-rogaway-2002-arbitrary-finite-domains](pages/black-rogaway-2002-arbitrary-finite-domains.md)], [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)] |
 | `N′` | the size of the larger set a cycle walk starts from | [[feistel-network](pages/feistel-network.md)], [[black-rogaway-2002-arbitrary-finite-domains](pages/black-rogaway-2002-arbitrary-finite-domains.md)] |
 | `N_left`, `N_right` | the sizes of the two halves of a generalized Feistel split, `N_left·N_right ≥ N`; Black and Rogaway's `a` and `b`, renamed because `a`, `b` are the private exponents and the heights of neighboring columns. Not the samplers' `N_i(state)` or the polynomials `N_i` of [[idempotent-decomposition](pages/idempotent-decomposition.md)] | [[feistel-network](pages/feistel-network.md)], [[black-rogaway-2002-arbitrary-finite-domains](pages/black-rogaway-2002-arbitrary-finite-domains.md)] |
 | `ν` | the number of queries an attacker asks, the papers' `q`, which marks area here | the three cipher pages |

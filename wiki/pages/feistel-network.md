@@ -1,7 +1,7 @@
 ---
 title: Feistel network - ciphers that map castles to castles
 category: Concepts
-summary: A Feistel network builds a permutation from functions that need not be invertible - a round adds a keyed function of one half of the input to the other half and swaps the halves - and a keyed family of rounds is a secret-key cipher. Its three shapes in the sources are balanced, generalized (halves of sizes N_left and N_right, Black and Rogaway) and maximally unbalanced (one half a single bit, which at N = 2^n is the Thorp shuffle, Morris, Rogaway and Stegers); cycle walking restricts a cipher to a subset at no loss of security. On castles the constructions work on any set of skylines, whatever its block counts: the halves of a skyline read in base h are its left and right column halves, cycle walking from the h^w skylines costs (h^w + 1)/(A + 1) calls on average onto the A(w, h) castles of height h and (h^w + 1)/(A^e + 1) onto the even-block castles V(w, h), the Project Euler set (1.34 and 2.68 at (13, 10), 0.42 bits of height and one more bit of parity), and rank, encipher, unrank turns any cipher on [0, A^e − 1] into one on V(w, h). At (13, 10) the generalized Feistel bound covers about 2^9.4 chosen-plaintext queries and 16 passes of the Thorp shuffle about 2^27.7 chosen-ciphertext queries.
+summary: A Feistel network builds a permutation from functions that need not be invertible - a round adds a keyed function of one half of the input to the other half and swaps the halves - and a keyed family of rounds is a secret-key cipher. Its three shapes in the sources are balanced, generalized (halves of sizes N_left and N_right, Black and Rogaway) and maximally unbalanced (one half a single bit, which at N = 2^n is the Thorp shuffle, Morris, Rogaway and Stegers); cycle walking restricts a cipher to a subset at no loss of security. On castles the halves of a skyline read in base h are its left and right column halves, cycle walking from the h^w skylines onto the A(w, h) castles of height h costs (h^w + 1)/(A + 1) calls on average (1.34 at (13, 10)), and rank, encipher, unrank turns any cipher on [0, A − 1] into one on the castles. At (13, 10) the generalized Feistel bound covers about 2^9.4 chosen-plaintext queries and 16 passes of the Thorp shuffle about 2^28.5 chosen-ciphertext queries.
 tags: [concept, castle, cryptography, cipher, secret-key, feistel, unbalanced-feistel, thorp-shuffle, cycle-walking, format-preserving-encryption, rank-unrank]
 sources: [black-rogaway-2002-arbitrary-finite-domains, morris-rogaway-stegers-2009-thorp-shuffle]
 created: 2026-11-05
@@ -32,34 +32,33 @@ A cipher is judged by the number of queries `ν` at which an attacker's **advant
 
 ## Ciphers on castles
 
-A castle of width `w` and height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ c_i ≤ h` and some `c_i = h`, and there are `A(w, h) = h^w − (h − 1)^w` of them; `V(w, h)` is the set of the even-block ones, and `A^e(w, h)` their number, the Project Euler 502 count ([[castle-notation](pages/castle-notation.md)]). Three constructions turn a Feistel network into a cipher on castles. None depends on a castle's block count (the block of a block cipher is its `n`-bit input): each works on any set of skylines that can be tested or ranked, and the numbers below take `V(w, h)`, the Project Euler set.
+A castle of width `w` and height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ c_i ≤ h` and some `c_i = h`, and there are `A(w, h) = h^w − (h − 1)^w` of them ([[castle-notation](pages/castle-notation.md)]). Three constructions turn a Feistel network into a cipher on castles.
 
 **1. Column halves.** Read a skyline in `{1, …, h}^w` as the base-`h` number `Σ_i (c_i − 1) h^{i−1}`, column 1 the lowest digit. With `N_left = h^⌈w/2⌉` and `N_right = h^⌊w/2⌋`, the two halves of the generalized network are the first `⌈w/2⌉` columns and the remaining `⌊w/2⌋`, so each round adds a keyed function of one column half to the other, as base-`h` numbers with carries. The network permutes all `h^w` skylines.[^exec]
 
-**2. Walking onto a set of castles.** Cycle walking from the `h^w` skylines enciphers any set of them. Onto the castles of height `h` its test of membership is the maximum, and onto `V(w, h)` the maximum and the block count, both read in one pass over the columns. For a uniformly random permutation of `N′` points, the walk from a point of an `N`-point subset takes `(N′ + 1)/(N + 1)` calls on average, which here is `(h^w + 1)/(A(w, h) + 1)` onto the castles of height `h` and `(h^w + 1)/(A^e(w, h) + 1)` onto `V(w, h)`:[^exec]
+**2. Walking onto the castles.** Cycle walking from the `h^w` skylines onto the castles of height `h` enciphers the castles; its test of membership is whether some column reaches `h`. For a uniformly random permutation of `N′` points, the walk from a point of an `N`-point subset takes `(N′ + 1)/(N + 1)` calls on average, which here is `(h^w + 1)/(A(w, h) + 1)`:[^exec]
 
 | `(w, h)` | (10, 2) | (8, 3) | (7, 4) | (6, 5) | (13, 10) |
 |---|---|---|---|---|---|
-| average calls onto the castles of height `h` | 1.00 | 1.04 | 1.15 | 1.36 | 1.34 |
-| average calls onto `V(w, h)` | 1.94 | 2.16 | 2.32 | 2.85 | 2.68 |
-| bits of the parity condition, `log₂(A/A^e)` | 0.95 | 1.06 | 1.01 | 1.07 | 1.00 |
+| share of the castles in `{1, …, h}^w` | 0.999 | 0.961 | 0.867 | 0.738 | 0.746 |
+| average calls | 1.00 | 1.04 | 1.15 | 1.36 | 1.34 |
 
-The logarithm of the cost onto `V(w, h)` is the gap between `w·log₂ h` and `log₂ A^e(w, h)`: about one bit for the parity, which only the even-block domain pays, and at `(13, 10)` 0.42 bits for the condition that some column reach `h`, so the walk costs `2^{1.42} = 2.68` calls onto `V(13, 10)` and `2^{0.42} = 1.34` onto all castles of height 10 ([[one-bit-seminar](pages/one-bit-seminar.md)]).[^exec]
+At `(13, 10)` the `9^13` skylines below height 10 are about a quarter of the `10^13`, so the walk costs 1.34 calls.
 
-**3. Rank, encipher, unrank.** The automaton of [[castle-bdd-zdd](pages/castle-bdd-zdd.md)] ranks `V(w, h)` onto `[0, A^e − 1]` and unranks it ([[castle-samplers](pages/castle-samplers.md)], section 5). A cipher on `[0, A^e − 1]`, between rank and unrank, is a cipher on `V(w, h)`. The cipher may itself pad: the generalized network runs on `N_left·N_right ≥ A^e` points, and the Thorp shuffle, whose theorems are proved for powers of two, on `2^n ≥ A^e` points, each walking back into `[0, A^e − 1]`.
+**3. Rank, encipher, unrank.** [[song-as-castle](pages/song-as-castle.md)] ranks the castles of height `h` onto `[0, A − 1]` by the first column of height `h`, and unranks them. A cipher on `[0, A − 1]`, between rank and unrank, is a cipher on the castles. The cipher may itself pad: the generalized network runs on `N_left·N_right ≥ A` points, and the Thorp shuffle, whose theorems are proved for powers of two, on `2^n ≥ A` points, each walking back into `[0, A − 1]`.
 
-**At the Project Euler size `(13, 10)`,** with `A^e = 3,729,050,610,636`:[^pe]
+**At `(13, 10)`,** with `A = 7,458,134,171,671`:
 
 | construction | cipher runs on | padding | attack | queries at advantage 1/2 |
 |---|---|---|---|---|
-| generalized Feistel, 3 rounds, column halves `10^7 × 10^6` | the `10^13` skylines | none in the network; the walk to `V(13, 10)` takes 2.68 calls per castle | chosen plaintext | about `2^9.4` (674) |
-| the same, with `V(13, 10)` as the domain | the `10^13` skylines | `6.27·10^12` points | chosen plaintext | none: the bound exceeds 1 |
-| generalized Feistel, 3 rounds, ranks split `1,742,569 × 2,139,973` | `[0, A^e]` | 1 point | chosen plaintext | about `2^9.4` (692) |
-| Thorp shuffle, 16 passes, on ranks | `[0, 2^42 − 1]` | 1.18 calls per castle | chosen ciphertext | about `2^27.7` |
+| generalized Feistel, 3 rounds, column halves `10^7 × 10^6` | the `10^13` skylines | none in the network; the walk to the castles takes 1.34 calls per castle | chosen plaintext | about `2^9.4` (674) |
+| the same, with the castles as the domain | the `10^13` skylines | `9^13 ≈ 2.54·10^12` points | chosen plaintext | none: the bound exceeds 1 |
+| generalized Feistel, 3 rounds, ranks split `2,673,773 × 2,789,367` | `[0, A + 19]` | 20 points | chosen plaintext | about `2^9.7` (816) |
+| Thorp shuffle, 16 passes, on ranks | `[0, 2^43 − 1]` | 1.18 calls per castle | chosen ciphertext | about `2^28.5` |
 
-The generalized bound says nothing once the padding exceeds about `√(N_left/2)` points for halves of equal size; that rules out taking `V(13, 10)` as the domain inside the skylines, and the square split of the ranks, `1,931,075²`, with 44,989 extra points.[^exec][^4] The Thorp shuffle covers about `2^18` times as many queries at the same size, against the stronger chosen-ciphertext attack.[^exec][^5]
+The generalized bound says nothing once the padding exceeds about `√(N_left/2)` points for halves of equal size; that rules out taking the castles as the domain inside the skylines, and the square split of the ranks, `2,730,959²`, with 2,888,010 extra points.[^exec][^4] The Thorp shuffle covers about `2^19` times as many queries at the same size, against the stronger chosen-ciphertext attack.[^exec][^5]
 
-**What the castle adds.** The castle supplies the domain, a set of skylines such as the castles of height `h` or `V(w, h)`, its rank and unrank, and the membership test of the walk; the security comes from the Feistel network and its proofs, which hold for any domain of the same size.
+**What the castle adds.** The castle supplies the domain, its rank and unrank, and the membership test of the walk; the security comes from the Feistel network and its proofs, which hold for any domain of the same size.
 
 ## Appearances in Sources
 
@@ -69,9 +68,7 @@ The generalized bound says nothing once the padding exceeds about `√(N_left/2)
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the public-key series on the castle ring `F_p[x]/(char_k)`; this page is its secret-key counterpart.
-- [[castle-bdd-zdd](pages/castle-bdd-zdd.md)], [[castle-samplers](pages/castle-samplers.md)] - the rank and unrank of `V(w, h)` used by construction 3.
-- [[song-as-castle](pages/song-as-castle.md)] - rank and unrank on the castles of height `h`, which turn an 11-character video id into a castle.
-- [[one-bit-seminar](pages/one-bit-seminar.md)] - `log₂ A^e` as `w·log₂ h` less one bit of parity and a height correction, the logarithm of the walk's cost onto `V(w, h)`.
+- [[song-as-castle](pages/song-as-castle.md)] - the rank and unrank of the castles of height `h` used by construction 3, which also turn an 11-character video id into a castle.
 - [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] - the riffle shuffle, whose cut is binomial where the Thorp shuffle's is exactly in half.
 - [[castle-notation](pages/castle-notation.md)] - the cipher symbols `N`, `N′`, `N_left`, `N_right`, `ν`, `t`, `r`, `f_j`.
 
@@ -84,5 +81,4 @@ The generalized bound says nothing once the padding exceeds about `√(N_left/2)
 [^5]: [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)] §1 L95-L128 and §4 L473-L545 [synthesis] - for `N = 2^n` the Thorp shuffle coincides with maximally unbalanced Feistel, whose round function takes `n − 1` bits to one bit; `n` rounds form a pass; Theorem 5 bounds the CCA advantage of `Th[N, r(4n − 2)]` by `(2q/(r + 1))(4nq/N)^r`, and `4r` passes give CCA security to `2^{n(1−1/r)}` queries.
 [^6]: [[black-rogaway-2002-arbitrary-finite-domains](pages/black-rogaway-2002-arbitrary-finite-domains.md)] §4 L317-L367 [synthesis] - the cycle-walking cipher iterates `E_K` until it reaches a point of `M`; Theorem 1, `Cy_K` is a uniform random permutation of `M` when `E_K` is an ideal block cipher on `T ⊇ M`; the erased-cycle form is checked by execution, footnote exec.
 [^7]: [[black-rogaway-2002-arbitrary-finite-domains](pages/black-rogaway-2002-arbitrary-finite-domains.md)] §2 L227-L241 [synthesis] - security is the maximum advantage of an adversary, the difference between the probabilities that it outputs 1 with the keyed oracle and with a random permutation; [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)] §4 L501-L513 [synthesis] - the number of queries for advantage 0.5 as the measure in the comparison of Thorp, Naor-Reingold and balanced Feistel bounds.
-[^pe]: https://projecteuler.net/problem=502 (fetched 2026-10-17) - "For example, F(4,2) = 10, F(13,10) = 3729050610636, F(10,13) = 37959702514, and F(100,100) mod 1 000 000 007 = 841913936."
-[^exec]: Verified by execution (Python 3.10 with NumPy 2.2 and SciPy 1.15, 2026-11-06): `bin/python/feistel_castle_ciphers.py`, run log `bin/python/feistel_castle_ciphers-run.log`. Item [1]: the base-`h` split of every skyline into column halves, and the generalized network with 3 to 5 rounds as a permutation of `[0, h^w − 1]` with its inverse, at five small sizes. Item [2]: the walk onto `V(w, h)` is a permutation whose cycles are the network's cycles with the points outside `V(w, h)` deleted. Items [3] and [4]: over all permutations of 6 or 7 points, each permutation of the subset arises equally often, and the walk takes `(N′ + 1)/(N + 1)` calls on average. Item [5]: `A^e(w, h)` by a column dynamic program, equal to the Project Euler values and to enumeration, `A(w, h) = h^w − (h − 1)^w` against enumeration, and the table of costs and parity bits. Item [6]: Theorem 2 of Black and Rogaway at `(13, 10)` for the three splits of the table and the square split. Item [9]: Theorem 5 of Morris, Rogaway and Stegers at `n = 42` with 16 passes (`lg ν = 27.75`, against `lg ν = 9.40` for the column halves, a factor `2^18.3`), and `2^42/A^e(13, 10) = 1.18`.
+[^exec]: Verified by execution (Python 3.10 with NumPy 2.2 and SciPy 1.15, 2026-11-06): `bin/python/feistel_castle_ciphers.py`, run log `bin/python/feistel_castle_ciphers-run.log`. Item [1]: the base-`h` split of every skyline into column halves, and the generalized network with 3 to 5 rounds as a permutation of `[0, h^w − 1]` with its inverse, at five small sizes. Item [2]: the walk onto the castles of height `h` is a permutation whose cycles are the network's cycles with the skylines below height `h` deleted. Items [3] and [4]: over all permutations of 6 or 7 points, each permutation of the subset arises equally often, and the walk takes `(N′ + 1)/(N + 1)` calls on average. Item [5]: `A(w, h) = h^w − (h − 1)^w` against enumeration, and the table of shares and costs. Item [6]: Theorem 2 of Black and Rogaway at `(13, 10)` for the three splits of the table and the square split. Item [9]: Theorem 5 of Morris, Rogaway and Stegers at `n = 43` with 16 passes (`lg ν = 28.52`, against `lg ν = 9.40` for the column halves, a factor `2^19.1`), and `2^43/A(13, 10) = 1.18`.
