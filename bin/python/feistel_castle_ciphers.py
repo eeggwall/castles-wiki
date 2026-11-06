@@ -1,6 +1,6 @@
 # Feistel ciphers on castles: Black-Rogaway (2002) generalized Feistel and cycle walking, Morris-Rogaway-Stegers (2009) Thorp shuffle.
 # Checks the column-half reading of the generalized-Feistel cipher, cycle walking onto the even-block castles V(w, h),
-# the cost of the walk, both papers' security bounds at the Project Euler size (w, h) = (13, 10), and the Thorp/Feistel identity.
+# the cost of the walk onto V(w, h) and onto all castles of height h, both papers' security bounds at the Project Euler size (w, h) = (13, 10), and the Thorp/Feistel identity.
 # Symbols as on the wiki: N the domain size, N' the larger domain, N_left and N_right the two half sizes (the paper's a and b),
 # nu the number of queries, t the number of rounds, r the pass parameter of Morris-Rogaway-Stegers.
 import random
@@ -189,6 +189,15 @@ check("    the DP agrees with enumeration at (10, 2), (8, 3), (7, 4), (6, 5):", 
 for (w, h) in [(10, 2), (8, 3), (7, 4), (6, 5), (13, 10)]:
     Ae = A_even(w, h)
     print(f"    (w, h) = ({w}, {h}): h^w = {h ** w}, A^e = {Ae}, share {Ae / h ** w:.4f}, expected calls (h^w + 1)/(A^e + 1) = {(h ** w + 1) / (Ae + 1):.4f}")
+# the walk needs no parity condition: onto all A(w, h) = h^w - (h - 1)^w castles of height h
+good = True
+for (w, h) in [(10, 2), (8, 3), (7, 4), (6, 5)]:
+    good &= sum(1 for c in product(range(1, h + 1), repeat=w) if max(c) == h) == h ** w - (h - 1) ** w
+check("    A(w, h) = h^w - (h - 1)^w agrees with enumeration at (10, 2), (8, 3), (7, 4), (6, 5):", good)
+for (w, h) in [(10, 2), (8, 3), (7, 4), (6, 5), (13, 10)]:
+    A, Ae = h ** w - (h - 1) ** w, A_even(w, h)
+    print(f"    (w, h) = ({w}, {h}): A = {A}, expected calls onto all castles of height h (h^w + 1)/(A + 1) = {(h ** w + 1) / (A + 1):.4f}, "
+          f"bits of the parity condition lg(A/A^e) = {log2(A / Ae):.4f}")
 
 # [6] Black-Rogaway Theorem 2 at (13, 10)
 print("[6] Theorem 2 (PRP form) at (w, h) = (13, 10), n = 64")

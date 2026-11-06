@@ -1,4 +1,4 @@
-# python3 bin/python/feistel_castle_ciphers.py  (2026-11-05, Python 3.10 with NumPy 2.2 and SciPy 1.15)
+# python3 bin/python/feistel_castle_ciphers.py  (2026-11-06, Python 3.10 with NumPy 2.2 and SciPy 1.15)
 [1] Fe[t, N_left, N_right] with N_left = h^ceil(w/2), N_right = h^floor(w/2) on the skylines {1, ..., h}^w, t = 3, 4, 5
     (w, h) = (4, 3), (5, 3), (6, 2), (5, 4), (7, 2): m mod N_left is the first ceil(w/2) columns, floor(m/N_left) the rest; fe is a permutation of [0, h^w - 1] inverted by fe^-1: True
 [2] cycle walking from Fe onto the even-block castles V(w, h)
@@ -21,6 +21,12 @@
     (w, h) = (7, 4): h^w = 16384, A^e = 7063, share 0.4311, expected calls (h^w + 1)/(A^e + 1) = 2.3195
     (w, h) = (6, 5): h^w = 15625, A^e = 5478, share 0.3506, expected calls (h^w + 1)/(A^e + 1) = 2.8520
     (w, h) = (13, 10): h^w = 10000000000000, A^e = 3729050610636, share 0.3729, expected calls (h^w + 1)/(A^e + 1) = 2.6816
+    A(w, h) = h^w - (h - 1)^w agrees with enumeration at (10, 2), (8, 3), (7, 4), (6, 5): True
+    (w, h) = (10, 2): A = 1023, expected calls onto all castles of height h (h^w + 1)/(A + 1) = 1.0010, bits of the parity condition lg(A/A^e) = 0.9542
+    (w, h) = (8, 3): A = 6305, expected calls onto all castles of height h (h^w + 1)/(A + 1) = 1.0406, bits of the parity condition lg(A/A^e) = 1.0567
+    (w, h) = (7, 4): A = 14197, expected calls onto all castles of height h (h^w + 1)/(A + 1) = 1.1540, bits of the parity condition lg(A/A^e) = 1.0072
+    (w, h) = (6, 5): A = 11529, expected calls onto all castles of height h (h^w + 1)/(A + 1) = 1.3552, bits of the parity condition lg(A/A^e) = 1.0735
+    (w, h) = (13, 10): A = 7458134171671, expected calls onto all castles of height h (h^w + 1)/(A + 1) = 1.3408, bits of the parity condition lg(A/A^e) = 1.0000
 [6] Theorem 2 (PRP form) at (w, h) = (13, 10), n = 64
     (a) all skylines, N_left = 10^7, N_right = 10^6, no surplus: bound <= 1/2 up to nu = 674 (2^9.40)
     (b) V(13, 10) inside [0, 10^13 - 1] directly: surplus 6270949389364, bound at nu = 1 is 2.163e+19
