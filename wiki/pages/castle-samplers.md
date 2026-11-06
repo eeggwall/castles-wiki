@@ -1,7 +1,7 @@
 ---
 title: Castle samplers
 category: Concepts
-summary: Ten ways to draw random castles and the objects beside them, each implemented and checked by execution - rejection, the transfer-matrix sampler (exact, O(wh) per draw), Fisher-Yates and Sattolo with the Foata map (permutations, whose cycle counts have exact laws), the Gray walk (exhaustive ground truth), rank/unrank, heat-bath Markov chain Monte Carlo on the cube, coupling from the past (monotone for block weight t <= 1, and for t > 1 after reversing the order on odd columns), Wilson's spanning-tree sampler and the Lindström-Gessel-Viennot sampler for parallelogram polyominoes, Wang-Landau for the block profile, and random transfer-matrix rules. The even-block castles V(w, h) fall into many components under single-column ±1 moves (191 at (8, 4)), so the Markov chains run on the whole cube and keep the castles of V as they pass them.
+summary: Ten random samplers, each implemented and checked by execution. Seven draw castles - rejection, the transfer-matrix sampler (exact, O(wh) per draw), the Gray walk (exhaustive ground truth), rank/unrank, heat-bath Markov chain Monte Carlo on the cube, coupling from the past (monotone for block weight t <= 1, and for t > 1 after reversing the order on odd columns), and Wang-Landau for the block profile. The other three draw permutations (Fisher-Yates and Sattolo with the Foata map, whose cycle counts have exact laws), spanning trees of the castle graph and parallelogram polyominoes (Wilson's algorithm and the Lindström-Gessel-Viennot sampler), and random transfer-matrix rules. The even-block castles V(w, h) fall into many components under single-column ±1 moves (191 at (8, 4)), so the Markov chains run on the whole cube and keep the castles of V as they pass them.
 tags: [concept, castle, sampling, monte-carlo, transfer-matrix, rejection-sampling, rank-unrank, gray-code, mcmc, coupling-from-the-past, wilson-algorithm, spanning-tree, lgv, wang-landau, random-matrix, sattolo, foata, verification]
 sources: [project-euler-502-brute-force, project-euler-502-castle-factoring, aocp-generating-permutations-tuples]
 created: 2026-09-27
@@ -12,7 +12,7 @@ updated: 2026-11-06
 
 A limit law for a castle statistic is a statement about a random castle, and testing one needs random castles drawn with known probabilities at widths far beyond enumeration. This page collects ten samplers. Each is implemented, and each claim about exactness or cost on this page was checked by running it.[^exec]
 
-Seven of the samplers draw castles. The other three draw objects beside them: permutations (the other side of [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]), spanning trees of the castle graph and parallelogram polyominoes, and the 0/1 rules of [[castle-strip](pages/castle-strip.md)].
+Seven of the samplers draw castles. The other three draw permutations (the other side of [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]), spanning trees of the castle graph and parallelogram polyominoes, and the 0/1 rules of [[castle-strip](pages/castle-strip.md)].
 
 ## The target measures
 
