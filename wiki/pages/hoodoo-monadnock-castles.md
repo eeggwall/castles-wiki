@@ -5,14 +5,14 @@ summary: "Two unimodal castle types of height h whose sides change step size str
 tags: [concept, castle, classification, unimodal, distinct-parts, partitions, hindenburg-algorithm, generation, growth-constant, hoodoo-castle, monadnock-castle, implementation, verification]
 sources: [aocp-generating-partitions]
 created: 2026-10-02
-updated: 2026-10-29
+updated: 2026-11-08
 ---
 
 # Hoodoo and monadnock castles
 
 ## Definition
 
-Both types are castles of height `h ≥ 2` made of three parts, read left to right: a **rising side** of at least one column below `h`, a **summit** of one or more columns at height `h`, and a **falling side** of at least one column below `h`. A side's steps are the height changes `c_{i+1} − c_i` from its first column up to the summit, or from the summit down to its last column; the steps onto and off the summit belong to the sides. Every step on a side is nonzero, and the only zero steps are inside the summit.
+Both types are castles of height `h ≥ 2` made of three parts, read left to right: a **rising side** of at least one column below `h`, a **summit** of one or more columns at height `h`, and a **falling side** of at least one column below `h`. A side's steps are the height changes `c_{i+1} − c_i` from its first column up to the summit, or from the summit down to its last column; the steps onto and off the summit belong to the sides. The rising steps `c_{i+1} − c_i` and the drops `c_i − c_{i+1}` on the sides are all positive, so the only zero steps are inside the summit.
 
 - **Hoodoo castle:** the rising steps strictly increase and the falling drops strictly decrease. Example, `h = 35`: `(2, 3, 6, 16, 35, 35, 25, 18, 14, 12)`, rising steps `1, 3, 10, 19`, drops `10, 7, 4, 2`.
 - **Monadnock castle:** the rising steps strictly decrease and the falling drops strictly increase. Example, `h = 35`: `(2, 21, 31, 34, 35, 35, 33, 29, 22, 12)`, rising steps `19, 10, 3, 1`, drops `2, 4, 7, 10`.

@@ -5,7 +5,7 @@ summary: The sandpile group (also called the critical group) of a castle, in two
 tags: [concept, castle, sandpile, abelian-sandpile, critical-group, chip-firing, laplacian, boundary-matrix, cycle-space, spanning-trees, smith-normal-form, tree-castle, planar-dual, sink-model, tide-model, pedagogy]
 sources: [rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, chau-cheng-1991-deterministic-soc-sandpile, bak-tang-wiesenfeld-1988-self-organized-criticality, project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-11-08
 ---
 
 # Sandpile groups of castles - sand, cycles, and 2×2 blocks, in the sink and tide models
@@ -108,7 +108,7 @@ In the sink model `L̃` deletes one row and column, and `n_live` is the number o
 
 This is Dhar's presentation in either model. Adding `deg(v)` grains at `v` forces one toppling, so the operators satisfy `∏_u a_u^{L̃_vu} = 1`, and two configurations are equivalent exactly when they differ by an integer combination of the rows of `L̃`. Dhar counts the recurrent configurations as `det L̃`.[^7]
 
-**Entropy.** Since every recurrent configuration is equally likely, the entropy of the steady state is `ln det L̃ = ln |K|`.[^8] Dhar writes it `S`; the wiki writes `ln det L̃`, since `S(w, h)` is the signed castle count ([[castle-notation](pages/castle-notation.md)]). Tree castles have entropy 0 in both models. For the square lattice Dhar gives the entropy per site as the double integral `(2π)^{−2} ∫∫ ln(4 − 2cos θ − 2cos φ) dθ dφ = 1.16624…`, which equals `4G/π` with `G` Catalan's constant.[^9] On square castles, `ln det L̃` divided by the number of cells is:[^9]
+**Entropy.** Since every recurrent configuration is equally likely, the entropy of the steady state is `ln det L̃ = ln |K|`.[^8] Dhar writes it `S`; the wiki writes `ln det L̃`, since `S(w, h)` is the signed castle count ([[castle-notation](pages/castle-notation.md)]). Tree castles have entropy 0 in both models. For the square lattice Dhar gives the entropy per site as the double integral `(2π)^{−2} ∫∫ ln(4 − 2cos θ − 2cos φ) dθ dφ = 1.16624…`, which equals `4G/π` with `G` Catalan's constant.[^9] On the box castles whose width equals their height, `ln det L̃` divided by the number of cells is:[^9]
 
 | `ℓ` | sink model, `ℓ × ℓ` castle, corner sink | tide model, `ℓ × ℓ` cells above the bottom row |
 |---|---|---|
@@ -198,7 +198,7 @@ Every group in the table was computed from Equation (1) in both models.[^15]
 
 In the sink model, separated clusters of blocks contribute independent factors (two separated squares give `Z/4 × Z/4`), a row of `r` blocks contributes the cyclic group of the ladder order, and denser arrangements can split into several factors: the `2 × 2` square of blocks in `(3, 3, 3)` and the T in `(2, 3, 3, 2)` each give two. Not every dense cluster splits: `(2, 3, 3, 3)`, a `2 × 2` square of blocks plus one more, has `K_sink = Z/712` ([[sandpile-census](pages/sandpile-census.md)]). In the tide model `(3, 3, 3)` and `(2, 3, 3, 2)` are cyclic, `Z/95` and `Z/75`.
 
-**The square castles, from the dual side.** The sink block matrix of the `(L+1) × (L+1)` castle is the Laplacian of an `L × L` grid with open boundaries on all four sides, the matrix Dhar, Ruelle, Sen and Verma study. Their groups for `L = 2` to 5, `Z/24 × Z/8`, `Z/224 × Z/112 × Z/4`, `Z/6600 × Z/1320 × Z/8 × Z/8` and `Z/102960 × Z/102960 × Z/48 × Z/16 × Z/4`, are the sink groups of the square castles `(3, 3, 3)` to `(6, 6, 6, 6, 6, 6)`. They show, with a sketched proof, that the group of the `L × L` grid has exactly `L` cyclic factors, so the same holds for the `(L+1) × (L+1)` castle. Their `L × 2` strip is the castle `(3, …, 3)` of height 3 and width `L + 1`, whose sink group they compute exactly ([[sandpile-census](pages/sandpile-census.md)]).[^17]
+**Box castles with width equal to height, from the dual side.** The sink block matrix of the `(L+1) × (L+1)` castle is the Laplacian of an `L × L` grid with open boundaries on all four sides, the matrix Dhar, Ruelle, Sen and Verma study. Their groups for `L = 2` to 5, `Z/24 × Z/8`, `Z/224 × Z/112 × Z/4`, `Z/6600 × Z/1320 × Z/8 × Z/8` and `Z/102960 × Z/102960 × Z/48 × Z/16 × Z/4`, are the sink groups of the box castles `(3, 3, 3)` to `(6, 6, 6, 6, 6, 6)`. They show, with a sketched proof, that the group of the `L × L` grid has exactly `L` cyclic factors, so the same holds for the `(L+1) × (L+1)` castle. Their `L × 2` strip is the castle `(3, …, 3)` of height 3 and width `L + 1`, whose sink group they compute exactly ([[sandpile-census](pages/sandpile-census.md)]).[^17]
 
 **The cospectral pairs.** The 10-cell adjacency-cospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] has the same groups, `Z/15` and `Z/8`, because both castles have two blocks side by side on the bottom row. The 11-cell Laplacian-cospectral pair are tree castles, with trivial groups. [[sandpile-census](pages/sandpile-census.md)] checks every castle to 16 cells: the sink group separates no cospectral group, because the castles in each cospectral group share their graph of blocks, while the tide group separates 23 of the 105 adjacency-cospectral groups, because it also depends on which blocks sit on the bottom row.
 

@@ -5,7 +5,7 @@ summary: The sandpile groups of the 33,150 castles with at most 16 cells (mirror
 tags: [analysis, castle, sandpile, critical-group, census, isospectral, laplacian, adjacency, smith-normal-form, cyclic-group, tree-castle, block-graph, sink-model, tide-model, numpy, sympy, verification]
 sources: [rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, chau-cheng-1991-deterministic-soc-sandpile, project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-11-08
 ---
 
 # Sandpile census - every castle to 16 cells, in the sink and tide models
@@ -239,7 +239,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 ## Appearances in Sources
 
 - [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the count `det Δ` of recurrent configurations, tabulated here as `|K|` in both models; its logarithm `ln det Δ` is the entropy of the steady state, 0 for the 6,963 tree castles.
-- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the number of cyclic factors of the square castles' sink groups and the exact sink group of the height-3 castles, through the open-boundary grids that are their duals.
+- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the number of cyclic factors of the sink groups of the box castles whose width equals their height and the exact sink group of the height-3 castles, through the open-boundary grids that are their duals.
 - [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the reference to Cori and Rossin's paper on the sandpile groups of dual graphs, and the group of the `2 × 2` grid, the dual of `(3, 3, 3)`.
 - [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] - completely deterministic steady states, a stronger property than a cyclic group.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition (column heights `≥ 1`) that makes the castles of `n` cells the compositions of `n`.

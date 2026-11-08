@@ -5,7 +5,7 @@ summary: "Gluing two castles that begin and end with a height-1 column, by mergi
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis]
 sources: [deutsch-elizalde-2017-bargraphs-dyck-paths, oeis-encyclopedia, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-22
-updated: 2026-10-31
+updated: 2026-11-08
 ---
 
 # Prime castles
@@ -34,7 +34,7 @@ The block identity holds because the two bottom rows merge into one block, and n
 
 **Primes.** In a free monoid, the elements into which every element factors uniquely are its primes, and they are also its irreducible elements; Gessel and Li use the word this way for monoids of compositions under concatenation.[^2] The word has nothing to do with prime numbers. So:
 
-- The primes of `𝓜` are `(1, X, 1)` with `X` a castle with no height-1 column, the **prime castles**, and the trivial prime `(1, 1)`, with `X` empty. By area the prime castles are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`, an identity Gessel and Li list from Stanley.[^2] With the height unrestricted, `F_{n-1} ~ φ^n/(φ√5)`, so the prime castles are golden by area ([[metallic-means](pages/metallic-means.md)]), while all castles of area `n` number `2^{n-1}`.[^3] At a fixed height the growth is smaller (section *Prime castles of height h*).
+- A **prime castle** is a castle with no height-1 column. The primes of `𝓜` are the padded prime castles `(1, X, 1)` and the trivial prime `(1, 1)`, with `X` empty. By area the prime castles are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`, an identity Gessel and Li list from Stanley.[^2] With the height unrestricted, `F_{n-1} ~ φ^n/(φ√5)`, so the prime castles are golden by area ([[metallic-means](pages/metallic-means.md)]), while all castles of area `n` number `2^{n-1}`.[^3] At a fixed height the growth is smaller (section *Prime castles of height h*).
 - The **composite castles**, those with at least one height-1 column, number `2^{n-1} - F_{n-1}`: `1, 1, 3, 6, 13, 27, 56, ...`.
 - A castle with `k` height-1 columns has `k + 1` prime factors. For example `(2, 1, 3, 3, 1, 1, 2)` has three height-1 columns and four prime factors, and its padded form is `(1,2,1) ∘ (1,3,3,1) ∘ (1,1) ∘ (1,2,1)`.
 

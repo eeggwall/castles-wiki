@@ -5,7 +5,7 @@ summary: Predicates on a single castle read from a spectrum. From the castle gra
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
 sources: [project-euler-502]
 created: 2026-09-19
-updated: 2026-10-25
+updated: 2026-11-08
 ---
 
 # Castle classification - spectral types
@@ -57,7 +57,7 @@ The signed transfer matrix of the castle count has no `δ_a` among its eigenvalu
 
 ## Isospectral castles
 
-**Predicate (on pairs).** Two castles with non-isomorphic castle graphs and the same spectrum. This is a predicate on pairs of castles.
+**Predicate (on pairs).** Two castles are cospectral, or isospectral, when their castle graphs have the same spectrum, with multiplicities; the pair is nontrivial when the two graphs are not isomorphic. This is a predicate on pairs of castles.
 
 Among every castle with at most 16 cells, mirror images removed ([[isospectral-castles](pages/isospectral-castles.md)]):[^2]
 

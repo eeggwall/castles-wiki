@@ -5,7 +5,7 @@ summary: A zig-zag castle is a castle in which neighboring columns differ in hei
 tags: [concept, castle, zig-zag-castle, strip-rule, transfer-matrix, path-graph, chebyshev, balanced-strings, block-count, parity, golden, oeis, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-27
-updated: 2026-10-28
+updated: 2026-11-08
 ---
 
 # Zig-zag castles
@@ -28,7 +28,7 @@ The zig-zag rule is two rules of [[castle-strip](pages/castle-strip.md)] at once
 
 The skyline `(1, 2, 2, 3)` is not a zig-zag castle, since its second and third columns have the same height, and the skyline `(1, 3, 2)` is not one either, since its first two heights differ by 2.[^exec2]
 
-A zig-zag castle is not a castle of the Zigzag type of [[castle-classification-shape](pages/castle-classification-shape.md)], whose differences `c_{i+1} − c_i` alternate in sign: the skyline `(1, 2, 3)` is a zig-zag castle and not of the Zigzag type, and the skyline `(1, 3, 2, 3, 1)` is of the Zigzag type and not a zig-zag castle. The Dyck-path castles of the same page are the zig-zag castles with both end columns at height 1.
+A zig-zag castle is not a castle of the sign-alternating type of [[castle-classification-shape](pages/castle-classification-shape.md)], whose differences `c_{i+1} − c_i` alternate in sign: the skyline `(1, 2, 3)` is a zig-zag castle and not sign-alternating, and the skyline `(1, 3, 2, 3, 1)` is sign-alternating and not a zig-zag castle. The Dyck-path castles of the same page are the zig-zag castles with both end columns at height 1.
 
 ## Two rules at once
 
@@ -167,7 +167,7 @@ At height 4 the generating function of A027557 is `(1 + x − x²)/((1 − x −
 - [[castle-strip](pages/castle-strip.md)] - strip rules as 0/1 matrices; the zig-zag rule is its 1-smooth and plateau-free rules imposed together.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the 1-smooth strip `I + A_path`, with eigenvalues `1 + 2cos θ_k`, and the Motzkin strips on bounded heights.
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the anchored 1-smooth castles and the determinants `χ_h(x) = det(I − x(I + A_path))`, written with `U_h`.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the zig-zag type among the rate-of-change types; the Zigzag type, with differences alternating in sign; the Dyck-path castles, the zig-zag castles with both end columns at height 1.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the zig-zag type among the rate-of-change types; the sign-alternating type, with differences alternating in sign; the Dyck-path castles, the zig-zag castles with both end columns at height 1.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types by width; the zig-zag castles of height 4 are golden by width.
 - [[dyck-words](pages/dyck-words.md)], [[catalan-numbers](pages/catalan-numbers.md)] - Dyck paths: lowering every column of a zig-zag castle with both end columns at height 1 by one gives a Dyck path of length `w − 1`.
 - [[kernel-method](pages/kernel-method.md)] - walks with a finite set of jumps between two walls, here the jumps `−1` and `+1`, counted through the roots of the kernel instead of the transfer matrix.

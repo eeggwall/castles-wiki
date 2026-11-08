@@ -5,7 +5,7 @@ summary: The castle of a hereditarily finite set is a bottom block carrying the 
 tags: [concept, castle, von-neumann-castle, ordinal, hereditarily-finite-set, ackermann-coding, binomial-tree, plane-tree, alternating, catalan, binary-weight, ruler-function, block-count, parity, oeis, verification]
 sources: [project-euler-502-brute-force, analytic-combinatorics-ch1-ogfs]
 created: 2026-10-28
-updated: 2026-10-28
+updated: 2026-11-08
 ---
 
 # Von Neumann castles
@@ -94,7 +94,7 @@ A leaf of a plane tree has a castle one column wide, and a node with `m` childre
 c_1 > c_2 < c_3 > c_4 < ⋯ < c_w,        w = 2ℓ − 1.                            (3)
 ```
 
-An **alternating** castle is a castle of odd width that satisfies (3); the single column `(c_1)` is one. Among the shape types of [[castle-classification-shape](pages/castle-classification-shape.md)], they are the castles of the Zigzag type, whose differences `c_{i+1} − c_i` alternate in sign, with odd width and a fall first. They are not the zig-zag castles of [[zig-zag-castles](pages/zig-zag-castles.md)], whose differences are all `±1`.
+An **alternating** castle is a castle of odd width that satisfies (3); the single column `(c_1)` is one. Among the shape types of [[castle-classification-shape](pages/castle-classification-shape.md)], they are the castles of the sign-alternating type, whose differences `c_{i+1} − c_i` alternate in sign, with odd width and a fall first. They are not the zig-zag castles of [[zig-zag-castles](pages/zig-zag-castles.md)], whose differences are all `±1`.
 
 **Theorem 3.** Every alternating castle is the castle of exactly one plane tree, its **block tree**, in which the children of a block are the blocks standing on it, from left to right. So `castle` maps the plane trees with `b` nodes one-to-one onto the alternating castles with `b` blocks, and these number the Catalan number `C_{b−1}`: `1, 1, 2, 5, 14, 42, 132, …` for `b = 1, 2, 3, …` ([[catalan-numbers](pages/catalan-numbers.md)]).
 
@@ -167,7 +167,7 @@ These are the recursions of three OEIS entries. A116549 is defined by `a(0) = 1`
 
 - [[castle-polyomino](pages/castle-polyomino.md)] - castles, skylines, and the blocks of a castle as the maximal runs of columns in each row.
 - [[castle-sign](pages/castle-sign.md)] - the parity of the block count; every `vN(n)` with `n ≥ 1` is an even-block castle.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the Zigzag type, with differences alternating in sign; its castles of odd width that fall first are the alternating castles, the castles of plane trees.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the sign-alternating type, with differences alternating in sign; its castles of odd width that fall first are the alternating castles, the castles of plane trees.
 - [[zig-zag-castles](pages/zig-zag-castles.md)] - a different family: neighboring columns differ by exactly 1.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the plane trees with `b` nodes, `C_{b−1}` of them, and so the alternating castles with `b` blocks.
 - [[castle-notation](pages/castle-notation.md)] - `vN(n)`, `castle(x)`, `code(x)`, `ack(m)` and `s_2(i)`.
