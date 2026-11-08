@@ -255,11 +255,11 @@ All sequence data lives in two tab-separated files under `config/`. They are one
 
 | file | one row per | holds |
 |---|---|---|
-| `config/castle-sequences.tsv` | sequence | `id`, `family`, `page`, `counts`, `axis`, `terms`, `formula`, `growth`, `anum`, `anum_index`, `note`, `oeis_name`, `group`, `status`: what the row counts, its first terms, formula and growth, the A-number and offset it equals (or none), the stored OEIS name, the index group, and `proved` with the page that proves it |
+| `config/castle-sequences.tsv` | sequence | `id`, `family`, `page`, `counts`, `axis`, `terms`, `formula`, `growth`, `anum`, `anum_index`, `note`, `oeis_name`, `status`: what the row counts, its first terms, formula and growth, the A-number and offset it equals (or none), the stored OEIS name, and `proved` with the page that proves it |
 | `config/castle-sequence-families.tsv` | catalog section | `id`, `title`, `label`, `page`, `intro`, `note`: the section heading, the short label that prefixes its rows in the index, the family page, and the section's intro and closing text |
 
 - **The catalog** shows every row with a `family`, grouped under that family's section, in
-  file order. **The index** shows every row with an `anum`, grouped by `group`; its castle role
+  file order. **The index** lists every A-number in one table, in A-number order; its castle role
   is built from those rows, and its citing pages come from a scan of every page body (the two
   generated pages excluded).
 - **A row's `family` must be an `id` in the families file.** A new family is one row in
@@ -272,7 +272,7 @@ All sequence data lives in two tab-separated files under `config/`. They are one
 - **An A-number cited on a page** needs a row in `config/castle-sequences.tsv`: with a
   `family` when it is a castle count shown in the catalog, with `family` empty when it only
   annotates an OEIS entry in the index. A cited A-number without a row is listed in the index
-  under "Not yet annotated" until a row is added.
+  with no name or castle role until a row is added.
 - **Every listed term is checked**: computed by a script in `bin/python/` against its castle
   definition and against the OEIS data at the stated offset, with the script and its run log
   cited from the catalog's footnote or the family's closing note.

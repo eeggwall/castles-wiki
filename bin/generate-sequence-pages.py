@@ -33,7 +33,6 @@ Row columns (tab-separated; a cell never holds a tab or a newline):
                 an expression in a(…), such as `a(w + 1) − 1`
     note        the rest of the OEIS cell, in markdown
     oeis_name   the entry's OEIS name, stored; --fetch-names fills empty cells
-    group       count, metallic, plastic or supporting: the index section of the entry
     status      `proved` when `page` proves the identity, else empty
 
 Family columns: id, title, label (a short noun phrase that prefixes the rows' descriptions in the
@@ -58,23 +57,9 @@ GENERATED = {INDEX_SLUG, CATALOG_SLUG}
 SCRIPT = "bin/generate-sequence-pages.py"
 
 ROW_COLS = ["id", "family", "page", "counts", "axis", "terms", "formula", "growth", "anum",
-            "anum_index", "note", "oeis_name", "group", "status"]
+            "anum_index", "note", "oeis_name", "status"]
 FAMILY_COLS = ["id", "title", "label", "page", "intro", "note"]
 ANUM_RE = re.compile(r"\bA\d{6}\b")
-GROUPS = [
-    ("count", "Castle count interpretations",
-     "Sequences whose terms count castles, towers, strips or skylines on the wiki, at "
-     "the offset stated in each row."),
-    ("metallic", "Continued fractions and the metallic ladder",
-     "The [[metallic-means](pages/metallic-means.md)] `δ_a` family, its companion and "
-     "trace sequences, and the OEIS convergent tables for `√(a²+4)`."),
-    ("plastic", "Plastic-number neighborhood",
-     "The sequences behind [[plastic-number](pages/plastic-number.md)] ψ."),
-    ("supporting", "Supporting sequences",
-     "Cross-references, ambient polyomino and tournament counts, and OEIS entries that "
-     "appear as neighbors or components of a castle result."),
-]
-GROUP_KEYS = [g[0] for g in GROUPS]
 
 
 # ---------------------------------------------------------------- reading and validation
@@ -117,16 +102,12 @@ def load():
         if r["anum"]:
             if not re.fullmatch(r"A\d{6}", r["anum"]):
                 sys.exit(f"{where}: bad A-number {r['anum']!r}")
-            if r["group"] not in GROUP_KEYS:
-                sys.exit(f"{where}: group must be one of {', '.join(GROUP_KEYS)}")
-            e = entry.setdefault(r["anum"], {"group": r["group"], "name": r["oeis_name"]})
-            if e["group"] != r["group"]:
-                sys.exit(f"{where}: {r['anum']} is in group {e['group']!r} on another row")
+            e = entry.setdefault(r["anum"], {"name": r["oeis_name"]})
             if r["oeis_name"] and e["name"] and r["oeis_name"] != e["name"]:
                 sys.exit(f"{where}: {r['anum']} has a different oeis_name on another row")
             e["name"] = e["name"] or r["oeis_name"]
-        elif r["anum_index"] or r["group"] or r["oeis_name"]:
-            sys.exit(f"{where}: anum_index, group and oeis_name need an A-number")
+        elif r["anum_index"] or r["oeis_name"]:
+            sys.exit(f"{where}: anum_index and oeis_name need an A-number")
         if r["status"] not in ("", "proved"):
             sys.exit(f"{where}: status must be empty or 'proved'")
         if r["status"] == "proved" and not r["page"]:
@@ -349,10 +330,6 @@ def render_index(families, rows, entry, cites):
     labels = {f["id"]: f["label"] for f in families}
     anums = sorted(set(entry) | set(cites))
     n_pages = len({slug for counts in cites.values() for slug in counts})
-    by_group = {k: [] for k in GROUP_KEYS}
-    unannotated = []
-    for a in anums:
-        (by_group[entry[a]["group"]] if a in entry else unannotated).append(a)
     roles = {}
     for r in rows:
         if r["anum"]:
@@ -371,26 +348,10 @@ def render_index(families, rows, entry, cites):
                "`config/castle-sequences.tsv`. The castle role of each entry is built from the rows "
                "that name it; the catalog shows the same rows by family, with their terms. The "
                f"method for identifying and verifying an OEIS match is on {link('oeis-cross-referencing')}.")
-    out += ["", "## Counts by role", ""]
-    for key, title, blurb in GROUPS:
-        out.append(f"- **{title}** ({len(by_group[key])}) - {blurb}")
-    if unannotated:
-        out.append(f"- **Not yet annotated** ({len(unannotated)}) - cited on the wiki but without a "
-                   "row in `config/castle-sequences.tsv`.")
-    out += ["", "## Directory"]
-    for key, title, _ in GROUPS:
-        if not by_group[key]:
-            continue
-        out += ["", f"### {title}", "", "| A-number | Name | Castle role | Pages |", "|---|---|---|---|"]
-        for a in by_group[key]:
-            out.append(f"| {alink(a)} | {cell(entry[a]['name'])} | {cell('; '.join(roles[a]))} | "
-                       f"{pages_cell(cites.get(a, {}))} |")
-    if unannotated:
-        out += ["", "### Not yet annotated", "",
-                "Add a row to `config/castle-sequences.tsv` (the A-number, its group and what it "
-                "counts) to move an entry into its group above.", "", "| A-number | Pages |", "|---|---|"]
-        for a in unannotated:
-            out.append(f"| {alink(a)} | {pages_cell(cites[a])} |")
+    out += ["", "## Directory", "", "| A-number | Name | Castle role | Pages |", "|---|---|---|---|"]
+    for a in anums:
+        out.append(f"| {alink(a)} | {cell(entry.get(a, {}).get('name', '')) or '-'} | "
+                   f"{cell('; '.join(roles.get(a, []))) or '-'} | {pages_cell(cites.get(a, {}))} |")
     out += ["", "## Related Concepts", ""]
     out += [
         f"- {link(CATALOG_SLUG)} - the same data by family: every castle-counting sequence with its terms and OEIS entry.",
@@ -407,7 +368,7 @@ def index_frontmatter(n_seq, updated):
         "title: OEIS index",
         "category: Reference",
         f"summary: Script-generated directory of every OEIS A-number cited on the wiki or listed in "
-        f"its sequence data ({n_seq} sequences), grouped by role, with the castle role built from "
+        f"its sequence data ({n_seq} sequences), in A-number order, with the castle role built from "
         "the data rows and the citing pages with mention counts. Built with "
         "castle-sequence-catalog from one data file, config/castle-sequences.tsv, by "
         "bin/generate-sequence-pages.py.",
