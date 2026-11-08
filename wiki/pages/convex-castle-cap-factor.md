@@ -1,18 +1,18 @@
 ---
 title: The convex-castle cap factor - convex prefactors as residues at 1/mu
 category: Analyses
-summary: "The three area prefactors of the convex ladder are residues at 1/μ: parallelogram p = 0.29745350581112195108, directed convex 0.65895554185211895992, convex 2.91959850971360705538. Bender's formula (11), with K = 1.07524214134071812420 computed from Bender's own sum, gives the convex prefactor as 2pκ² with κ = K/P_1(r) = 2.21532282853826847652, A067675's value; the directed-convex prefactor equals pκ to 27 digits (computed). κ is the expected weight, at q = 1/μ, of the convex castles (stacks) hung under the base of a large random parallelogram. The base length of a large random parallelogram has mean 2.0603013 and variance 1.7054124; Bender's quoted base variance 0.57609 is not this variance."
+summary: "The prefactors of the parallelogram, directed-convex and convex polyomino counts by area are residues at 1/μ: parallelogram p = 0.29745350581112195108, directed convex 0.65895554185211895992, convex 2.91959850971360705538. Bender's formula (11), with K = 1.07524214134071812420 computed from Bender's own sum, gives the convex prefactor as 2pκ² with κ = K/P_1(r) = 2.21532282853826847652, A067675's value; the directed-convex prefactor equals pκ to 27 digits (computed). κ is the expected weight, at q = 1/μ, of the convex castles (stacks) hung under the base of a large random parallelogram. The base length of a large random parallelogram has mean 2.0603013 and variance 1.7054124; Bender's quoted base variance 0.57609 is not this variance."
 tags: [analysis, polyomino, convex, directed-convex, parallelogram-polyomino, stack-polyomino, convex-castle, asymptotics, residue, prefactor, q-series, bender, verification, oeis]
 sources: [bender-1974-convex-n-ominoes, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-10-23
+updated: 2026-11-08
 ---
 
 # The convex-castle cap factor
 
-[[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] gives each rung of the area ladder a growth constant and a prefactor, `a(n) ~ c μ^n` with `μ = 2.30913...`. For the parallelogram, directed-convex and convex rungs the prefactors are `0.29745`, `0.65896` and `2.91960`, read there from long series. This page gets all three as residues at the first zero `r = 1/μ` of `J_0`; they are one number times powers of a second number:
+[[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] gives each polyomino family counted by area a growth constant and a prefactor, `a(n) ~ c μ^n` with `μ = 2.30913...`. For the parallelogram, directed-convex and convex families the prefactors are `0.29745`, `0.65896` and `2.91960`, read there from long series. This page gets all three as residues at the first zero `r = 1/μ` of `J_0`; they are one number times powers of a second number:
 
-| rung | prefactor | as a residue | caps |
+| family | prefactor | as a residue | caps |
 |---|---|---|---|
 | parallelogram | `p = 0.29745350581112195108` | `P_1(r) / (r P_2'(r))` | none |
 | directed convex | `0.65895554185211895992` | `M_1(r) / (r P_2'(r))` | `p · κ` |
@@ -39,9 +39,9 @@ P_2(x) = sum_{k>=1} (-1)^{k+1} x^{k(k+1)/2} / ((1-x)...(1-x^k))^2
 P_1(x) = sum_{k>=1} (-1)^{k+1} x^{k(k+1)/2} / ((1-x)...(1-x^{k-1}))^2 / (1 - x^k)
 ```
 
-These are the parallelogram rung `J_1/J_0` of [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] at `x = y = 1`. A simple zero `r` of `J_0 = 1 - P_2` gives `[q^n] N/J_0 ~ N(r) / (r P_2'(r)) · r^{-n}` for any numerator `N` analytic past `r`. This is the parallelogram prefactor for `N = P_1` (Bender's (7a)),[^3] and the directed-convex prefactor for `N = M_1`, the Bousquet-Mélou-Fédou numerator of `Y = y M_1/J_0`.[^4]
+These are the parallelogram generating function `J_1/J_0` of [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] at `x = y = 1`. A simple zero `r` of `J_0 = 1 - P_2` gives `[q^n] N/J_0 ~ N(r) / (r P_2'(r)) · r^{-n}` for any numerator `N` analytic past `r`. This is the parallelogram prefactor for `N = P_1` (Bender's (7a)),[^3] and the directed-convex prefactor for `N = M_1`, the Bousquet-Mélou-Fédou numerator of `Y = y M_1/J_0`.[^4]
 
-For the convex rung, Bender's residue formula (10) splits the prefactor into three factors: the pole, `2/(r P_2'(r))`, and one cap factor for each end,[^5]
+For convex polyominoes, Bender's residue formula (10) splits the prefactor into three factors: the pole, `2/(r P_2'(r))`, and one cap factor for each end,[^5]
 
 ```
 f = 2/(r P_2') × C(y^0, S(r, y) P_1(r, 1, 1, 1/y)) × C(y^0, S(r, y) P_2(r, 1, 1/y))
@@ -106,7 +106,7 @@ print(2 * K**2 / (r * P1(r) * dP2), 2 * p * kappa**2)   # convex: Bender (11) wi
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]: `J_0`, `J_1`, `M_1`, and the prefactors computed there at area 120 (`0.29745350581112`, `0.65895554185212`, `2.9195985097136`), which agree with these residues in every printed digit.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)]: `mu`, the stack-parallelogram-stack trisection, and the `min{m, n}` kernel used for the base check.
 - [[convex-polyomino](pages/convex-polyomino.md)], [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]: the caps are convex castles.
-- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]: the ladder whose prefactor column this page explains.
+- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]: the table of polyomino families by area whose prefactor column this page explains.
 
 ## Footnotes
 

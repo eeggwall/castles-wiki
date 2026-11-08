@@ -1,22 +1,22 @@
 ---
-title: Convex polyominoes by area - the ladder from rectangles to 2.30913^n
+title: Convex polyominoes by area - nine polyomino families counted by number of cells, from rectangles to 2.30913^n
 category: Analyses
-summary: Every convex-polyomino family counted by area n on one ladder - rectangles d(n), Ferrers p(n), stacks = convex castles A001523, parallelograms A006958, directed convex A067676, convex A067675 - with the castles, which are the bargraphs (2^{n-1}), and the column-convex polyominoes (A001169) beside it. Each rung has an "adding a slice" generating function. The last three are quotients over one q-Bessel denominator J_0 (Bousquet-Mélou-Fédou: y J_1/J_0, y M_1/J_0 and the Theorem 3.1 convex formula) and share the growth constant μ = 2.3091385933... (A276994), with prefactors 0.29745, 0.65896 and 2.91960. On row-convex shapes blocks = height, so the PE 502 parity becomes height parity: the signed Ferrers count is (-1)^n A000700(n) by conjugation, and the signed parallelogram count is -q/(1 + q^3/(1 + q^5/(1 + ...))) = -A049346, from the festoon J-fraction at y = -1. All counts agree with a column-sweep enumeration.
+summary: Nine polyomino families counted by area n (the number of cells) in one table - the a x b rectangles with ab = n, d(n) of them, Ferrers p(n), stacks = convex castles A001523, parallelograms A006958, directed convex A067676, convex A067675 - with the castles, which are the bargraphs (2^{n-1}), and the column-convex polyominoes (A001169) beside it. Each family has an "adding a slice" generating function. The last three are quotients over one q-Bessel denominator J_0 (Bousquet-Mélou-Fédou: y J_1/J_0, y M_1/J_0 and the Theorem 3.1 convex formula) and share the growth constant μ = 2.3091385933... (A276994), with prefactors 0.29745, 0.65896 and 2.91960. On row-convex shapes blocks = height, so the PE 502 parity becomes height parity: the signed Ferrers count is (-1)^n A000700(n) by conjugation, and the signed parallelogram count is -q/(1 + q^3/(1 + q^5/(1 + ...))) = -A049346, from the festoon J-fraction at y = -1. All counts agree with a column-sweep enumeration.
 tags: [analysis, polyomino, convex, area, q-analog, generating-function, parity, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, continued-fraction, oeis, verification]
 sources: [analytic-combinatorics-ch1-ogfs, column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, castle-by-area, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes, bender-1974-convex-n-ominoes, oeis-encyclopedia]
 created: 2026-09-22
-updated: 2026-10-25
+updated: 2026-11-08
 ---
 
 # Convex polyominoes by area
 
-This page counts every [[convex-polyomino](pages/convex-polyomino.md)] family by area `n` (the number of cells) on one ladder, with the castle's own families beside it. It is the polyomino-side baseline for [[castle-by-area](pages/castle-by-area.md)] and [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
+This page counts nine families of polyominoes (connected shapes made of unit squares) by area `n`, the number of cells, in one table. The six [[convex-polyomino](pages/convex-polyomino.md)] families come first, from the most restricted, the rectangles, to all convex polyominoes; then come the castles (bar graphs), the column-convex polyominoes, which contain every castle, and all polyominoes. A rectangle of area `n` is an `a × b` rectangle with `ab = n`, so there is one for each divisor `a` of `n`, `d(n)` in all; it is the box castle, whose columns all have one height. It is the polyomino-side baseline for [[castle-by-area](pages/castle-by-area.md)] and [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
 
-## The ladder
+## Nine families by number of cells
 
 Fixed polyominoes (translations identified, rotations and reflections distinct), `n = 1..16`:
 
-| n | rect | Ferrers | stack = convex castle | parallelogram | directed convex | convex | bar graph = castle | column-convex | all |
+| n | rectangle | Ferrers | stack = convex castle | parallelogram | directed convex | convex | bar graph = castle | column-convex | all |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
@@ -40,7 +40,7 @@ The six convex columns and the column-convex column were computed by the column 
 
 Two readings of the table:
 
-- **The castle sits on two rungs.** Castles by area are bar graphs, and convex castles are stacks. Between stacks and convex polyominoes the only change is that the column bottoms may vary: they form their own anti-unimodal profile. That change alone moves the count from subexponential growth to exponential growth `2.309^n`. Stacks are subexponential because a stack is a peak column plus two partitions, so there are at most `n^2 p(n)^2` of area `n`; the ratio is still falling at `1.369` at `n = 25`.
+- **Castles fill two columns.** Castles by area are bar graphs, and convex castles are stacks. Between stacks and convex polyominoes the only change is that the column bottoms may vary: they form their own anti-unimodal profile. That change alone moves the count from subexponential growth to exponential growth `2.309^n`. Stacks are subexponential because a stack is a peak column plus two partitions, so there are at most `n^2 p(n)^2` of area `n`; the ratio is still falling at `1.369` at `n = 25`.
 - **Column-convex by area is A001169.** Rotating a polyomino 90 degrees turns its rows into columns and keeps its area, so it maps horizontally (row-) convex polyominoes one-to-one onto column-convex polyominoes of the same area. The horizontally convex count on [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] is also the column-convex count by area. Every castle is column-convex, so A001169 bounds every castle count by area. A column of height `g` can be glued next to a column of height `h` in `h + g − 1` ways, the multiplicity `k + ℓ − 1` of Flajolet and Sedgewick's Example V.20, and a sweep with this weight reproduces A001169.[^3]
 
 ## One method: adding a slice
@@ -51,7 +51,7 @@ Flajolet and Sedgewick's "adding a slice" (Example III.22) is the add-a-column c
 F(z, u) = f(zu) + ( L[F(z, u)] )_{u -> zu},        L[u^j] = sum_{(j, k) in R} u^k,
 ```
 
-where `f` is the one-column generating function and `R` is the set of allowed (old, new) slice pairs.[^4] Each ladder rung is a choice of `R` plus state:
+where `f` is the one-column generating function and `R` is the set of allowed (old, new) slice pairs.[^4] Each family is a choice of `R` plus state:
 
 | family | slice rule | generating function by area |
 |---|---|---|
@@ -90,7 +90,7 @@ A castle block is a maximal run of cells in one row. On a row-convex shape every
 | `S_dc` | -1 | 0 | 1 | 1 | 1 | -2 | -2 | -3 | 0 | -1 | 5 | 3 | 7 | -3 | 3 | -6 | 8 | -12 | 7 | -19 |
 | `S_convex` | -1 | 0 | 2 | 1 | -3 | -8 | -14 | -2 | 10 | 38 | 48 | 75 | 48 | 26 | -70 | -97 | -220 | -260 | -458 | -393 |
 
-The stack row's `even` and `odd` are the `cev(n)` and `cod(n)` of [[castle-by-area](pages/castle-by-area.md)], so this table extends that parity split up the ladder.[^9]
+The stack row's `even` and `odd` are the `cev(n)` and `cod(n)` of [[castle-by-area](pages/castle-by-area.md)], so this table extends that parity split to the other convex families.[^9]
 
 **Ferrers: closed, by conjugation.** Transposing a Ferrers diagram exchanges height (largest part) with number of parts, so `sum (-1)^height q^area = prod_{k>=1} 1/(1 + q^k)`. That product is the generating function of partitions into distinct odd parts at `-q`, so `S_Ferrers(n) = (-1)^n A000700(n)`.[^10]
 
@@ -152,11 +152,11 @@ def convex_by_area(N, bottoms="free", tops="unimodal"):
 ## Related
 
 - [[convex-polyomino](pages/convex-polyomino.md)] - definitions, the corner taxonomy, and why blocks = height.
-- [[castle-by-area](pages/castle-by-area.md)] - the castle rungs (`2^{n-1}`, A001523) and their parity splits.
-- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the stack rung's symbolic-method generating function.
-- [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169, which by rotation is the column-convex rung.
-- [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - the non-convex rungs above the castle: directed column-convex (`F_(2n-1)`) and column-convex, with their vertical-perimeter-signed rows.
-- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the q-Bessel and q-Catalan families the parallelogram rung belongs to.
+- [[castle-by-area](pages/castle-by-area.md)] - the two castle columns (`2^{n-1}`, A001523) and their parity splits.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the stack family's symbolic-method generating function.
+- [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169, which by rotation is the column-convex count.
+- [[column-convex-families-by-area](pages/column-convex-families-by-area.md)] - the non-convex families that contain the castles: directed column-convex (`F_(2n-1)`) and column-convex, with their vertical-perimeter-signed rows.
+- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the q-Bessel and q-Catalan families the parallelogram family belongs to.
 - [[castle-sign](pages/castle-sign.md)] - the `(-1)^blocks` specialization used in the parity section.
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)], [[q-differential-system](pages/q-differential-system.md)] - the directed-convex and convex generating functions and the method that found them.
 - [[convex-castle-cap-factor](pages/convex-castle-cap-factor.md)] - the three prefactors as residues at `1/mu`: `p`, `p·κ`, `2p·κ^2` with the convex-castle cap factor `κ = 2.21532...`.
@@ -165,8 +165,8 @@ def convex_by_area(N, bottoms="free", tops="unimodal"):
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - `mu` to eleven digits, the parallelogram prefactor, and the trapezoid = stack series.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the same families graded by perimeter instead of area, and the question of adding area.
 - [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - parallelogram area as the sum of peak heights of a Dyck word.
-- [[multiset-partitions](pages/multiset-partitions.md)] - the Ferrers rung, read as partitions of a multiset with one repeated element.
-- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar on castles by area, which places the castle on two rungs of this ladder.
+- [[multiset-partitions](pages/multiset-partitions.md)] - the Ferrers family, read as partitions of a multiset with one repeated element.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar on castles by area, which places the castles in two columns of this table.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the algebraic constants of the castle counts by width and height; `mu` is instead the reciprocal of a zero of the q-series `J_0`.
 
 ## Footnotes

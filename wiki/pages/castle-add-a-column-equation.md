@@ -103,7 +103,7 @@ A^e − A^o over monotone castles of area n  =  2(−1)^n A000700(n) − Σ_{d|n
 
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method and Lemma 2.3, with the paper's `S`, `P`, `C` written `St`, `Π`, `Conv`.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the same closed form from the tower grammar.
-- [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - the paper's other families at `y = ±1`, with castles inside the directed column-convex polyominoes.
+- [[column-convex-families-by-area](pages/column-convex-families-by-area.md)] - the paper's other families at `y = ±1`, with castles inside the directed column-convex polyominoes.
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)], [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169 and the weight `r + s − 1`.
 - [[convex-polyomino](pages/convex-polyomino.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the convex sub-families by bounding-box corners, and their counts by area.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - Ferrers and reverse Ferrers skylines as castle shape types.

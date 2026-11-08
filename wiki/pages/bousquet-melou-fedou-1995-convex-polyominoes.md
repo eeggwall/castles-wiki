@@ -1,11 +1,11 @@
 ---
 title: "The generating function of convex polyominoes (Bousquet-Mélou and Fédou, 1995)"
 category: Sources
-summary: Bousquet-Mélou and Fédou solve the three-equation linear q-differential system that characterizes convex polyominoes by width, height and area, giving Z = 2y^2 M_1(Jbar_1 beta - Kbar_1 alpha)/J_0 - y Jbar_1 b_1 + y Kbar_1 a_1, a quotient over the same q-Bessel denominator J_0 as the parallelogram (y J_1/J_0) and directed-convex (y M_1/J_0) rungs. The method is a q-analogue of variation of parameters, guided by the q = 1 Bessel ODE system. Verified here to area 120 against A006958, A067675 and A067676; the series give the convex prefactor 2.91960 (A067675) and the directed-convex prefactor 0.65896.
+summary: Bousquet-Mélou and Fédou solve the three-equation linear q-differential system that characterizes convex polyominoes by width, height and area, giving Z = 2y^2 M_1(Jbar_1 beta - Kbar_1 alpha)/J_0 - y Jbar_1 b_1 + y Kbar_1 a_1, a quotient over the same q-Bessel denominator J_0 as the parallelogram (y J_1/J_0) and directed-convex (y M_1/J_0) generating functions. The method is a q-analogue of variation of parameters, guided by the q = 1 Bessel ODE system. Verified here to area 120 against A006958, A067675 and A067676; the series give the convex prefactor 2.91960 (A067675) and the directed-convex prefactor 0.65896.
 tags: [source, paper, polyomino, convex, directed-convex, parallelogram-polyomino, q-analog, q-bessel, q-differential-system, generating-function, area, bousquet-melou, fedou, verification, oeis]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-11-08
 ---
 
 # The generating function of convex polyominoes (Bousquet-Mélou and Fédou, 1995)
@@ -25,7 +25,7 @@ The starting point is Bousquet-Mélou's earlier Lemma 1.1. Encoding convex polyo
 
 Section 3 proves the theorem by direct verification against the system, with the q-series listed in Appendix A and the "elementary" q-equations they satisfy in Appendix B. Section 4 explains how the solution was found. Section 5 extracts the width-by-width rational functions and a table of counts by area to `n = 20`.[^6]
 
-## The ladder of formulas
+## The three generating functions
 
 Notation: `(y)_n = (1 - y)(1 - yq)...(1 - yq^{n-1})`, so `(yq)_n = (1 - yq)...(1 - yq^n)` and `(q)_n = (1 - q)...(1 - q^n)`. `S(xq)` means `S(xq, y, q)`.[^7]
 
@@ -59,10 +59,10 @@ b_0 - y b_0(xq) - b_1 = y a_0(xq), b_1 - y b_1(xq) - xq b_0 = y a_1(xq) + xq (2y
 
 The hatted series are `Jhat_0 = sum x^n q^{n(n+1)} / (q)_n^2` and `Jhat_1 = sum_{n>=1} x^n q^{n^2} / ((q)_{n-1} (q)_n)`, together with the `Khat` series formed as `Kbar` is. They are the barred series divided by `E = Jbar_1 Kbar_0 - Jbar_0 Kbar_1 = sum x^n q^n / (q)_n` (Property 3.2).[^13]
 
-Three readings of the ladder:
+Three readings of the table:
 
-- **One denominator for three rungs.** Parallelogram, directed convex and convex all divide by the same `J_0`. It is the q-analogue of the Bessel function `sum (-1)^n x^n / n!^2` that the `q = 1` limit produces (p.60). At `x = y = 1`, `1/mu` is the smallest positive zero of `J_0`, where `mu = 2.30913...` (A276994) is the growth constant by area of all three families ([[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], section *One growth constant*).[^14]
-- **Each rung adds a harder numerator.** `J_1` (parallelogram) is a q-Bessel series. `M_1` (directed convex) is the q-analogue of the odd part of `J_1`, which the authors call "obviously more difficult to guess". The convex numerator needs the logarithmic (second-kind) solutions `Kbar_0, Kbar_1` as well.[^15]
+- **One denominator for three families.** Parallelogram, directed convex and convex all divide by the same `J_0`. It is the q-analogue of the Bessel function `sum (-1)^n x^n / n!^2` that the `q = 1` limit produces (p.60). At `x = y = 1`, `1/mu` is the smallest positive zero of `J_0`, where `mu = 2.30913...` (A276994) is the growth constant by area of all three families ([[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], section *One growth constant*).[^14]
+- **Each family adds a harder numerator.** `J_1` (parallelogram) is a q-Bessel series. `M_1` (directed convex) is the q-analogue of the odd part of `J_1`, which the authors call "obviously more difficult to guess". The convex numerator needs the logarithmic (second-kind) solutions `Kbar_0, Kbar_1` as well.[^15]
 - **Width by width it is rational.** Because every series is expanded in `x`, the coefficient of `x^n` in `Z` is a rational function of `y` and `q`. Section 5 gives it as `x^n y q^n P_n / ((1 - yq^n) prod_{i=1}^{n-1} (1 - yq^i)^{floor((n-2)/i) + 2})`. At `y = 1` the area generating function of width-`n` convex polyominoes is `x^n q^n Q_n / ([n-2]! (q)_{n-1} (q)_n)`, with `[n]! = (q)_n/(1-q)^n`.[^16]
 
 ## Other results reported in the paper
@@ -70,7 +70,7 @@ Three readings of the ladder:
 - **Height and width without area (Lin and Chang).** `Z(x, y, 1) = xy/Delta^2 (1 - 3x - 3y + 3x^2 + 3y^2 + 5xy - x^3 - y^3 - x^2 y - xy^2 - xy(x - y)^2) - 4x^2y^2/Delta^{3/2}` with `Delta = 1 - 2x - 2y - 2xy + x^2 + y^2`. It is algebraic and symmetric in `x, y`, and at `x = y` it refines the Delest-Viennot perimeter count ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]).[^17]
 - **Parallelograms, symmetric form.** Multiplying by `(yq)_infinity` gives `X = xyq L(xq, yq) / L(x, y)` with `L(x, y) = sum_{n,m>=0} (-1)^{n+m} x^n y^m q^{C(n+m+1,2)} / ((q)_n (q)_m)`. This makes the `x <-> y` symmetry visible.[^9]
 - **The width polynomials.** `Q_1 = 1`, `Q_2 = 1 + 2q + q^2`, `Q_3 = 1 + 6q + 12q^2 + 12q^3 + 7q^4 + 2q^5`, `Q_4 = 1 + 11q + 43q^2 + 95q^3 + 150q^4 + 186q^5 + 181q^6 + 137q^7 + 79q^8 + 33q^9 + 10q^10 + 2q^11`. The authors conjecture that every `Q_n` has positive coefficients and is unimodal.[^16]
-- **Table 1** gives parallelogram, directed convex and convex counts by area for `n = 1..20`. It agrees term for term with the ladder on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].[^18]
+- **Table 1** gives parallelogram, directed convex and convex counts by area for `n = 1..20`. It agrees term for term with the table of polyomino families by area on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].[^18]
 - **Asymptotics.** The paper cites Bender and Klarner-Rivest for the asymptotic form `C a^n` of the number of convex polyominoes of area `n`, with `a ≃ 2.30914` and `C ≃ 2.67564`.[^19] The growth rate agrees with A276994. The prefactor of the exact series is `C = 2.9195985097`, as A067675 gives (section *Verification*), so the quoted `C ≃ 2.67564` is not the constant of `a(n) ~ C a^n`.
 
 ## Verification
@@ -88,7 +88,7 @@ The Appendix A series were transcribed from the page images into truncated q-ser
 | directed convex | `0.6589555418` | A067676 lists no asymptotic formula (checked 2026-10-16) |
 | convex | `2.9195985097` | A067675 gives `2.9195985097136070...` |
 
-The parallelogram and directed-convex rungs fit in a short block (`N` is the area cutoff):
+The parallelogram and directed-convex series fit in a short block (`N` is the area cutoff):
 
 ```python
 N = 30
@@ -126,7 +126,7 @@ print(div(M1, J0)[1:])              # directed convex, A067676
 
 ## Key Takeaways
 
-- The convex-polyomino generating function by width, height and area has a closed form over the q-Bessel denominator `J_0`, the same denominator as the parallelogram and directed-convex rungs.[^11]
+- The convex-polyomino generating function by width, height and area has a closed form over the q-Bessel denominator `J_0`, the same denominator as the parallelogram and directed-convex generating functions.[^11]
 - It is the unique power-series solution of a linear q-differential system with 1×1, 2×2 and 3×3 blocks, derived from an algebraic-language encoding.[^4]
 - The solution was found by solving the `q = 1` ODE system with Bessel functions and variation of parameters, then q-analogizing each step, with `log_q` as a formal device ([[q-differential-system](pages/q-differential-system.md)]).[^5]
 - Width-`n` convex polyominoes have a rational area generating function with an explicit denominator, and its numerators `Q_n` are conjectured unimodal.[^16]
@@ -135,7 +135,7 @@ print(div(M1, J0)[1:])              # directed convex, A067676
 ## Entities & Concepts
 
 - [[convex-polyomino](pages/convex-polyomino.md)] - the family solved, with the Fig. 2 subclasses.
-- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the area ladder whose directed-convex and convex rungs this paper supplies.
+- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the polyomino families counted by area, whose directed-convex and convex generating functions this paper supplies.
 - [[q-differential-system](pages/q-differential-system.md)] - the solution method.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's 1996 add-a-column method, which obtains the parallelogram generating function `y J_1/J_0` (its Theorem 3.2) and the directed convex one `y M_1/J_0` (its Theorem 3.4) from linear q-equations without a q-differential system, and gives the directed column-convex (Theorem 3.6) and column-convex (Theorem 4.8) polygons.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - nonlinear functional equations for six cluster models, linearized into q-difference equations: (3.11) for bar-graph polygons, which are the castles, and the staircase solution (4.9), which is the series `J_0` of this paper; the six models share an Airy scaling function.
@@ -148,9 +148,9 @@ print(div(M1, J0)[1:])              # directed convex, A067676
 
 ## Relation to Other Wiki Pages
 
-This paper gives the directed-convex and convex rungs of [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] their closed forms, verified here to area 120.
+This paper gives the directed-convex and convex counts of [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] their closed forms, verified here to area 120.
 
-The castles and the convex castles are the bar graphs and the stacks at the bottom of the same ladder ([[castle-by-area](pages/castle-by-area.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]). Counted by area alone, the castles have generating function `z/(1 - 2z)` and the convex castles a sum of q-Pochhammer quotients. Counted by width, blocks and area, the castles have the denominator `J_0` ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]).
+The castles and the convex castles are the bar graphs and the stacks of the same table of polyomino families by area ([[castle-by-area](pages/castle-by-area.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]). Counted by area alone, the castles have generating function `z/(1 - 2z)` and the convex castles a sum of q-Pochhammer quotients. Counted by width, blocks and area, the castles have the denominator `J_0` ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]).
 
 The paper's Fig. 2 marks the bounding-box corners each subclass must contain: parallelograms at bottom-left and top-right, directed convex at bottom-left. This agrees with the corner taxonomy on [[convex-polyomino](pages/convex-polyomino.md)]. Its Ferrers diagram is drawn right-justified, so its third corner is top-right where the wiki's is top-left, a reflection only.[^21]
 

@@ -1,11 +1,11 @@
 ---
 title: q-thread seminar - castles by area
 category: Concepts
-summary: A seminar on castles graded by area, with one castle (2, 1, 3, 3, 1, 1, 2) carried through. A castle of area n is a composition of n, so there are 2^{n−1} of them. On the ladder of convex-polyomino families by area the castles are the bar graphs and the convex castles are the stacks (A001523). Convex and vee castles tie in every cell (w, h) at C(2h + w − 3, w − 1) but differ by area from n = 4 (8 against 7). Cutting at height-1 columns makes castles a free monoid whose primes are castles raised one row (F_{n−1} by area). The sign (−1)^{blocks−1} is a character of that monoid, so the signed count obeys the row-raising equation 1 + qz(2 − E(z)) = 1/(1 − qz E(qz)) and is 0.0985 (−1.62383)^n up to a relative error O(0.7508^n). The closed form is a sequence of parallelograms, Π/(1 − x − Π), over the Bousquet-Mélou-Fédou q-Bessel series, the Pólya q-Catalan family, and the pole is the first zero q_0 = −0.61583 of the q-Bessel denominator M, whose second zero q_1 = −0.82027 sets the error. With the height bounded, the counts by area are rational.
+summary: A seminar on castles graded by area, with one castle (2, 1, 3, 3, 1, 1, 2) carried through. A castle of area n is a composition of n, so there are 2^{n−1} of them. Among the polyomino families counted by area, the castles are the bar graphs and the convex castles are the stacks (A001523). Convex and vee castles tie in every cell (w, h) at C(2h + w − 3, w − 1) but differ by area from n = 4 (8 against 7). Cutting at height-1 columns makes castles a free monoid whose primes are castles raised one row (F_{n−1} by area). The sign (−1)^{blocks−1} is a character of that monoid, so the signed count obeys the row-raising equation 1 + qz(2 − E(z)) = 1/(1 − qz E(qz)) and is 0.0985 (−1.62383)^n up to a relative error O(0.7508^n). The closed form is a sequence of parallelograms, Π/(1 − x − Π), over the Bousquet-Mélou-Fédou q-Bessel series, the Pólya q-Catalan family, and the pole is the first zero q_0 = −0.61583 of the q-Bessel denominator M, whose second zero q_1 = −0.82027 sets the error. With the height bounded, the counts by area are rational.
 tags: [concept, castle, seminar, pedagogy, teaching, area, q-analog, q-catalan, q-motzkin, q-bessel, prime-castles, signed-count, polyomino, composition]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, steep-polyominoes-q-motzkin-bessel, prellberg-brak-1995-cluster-models]
 created: 2026-09-27
-updated: 2026-10-31
+updated: 2026-11-08
 ---
 
 # q-thread seminar - castles by area
@@ -22,9 +22,9 @@ Area alone therefore carries no information. Graded by width `u` and area `q` at
 
 *Idea:* area alone is trivial on castles, so it is paired with blocks.
 
-## Stop 1 - the ladder
+## Stop 1 - polyomino families by area
 
-Each convex-polyomino family has a classical count by area, and the castles sit on two rungs of that ladder ([[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]):
+Each convex-polyomino family has a classical count by area, and the castles are two of those families ([[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]):
 
 ```
  n     Ferrers   stack = convex castle   parallelogram   convex   bar graph = castle   column-convex
@@ -35,9 +35,9 @@ Each convex-polyomino family has a classical count by area, and the castles sit 
 
 - **Stacks are convex castles**, A001523, the weakly unimodal compositions ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]). They grow subexponentially.
 - **Parallelograms**, A006958, are the Pólya q-Catalan numbers ([[q-catalan-numbers](pages/q-catalan-numbers.md)]). The parallelogram, directed convex and convex polyominoes grow at the same constant `2.30914` by area ([[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]).
-- **Castles are bar graphs**, `2^{n−1}`. They sit inside the directed column-convex polyominoes (`F_{2n−1}`, growth `φ² = 2.618`) and inside the column-convex ones (A001169, growth `3.20557`) ([[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)]).
+- **Castles are bar graphs**, `2^{n−1}`. They sit inside the directed column-convex polyominoes (`F_{2n−1}`, growth `φ² = 2.618`) and inside the column-convex ones (A001169, growth `3.20557`) ([[column-convex-families-by-area](pages/column-convex-families-by-area.md)]).
 
-Two changes move a family between rungs. Give a stack a bottom boundary of its own that falls and then rises, and it becomes a convex polyomino: the growth jumps from subexponential to `2.309^n`. Keep the base flat but drop the unimodality of the top, as a castle does, and the growth is `2^n`.
+Two changes turn one family into another. Give a stack a bottom boundary of its own that falls and then rises, and it becomes a convex polyomino: the growth jumps from subexponential to `2.309^n`. Keep the base flat but drop the unimodality of the top, as a castle does, and the growth is `2^n`.
 
 *Idea:* place a new family among known ones and find the rule that separates it from its neighbors.
 
@@ -141,7 +141,7 @@ With the height bounded, the counts by area are rational and their growth consta
 | grading | what castles are | number |
 |---|---|---|
 | area alone | compositions | `2^{n−1}` |
-| area on the ladder | bar graphs; convex castles are stacks | A011782, A001523; growth 2, between the stacks and `2.309` |
+| area, among the polyomino families | bar graphs; convex castles are stacks | A011782, A001523; growth 2, between the stacks and `2.309` |
 | area against `(w, h)` | convex and vee castles tie in each cell and differ by area | `C(2h + w − 3, w − 1)`; 8 against 7 at `n = 4` |
 | gluing | a free monoid of castles raised one row | primes `F_{n−1}` |
 | area with the sign | a character, a q-shift recursion | `even − odd ~ 0.0985 (−1.62383)^n` |
@@ -285,7 +285,7 @@ True
 
 ## Related Concepts
 
-- [[castle-by-area](pages/castle-by-area.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - the counts and the ladder of Stops 0 to 2.
+- [[castle-by-area](pages/castle-by-area.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], [[column-convex-families-by-area](pages/column-convex-families-by-area.md)] - the counts and the polyomino families of Stops 0 to 2.
 - [[prime-castles](pages/prime-castles.md)], [[prime-convex-castles](pages/prime-convex-castles.md)], [[signed-prime-castles](pages/signed-prime-castles.md)], [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the monoid, the character and the recursion of Stops 3 and 4.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)] - the closed form, the q-Catalan families and the kernel ranks of Stops 5 and 6.
 - [[motzkin-castles](pages/motzkin-castles.md)] - cornerless Motzkin paths and the castles counted by Motzkin numbers.

@@ -5,7 +5,7 @@ summary: A linear q-differential system relates a vector of series at x to the s
 tags: [concept, q-analog, q-differential-system, q-bessel, variation-of-parameters, generating-function, polyomino, convex, functional-equation]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-11-08
 ---
 
 # Linear q-differential systems and their q → 1 limit
@@ -54,7 +54,7 @@ The wiki's reading, not from the source:
 
 ## Related Concepts
 
-- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the area ladder whose top three rungs this method solves.
+- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the polyomino families counted by area; this method solves the parallelogram, directed-convex and convex counts.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's later add-a-column functional equations, a different route to the same generating functions.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - q-Bessel quotients from another polyomino family.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - an equation in one unknown with a shift `y -> xy`: Klarner and Rivest's (17), `Π(x, y) = xy/(1 - xy) + xy/(1 - xy)^2 (Π(x, 1) - Π(x, xy))` for parallelograms by area, whose iteration gives `Π(x, 1)` as a ratio of two alternating q-series (19).

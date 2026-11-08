@@ -98,7 +98,7 @@ Counted by width and height instead of area, the vee castles and the convex cast
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree castles counted by area at each height: `A077868` at height 2, `A006498` at height 3, `A000570` at height 4, and `A005251` with no bound on the height.
 - [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of castle strips under every rule on neighboring columns through height 5.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the families of convex polyominoes counted by area, with the convex castles as the stacks and the castles as the bargraphs.
-- [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - castles by area inside the directed column-convex polyominoes (`A001519`) and the column-convex polyominoes (`A001169`), unsigned and with the block sign.
+- [[column-convex-families-by-area](pages/column-convex-families-by-area.md)] - castles by area inside the directed column-convex polyominoes (`A001519`) and the column-convex polyominoes (`A001169`), unsigned and with the block sign.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method for column-convex polygons; castles are its directed column-convex polygons whose columns all start on row 1.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the functional equation (3.11) for bargraphs, the generating function of castles by width, blocks and area.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the entropy of the area of a castle chosen uniformly at fixed width and height.

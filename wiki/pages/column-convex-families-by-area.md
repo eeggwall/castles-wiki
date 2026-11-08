@@ -1,20 +1,20 @@
 ---
-title: The column-convex ladder by area
+title: Column-convex polyomino families by area, with the castles inside
 category: Analyses
 summary: Bousquet-Mélou's 1996 generating functions for stack, parallelogram, directed convex, directed column-convex and column-convex polyominoes at s = t = x = 1, with the vertical half-perimeter variable y at 1 and at −1. At y = 1 they count by area A001523, A006958, A067676, A001519 = F_{2n−1} and A001169; the castles, 2^{n−1} of area n, are the directed column-convex polyominoes with every column on row 1, so stacks ⊂ castles ⊂ directed column-convex ⊂ column-convex, with growth by area subexponential, 2, φ² and 3.20557. At y = −1 the variable is the block sign on castles and the height sign on row-convex polyominoes; the signed counts are S_castle(n) ~ 0.0985 (−1.62383)^n, S_dcc(n) ~ −0.009058018 (−1.7300884)^n and S_cc(n) ~ 4.12460·10⁻⁵ (−2.2475612)^n (computed). The paper's stack polygons lie on their side, so at y = −1 its stack formula signs stacks by width.
 tags: [analysis, polyomino, column-convex, directed-column-convex, area, perimeter, parity, sign, q-series, castle, stack-polyomino, parallelogram-polyomino, directed-convex, oeis, asymptotics, verification]
 sources: [column-convex-polygon-enumeration]
 created: 2026-09-23
-updated: 2026-10-25
+updated: 2026-11-08
 ---
 
-# The column-convex ladder by area
+# Column-convex polyomino families by area
 
 [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] gives the generating functions of six column-convex families, with `s` and `t` marking the left and right heights, `x` the width, `y` the vertical half-perimeter `v(P)` (half the number of vertical edges of the perimeter) and `q` the area.[^1] This page sets `s = t = x = 1` and reads the area series at `y = 1` and at `y = −1`. On a castle the vertical half-perimeter is the block count ([[castle-perimeter](pages/castle-perimeter.md)]), so `y = −1` is the Project Euler 502 block sign; on a row-convex polyomino it is the height ([[convex-polyomino](pages/convex-polyomino.md)]). The convex family is on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], from Bousquet-Mélou and Fédou 1995 and a column sweep.
 
 *Example.* The castle `(2, 1, 2)` has area 5, 3 blocks and 6 vertical perimeter edges (2 on the left, 1 and 1 at the inner boundaries, 2 on the right), so `v = 3`, and its weight at `y = −1` is `−1`.
 
-## At y = 1: the area ladder
+## At y = 1: counts by area
 
 | family | 1996 result | area generating function at `y = 1` | first terms | OEIS | growth by area |
 |---|---|---|---|---|---|
@@ -25,9 +25,11 @@ updated: 2026-10-25
 | directed column-convex | Theorem 3.6 | `q(1 − q)/(1 − 3q + q²)` | 1, 2, 5, 13, 34, 89, 233, 610 | `A001519(n) = F_{2n−1}` | `φ² = 2.61803` |
 | column-convex | Theorem 4.8 | `q(1 − q)³/(1 − 5q + 7q² − 4q³)` | 1, 2, 6, 19, 61, 196, 629, 2017 | A001169 | `3.20557` |
 
+Ordered by containment (stacks ⊂ castles ⊂ directed column-convex ⊂ column-convex, and parallelograms ⊂ directed convex ⊂ directed column-convex), these families are the rungs of what this page calls the column-convex ladder. Other pages use "ladder" for other things, such as the 2-wide ladder castles of [[sandpile-group](pages/sandpile-group.md)] and the growth ladder of [[1-smooth-castles](pages/1-smooth-castles.md)].
+
 The paper states the last two generating functions, which it writes `DV(1, 1, 1, 1, q)` and `V(1, 1, 1, 1, q)`, and credits the first to Delest and Dulucq.[^3]
 
-**Castles inside the ladder.** A polyomino is directed column-convex when every column is one interval and every cell can be reached from the bottom-left cell by north and east steps. In a column sweep, each new column's bottom lies between the bottom and the top of the previous column. A castle is the case in which every bottom is on row 1. So
+**Castles inside the column-convex ladder.** A polyomino is directed column-convex when every column is one interval and every cell can be reached from the bottom-left cell by north and east steps. In a column sweep, each new column's bottom lies between the bottom and the top of the previous column. A castle is the case in which every bottom is on row 1. So
 
 ```
 stacks (A001523)  ⊂  castles (2^{n−1})  ⊂  directed column-convex (F_{2n−1})  ⊂  column-convex (A001169),
@@ -35,7 +37,7 @@ stacks (A001523)  ⊂  castles (2^{n−1})  ⊂  directed column-convex (F_{2n�
 
 with growth by area subexponential, `2`, `φ²` and `3.20557`. [[castle-by-area](pages/castle-by-area.md)] splits the castles into the convex castles (A001523) and the non-convex castles (A115981). The vee castles (A332578), whose tops fall and then rise, are directed column-convex and not convex, and are not one of the paper's families. The directed column-convex polyominoes by area and the convex castles by semi-perimeter are both counted by A001519 ([[castle-perimeter](pages/castle-perimeter.md)]).
 
-## At y = −1: the block sign on every rung
+## At y = −1: the block sign on each family
 
 At `y = −1` each generating function becomes `Σ (−1)^{v(P)} q^{area(P)}`.[^1] Write `S_castle(n)`, `S_dcc(n)` and `S_cc(n)` for the sums of `(−1)^{v(P)}` over the castles, the directed column-convex polyominoes and the column-convex polyominoes of area `n`. On castles, `S_castle(n)` is the even-block count minus the odd-block count. On parallelograms and directed convex polyominoes, `(−1)^{v(P)}` is the height sign, and those rows agree with [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].
 
@@ -53,7 +55,7 @@ The castle row is the signed count of [[castle-row-raising-equation](pages/castl
 | directed column-convex | `−0.5780051505` | `1.7300884` | `−0.009058018` | `2.61803` |
 | column-convex | `−0.4449266995` | `2.2475612` | `4.12460·10⁻⁵` | `3.20557` |
 
-For directed column-convex polyominoes, `q_0` is a zero of Theorem 3.6's denominator `L_0(1)`, and the next poles are a complex pair of modulus `0.780`. For column-convex polyominoes, `q_0` is a zero of Theorem 4.8's `1 + W + yX`, and the next poles are a complex pair of modulus `0.594`; with a small constant and a second pole close behind, `S_cc(n) q_0^n` settles to `4.1246·10⁻⁵` only from about `n = 70`. On all three rungs the signed count grows more slowly than the unsigned count, so the even and odd weights balance to leading order. The ratios of the two growth constants are `1.624/2 = 0.81` for castles, `1.730/2.618 = 0.66` for directed column-convex and `2.248/3.206 = 0.70` for column-convex polyominoes.
+For directed column-convex polyominoes, `q_0` is a zero of Theorem 3.6's denominator `L_0(1)`, and the next poles are a complex pair of modulus `0.780`. For column-convex polyominoes, `q_0` is a zero of Theorem 4.8's `1 + W + yX`, and the next poles are a complex pair of modulus `0.594`; with a small constant and a second pole close behind, `S_cc(n) q_0^n` settles to `4.1246·10⁻⁵` only from about `n = 70`. On all three of these rungs the signed count grows more slowly than the unsigned count, so the even and odd weights balance to leading order. The ratios of the two growth constants are `1.624/2 = 0.81` for castles, `1.730/2.618 = 0.66` for directed column-convex and `2.248/3.206 = 0.70` for column-convex polyominoes.
 
 **The paper's stacks lie on their side.** Lemma 2.4 builds every stack polygon of width at least 2 by construction A, which extends the new first column both above and below the old one.[^4] So the paper's stacks are nested columns shrinking away from a base column on the left, a quarter turn from the upright stacks of [[convex-castle](pages/convex-castle.md)]. The area count is the same, but `v(P)` of the paper's stack is the width of the upright stack, so at `y = −1` Lemma 2.5 signs stacks by width, which has no Project Euler 502 meaning. The stacks signed by height, which is the block sign of a convex castle, are on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].
 
