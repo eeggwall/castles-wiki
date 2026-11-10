@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Generate the wiki's two sequence pages from one curated data file.
 
-    config/castle-sequences.tsv           one row per sequence: a castle count, with or
-                                          without an OEIS entry, or an OEIS entry the wiki cites
-    config/castle-sequence-families.tsv   the catalog's sections: title, label, page, intro, note
+    config/castle-sequences.tsv          one row per sequence: a castle count, with or
+                                         without an OEIS entry, or an OEIS entry the wiki cites
+    config/castle-families.tsv           the castle families and their definitions, one catalog
+                                         section each
+    config/castle-sequence-checks.tsv    how rows were verified, one catalog footnote each
 
 The two pages are views of the same rows, so neither is ever hand-edited:
 
@@ -20,8 +22,9 @@ Run it after any edit to the data files or any page edit that adds or removes an
 Row columns (tab-separated; a cell never holds a tab or a newline):
 
     id          unique key
-    family      a family id from the families file; empty for an OEIS entry that is not a
-                castle count of its own (it then appears in the index only)
+    family      the id of the castle family the row counts, from config/castle-families.tsv;
+                empty for an OEIS entry that is not a castle count of its own (it then
+                appears in the index only)
     page        the wiki page that proves or discusses the row (slug), optional
     counts      what the row counts, in markdown
     axis        the grading variable and its first value, e.g. `w = 1…`, optional
@@ -34,10 +37,11 @@ Row columns (tab-separated; a cell never holds a tab or a newline):
     note        the rest of the OEIS cell, in markdown
     oeis_name   the entry's OEIS name, stored; --fetch-names fills empty cells
     status      `proved` when `page` proves the identity, else empty
+    check       the id of the verification footnote in config/castle-sequence-checks.tsv, or empty
 
-Family columns: id, title, label (a short noun phrase that prefixes the rows' descriptions in the
-index), page, intro, note. In intro and note, `\\n` starts a new paragraph. An A-number cited on a
-page but without a row is listed in the index under "Not yet annotated". Stdlib only.
+Family columns: id, name, definition, page, defined_in, note. Check columns: id, check. An
+A-number cited on a page but without a row is listed in the index with no name or castle role.
+Stdlib only.
 """
 import json
 import re
@@ -50,15 +54,17 @@ from pathlib import Path
 WIKI_ROOT = Path(__file__).resolve().parent.parent
 PAGES_DIR = WIKI_ROOT / "wiki" / "pages"
 ROWS_FILE = WIKI_ROOT / "config" / "castle-sequences.tsv"
-FAMILIES_FILE = WIKI_ROOT / "config" / "castle-sequence-families.tsv"
+FAMILIES_FILE = WIKI_ROOT / "config" / "castle-families.tsv"
+CHECKS_FILE = WIKI_ROOT / "config" / "castle-sequence-checks.tsv"
 INDEX_SLUG = "oeis-index"
 CATALOG_SLUG = "castle-sequence-catalog"
 GENERATED = {INDEX_SLUG, CATALOG_SLUG}
 SCRIPT = "bin/generate-sequence-pages.py"
 
 ROW_COLS = ["id", "family", "page", "counts", "axis", "terms", "formula", "growth", "anum",
-            "anum_index", "note", "oeis_name", "status"]
-FAMILY_COLS = ["id", "title", "label", "page", "intro", "note"]
+            "anum_index", "note", "oeis_name", "status", "check"]
+FAMILY_COLS = ["id", "name", "definition", "page", "defined_in", "note"]
+CHECK_COLS = ["id", "check"]
 ANUM_RE = re.compile(r"\bA\d{6}\b")
 
 
@@ -88,6 +94,7 @@ def write_rows(rows):
 def load():
     families = read_tsv(FAMILIES_FILE, FAMILY_COLS)
     rows = read_tsv(ROWS_FILE, ROW_COLS)
+    checks = {c["id"]: c["check"] for c in read_tsv(CHECKS_FILE, CHECK_COLS)}
     fam_ids = {f["id"] for f in families}
     seen, entry = set(), {}
     for r in rows:
@@ -97,6 +104,8 @@ def load():
         seen.add(r["id"])
         if r["family"] and r["family"] not in fam_ids:
             sys.exit(f"{where}: unknown family {r['family']!r}")
+        if r["check"] and r["check"] not in checks:
+            sys.exit(f"{where}: unknown check {r['check']!r}")
         if not r["family"] and not r["anum"]:
             sys.exit(f"{where}: a row needs a family, an A-number, or both")
         if r["anum"]:
@@ -115,9 +124,10 @@ def load():
         if r["page"] and not (PAGES_DIR / f"{r['page']}.md").exists():
             sys.exit(f"{where}: no page {r['page']!r}")
     for f in families:
-        if f["page"] and not (PAGES_DIR / f"{f['page']}.md").exists():
-            sys.exit(f"{FAMILIES_FILE.name}: family {f['id']!r}: no page {f['page']!r}")
-    return families, rows, entry
+        for slug in (f["page"], f["defined_in"].split(",")[0]):
+            if slug and not (PAGES_DIR / f"{slug}.md").exists():
+                sys.exit(f"{FAMILIES_FILE.name}: family {f['id']!r}: no page {slug!r}")
+    return families, rows, entry, checks
 
 
 def split_doc(text):
@@ -172,10 +182,6 @@ def alink(anum):
     return f"[{anum}](https://oeis.org/{anum})"
 
 
-def paragraphs(text):
-    return [p.strip() for p in text.split("\\n") if p.strip()]
-
-
 def relation(r):
     """The row's place in its entry, as an expression: A094706(w−2), or A038503(w + 1) − 1."""
     idx = r["anum_index"]
@@ -203,33 +209,38 @@ def oeis_cell(r):
     return out
 
 
-def role(r, label):
-    """One line for the index: the family label, what the row counts, and its relation."""
-    text = r["counts"]
-    if label and label.lower() not in text.lower():
-        text = f"{label}, {text}"
+def role(r):
+    """One line for the index: what the row counts, its grading variable, and its relation."""
+    text = r["counts"] + (f" ({r['axis']})" if r["axis"] else "")
     rel = relation(r)
     return f"{text}: `{rel}`" if rel else text
 
 
 # ---------------------------------------------------------------- the catalog
 
-def render_catalog(families, rows):
+def heading(name):
+    """The family name in the plural, capitalized unless it opens with a symbol: m-smooth castles."""
+    text = re.sub(r"\bcastle\b", "castles", name)
+    return text if re.match(r"[a-z0-9(]-|\W|\d", text[:2]) else text[0].upper() + text[1:]
+
+
+def render_catalog(families, rows, checks):
     by_family = {f["id"]: [r for r in rows if r["family"] == f["id"]] for f in families}
-    labels = {f["id"]: f["label"] for f in families}
+    used = []
     n_rows = sum(len(v) for v in by_family.values())
     out = ["", f"<!-- Generated by {SCRIPT} from config/castle-sequences.tsv and "
-               "config/castle-sequence-families.tsv. Do not edit by hand: edit the data files "
+               "config/castle-families.tsv. Do not edit by hand: edit the data files "
                "and rerun the script. -->", ""]
     out += ["# Castle sequence catalog", "", "## What this is", ""]
     out.append("This page catalogs the sequences that castles produce, organized by the castle "
-               "object each one counts rather than by OEIS A-number. Each row gives first terms, a "
+               "family each one counts rather than by OEIS A-number. Each row gives first terms, a "
                "recurrence or generating function (g.f.), its growth constant, and the entry of the "
                "On-Line Encyclopedia of Integer Sequences (OEIS) it equals, at the stated offset; "
                "\"-\" means no entry is listed.[^1]")
     out.append("")
     out.append(f"This page and {link(INDEX_SLUG)} are generated by `{SCRIPT}` from one data file, "
-               "`config/castle-sequences.tsv`: this page shows its rows by family, and the index "
+               "`config/castle-sequences.tsv`: this page shows its rows by castle family, in the "
+               "order and with the definitions of `config/castle-families.tsv`, and the index "
                "shows its A-numbers with the pages that cite them. "
                f"{link('oeis-cross-referencing')} describes the checks a match must pass, "
                f"{link('oeis-mining-pe502')} collects the castle counts matched to OEIS entries, and "
@@ -248,25 +259,29 @@ def render_catalog(families, rows):
         if r["status"] == "proved" and r["anum"]:
             proved.setdefault(r["page"], []).append(r)
     for page, rs in proved.items():
-        items = [f"{alink(r['anum'])}, {role(r, labels.get(r['family'], ''))}" for r in rs]
+        items = [f"{alink(r['anum'])}, {role(r)}" for r in rs]
         out.append(f"- {link(page)}: " + "; ".join(items) + ".")
     out += ["", "## Catalog"]
     for f in families:
         rs = by_family[f["id"]]
         if not rs:
             continue
-        out += ["", f"### {f['title']}", ""]
-        for p in paragraphs(f["intro"]):
-            out += [p, ""]
+        home = f["page"] or f["defined_in"].split(",")[0]
+        out += ["", f"### {heading(f['name'])}", ""]
+        marks = {r["check"] for r in rs}
+        shared = marks.pop() if len(marks) == 1 else ""
+        for c in [shared] if shared else sorted({r["check"] for r in rs} - {""}, key=lambda c: [r["check"] for r in rs].index(c)):
+            if c and c not in used:
+                used.append(c)
+        out += [f"Definition: {f['definition']} ({link(home)}).{f'[^{shared}]' if shared else ''}", ""]
         cols = [("object", "counts"), ("from", "axis"), ("first terms", "terms"),
                 ("g.f. / formula", "formula"), ("growth", "growth")]
         cols = [(h, k) for h, k in cols if k == "counts" or any(r[k] for r in rs)]
         out.append("| " + " | ".join(h for h, _ in cols) + " | OEIS |")
         out.append("|" + "---|" * (len(cols) + 1))
         for r in rs:
-            out.append("| " + " | ".join(cell(r[k]) for _, k in cols) + f" | {cell(oeis_cell(r))} |")
-        for p in paragraphs(f["note"]):
-            out += ["", p]
+            mark = f"[^{r['check']}]" if r["check"] and not shared else ""
+            out.append("| " + " | ".join(cell(r[k]) for _, k in cols) + f" | {cell(oeis_cell(r))}{mark} |")
     out += ["", "## Related Concepts", ""]
     out += [
         f"- {link(INDEX_SLUG)} - the same data by A-number, with the pages that cite each entry.",
@@ -296,6 +311,8 @@ def render_catalog(families, rows):
                "listed terms recomputed by enumeration, transfer matrix or dynamic program at the "
                "ranges stated under each table; every cited A-number fetched from oeis.org and "
                "compared with the computed terms at the stated offset.")
+    for c in used:
+        out.append(f"[^{c}]: {checks[c]}")
     return "\n".join(out) + "\n", n_rows
 
 
@@ -327,13 +344,12 @@ def pages_cell(counts):
 
 
 def render_index(families, rows, entry, cites):
-    labels = {f["id"]: f["label"] for f in families}
     anums = sorted(set(entry) | set(cites))
     n_pages = len({slug for counts in cites.values() for slug in counts})
     roles = {}
     for r in rows:
         if r["anum"]:
-            roles.setdefault(r["anum"], []).append(role(r, labels.get(r["family"], "")))
+            roles.setdefault(r["anum"], []).append(role(r))
 
     out = ["", f"<!-- Generated by {SCRIPT} from config/castle-sequences.tsv and the wiki pages. "
                "Do not edit by hand: edit the data file or the citing page and rerun the script. -->", ""]
@@ -403,7 +419,7 @@ def emit(slug, body, frontmatter_fn, check):
 
 def main(argv):
     check = "--check" in argv
-    families, rows, entry = load()
+    families, rows, entry, checks = load()
     if "--fetch-names" in argv:
         for a in sorted(entry):
             if entry[a]["name"]:
@@ -421,7 +437,7 @@ def main(argv):
     for a in sorted(set(entry) - set(cites)):
         print(f"note: {a} is in the data but not cited on any page", file=sys.stderr)
 
-    cat_body, n_rows = render_catalog(families, rows)
+    cat_body, n_rows = render_catalog(families, rows, checks)
     idx_body, n_seq = render_index(families, rows, entry, cites)
     n_fam = len({r["family"] for r in rows if r["family"]})
     ok_cat = emit(CATALOG_SLUG, cat_body, lambda u: catalog_frontmatter(n_rows, n_fam, u), check)
@@ -433,15 +449,16 @@ def main(argv):
             "COMMIT BLOCKED: a generated sequence page is out of date: " + ", ".join(stale) + ".\n"
             "\n"
             "  wiki/pages/castle-sequence-catalog.md and wiki/pages/oeis-index.md are built by script\n"
-            "  from config/castle-sequences.tsv, config/castle-sequence-families.tsv and the A-numbers\n"
-            "  cited on the wiki pages. Do not edit them by hand.\n"
+            "  from config/castle-sequences.tsv, config/castle-families.tsv, config/castle-sequence-checks.tsv\n"
+            "  and the A-numbers"
+            " cited on the wiki pages. Do not edit them by hand.\n"
             "\n"
             "  To fix, from the repo root, regenerate and re-stage:\n"
             "\n"
             f"      python3 {SCRIPT} && git add wiki/pages/castle-sequence-catalog.md wiki/pages/oeis-index.md\n"
             "\n"
             "  then run your git commit again. A new A-number with no row in config/castle-sequences.tsv\n"
-            "  appears in the index under \"Not yet annotated\"; add a row to file it.\n",
+            "  appears in the index with no name or castle role; add a row to file it.\n",
             file=sys.stderr,
         )
         return 1

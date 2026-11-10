@@ -1,0 +1,28 @@
+id	check
+blocks	The `h = 3` rows and the rows by area agree with enumeration for `w ≤ 8` and `n ≤ 15`, 2026-10-16.
+brick	Every row agrees with brute-force enumeration of the walls for `w ≤ 10` and with a column sweep over the 1-histograms beyond, and every A-number row with the OEIS data at the stated offset, 2026-10-29. The OEIS has no match for the even-block or the signed counts at heights 3 to 6, tabulated on [[brick-wall-castles](pages/brick-wall-castles.md)], 2026-10-29.
+castles-wh	The `A(w, h)` rows and the convex row agree with brute-force enumeration for `w ≤ 7` and with the OEIS data at the stated offset, 2026-10-27.
+classical	Every row and formula agrees with enumeration of compositions for `n ≤ 15`, 2026-10-16.
+disparate	Every row agrees with `bin/python/hilbert_castles.py`, by transfer matrix and by brute force wherever `h^w ≤ 2·10^6`, and the A-number row with the OEIS data at the stated offset, 2026-10-28.
+euler	Every row agrees with `bin/python/euler_castles.py`, and every row with an A-number agrees with the OEIS data at the stated offset over the range the script checks, 2026-10-28.
+fibsub	Every row agrees with enumeration of the towers for `w ≤ 14`, 2026-10-16.
+hilbert	Every row agrees with `bin/python/hilbert_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-28.
+hub-parity	Every row agrees with enumeration for `n ≤ 20`; the OEIS has no match for the even row from `n = 2` to 13 or the odd row from `n = 1` to 13, 2026-10-25.
+keystone	Every row agrees with brute-force enumeration of the castles for `w ≤ 6` and with a sweep over the Schröder paths beyond, and every A-number row with the OEIS data at the stated offset, 2026-10-29. The OEIS has no match for the castles by height, the even-block rows at heights 2 and 3, the castles of height 3, or the castles of height 2 by cells, 2026-10-30.
+kolmogorov	Every row agrees with `bin/python/kolmogorov_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-28.
+konigsberg	Every row agrees with `bin/python/konigsberg_castles.py`, and every row with an A-number agrees with the OEIS data for `h ≤ 12`, 2026-10-28.
+mersenne	Every row agrees with `bin/python/mersenne_castles.py` and, where it has an A-number, with every term of the OEIS data field at the stated offset, 2026-10-28.
+motzkin	Every row agrees with a transfer-matrix count for `w ≤ 24` or with enumeration for `s ≤ 16`, and every A-number row with the OEIS data at the stated offset, 2026-10-16. All castles by semi-perimeter, `A082582`, are cornerless Motzkin paths and are equinumerous with skew Motzkin paths; they are among the rows by semi-perimeter in the section *Castles*. Their first five terms `1, 2, 5, 13, 35` agree with `A005773`, and the sixth differs, 97 against 96.
+nnacci	Every row agrees with enumeration of compositions for `n ≤ 14` and with the OEIS data at the stated offset, 2026-10-16.
+orbital	Every row agrees with `bin/python/orbital_castles.py`, and every row with an A-number agrees with the OEIS data at the stated offset over the range the script checks, 2026-10-31.
+pell	Every row agrees with a transfer-matrix count for `w ≤ 24`, and every A-number row with the OEIS data at the stated offset, 2026-10-16.
+prime	Every row agrees with enumeration of compositions for `n ≤ 15`, 2026-10-16.
+ridge	Every row agrees with a transfer-matrix count for `w ≤ 24`, 2026-10-16.
+sandpile	Every row agrees with Smith normal forms of the reduced Laplacians of all castles with at most 16 cells, in both models, 2026-10-16.
+semiper	Every row agrees with enumeration for `s ≤ 16` and with the series of its g.f., and every A-number row with the OEIS data at the stated offset, 2026-10-16; [[castle-perimeter](pages/castle-perimeter.md)] checks the series through `s = 30`.
+smoothm	Every row agrees with a transfer-matrix count for `w ≤ 24`, 2026-10-16.
+spacing	A tower-spacing skyline with spacing `g` is one whose heights minus 1 are the window-`g` running minimum of some array, so the `(h, g)` count is Hardin's count of "0..(h−1) arrays, each element the minimum of `g` adjacent elements", proved on [[tower-spacing-castles](pages/tower-spacing-castles.md)]. The `h = 3` row is Hardin's table [A217883](https://oeis.org/A217883), the `h = 4` row [A217954](https://oeis.org/A217954), and the `g = 3` column [A228461](https://oeis.org/A228461). Every cell agrees with the OEIS data at the stated offset for `w ≤ 24`, and its minimal recurrence order, found by Berlekamp-Massey on 90 terms, is `(h − 1)g + 1`, 2026-10-16.
+totient	Every row agrees with `bin/python/totient_castles.py`, and every row with an A-number agrees with the OEIS data at the stated offset over the range the script checks, 2026-10-28.
+tree-area	Every row agrees with enumeration for `n ≤ 15` and with the OEIS data at the stated offset, 2026-10-16.
+vonneumann	Every row agrees with `bin/python/von_neumann_castles.py` and with every term of the OEIS data field it checks at the stated offset, 2026-10-28.
+zigzag	Every row agrees with `bin/python/zig_zag_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-27.

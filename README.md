@@ -155,7 +155,7 @@ IDEAS.md           project and seminar ideas: the seminar arcs, then open and do
 DIVISIONS.md       the Divisions (R E N Z Q S T F X C M B, The OEIS Observatory, The Telephone Company,
                    Facilities): descriptors, conceptual coverage, crossovers
 OEIS.md            OEIS submissions (human action), ingestion queue, housekeeping
-config/            link-style rules (markdown: [[slug](pages/slug.md)]) + castle-sequences.tsv, the sequence data
+config/            link-style rules (markdown: [[slug](pages/slug.md)]) + castle-sequences.tsv, the sequence data; castle-families.tsv, the castle families and their definitions; castle-sequence-checks.tsv, how the sequences were verified
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
 bin/java/, bin/python/  research programs and run logs cited by page footnotes (never pasted into pages)
 raw/               immutable source documents (wikitext, notes, cached refs) — never edited
