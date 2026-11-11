@@ -5,7 +5,7 @@ summary: An exhaustive census, for h ≤ 5, of the Perron roots of the 2^{h²} 0
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-22
+updated: 2026-11-10
 ---
 
 # Reachable-field census of castle-strip growth constants
@@ -145,7 +145,7 @@ The new fields at `h = 6` need dense matrices: the matrices with at most 6 ones 
 
 ## Reproduce
 
-`strip_field` (the field of one rule's Perron root), `strip_field_census` (the sweep, with the Perron roots sorted numerically and the fields identified exactly), `sh_canonical` (one matrix per relabeling orbit, checked against the full census) and `ridge_R` (the ridge matrix `R_h = J − D`) are on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
+`strip_field` (the field of one rule's Perron root), `strip_field_census` (the sweep, with the matrices grouped by characteristic polynomial and the fields identified exactly), `sh_canonical` (one matrix per relabeling orbit, checked against the full census) and `ridge_R` (the ridge matrix `R_h = J − D`) are on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
 
 ## Appearances in Sources
 

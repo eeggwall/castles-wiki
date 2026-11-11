@@ -5,7 +5,7 @@ summary: Tested Python snippets for castle strips (the Pell and ridge strips, th
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle snippets - strips and growth
@@ -211,11 +211,11 @@ Meaning: golden and silver lie in `Q(√5)` and `Q(√2)`, and the plastic numbe
 
 ### `strip_field_census(h)` → which number fields the strips reach
 
-Two phases ([[reachable-field-census](pages/reachable-field-census.md)]): sweep all `2^{h²}` binary transfer matrices and bucket them by their largest real eigenvalue, then identify the field of each distinct value exactly. The function returns the number of distinct values in each field; `h = 4` takes about 40 seconds. Requires NumPy and SymPy.
+Two phases ([[reachable-field-census](pages/reachable-field-census.md)]): sweep all `2^{h²}` binary transfer matrices and bucket them by their integer characteristic polynomial, then factor each distinct polynomial exactly and keep the irreducible factor carrying its largest real root, when that root is positive. The function returns the number of distinct Perron roots in each field; `h = 4` takes about 20 seconds. Requires NumPy and SymPy.
 
 ```python
 def strip_field_census(h):
-    import numpy as np, sympy as sp, itertools
+    import numpy as np, sympy as sp
     from collections import defaultdict
     x = sp.symbols('x')
     def sqfree(m):
@@ -223,35 +223,36 @@ def strip_field_census(h):
         for p, e in sp.factorint(int(round(m))).items():
             if e % 2: d *= p
         return d
-    buckets = {}                                   # rounded Perron -> example bit-int
+    buckets = {}                                   # integer charpoly -> example bit-int
     for b in range(1 << (h*h)):
         M = np.array([[ (b >> (i*h+j)) & 1 for j in range(h)] for i in range(h)], float)
-        ev = np.linalg.eigvals(M); r = ev.real[np.abs(ev.imag) < 1e-9]
-        if len(r) and r.max() > 1e-9:
-            buckets.setdefault(round(float(r.max()), 8), b)
-    fields = defaultdict(int)
-    for pv, b in buckets.items():
-        M = sp.Matrix([[ (b >> (i*h+j)) & 1 for j in range(h)] for i in range(h)])
-        for fac, _ in sp.factor_list(M.charpoly(x).as_expr())[1]:
+        buckets.setdefault(tuple(int(round(c)) for c in np.poly(M)), b)
+    perron = set()                                 # minimal polynomial of each distinct Perron root
+    for cp in buckets:
+        best, bf = 0, None
+        for fac, _ in sp.factor_list(sp.Poly(cp, x).as_expr())[1]:
             poly = sp.Poly(fac, x)
             rr = [complex(z).real for z in poly.all_roots() if abs(complex(z).imag) < 1e-9]
-            if rr and abs(max(rr) - pv) < 1e-6:
-                if poly.degree() == 2:
-                    a, bb, c = poly.all_coeffs(); d = sqfree(bb*bb - 4*a*c)
-                    fields[f"Q(sqrt{d})" if d > 1 else "Q"] += 1
-                else:
-                    fields[f"deg{poly.degree()}"] += 1
-                break
-    return dict(fields)
+            if rr and max(rr) > best + 1e-9:
+                best, bf = max(rr), poly
+        if bf is not None: perron.add(bf)
+    fields = defaultdict(int)
+    for poly in perron:
+        if poly.degree() == 2:
+            a, bb, c = poly.all_coeffs(); d = sqfree(bb*bb - 4*a*c)
+            fields[f"Q(sqrt{d})" if d > 1 else "Q"] += 1
+        else:
+            fields[f"deg{poly.degree()}"] += 1
+    return dict(sorted(fields.items()))
 ```
 
 ```
 >>> strip_field_census(3)         # h = 3: 3 integers, quadratics in Q(sqrt 2), Q(sqrt 3), Q(sqrt 5), nine cubics
-{'deg1': 3, 'Q(sqrt5)': 2, 'Q(sqrt2)': 2, 'deg3': 9, 'Q(sqrt3)': 1}
+{'Q(sqrt2)': 2, 'Q(sqrt3)': 1, 'Q(sqrt5)': 2, 'deg1': 3, 'deg3': 9}
 >>> # the nine cubics include x^3 - x - 1 (plastic), x^3 - x^2 - 1 (supergolden),
 >>> # x^3 - 2x^2 + x - 1 (psi^2) and x^3 - x^2 - x - 1 (tribonacci)
 >>> strip_field_census(4)
-{'deg1': 12, 'Q(sqrt5)': 7, 'Q(sqrt2)': 3, 'deg3': 56, 'Q(sqrt3)': 3, 'Q(sqrt13)': 2, 'deg4': 110, 'Q(sqrt17)': 2, 'Q(sqrt21)': 1}
+{'Q(sqrt13)': 2, 'Q(sqrt17)': 2, 'Q(sqrt2)': 3, 'Q(sqrt21)': 1, 'Q(sqrt3)': 3, 'Q(sqrt5)': 3, 'deg1': 4, 'deg3': 56, 'deg4': 110}
 ```
 
 Meaning: the quadratic fields reached are `Q(√5)` at `h = 2`, `Q(√2), Q(√3), Q(√5)` at `h = 3`, and `Q(√d)` for `d = 2, 3, 5, 13, 17, 21` at `h = 4`. Bronze `Q(√13)` first appears at `h = 4`, through the ridge rule `R_4`; `δ_4` lies in `Q(√5)`; and the plastic number, a root of `x³ − x − 1`, is already a largest eigenvalue at `h = 3` ([[reachable-field-census](pages/reachable-field-census.md)]).
@@ -635,5 +636,5 @@ Meaning: for `m = 1` the valid words are binary strings with no isolated `1` (th
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16): every printed output on this page; `proper_even(4, ·)` and `proper_even(5, ·)` against enumeration of ridge castles for `w ≤ 7`; the spectral radii of `R̃_h` for `h ≤ 6`; `strip_field_census(3)` and `(4)` with the nine cubics at `h = 3`; 104 orbits at `h = 3` and 3,044 at `h = 4`; `tower_spacing_counts(3, 2, ·)` against enumeration for `w ≤ 7` and `tower_spacing_counts(2, 2, ·) = A005251(w + 3)` for `w ≤ 10`; the bijection of `castle_to_composition` for `n ≤ 11`; the tree-skyline series against enumeration for `A ≤ 15`; `encode` onto the strings without `010` for `n ≤ 11`; `P_even(10, n − 1)/2^{n−1} = A202882(n)` for `n ≤ 10`. On 2026-10-25 (Python 3.11): the `to_runs` outputs, `to_runs` onto the strings with no isolated `1` for `n ≤ 14`, and the signed counts from the strings against `(−1)^n A000931(n − 1)` for `n ≤ 12`.
+[^1]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16): every printed output on this page; `proper_even(4, ·)` and `proper_even(5, ·)` against enumeration of ridge castles for `w ≤ 7`; the spectral radii of `R̃_h` for `h ≤ 6`; the nine cubics at `h = 3`; 104 orbits at `h = 3` and 3,044 at `h = 4`; `tower_spacing_counts(3, 2, ·)` against enumeration for `w ≤ 7` and `tower_spacing_counts(2, 2, ·) = A005251(w + 3)` for `w ≤ 10`; the bijection of `castle_to_composition` for `n ≤ 11`; the tree-skyline series against enumeration for `A ≤ 15`; `encode` onto the strings without `010` for `n ≤ 11`; `P_even(10, n − 1)/2^{n−1} = A202882(n)` for `n ≤ 10`. On 2026-10-25 (Python 3.11): the `to_runs` outputs, `to_runs` onto the strings with no isolated `1` for `n ≤ 14`, and the signed counts from the strings against `(−1)^n A000931(n − 1)` for `n ≤ 12`. On 2026-11-10 (Python 3.11 with NumPy and SymPy): `strip_field_census(3)` and `(4)`, with 333 distinct characteristic polynomials at `h = 4`.
 [^2]: https://oeis.org/A005251 (read 2026-10-16) - "(Python) from sympy import Matrix def A005251(n): return (Matrix([[2,-1,1],[1,0,0],[0,1,0]])**(n-2)*Matrix([1,1,0]))[0] # _Chai Wah Wu_, Jun 10 2026"; "a(n+3) is the number of n-bit sequences that avoid 010"; "For n>=3, a(n) is the number of binary strings of length n-2 without any maximal runs of ones of length 1".
