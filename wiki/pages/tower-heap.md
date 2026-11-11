@@ -1,11 +1,11 @@
 ---
 title: Tower (heap of pieces)
 category: Concepts
-summary: Towers on a base of length L with no height bound, given by column heights (c_1, …, c_L) ∈ N^L, counted by their blocks. The number T̂(L, b) with b blocks is finite, since a tower has at least as many blocks as its height, and Σ_b T̂(L, b) x^b = Σ_k N(L, k) x^{k−1}/(1 − x)^L with the Narayana numbers N(L, k), proved from the fixed point of the tower grammar's height map, the k-th term counting the towers with k − 1 descents (computed for L ≤ 7). A second sum, indexed by blocks, T̂(L, b) = Σ_i N(b, i) C(L + 1 + 2b − 2i, 2b), is proved by Cho, Huh, Nam and Sohn, its i-th term counting the towers with i plateaus higher than both neighbors. T̂(L, b) also counts the (L+1)-core partitions with b corners, and the castles of width L with b + 1 blocks. As a heap of unit cells the towers are N^L, with cell-count generating function 1/(1 − x)^L.
+summary: Towers on a base of length L with no height bound, given by column heights (c_1, …, c_L) ∈ N^L, counted by their blocks. The number T̂(L, b) with b blocks is finite, since a tower has at least as many blocks as its height, and Σ_b T̂(L, b) x^b = Σ_k N(L, k) x^{k−1}/(1 − x)^L with the Narayana numbers N(L, k), proved from the fixed point of the tower grammar's height map, the k-th term counting the towers with k − 1 descents (proved for every L from the non-crossing diagonals of an (L + 2)-gon). A second sum, indexed by blocks, T̂(L, b) = Σ_i N(b, i) C(L + 1 + 2b − 2i, 2b), is proved by Cho, Huh, Nam and Sohn, its i-th term counting the towers with i plateaus higher than both neighbors. T̂(L, b) also counts the (L+1)-core partitions with b corners, and the castles of width L with b + 1 blocks. As a heap of unit cells the towers are N^L, with cell-count generating function 1/(1 − x)^L.
 tags: [concept, tower, heap-of-pieces, viennot, narayana, castle]
 sources: [project-euler-502-representations, project-euler-502-brute-force, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, bousquet-melou-fedou-1995-convex-polyominoes, oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Tower (heap of pieces)
@@ -31,7 +31,7 @@ With the [[narayana-numbers](pages/narayana-numbers.md)] `N(L, k) = (1/L) C(L, k
 T̂(L, b)              =  Σ_{k=1}^{L} N(L, k) C(b + L − k, L − 1).
 ```
 
-The `k`-th term counts the towers whose column heights have `k − 1` descents, positions `i` with `c_i > c_{i+1}`. The identity and this refinement agree with enumeration of all towers for `L ≤ 6`, `b ≤ 7`, and for `L = 7`, `b ≤ 6`.[^3] The identity is proved below; the refinement by descents is not proved on the wiki. Reversing a tower turns its descents into ascents, so the ascents have the same distribution.
+The `k`-th term counts the towers whose column heights have `k − 1` descents, positions `i` with `c_i > c_{i+1}`. The identity and this refinement agree with enumeration of all towers for `L ≤ 6`, `b ≤ 7`, and for `L = 7`, `b ≤ 6`.[^3] The identity is proved below, and the refinement by descents is Theorem 2 of [[viennot-heap-tower](pages/viennot-heap-tower.md)]. Reversing a tower turns its descents into ascents, so the ascents have the same distribution.
 
 *Proof of the identity.* In this proof `x` marks width and `y` blocks, so the identity reads `[x^L] E_∞(x, y) = Narayana_L(y)/(1 − y)^L`, where `E_∞(x, y) = Σ_{L,b} T̂(L, b) x^L y^b` is the generating function of the towers of every height. `E_∞` is the fixed point of the height map of the tower grammar ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*):
 

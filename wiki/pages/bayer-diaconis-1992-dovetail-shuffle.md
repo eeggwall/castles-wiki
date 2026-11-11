@@ -5,7 +5,7 @@ summary: Bayer and Diaconis show that an a-shuffle of n cards (cut into a packet
 tags: [source, paper, permutations, descents, eulerian-numbers, worpitzky, stars-and-bars, tower, narayana, markov-chain, mixing]
 sources: [bayer-diaconis-1992-dovetail-shuffle]
 created: 2026-10-08
-updated: 2026-11-05
+updated: 2026-11-10
 ---
 
 # Bayer & Diaconis (1992) - Trailing the dovetail shuffle to its lair
@@ -56,7 +56,7 @@ The wiki's towers on a base of length `L` are column-height vectors `c_1, …, c
 T̂(L, b)  =  Σ_{k=1..L} N(L, k) · C(b + L − k, L − 1),      Σ_b T̂(L, b) x^b  =  Σ_k N(L, k) x^{k−1} / (1 − x)^L,
 ```
 
-with `N(L, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents; both are computed, not proved ([[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).[^18] The binomial of Theorem 3 at `a = b + 1`, `n = L − 1` and `r = k` is the binomial of the tower identity, `C(a + n − r, n) = C(b + L − k, L − 1)`, and the two generating functions have the same denominator `(1 − x)^{n+1} = (1 − x)^L`. The parameters correspond as follows:
+with `N(L, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents; both are proved for every `L` ([[viennot-heap-tower](pages/viennot-heap-tower.md)], Theorems 1 and 2; [[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).[^18] The binomial of Theorem 3 at `a = b + 1`, `n = L − 1` and `r = k` is the binomial of the tower identity, `C(a + n − r, n) = C(b + L − k, L − 1)`, and the two generating functions have the same denominator `(1 − x)^{n+1} = (1 − x)^L`. The parameters correspond as follows:
 
 | Bayer-Diaconis | tower |
 |---|---|

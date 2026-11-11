@@ -5,7 +5,7 @@ summary: Delest and Viennot's bijection β sends a Dyck word of length 2n with k
 tags: [concept, bijection, dyck-words, parallelogram-polyomino, area, q-catalan, narayana, peaks, q-analog]
 sources: [algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Parallelogram polyomino - Dyck word bijection (β)
@@ -47,7 +47,7 @@ For example, the peak heights `3, 3` give the three words `x³x̄xx̄³`, `x³x�
 ## Castle relevance
 
 - **Area as a word statistic.** Through β, the Pólya-Gessel q-Catalan numbers of [[q-catalan-numbers](pages/q-catalan-numbers.md)], the parallelogram polyominoes by area, are the Dyck words graded by the sum of their peak heights. [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] writes the castles by width, blocks and area through the same parallelogram series.
-- **Narayana numbers.** `N(L, k)` counts the parallelogram polyominoes of semi-perimeter `L + 1` and width `k`, the Dyck words of length `2L` with `k` peaks, and appears in the tower count by blocks `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)`, whose `k`-th term counts the towers with `k − 1` descents (computed; [[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
+- **Narayana numbers.** `N(L, k)` counts the parallelogram polyominoes of semi-perimeter `L + 1` and width `k`, the Dyck words of length `2L` with `k` peaks, and appears in the tower count by blocks `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)`, whose `k`-th term counts the towers with `k − 1` descents (proved for every `L` on [[viennot-heap-tower](pages/viennot-heap-tower.md)]; [[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
 - **Parallelograms and convex castles.** The convex castles are the stack polyominoes, which Delest and Viennot code by Fibonacci words, while the middle piece of a convex polyomino is a parallelogram coded through β ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)], [[convex-polyomino](pages/convex-polyomino.md)]).
 
 ## Appearances in Sources

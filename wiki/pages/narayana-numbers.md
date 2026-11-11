@@ -5,7 +5,7 @@ summary: The Narayana numbers N(n, k) = (1/n) C(n, k) C(n, k−1) (OEIS A001263)
 tags: [concept, narayana, catalan, oeis, tower, generating-functions]
 sources: [algebraic-languages-and-polyominoes-enumeration, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Narayana numbers
@@ -33,7 +33,7 @@ Write `T̂(L, b)` for the number of towers on a base of length `L` with `b` bloc
 T̂(L, b)              =  Σ_{k=1}^{L} N(L, k) C(b + L − k, L − 1).
 ```
 
-This agrees with enumeration for `L ≤ 6`, `b ≤ 7`, and for `L = 7`, `b ≤ 6`,[^3] and [[tower-heap](pages/tower-heap.md)] proves it: the substitution `x = z(1 − y)` turns the fixed point of the tower grammar's height map into the first-return equation of Dyck paths counted by peaks. The `k`-th term counts the towers whose column heights have `k − 1` descents (computed over the same range). At `L = 2`, `T̂(2, b) = C(b + 1, 1) + C(b, 1) = 2b + 1`: of the `2b + 1` towers `(c_1, c_2)` with `max(c_1, c_2) = b`, the `b + 1` with `c_1 ≤ c_2` have no descent and the `b` with `c_1 > c_2` have one. [[tower-heap](pages/tower-heap.md)] treats these counts, and [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] tabulates the rows and their OEIS entries.
+This agrees with enumeration for `L ≤ 6`, `b ≤ 7`, and for `L = 7`, `b ≤ 6`,[^3] and [[tower-heap](pages/tower-heap.md)] proves it: the substitution `x = z(1 − y)` turns the fixed point of the tower grammar's height map into the first-return equation of Dyck paths counted by peaks. The `k`-th term counts the towers whose column heights have `k − 1` descents ([[viennot-heap-tower](pages/viennot-heap-tower.md)], Theorem 2). At `L = 2`, `T̂(2, b) = C(b + 1, 1) + C(b, 1) = 2b + 1`: of the `2b + 1` towers `(c_1, c_2)` with `max(c_1, c_2) = b`, the `b + 1` with `c_1 ≤ c_2` have no descent and the `b` with `c_1 > c_2` have one. [[tower-heap](pages/tower-heap.md)] treats these counts, and [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] tabulates the rows and their OEIS entries.
 
 The Narayana numbers also enter with the index on the blocks, through Dyck paths by peaks. Cho, Huh, Nam and Sohn prove, for `b ≥ 1`,[^5]
 
