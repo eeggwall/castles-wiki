@@ -114,7 +114,7 @@ Rule 6 (even block count) is the parity filter. The even-parity count is
 
 The submission queue, the in-review edits and the approved ones are tracked in
 `../../OEIS.md` (*OEIS submissions*), with the procedure (3 open edits at a time). The tier-1
-trio A038505 / A038503 / A146559 and the tower edits on A063490, A160747, A001263 and A005891
-are approved; the new sequence `F(w,3)`,
-`0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, …` (width `w`, height exactly
-3, even number of blocks), is drafted in `new-sequence-F3.md` and waits in stage 2.
+trio A038505 / A038503 / A146559 and the tower edits on A063490, A160747, A001263 and
+A005891 are approved, and the links back on A226274 and A038505 are in review; the new
+sequence `F(w,3)`, `0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, …` (width
+`w`, height 3, even number of blocks), is drafted in `new-sequence-F3.md` and waits in stage 2.

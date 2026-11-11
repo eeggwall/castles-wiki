@@ -46,7 +46,8 @@ outside this queue; stage 2 waits until a slot is free for it, and its top item 
 link A097862 back to A283595. Meanwhile the A094706 castle comment, the first item of stage
 3, can be drafted. Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit,
 every stage-2 target is at the revision its draft was checked against, and the stage-2
-verification scripts pass against the live b-files.
+verification scripts pass against the live b-files. Checked 2026-11-06: no stage-2 target has
+a revision after 2026-10-31.
 
 ### 1. In review (max 3)
 
@@ -58,12 +59,15 @@ verification scripts pass against the live b-files.
   `(5,-7,4,-1)`, one signed formula block ("Formulas above proved (see comments)",
   `a(n) = A226136(3*n-1) - 1` and the order-4 recurrence for `n >= 6`), a Python program, and
   A226136 appended to the Cf. line: `raw/oeis-pe502/xrefs/A226274-A226136.md`
-  (`wiki/pages/fibonacci-castles-sub-families.md`). Proposed (checked 2026-11-03).
+  (`wiki/pages/fibonacci-castles-sub-families.md`).
+  Still in review (checked 2026-11-06): Jason Yuen (#24–#25, Nov 05) added a space before
+  "(End)", wrote the products in Hasler's o.g.f. with `*` and added the keyword `easy`; back
+  in proposed.
 - [~] **A038505 → A146559** (submitted 2026-11-04, #141–#142), the link back for the approved
   A146559 comment: A146559 appended to the Cf. line, `Cf. A000225, A000749, A009116,
   A009545, A038503, A038504, A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
-  already link both ways): `raw/oeis-pe502/xrefs/A038505-A146559.md`. Proposed (checked
-  2026-11-04).
+  already link both ways): `raw/oeis-pe502/xrefs/A038505-A146559.md`. Proposed, with no
+  other editor since (checked 2026-11-06).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
@@ -454,7 +458,7 @@ with no match.
 
 ### Done (live on OEIS)
 
-Checked live 2026-10-31, A005891 2026-11-01 and A003410 2026-11-02: every edit below is in
+Checked live 2026-10-31, and A005891 and A003410 on 2026-11-06: every edit below is in
 place, and none of these entries has an open edit.
 
 - [x] **A003410 → A226136** (submitted 2026-11-01, approved: A003410 #76, Nov 02 2026,
