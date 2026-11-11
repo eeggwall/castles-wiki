@@ -5,7 +5,7 @@ summary: Castles counted by their area n, the number of cells, instead of by wid
 tags: [concept, castle, area, composition, oeis, unimodal, vee]
 sources: [oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castles by area
@@ -95,7 +95,7 @@ Counted by width and height instead of area, the vee castles and the convex cast
 - [[prime-castles](pages/prime-castles.md)] - castles cut at their height-1 columns into prime castles, those with no column of height 1, of which there are `F_{n−1}` of area `n`.
 - [[prime-convex-castles](pages/prime-convex-castles.md)] - the convex castles with no column of height 1, counted by the second difference of `A001523`.
 - [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - the Fibonacci castles counted by area, `A000930(n+1) − 1`, supergolden by area.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree castles counted by area at each height: `A077868` at height 2, `A006498` at height 3, `A000570` at height 4, and `A005251` with no bound on the height.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree castles counted by area: `A077868` at height exactly 2, the tree skylines of height at most 3 and at most 4 as `A006498` and `A000570`, and `A005251` with no bound on the height.
 - [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of castle strips under every rule on neighboring columns through height 5.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the families of convex polyominoes counted by area, with the convex castles as the stacks and the castles as the bargraphs.
 - [[column-convex-families-by-area](pages/column-convex-families-by-area.md)] - castles by area inside the directed column-convex polyominoes (`A001519`) and the column-convex polyominoes (`A001169`), unsigned and with the block sign.
