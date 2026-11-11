@@ -489,7 +489,7 @@ place, and none of these entries has an open edit.
   `(n + m, n)`, so Chaz Reid (#790–#791, Oct 23) added the formula
   `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1) = A271942(n+m, n)` for `n, m >= 1` and
   `Cf. A005408, A005891, A063490, A160747, A271942.`:
-  `raw/oeis-pe502/xrefs/A001263-tower.md` (`wiki/pages/tower-narayana-polynomial.md`),
+  `raw/oeis-pe502/xrefs/A001263-tower.md` (`wiki/pages/tower-heap.md`),
   checked by `bin/python/tower_t_cores.py`.
 - [x] **A283595 column g.f.** (submitted 2026-10-23, approved: A283595 #45, Oct 31 2026, Sean
   A. Irvine). One formula block: the g.f. of column `k` is `z^k/(R(k)*R(k+1))` with
@@ -507,7 +507,7 @@ place, and none of these entries has an open edit.
   `a(n) = A271942(n+6, 5)`; the editor removed the words after the formulas, including the
   "row 5 of A001263" clause. The PE 502 link (placed after Haws, before the Index link, at
   Stefano Spezia's request), `Cf. A001263, A271942` and the t-core family line:
-  `raw/oeis-pe502/xrefs/A160747-tower.md` (`wiki/pages/tower-narayana-polynomial.md`).
+  `raw/oeis-pe502/xrefs/A160747-tower.md` (`wiki/pages/tower-heap.md`).
 - [x] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16, approved: A063490 #66,
   Oct 22 2026, Sean A. Irvine). Comment block: 5-cores with `n − 1` corners = castle polyominoes
   of width 4 with `n` blocks, with the 5-abacus bijection; Jason Yuen tidied the comment block
@@ -715,7 +715,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | Other rows | Columns of width 3 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]): `A^e(3, 2m) = 10m² − 5m + 1 = 5m(2m − 1) + 1`, `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …`: **novel-candidate** (no match by terms, 2026-10-16; it is `A080860(−m)`). `A^o(3, 2n+1) = 10n² + 5n + 1`, `1, 16, 51, 106, 181, 276, …`: **interlink** → [A080860](https://oeis.org/A080860) (`= A080860(n)`). `A^e(3, 2m+1) = C(2m+1, 2) = m(2m+1)`: **known**, the second hexagonal numbers [A014105](https://oeis.org/A014105). `A^o(3, 2m) = C(2m, 2) = m(2m − 1)`: **known**, the hexagonal numbers [A000384](https://oeis.org/A000384). The interleaved columns `A^e(3, h)` (`6, 3, 31, 10, 76, 21, …` from `h = 2`), `A^o(3, h)` (`1, 1, 16, 6, 51, 15, …` from `h = 1`) and `A^e(4, h)` (`10, 21, 117, 122, 448, 367, 1131, 820, …` from `h = 2`): **novel-candidate** (no match, 2026-10-16). `A^e(4, h)` is `(4h−3)(4h²−3h+2)/6` at even `h` and `(h−1)(8h²−4h+3)/6` at odd `h` (checked `h < 30`). | - | (status in the text) |
 | Other rows | `\|P(k, L)\|` in the tower height `k` at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `\|P(k, 5)\| = 1, 0, 33, 64, 225, 384, 833, 1280, 2241, …` and `\|P(k, 6)\| = 1, 8, 59, 32, 541, 680, 2583, 3520, …` from `k = 0`: **novel-candidate** (no match, 2026-10-16). The rows in `L` are in the section *Signed tower count P(k, ·) rows*. | - | (status in the text) |
 | Other rows | The parity-refined sequences by area (even and odd; convex, vee, non-convex and strict-vee) ([[castle-by-area](pages/castle-by-area.md)]): **novel-candidate**, searched 2026-09-26; terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)]. | - | (status in the text) |
-| Other rows | The towers of width `w ≥ 6` by number of blocks `b` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` from `b = 0`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
+| Other rows | The towers of width `w ≥ 6` by number of blocks `b` ([[tower-heap](pages/tower-heap.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` from `b = 0`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The denominators of the Jacobi-Perron convergents of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, …`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Euler castles | Euler castles by area; even-block, odd-block, signed | `1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15` | **known** → [A000009](https://oeis.org/A000009) (Perry's gapless-partition comment), [A067661](https://oeis.org/A067661), [A067659](https://oeis.org/A067659), [A010815](https://oeis.org/A010815) (checked 2026-10-28; stage 4, skipped) |
 | Euler castles | by semi-perimeter; signed | `1, 1, 2, 3, 5, 8, 13, 21` / `−1, −1, 0, 1, 1, 0` | **known** → [A000045](https://oeis.org/A000045)(`s − 1`), `−`[A010892](https://oeis.org/A010892)(`s − 2`) |
