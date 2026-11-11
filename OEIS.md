@@ -517,7 +517,7 @@ place, and none of these entries has an open edit.
   "x times row 4 of A001263" clause. `Cf. A001263, A064788, A185505, A271942.` and the t-core
   family line: `raw/oeis-pe502/xrefs/A063490-tower.md`.
 - [x] **A038505 / A038503 / A146559** — the height-2 hyperbolic interlink
-  (`raw/oeis-pe502/oeis-xref-draft.md`; `wiki/pages/oeis-height2-hyperbolic-castles.md`).
+  (`raw/oeis-pe502/oeis-xref-draft.md`; `wiki/pages/hyperbolic-sequence-family.md`).
   Approved and live (checked 2026-10-04: A038503 #93, Oct 03 2026; A038505 #140, Oct 04 2026;
   A146559 #152, Sep 28 2026): castle comments, the A000225 decomposition formulas,
   `A146559 = A038503 − A038505`, `Cf. A000225` on both, the PE 502 link on A038505.
