@@ -5,12 +5,12 @@ summary: Delest and Viennot count convex polyominoes by perimeter, p_{2n+8} = (2
 tags: [source, polyomino, convex, dyck-words, grammar, context-free, schutzenberger, stack-polyomino, parallelogram-polyomino, fibonacci, narayana, perimeter, q-analog]
 sources: [algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Algebraic languages and polyominoes enumeration (Delest-Viennot 1984)
 
-**Source:** `raw/delest-viennot-1984.pdf` (M.-P. Delest and G. Viennot, "Algebraic languages and polyominoes enumeration", *Theoretical Computer Science* 34 (1984) 169-206, doi:10.1016/0304-3975(84)90116-6; local copy, not tracked in git; locators are journal page numbers)
+**Source:** M.-P. Delest and G. Viennot, "Algebraic languages and polyominoes enumeration", *Theoretical Computer Science* 34 (1984) 169-206, doi:10.1016/0304-3975(84)90116-6. The quotations are from the OCR text layer of a scan of the journal article, with OCR errors normalized; the scan is not in `raw/` or `assets/`. Locators are journal page numbers.
 **Date ingested:** 2026-09-22
 **Type:** paper
 
