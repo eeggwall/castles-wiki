@@ -5,7 +5,7 @@ summary: Hickerson's proof that the number a(n) of horizontally convex n-ominoes
 tags: [paper, polyomino, horizontally-convex, linear-recurrence, combinatorics, source]
 sources: [counting-horizontally-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Counting Horizontally Convex Polyominoes (Hickerson 1999)
@@ -24,7 +24,7 @@ A **polyomino** is a finite union of closed unit squares with integer vertices w
 a(n)  =  5 a(n−1) − 7 a(n−2) + 4 a(n−3).                                     (0.0)
 ```
 
-From this, `a(n) ~ u v^n`, where `v = 3.2055694304…` is the unique real root of `v³ − 5v² + 7v − 4 = 0` and `u = (163 − 129v + 41v²)/944 = 0.1809155018…`.[^3]
+From this, `a(n) ~ u v^n`, where `v = 3.2055694304…` is the unique real root of `v³ − 5v² + 7v − 4 = 0`, Klarner and Rivest's `β` ([[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)]), and `u = (163 − 129v + 41v²)/944 = 0.1809155018…`.[^3]
 
 Hickerson writes that (0.0) was apparently first proved by Pólya in 1938, whose proof seems not to have been published. The published proofs work with `a(r, n)`, the number of horizontally convex *n*-ominoes with exactly `r` squares in the top row, and[^4]
 

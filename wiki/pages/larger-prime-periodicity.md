@@ -5,7 +5,7 @@ summary: For odd primes p up to 97 and k ≤ 6, the order per(char_k) of x in (F
 tags: [analysis, castle, modular-arithmetic, periodicity, large-primes, chebotarev, discriminant, project-euler-502]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-22
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Larger-prime periodicity of char_k
@@ -16,7 +16,7 @@ For an odd prime `p`, let `R = F_p[x]/(char_k)`. The constant term `(−1)^{k+1}
 
 ## The period from the factorization
 
-Write `char_k ≡ ∏ g_i^{m_i} (mod p)` with distinct irreducible `g_i` of degree `d_i`. The Chinese remainder theorem splits `R` into the rings `F_p[x]/(g_i^{m_i})`, and `per(char_k)` is the lcm of the orders of `x` in their unit groups.
+Write `char_k ≡ ∏ g_i^{m_i} (mod p)` with distinct irreducible `g_i` of degree `d_i`. The Chinese remainder theorem splits `R` into the rings `F_p[x]/(g_i^{m_i})`, one per primitive idempotent ([[idempotent-decomposition](pages/idempotent-decomposition.md)]), and `per(char_k)` is the lcm of the orders of `x` in their unit groups.
 
 - When `m_i = 1`, `F_p[x]/(g_i)` is the field `F_{p^{d_i}}`, and the order of `x` there divides `p^{d_i} − 1`. If `char_k` is irreducible mod `p`, then `per(char_k)` divides `p^{k+1} − 1`.
 - When `m_i = m ≥ 2`, the order of `x` in `F_p[x]/(g^m)` is its order mod `g` times exactly `p^{⌈log_p m⌉}`.

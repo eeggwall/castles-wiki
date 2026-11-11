@@ -41,6 +41,7 @@ The notes contain no mixed-radix Gray code. The reflected Gray code on `{1, …,
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the binary strings of length `L` as the block configurations above a block of length `L`.
 - [[castle-gray-code](pages/castle-gray-code.md)] - the reflected mixed-radix Gray code on `{1, …, h}^w` (Knuth's Algorithm H of §7.2.1.1) and the change of the block count by at most 1 per step.
 - [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - Gray tours restricted to the even-block castles of height `h`.
+- [[castle-samplers](pages/castle-samplers.md)] - the Gray walk over `{1, …, h}^w` as exhaustive ground truth, with the block count carried along in `O(1)` per step.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[ridge-castle](pages/ridge-castle.md)] - censuses that loop over `{0, …, k}^L` or `{1, …, h}^w`.
 - [[castle-counting-function](pages/castle-counting-function.md)] - the number `A(w, h)` of castles among the visited skylines.
 - [[castle-compression](pages/castle-compression.md)] - Gray order, in which consecutive skylines differ in one column by one.

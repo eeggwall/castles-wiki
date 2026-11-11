@@ -56,7 +56,7 @@ In the other direction, at fixed base length `L`, `T(k, L) = (k + 1)^L` is a pol
   C(2n, n)  ~  √(4πn) (2n/e)^{2n} / (2πn (n/e)^{2n})  =  4^n / √(πn).
   ```
 
-- **Convex castles by area.** The convex castles of area `n`, the weakly unimodal compositions of `n`, number `A001523(n) ~ exp(2π√(n/3)) / (8 · 3^{3/4} n^{5/4})` (Auluck 1951, as cited on the OEIS entry).[^5] This sequence is not C-finite. In Equation (1), `limsup |a_n|^{1/n}` is the largest modulus of an `r_i` with `p_i ≠ 0`; so if `a_n^{1/n} → 1`, every such `r_i` has modulus at most 1 and `a_n` grows at most like a polynomial in `n`, while `exp(2π√(n/3))` grows faster than every polynomial ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]).
+- **Convex castles by area.** The convex castles of area `n`, the weakly unimodal compositions of `n`, number `A001523(n) ~ exp(2π√(n/3)) / (8 · 3^{3/4} n^{5/4})` (Auluck 1951, as cited on the OEIS entry), so their growth constant by area is 1 ([[castle-classification-growth](pages/castle-classification-growth.md)]).[^5] This sequence is not C-finite. In Equation (1), `limsup |a_n|^{1/n}` is the largest modulus of an `r_i` with `p_i ≠ 0`; so if `a_n^{1/n} → 1`, every such `r_i` has modulus at most 1 and `a_n` grows at most like a polynomial in `n`, while `exp(2π√(n/3))` grows faster than every polynomial ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]).
 
 The signed count of castles by area is a quotient of q-series ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]), and Equation (1) does not apply to it.
 

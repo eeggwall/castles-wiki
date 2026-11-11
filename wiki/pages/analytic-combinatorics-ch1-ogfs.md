@@ -5,7 +5,7 @@ summary: Chapter I of Flajolet and Sedgewick's Analytic Combinatorics (book pp. 
 tags: [generating-functions, symbolic-method, ogf, admissible-construction, polyomino, catalan, stack-polyomino, source]
 sources: [analytic-combinatorics-ch1-ogfs]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Analytic Combinatorics Ch. I - OGFs and the Symbolic Method (Flajolet & Sedgewick)
@@ -41,7 +41,7 @@ Chapter I develops the **symbolic method** for unlabeled combinatorial classes a
   S(z)  =  Σ_{k≥1}  z^k/(1 − z^k) · 1/((1 − z)(1 − z²) ⋯ (1 − z^{k−1}))²  =  z + 2z² + 4z³ + 8z⁴ + 15z⁵ + 27z⁶ + 47z⁷ + 79z⁸ + ⋯,
   ```
 
-  the sequence `A001523`. A stack polyomino with columns `x_1, …, x_ℓ` is the [[convex-castle](pages/convex-castle.md)] with skyline `(x_1, …, x_ℓ)`, so `S(z)` counts the convex castles by area ([[stack-polyomino-gf](pages/stack-polyomino-gf.md)]). The same Example decomposes partitions by their Durfee square, the largest square in the diagram.
+  the sequence `A001523`, also Bender's trapezoid series at `y = 1` ([[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)]). A stack polyomino with columns `x_1, …, x_ℓ` is the [[convex-castle](pages/convex-castle.md)] with skyline `(x_1, …, x_ℓ)`, so `S(z)` counts the convex castles by area ([[stack-polyomino-gf](pages/stack-polyomino-gf.md)]). The same Example decomposes partitions by their Durfee square, the largest square in the diagram.
 
 ## Entities & Concepts
 

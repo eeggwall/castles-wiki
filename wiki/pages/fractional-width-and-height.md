@@ -150,6 +150,7 @@ The ridge rule `R_h = J - D` (neighboring columns differ in height unless both e
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the recurrences in `k` and their quasi-polynomial form.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the height-2 counts `A038505`, `A038503` and their recurrence, whose characteristic roots are `2` and `1 +- i`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`.
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the dominant roots `ρ_k` of `char_k` for `k ≤ 6`, with their degrees over Q.
 - [[castle-strip](pages/castle-strip.md)] - the 0/1 rule matrices whose square roots are the half-columns.
 - [[ridge-castle](pages/ridge-castle.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `J - D` and its characteristic polynomial.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strip on three heights, whose tridiagonal matrix has no real square root.

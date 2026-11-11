@@ -5,7 +5,7 @@ summary: Four tested Python snippets for the castle cryptosystem in R = F_p[x]/(
 tags: [concept, castle, python, snippets, cryptography, diffie-hellman, discrete-log, berlekamp-massey, schnorr, elgamal]
 sources: [project-euler-502-representations]
 created: 2026-09-19
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle snippets - cryptography
@@ -62,7 +62,7 @@ Meaning: both parties obtain the shared secret `x^{ab} mod Q`. The system is not
 
 ### `castle_dlp(A, Q, p)` → recover the private key from a castle public key
 
-Attack 3 of [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]: factor `Q mod p`, reduce `A` modulo each factor, solve the discrete logarithm of each piece by Pohlig-Hellman over the factored order of `x`, with baby-step giant-step for each prime, and combine the pieces by the Chinese Remainder Theorem (CRT). Uses `mulmod`, `powmod`, `one` and `gen` from `castle_dh`. Requires SymPy.
+Attack 3 of [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]: factor `Q mod p`, reduce `A` modulo each factor, solve the discrete logarithm of each piece by Pohlig-Hellman over the factored order of `x`, with baby-step giant-step for each prime, and combine the pieces by the Chinese Remainder Theorem (CRT; [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Uses `mulmod`, `powmod`, `one` and `gen` from `castle_dh`. Requires SymPy.
 
 ```python
 from math import isqrt
@@ -211,6 +211,7 @@ Meaning: key exchange, encryption and signatures all come from one exponentiatio
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the recovery attack `bm_modp` runs.
 - [[signed-tower-count](pages/signed-tower-count.md)] - the `P(k, ·)` sequence the LFSR attack reconstructs.
 - [[finite-fields](pages/finite-fields.md)] - the field structure of `F_p[x] / (Q)`.
+- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the characteristic polynomial, irreducible moduli and the discrete logarithm problem explained from `castle_dh`.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k, ·)` characteristic polynomials used as moduli and registers.
 
 ## Footnotes

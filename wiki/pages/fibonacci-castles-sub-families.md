@@ -5,12 +5,12 @@ summary: Sub-families of the Fibonacci castles, all of height 2, cut out by a ru
 tags: [concept, castle, castle-type, fibonacci, fibonacci-tower, fibonacci-word, sturmian, balanced-word, totient, sub-family, maximal-independent-set, padovan, plastic-number, narayana-cows, supergolden, run-length-limited, capacity, oeis]
 sources: [project-euler-502]
 created: 2026-10-04
-updated: 2026-10-23
+updated: 2026-11-10
 ---
 
 # Fibonacci castle sub-families
 
-A Fibonacci castle ([[fibonacci-castle](pages/fibonacci-castle.md)]) is determined by its **Fibonacci tower**, its second row read as a string of 0s and 1s with a 1 at each height-2 column and no two adjacent 1s. A rule on the tower cuts out a sub-family. Every family on this page has height 2 by definition, so its count at width `w` is written `A_X(w)`, with the family's name as the subscript ([[castle-notation](pages/castle-notation.md)]). A rule may admit the all-zero tower; that tower is counted among the towers but never among the castles, since the flat row it gives has no column of height 2.
+A Fibonacci castle ([[fibonacci-castle](pages/fibonacci-castle.md)]) is determined by its **Fibonacci tower**, its second row read as a string of 0s and 1s with a 1 at each height-2 column and no two adjacent 1s. A rule on the tower cuts out a sub-family. Every family on this page has height 2 by definition, so its count at width `w` is written `A_X(w)`, with the family's name as the subscript ([[castle-notation](pages/castle-notation.md)]). A rule may admit the all-zero tower; that tower is counted among the towers but never among the castles, since the flat row it gives has no column of height 2.[^pe502]
 
 ## The Fibonacci word and balanced towers
 
@@ -79,7 +79,7 @@ A **maximal castle** is a Fibonacci castle in which no further column can be rai
 A_maximal(w)  =  A000931(w + 6)  =  1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, …,
 ```
 
-the Padovan numbers, which A000931 lists as the number of maximal independent vertex sets of the path graph;[^a000931] the generating function is `x(1 + x)²/(1 − x² − x³)`. The maximal castles are plastic by width: they grow like the plastic number `ψ ≈ 1.3247`, the real root of `x³ = x + 1` ([[plastic-number](pages/plastic-number.md)]).[^exec] Three other families plastic by width or by area map bijectively onto the maximal castles, and the palindromic tree castles by area have their generating function ([[padovan-families](pages/padovan-families.md)]). The 56-column castle from the Fibonacci word is not maximal: it ends in two height-1 columns, and the last of them could be raised.
+the Padovan numbers, which A000931 lists as the number of maximal independent vertex sets of the path graph;[^a000931] the generating function is `x(1 + x)²/(1 − x² − x³)`. The maximal castles are plastic by width: they grow like the plastic number `ψ ≈ 1.3247`, the real root of `x³ = x + 1` ([[plastic-number](pages/plastic-number.md)]).[^exec] Three other families plastic by width or by area map bijectively onto the maximal castles, among them the ridge castles of height 2 by area ([[ridge-castle](pages/ridge-castle.md)]), and the palindromic tree castles by area have their generating function ([[padovan-families](pages/padovan-families.md)]). The 56-column castle from the Fibonacci word is not maximal: it ends in two height-1 columns, and the last of them could be raised.
 
 ### Spaced castles
 
@@ -95,7 +95,7 @@ so the spaced castles are supergolden by width, with growth `1.4656`, the real r
 
 *Proof.* Read the columns of a castle of height 2 with `n` cells as a tiling of a strip of `n` cells, a square for each column of height 1 and a domino for each column of height 2. The castle is a Fibonacci castle exactly when the tiling uses a domino and no two dominoes are side by side. Mark each of the `n − 1` internal cell boundaries with 1 if it lies inside a domino. Two adjacent dominoes put marks two boundaries apart (`101`), and non-adjacent dominoes put them at least three apart, so the marks form a spaced tower of length `n − 1` with at least one 1, and every such tower arises from exactly one tiling.
 
-So the Fibonacci castles by number of cells ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) and the spaced castles by width share the counts `1, 2, 3, 5, 8, 12, …`.[^exec] The spacing rule on [[tower-spacing-castles](pages/tower-spacing-castles.md)] is different: it spaces raised regions, which may be wide, by wide valleys.
+So the Fibonacci castles by number of cells ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)], and Table 2 of [[tree-castle-by-area](pages/tree-castle-by-area.md)] at height 2) and the spaced castles by width share the counts `1, 2, 3, 5, 8, 12, …`.[^exec] The spacing rule on [[tower-spacing-castles](pages/tower-spacing-castles.md)] is different: it spaces raised regions, which may be wide, by wide valleys.
 
 ### Run-length-limited castles
 
@@ -176,6 +176,7 @@ print([castles(n, lambda a: a <= 3, lambda g: 1 <= g <= 3) for n in range(1, 11)
 
 ## Footnotes
 
+[^pe502]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L19 - "The maximum achieved height of the entire castle is exactly h."
 [^a003849]: https://oeis.org/A003849 (fetched 2026-10-04) - "The infinite Fibonacci word (start with 0, apply 0->01, 1->0, take limit)."; comments "A Sturmian word." and "Characteristic function of A003622."; data `0, 1, 0, 0, 1, 0, 1, 0, 0, 1, …`, offset 0.
 [^a003622]: https://oeis.org/A003622 (fetched 2026-10-04) - "The Wythoff compound sequence AA: a(n) = floor(n*phi^2) - 1, where phi = (1+sqrt(5))/2."; data `1, 4, 6, 9, 12, 14, 17, …`; the 1-indexed positions `⌊kφ²⌋` are https://oeis.org/A001950, "Upper Wythoff sequence (a Beatty sequence): a(n) = floor(n*phi^2)".
 [^berstel-c]: https://ligm.univ-eiffel.fr/~berstel/Articles/2007SturmianThessalonique.pdf (J. Berstel, "Sturmian and Episturmian Words (A Survey of Some Recent Results)", CAI 2007, LNCS 4728, pp. 23-47, read 2026-10-04) §2.1 p.25 - an aperiodic episturmian word has "exactly one right special factor of each length", strict episturmian words with right special factors of degree `k` have `c_w(n) = kn + 1`, and "Strict episturmian words over two letters are exactly the Sturmian words. These are aperiodic words of minimal block complexity"; Theorem 1 (Morse-Hedlund, Coven-Hedlund) - "An infinite word w is eventually periodic if and only if there exists an integer n ≥ 1 such that c_w(n) ≤ n."

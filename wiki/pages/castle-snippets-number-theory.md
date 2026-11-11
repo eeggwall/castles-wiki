@@ -5,7 +5,7 @@ summary: Tested Python snippets for the signed tower count P(k, L), continued-fr
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle snippets - number theory
@@ -567,6 +567,7 @@ def x_inverse(k):
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the convergents, quasi-polynomials and continued fractions of the castle eigenvalues, computed with these snippets.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real side of the CF-period / mod-p-order correspondence.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side.
+- [[finite-fields](pages/finite-fields.md)] - the double root of `char_2 mod 7` that multiplies the period of `P(2, ·) mod 7` by 7, the case `reduced_period(2, 7)`.
 - [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] - the metallic means of `convergents` and `metallic_ring`, and the Pell and Pell-Lucas numbers.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] - the recurrence orders of `P` in both directions and the closed forms `quasi_split` finds.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - `P(k, L)`, `M̃_k` and its sectors, and `H_d` with the plastic root of `char_6`.

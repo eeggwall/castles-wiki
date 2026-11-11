@@ -5,7 +5,7 @@ summary: The q-Fibonacci castles are the Fibonacci castles, the tree castles of 
 tags: [concept, castle, castle-type, fibonacci, q-analogue, area, generating-function, parity, supergolden, plastic-number, narayana-cows]
 sources: [q-catalan-numbers]
 created: 2026-10-03
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # q-Fibonacci castle
@@ -61,7 +61,7 @@ coefficients  1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 128, 188, 276, …   (n = 2
            =  A000930(n + 1) − 1,
 ```
 
-one less than Narayana's cows `A000930`.[^a000930] These are the tree castles of height 2 by area, the row `h = 2` of Table 2 on [[tree-castle-by-area](pages/tree-castle-by-area.md)]. The growth constant is the real root `1.46557…` of `x³ = x² + 1`, which the OEIS calls the supergolden ratio, so the q-Fibonacci castles are supergolden by area;[^a092526] counted by width instead, the Fibonacci castles are golden by width.
+one less than Narayana's cows `A000930`.[^a000930] These are the tree castles of height 2 by area, the row `h = 2` of Table 2 on [[tree-castle-by-area](pages/tree-castle-by-area.md)]. The growth constant is the real root `1.46557…` of `x³ = x² + 1`, which the OEIS calls the supergolden ratio, so the q-Fibonacci castles are supergolden by area, the rule "height 2 may not follow height 2" of [[area-growth-census](pages/area-growth-census.md)];[^a092526] counted by width instead, the Fibonacci castles are golden by width ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] compares width, area and semi-perimeter at height 2).
 
 **Even and odd by number of cells.** The even-block q-Fibonacci castles with `n` cells have generating function[^exec]
 

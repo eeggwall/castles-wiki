@@ -116,7 +116,7 @@ Nine cubic minimal polynomials occur at `h = 3`:[^5]
 | `x³ − 2x² − x + 1` | `2.2470` | `1 + 2cos(2π/7)`, in `Q(ζ₇)⁺` | 12 |
 | `x³ − 3x² + 2x − 1` | `2.3247` | `ψ + 1 = ψ³`, a Pisot number | 6 |
 
-The plastic number is the Perron root of 6 matrices at `h = 3`. The sparsest has 4 ones, the rule `1 → 3`, `2 → 1`, `3 → {1, 2}`, which is the companion matrix of `x³ − x − 1` with the heights relabeled (as `2 → 1 → 3 → {2, 1}`), so the strips of this rule are plastic by width ([[plastic-number](pages/plastic-number.md)]). It has `3, 4, 5, 7, 9, 12, 16, 21, 28, …` strips of width `w`, the Padovan numbers `A000931(w + 9)`, the same numbers as the maximal Fibonacci castles of width `w + 3` ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]).[^5]
+The plastic number is the Perron root of 6 matrices at `h = 3`. The sparsest has 4 ones, the rule `1 → 3`, `2 → 1`, `3 → {1, 2}`, which is the companion matrix of `x³ − x − 1` with the heights relabeled (as `2 → 1 → 3 → {2, 1}`, the rule `1 → 2 → 3 → {1, 2}` of [[padovan-families](pages/padovan-families.md)]), so the strips of this rule are plastic by width ([[plastic-number](pages/plastic-number.md)]). It has `3, 4, 5, 7, 9, 12, 16, 21, 28, …` strips of width `w`, the Padovan numbers `A000931(w + 9)`, the same numbers as the maximal Fibonacci castles of width `w + 3` ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]).[^5]
 
 At `h = 4` there are 184 distinct positive Perron roots: 4 integers, 14 quadratic (in 6 fields), 56 cubic (among them `2^{1/3} = 1.2599`, the root of `x³ − 2`) and 110 quartic. At `h = 5` there are 5,978: 5 integers, 29 quadratic (in 10 fields), 253 cubic, 1,355 quartic and 4,336 quintic.[^6]
 

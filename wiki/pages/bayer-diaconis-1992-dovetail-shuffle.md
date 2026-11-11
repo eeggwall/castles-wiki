@@ -81,6 +81,7 @@ The index ranges differ: `r` runs over `1, …, n = L − 1` and `k` over `1, �
 - [[narayana-numbers](pages/narayana-numbers.md)] - the Narayana numbers and the tower identity with the binomial `C(b + L − k, L − 1)`.
 - [[tower-heap](pages/tower-heap.md)] - towers with no height bound, `T̂(L, b)`, and the comparison with Theorem 3's binomial.
 - [[viennot-heap-tower](pages/viennot-heap-tower.md)] - the tower identity read as a choice of `k` and a weak composition, set beside Worpitzky's identity.
+- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the towers with `b` blocks and `k − 1` descents, `N(w, k)·C(b + w − k, w − 1)`, beside the parallelogram polyominoes by width.
 - [[aocp-permutations](pages/aocp-permutations.md)] - permutations, inversions and the insertion construction.
 
 ## Relation to Other Wiki Pages

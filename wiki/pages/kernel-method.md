@@ -5,7 +5,7 @@ summary: The kernel method solves a functional equation K(x, u)·G(x, u) = A(x, 
 tags: [concept, kernel-method, lattice-paths, generating-functions, m-smooth, transfer-matrix, technique]
 sources: [banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-07
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Kernel method
@@ -26,7 +26,7 @@ and `1 − x·steps(u)` is the **kernel**. Substituting for `u` a root `u(x)` of
 (1 − x(u^{−1} + 1 + u)) · strip(x, u)  =  1 − x·u^{−1}·strip(x, 0).
 ```
 
-The kernel times `u` is `u − x(1 + u + u²)`, whose small root `u_1(x) = (1 − x − √((1 − x)² − 4x²))/(2x) = x + x² + 2x³ + 4x⁴ + ⋯` is a power series in `x`. Substituting it gives `strip(x, 0) = u_1(x)/x = 1 + x + 2x² + 4x³ + 9x⁴ + ⋯`, the Motzkin numbers, which count the excursions, the walks that end at 0. Setting `u = 1` then gives the meanders, which end anywhere, `strip(x, 1) = (1 − u_1(x))/(1 − 3x) = 1 + 2x + 5x² + 13x³ + 35x⁴ + ⋯` (A005773).[^2]
+The kernel times `u` is `u − x(1 + u + u²)`, whose small root `u_1(x) = (1 − x − √((1 − x)² − 4x²))/(2x) = x + x² + 2x³ + 4x⁴ + ⋯` is a power series in `x`. Substituting it gives `strip(x, 0) = u_1(x)/x = 1 + x + 2x² + 4x³ + 9x⁴ + ⋯`, the Motzkin numbers ([[motzkin-numbers](pages/motzkin-numbers.md)]), which count the excursions, the walks that end at 0. Setting `u = 1` then gives the meanders, which end anywhere, `strip(x, 1) = (1 − u_1(x))/(1 − 3x) = 1 + 2x + 5x² + 13x³ + 35x⁴ + ⋯` (A005773).[^2]
 
 - **Below one wall** (a ceiling and no floor), substituting the large roots, those that grow like `x^{−1/m₊}` near `x = 0`, gives as many equations as unknowns, and the generating function is algebraic.[^3]
 - **Between two walls**, the generating function is a Laurent polynomial in `u`, so all roots can be substituted; Cramer's rule solves the system and the generating function is rational.[^4]

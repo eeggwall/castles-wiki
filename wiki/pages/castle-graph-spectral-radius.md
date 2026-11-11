@@ -5,7 +5,7 @@ summary: Where de Spinadel's metallic means appear as eigenvalues on the wiki. T
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, spectral-type, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Metallic means in castle spectra
@@ -26,7 +26,7 @@ A^e(w, h)  =  ( A(w, h) + S(w, h) ) / 2   ~   h^w / 2        as w → ∞.
 
 At `h = 2` the values for `w = 1, …, 14` are `1, 3, 6, 10, 16, 28, 56, 120, 256, 528, 1056, 2080, 4096, 8128`, with `A^e(13, 2) = 2^12`.[^3]
 
-The spectral radii of the first signed matrices:[^2][^3]
+The spectral radii of the first signed matrices, with every root and the factorization of `char_k` for `k ≤ 8` on [[fractional-width-and-height](pages/fractional-width-and-height.md)]:[^2][^3]
 
 | `h` | `k = h − 1` | dominant eigenvalues of `M̃_k` | `ρ_k` | degree of `ρ_k` over Q |
 |---|---|---|---|---|
@@ -43,7 +43,7 @@ A member `σ_p^q` of the family has degree at most 2, so `ρ_3, …, ρ_6` are n
 
 *Proof.* Let `g_k(μ) = char_k(2μ)/2^k`. The recurrence `char_{k+1}(λ) = λ² char_{k−1}(λ) − 2 char_k(λ)` ([[signed-tower-count](pages/signed-tower-count.md)], the section *Recurrences in L*) becomes `g_{k+1} = μ² g_{k−1} − g_k`, with `g_0 = 2μ − 1` and `g_1 = 2μ² − 2μ + 1`. By induction, each `g_k` has integer coefficients and leading coefficient 2. If `δ_a` were an eigenvalue, `δ_a/2` would be a root of `g_k`. Its minimal polynomial over Q is `4μ² − 2aμ − 1`, which is irreducible because `a² + 4` is not a square for `a ≥ 1`, and primitive. By Gauss's lemma it would divide `g_k` in `Z[μ]`, so 4 would divide the leading coefficient 2.[^4]
 
-For `k ≤ 30`, `ρ_k/2` is a root of a monic integer factor of `g_k` with constant term `−1` exactly when `k ≡ 2 (mod 4)`; for those `k` the dominant eigenvalue is twice a unit, a root of `H_{k/2}` in the notation of [[tower-parity-sectors](pages/tower-parity-sectors.md)] (`ψ²` at `k = 6`). For the other `k ≤ 30`, the factor that contains `ρ_k/2` has leading coefficient 2.[^3]
+For `k ≤ 30`, `ρ_k/2` is a root of a monic integer factor of `g_k` with constant term `−1` exactly when `k ≡ 2 (mod 4)`; for those `k` the dominant eigenvalue is twice a unit, a root of `H_{k/2}` in the notation of [[tower-parity-sectors](pages/tower-parity-sectors.md)] (`ψ²` at `k = 6`), as [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)], Part 4, finds for every even `k ≤ 40`. For the other `k ≤ 30`, the factor that contains `ρ_k/2` has leading coefficient 2.[^3]
 
 ## 2. The transfer matrices of castle families
 

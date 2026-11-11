@@ -5,7 +5,7 @@ summary: A linear q-differential system relates a vector of series at x to the s
 tags: [concept, q-analog, q-differential-system, q-bessel, variation-of-parameters, generating-function, polyomino, convex, functional-equation]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-22
-updated: 2026-11-08
+updated: 2026-11-10
 ---
 
 # Linear q-differential systems and their q → 1 limit
@@ -59,6 +59,8 @@ The wiki's reading, not from the source:
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - q-Bessel quotients from another polyomino family.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - an equation in one unknown with a shift `y -> xy`: Klarner and Rivest's (17), `Π(x, y) = xy/(1 - xy) + xy/(1 - xy)^2 (Π(x, 1) - Π(x, xy))` for parallelograms by area, whose iteration gives `Π(x, 1)` as a ratio of two alternating q-series (19).
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - nonlinear q-shift equations for related families (quadratic, and cubic for directed column-convex polygons), linearized by `G(x) = α H(qx)/H(x) - b(x)`, with q-Bessel ratios as solutions.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar whose Stop 5 writes the castles by area as sequences of parallelograms over `Π = Y J_1/J_0`.
+- [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - the parallelogram polyominoes whose series `y J_1/J_0` this method solves, as Dyck words with area the sum of the peak heights.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the castles by width, blocks and area: `E_∞(u) = B(u)/(1 - uB(u))` with `B(u) = 1 - x + x E_∞(uq)`, a single q-shift equation whose recursion is a Möbius map, so `B = N/M` with explicit q-series `N` and `M`.
 
 ## Footnotes

@@ -5,7 +5,7 @@ summary: Two information measures for castles. The uniform entropy log₂ A^e(w,
 tags: [concept, castle, entropy, information-theory, counting, growth-constant, metallic-means, parity, pedagogy]
 sources: [project-euler-502-solution]
 created: 2026-09-18
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle entropy
@@ -78,6 +78,7 @@ The two measures meet for the family of all castles of height `h`: by Equations 
 - [[castle-strip](pages/castle-strip.md)] - transfer matrices, strip counts and Perron roots.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the growth constant `h` of `A^e(·, h)`, against the eigenvalues of the signed transfer matrix.
 - [[metallic-means](pages/metallic-means.md)], [[plastic-number](pages/plastic-number.md)], [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the growth constants of the tables.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth constants of these families by width, area and semi-perimeter.
 - [[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the Perron roots of strip rules, and so their entropy rates.
 - [[castle-compression](pages/castle-compression.md)] - how short a description of a castle can be, against how many bits a uniform castle carries.
 - [[song-as-castle](pages/song-as-castle.md)] - the parity bit at `(17, 16)`, where `log₂ A − log₂ A^e` agrees with 1 to six decimal places, and the probability 0.4272 that a uniform one-column edit of a uniform castle changes the block parity (0.4236 if the edit must keep the height).

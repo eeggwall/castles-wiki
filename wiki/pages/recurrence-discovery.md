@@ -5,7 +5,7 @@ summary: Berlekamp-Massey on the signed tower count P(k, L) in both directions, 
 tags: [analysis, castle, recurrence, berlekamp-massey, c-finite, verification]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Recurrence discovery for P(k,L)
@@ -134,6 +134,8 @@ At `L = 1` the towers are one column of height `c ≤ k` with `c` blocks, so `P(
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomials in `k`, proved for every `L ≥ 4`, and the polynomials in `k` that make up `P(k, L)`.
 - [[closed-form-hunting](pages/closed-form-hunting.md)] - the closed forms of `P(k, L)` in `k` for small `L`.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm, and when its output is the shortest recurrence of a sequence.
+- [[castle-cryptography](pages/castle-cryptography.md)] - Attack 2, the run in `L` against a keystream: six terms of `P(2, ·)` give `char_2`.
+- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - Attack 5, Berlekamp-Massey over `F_p` on `P(k, ·) mod p`, order `k + 1` for `k ≤ 6`, and on polynomial filters of it.
 - [[kitamasa](pages/kitamasa.md)] - the evaluation of a far term of a recurrence once it is known.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the two directions as the two paths that evaluate the Project Euler targets.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and the recurrence `den_{k+1} = den_{k−1} − 2x·den_k`.

@@ -5,7 +5,7 @@ summary: For pairwise comaximal ideals I_1, …, I_n of a ring with identity, R/
 tags: [concept, ring, chinese-remainder-theorem, comaximal-ideals, quotient-ring, finite-field, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Chinese Remainder Theorem (rings)
@@ -38,7 +38,7 @@ Let `R = F_p[x]/(char_k mod p)`, the ring in which multiplication by `x` is the 
 
 - **Periods.** The period of `P(k, ·) mod p` divides the order of `x` in `R^*`, with equality, since `num_k` and `den_k` are coprime mod every prime ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 6). Under the CRT split the order of `x` is the lcm of the orders of its images in the factors ([[mod-p-observatory](pages/mod-p-observatory.md)], [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 1).
 - **Unit groups.** For squarefree `char_k mod p`, `R^* ≅ ∏_i Z/(p^{d_i} − 1)`, with exactly one invariant factor per irreducible factor for odd `p` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 2). A repeated factor of multiplicity `m` gives a local factor whose `p`-group multiplies the period by exactly `p^{⌈log_p m⌉}`, one factor `p` when `m = 2` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 4).
-- **Pohlig-Hellman.** The attack on the castle Diffie-Hellman uses the theorem twice: once on `R`, and once on the integers, to combine the discrete logarithms found modulo the prime powers dividing the order of `x` ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]).
+- **Pohlig-Hellman.** The attack on the castle Diffie-Hellman uses the theorem twice: once on `R`, and once on the integers, to combine the discrete logarithms found modulo the prime powers dividing the order of `x` ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]); the snippet `castle_dlp` of [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] runs both steps.
 - **A worked split.** At `p = 101`, `char_2 = (x − 2)(x² − x + 2)` with `x² − x + 2` irreducible (its discriminant `−7` is not a square mod 101), so `R ≅ F_101 × F_{101²}`. The projections are evaluation at `x = 2` and reduction mod `x² − x + 2` ([[castle-cryptography](pages/castle-cryptography.md)], Attack 1), and the idempotents that invert the split are on [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 
 ## Appearances in Sources

@@ -5,14 +5,14 @@ summary: A totient castle is a castle whose neighboring columns have coprime hei
 tags: [concept, castle, totient-castle, castle-strip, transfer-matrix, coprime, euler-totient, euler-product, perron-frobenius, collatz-wielandt, fibonacci, pell-lucas, growth-constant, parity, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-28
-updated: 2026-10-28
+updated: 2026-11-10
 ---
 
 # Totient castles
 
 ## Definition
 
-A **totient castle** is a castle `(c_1, …, c_w)` whose neighboring columns have coprime heights:
+A **totient castle** is a castle `(c_1, …, c_w)` whose neighboring columns have coprime heights:[^pe-bf]
 
 ```
 gcd(c_i, c_{i+1})  =  1     for 1 ≤ i < w.
@@ -63,7 +63,7 @@ The strips themselves, the words over `{1, …, h}` whose neighboring letters ar
 
 **Height 2.** `M_2 = [[1, 1], [1, 0]]` forbids two neighboring columns of height 2, so the totient castles of height 2 are the Fibonacci castles, `F_{w+2} − 1 = A000071(w + 2)` of width `w` with `F_1 = F_2 = 1`, golden by width ([[fibonacci-castle](pages/fibonacci-castle.md)]).[^a000071][^exec1]
 
-**Height 3.** The totient rule on `{1, 2, 3}` allows every pair but `(2, 2)` and `(3, 3)`:
+**Height 3.** The totient rule on `{1, 2, 3}` allows every pair but `(2, 2)` and `(3, 3)`, so `M_3` is the ridge matrix `R_3` with the heights 1 and 3 exchanged ([[ridge-castle](pages/ridge-castle.md)]):
 
 ```
         1  2  3
@@ -194,6 +194,7 @@ At height 2 the signed count repeats `1, 2, 2, 1, 0, 0` with period 6, the parit
 
 ## Footnotes
 
+[^pe-bf]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L18 - "A castle of width w, height h is a skyline: column heights c_1, …, c_w ∈ {1, …, h} with max c = h. This is Rules 1, 2, 4, 5."
 [^a001333]: https://oeis.org/A001333 (read 2026-10-28) - "Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2).", offset 0, data `1, 1, 3, 7, 17, 41, 99, 239, 577, 1393, 3363, 8119`.
 [^a000071]: https://oeis.org/A000071 (read 2026-10-28) - "a(n) = Fibonacci(n) - 1.", offset 1, data `0, 0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143`.
 [^a167606]: https://oeis.org/A167606 (read 2026-10-28) - "Number of compositions of n where each pair of adjacent parts is relatively prime.", offset 0, data `1, 1, 2, 4, 7, 14, 25, 48, 90, 168, 316, 594, 1116`; formula "a(n) ~ c * d^n, where d=1.8780154065731862176678940156530410192010138618103068156064519919669849911..., c=0.5795813856338135589080831265343299561832275012313700387790334792220408848... - _Vaclav Kotesovec_, May 01 2014".

@@ -70,6 +70,7 @@ The trapezoid series has radius of convergence 1 and the parallelogram series `1
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the trisection and the growth constant `2.309138…`.
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the trapezoid, parallelogram and trapezoid split, the growth constant, and the rod shape of most convex polyominoes.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the count by perimeter and the word coding of the three pieces.
+- [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the `q`-analogs of the Catalan numbers, and Delest and Viennot's problem of a `q`-analog of the count by perimeter.
 
 ## Footnotes
 

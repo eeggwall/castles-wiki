@@ -5,7 +5,7 @@ summary: The exact appearances of the Motzkin numbers in castle counts. Removing
 tags: [analysis, castle, motzkin, lattice-paths, cornerless, bargraph, parity, sign, gaussian-integers, transfer-matrix, chebyshev, metallic, semi-perimeter, oeis, hub]
 sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs, banderier-nicodeme-2010-bounded-discrete-walks, barry-2005-catalan-transform, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-26
-updated: 2026-11-08
+updated: 2026-11-10
 ---
 
 # Motzkin castles - where the Motzkin numbers meet the castle
@@ -41,7 +41,7 @@ The bijection relates two gradings on the wiki. Counted by **path length**, corn
 
 ## 2. The Motzkin-path castle and the parity split
 
-Add the **1-smooth** rule `|c_{i+1} - c_i| ≤ 1` and pin both end columns to height 1. Then the skyline minus one is a Motzkin path of length `w - 1`, so these castles number `M_{w-1}` (A001006, offset `w - 1`). This is the Motzkin-path type of [[castle-classification-shape](pages/castle-classification-shape.md)]; by height, the Motzkin-path castles of width `w` and height `h` number `A097862(w − 1, h − 1)`, the Motzkin paths of length `w − 1` and height `h − 1`. Choosing the `2k` column boundaries where the height changes and then a Dyck path through them gives `M_{w−1} = Σ_k C(w − 1, 2k) C_k`, Barry's aerated [[binomial-transform](pages/binomial-transform.md)] of the Catalan numbers; a height bound only changes the Dyck paths, so the rows of §4 are the same transform of bounded Dyck path counts.[^barry]
+Add the **1-smooth** rule `|c_{i+1} - c_i| ≤ 1` and pin both end columns to height 1. Then the skyline minus one is a Motzkin path of length `w - 1`, so these castles number `M_{w-1}` (A001006, offset `w - 1`). This is the Motzkin-path type of [[castle-classification-shape](pages/castle-classification-shape.md)]; by height, the Motzkin-path castles of width `w` and height `h` number `A097862(w − 1, h − 1)`, the Motzkin paths of length `w − 1` and height `h − 1`; at `h = 3` they are the Pell castles with both ends at height 1 ([[pell-castle](pages/pell-castle.md)]). Choosing the `2k` column boundaries where the height changes and then a Dyck path through them gives `M_{w−1} = Σ_k C(w − 1, 2k) C_k`, Barry's aerated [[binomial-transform](pages/binomial-transform.md)] of the Catalan numbers; a height bound only changes the Dyck paths, so the rows of §4 are the same transform of bounded Dyck path counts.[^barry]
 
 **The PE 502 parity clause splits `M_{w-1}`.** On a Motzkin-path castle every rise is a single up step, so `#blocks = 1 + #U`. Even-block castles, the parity PE 502 keeps, are therefore the **odd** Motzkin paths (an odd number of up steps), and odd-block castles are the **even** Motzkin paths:
 

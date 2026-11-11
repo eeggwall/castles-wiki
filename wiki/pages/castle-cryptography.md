@@ -5,7 +5,7 @@ summary: A three-seminar series on a toy public-key system built from the signed
 tags: [analysis, seminar, cryptography, public-key, finite-field, kitamasa, berlekamp-massey, discrete-log, diffie-hellman, cryptanalysis, red-team, blue-team, pedagogy, implementation, castle]
 sources: [project-euler-502-representations]
 created: 2026-09-18
-updated: 2026-11-06
+updated: 2026-11-10
 ---
 
 # Castle cryptography
@@ -22,7 +22,7 @@ The series runs three times. [[castle-cryptography-round-two](pages/castle-crypt
 
 ## The shared setup
 
-The signed tower count `P(k, L)` satisfies a linear recurrence in `L` with characteristic polynomial `char_k(x)` of degree `k + 1` ([[signed-tower-count](pages/signed-tower-count.md)]); for example `char_2(x) = x³ − 3x² + 4x − 4`. Reducing `char_k` modulo a prime `p` gives a polynomial `Q(x)` over the field `F_p` with `p` elements, and the arithmetic of the series takes place in the quotient ring
+The signed tower count `P(k, L)` satisfies a linear recurrence in `L` with characteristic polynomial `char_k(x)` of degree `k + 1` ([[signed-tower-count](pages/signed-tower-count.md)]); for example `char_2(x) = x³ − 3x² + 4x − 4`.[^reps] Reducing `char_k` modulo a prime `p` gives a polynomial `Q(x)` over the field `F_p` with `p` elements, and the arithmetic of the series takes place in the quotient ring
 
 ```
 R  =  F_p[x] / (Q(x)),        Q  =  char_k mod p.
@@ -71,7 +71,7 @@ The inverse map uses the idempotents `e_1 = (x² − x + 2)/4 = 51 + 25x + 76x²
 
 ## Attack 2 - Berlekamp-Massey recovers the modulus
 
-Suppose a variant keeps `Q` secret and publishes the terms of a sequence that satisfies its recurrence, as a keystream. [[berlekamp-massey](pages/berlekamp-massey.md)] returns the shortest linear recurrence of the published terms, and it is the recurrence of `Q` once `2·deg(Q)` consecutive terms are known. The first six terms of `P(2, ·)`, `1, 1, 3, 9, 19, 33`, already give the coefficient vector `[1, −3, 4, −4]`, that is `char_2(x) = x³ − 3x² + 4x − 4`.[^2]
+Suppose a variant keeps `Q` secret and publishes the terms of a sequence that satisfies its recurrence, as a keystream. [[berlekamp-massey](pages/berlekamp-massey.md)] returns the shortest linear recurrence of the published terms, and it is the recurrence of `Q` once `2·deg(Q)` consecutive terms are known. The first six terms of `P(2, ·)`, `1, 1, 3, 9, 19, 33`, already give the coefficient vector `[1, −3, 4, −4]`, that is `char_2(x) = x³ − 3x² + 4x − 4`, the recurrence of order `k + 1 = 3` that [[recurrence-discovery](pages/recurrence-discovery.md)] finds in `L`.[^2]
 
 Any sequence that satisfies a linear recurrence of order `d` is recovered this way from `2d` terms, so a scheme that publishes terms of `P(k, ·) mod p` publishes `Q`. Read as castle counts, a public key is a window of `d = k + 1` consecutive terms ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 5), half of what Berlekamp-Massey needs, so a variant that keeps `Q` secret and publishes windows reveals `Q` as soon as `2d` consecutive terms are public.
 
@@ -134,6 +134,7 @@ The key exchange `castle_dh` (the functions `mulmod` and `powmod`), round two's 
 
 ## Footnotes
 
+[^reps]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L343-L346 - "For fixed k, P_k is rational with denominator of degree k+1, so P(k,L) satisfies a linear recurrence in L of order k+1", "k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)".
 [^1]: Verified by execution (Python 3.11, 2026-10-16) at `p = 101`: `A(2) = 33`, `A mod (x² − x + 2) = 98 + 8x`, `A·B mod char_2 = 86 + 55x + 51x²`, `B(2) = 6`, `(A·B)(2) = 97 = 33 · 6 mod 101`, both sides of the quadratic projection equal to `85 + 5x`; `e_1 = 51 + 25x + 76x²` is idempotent, `1` at `x = 2` and `0` mod `x² − x + 2`, and `x^L e_1 = 2^L e_1` for `L = 1, 5, 9`.
 [^2]: Verified by execution (Python 3.11, 2026-10-16): `P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025` for `L = 0, …, 11` from the `num`/`den` update; rational Berlekamp-Massey returns the order-3 recurrence with coefficient vector `[1, −3, 4, −4]` from the first 6 terms and from all 12; `char_2(x) = (x − 2)(x² − x + 2)` by SymPy `factor`.
 [^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `char_k(x) = x^{k+1} den_k(1/x)` irreducible over the rationals for every odd `k ≤ 31`; `char_1` mod `p` irreducible for `p = 3, 7, 11, 10⁹ + 7` and split for `p = 5, 13, 101`; `char_3 ≡ (x + 21)(x + 24)(x − 26)(x − 23) mod 101` and irreducible mod `10⁹ + 7`; `C(79, 16) = 21566576904406820 ≈ 2^{54.26}`; 39 squarings and 12 multiplications for `a = 10^12`.

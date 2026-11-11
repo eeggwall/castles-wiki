@@ -5,7 +5,7 @@ summary: Yuste, Abad and Baumgaertner study the random comb, a backbone with equ
 tags: [source, paper, comb-model, random-comb, random-walk, continuous-time-random-walk, anomalous-diffusion, subdiffusion, diffusion-coefficient, fractional-diffusion-equation, frap, tree-castle]
 sources: [yuste-abad-baumgaertner-2016-random-comb-model]
 created: 2026-10-29
-updated: 2026-10-29
+updated: 2026-11-10
 ---
 
 # Yuste, Abad and Baumgaertner (2016) - Anomalous diffusion and FRAP dynamics in the random comb model
@@ -59,7 +59,7 @@ A tree castle is a comb with its bottom row as the backbone, and the tooth of ea
 
 ## Relation to Other Wiki Pages
 
-[[mendez-iomin-campos-horsthemke-2015-random-walks-on-combs](pages/mendez-iomin-campos-horsthemke-2015-random-walks-on-combs.md)] is reference [11] here, the regular comb with finite or infinite branches. [[arkhincheev-baskin-1991-comb-model](pages/arkhincheev-baskin-1991-comb-model.md)] is the continuum comb with the order-1/2 equation, the `γ = 1/2` end of the range. [[half-sum-castles](pages/half-sum-castles.md)] applies the Riemann-Liouville fractional sum, the counterpart of the derivative in Equation (33), to castle generating functions, as multiplication by `(1 − x)^{−α}`.
+[[mendez-iomin-campos-horsthemke-2015-random-walks-on-combs](pages/mendez-iomin-campos-horsthemke-2015-random-walks-on-combs.md)] is reference [11] here, the regular comb with finite or infinite branches. [[pach-tardos-2013-range-of-random-walk-on-comb](pages/pach-tardos-2013-range-of-random-walk-on-comb.md)] counts the distinct sites a walker visits on the regular comb with infinite teeth of Ref. [6]. [[arkhincheev-baskin-1991-comb-model](pages/arkhincheev-baskin-1991-comb-model.md)] is the continuum comb with the order-1/2 equation, the `γ = 1/2` end of the range. [[half-sum-castles](pages/half-sum-castles.md)] applies the Riemann-Liouville fractional sum, the counterpart of the derivative in Equation (33), to castle generating functions, as multiplication by `(1 − x)^{−α}`.
 
 ## Footnotes
 

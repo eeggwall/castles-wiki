@@ -65,7 +65,7 @@ For example, the peak heights `3, 3` give the three words `x³x̄xx̄³`, `x³x�
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the staircase (parallelogram) polygons from the quadratic equation (3.14), linearized by `G = α H(qx)/H(x) − b(x)` (4.2).
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the stack polyominoes, the end pieces of the convex polyominoes.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the parallelograms by area through the kernel `min{m, n}` and the q-series (19); [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the same count as `P_1/(1 − P_2)`.
-- [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - the generating function `y J_1/J_0` by width, height and area.
+- [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - the generating function `y J_1/J_0` by width, height and area, solved from its `q = 1` Bessel limit on [[q-differential-system](pages/q-differential-system.md)].
 
 ## Footnotes
 

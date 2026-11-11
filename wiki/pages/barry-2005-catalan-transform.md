@@ -5,7 +5,7 @@ summary: Paul Barry studies invertible transforms of integer sequences as Riorda
 tags: [source, paper, oeis, catalan, motzkin, pell, binomial-transform, riordan-array, ballot, 1-smooth, transfer-matrix, generating-functions]
 sources: [barry-2005-catalan-transform]
 created: 2026-10-08
-updated: 2026-10-22
+updated: 2026-11-10
 ---
 
 # Barry (2005) - A Catalan transform and related transformations on integer sequences
@@ -62,7 +62,7 @@ The 1-smooth strips on the heights `{1, …, h}` are the skylines with `|c_{i+1}
 
 Barry's factorization `Bin ∘ (1, x²)` is this split: `(1, x²)` keeps the even skeleton lengths, `Bin` inserts the flat steps. Checks, by execution:[^exec]
 
-- **No ceiling, pinned at height 1.** The closed skeletons are the Dyck paths, `C_k`, and the transform gives the Motzkin-path castles of every height, `M_{w−1}` ([[motzkin-castles](pages/motzkin-castles.md)], section 2). This is Barry's identity `M_n = Σ_k C(n, 2k) C_k`.
+- **No ceiling, pinned at height 1.** The closed skeletons are the Dyck paths, `C_k`, and the transform gives the Motzkin-path castles of every height, `M_{w−1}` ([[motzkin-castles](pages/motzkin-castles.md)], section 2). This is Barry's identity `M_n = Σ_k C(n, 2k) C_k`; the excursion formula of [[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)] gives the same count at `m = 1`.
 - **Ceiling `h`, pinned at height 1.** The closed skeletons are the Dyck paths of height at most `h − 1`. At `h = 2` there is one of each length and the strip count is `1, 1, 2, 4, 8, …` = A011782(`w − 1`), Barry's `1^n → A011782`. At `h = 3` the skeleton counts are `1, 1, 2, 4, 8, …` = A011782(`k`) again, so the pinned Pell strip `1, 1, 2, 4, 9, 21, 50, 120, …` = A171842(`w − 1`) is the aerated transform applied twice to `1^n`; the OEIS name of A171842 is "Binomial transform of 1,0,1,0,2,0,4,0,8,0,16,...", the aerated A011782. Checked for `h ∈ {2, 3, 4, 5, 8, 40}` and no ceiling, `w ≤ 14`.
 - **The Pell strip, by last column.** On heights `{1, 2, 3}` a skeleton step away from height 2 has two choices (to 1 or 3) and a step back to 2 has one. A skeleton from 2 back to 2 with `2k` steps makes `k` free choices, so the strips with `c_1 = c_w = 2` number `Σ_k C(w − 1, 2k) 2^k = A001333(w − 1)`, Barry's Pell-Lucas sum. An anchored strip (`c_1 = 1`) ending at height 2 has an odd skeleton whose first step is forced, so these number `Σ_k C(w − 1, 2k + 1) 2^k = P⋆_{w−1}`, Barry's Pell sum; the anchored strips ending at 1 or 3 number `A001333(w − 1)`. Together they give the anchored Pell strip `P⋆_{w−1} + A001333(w − 1) = P⋆_w` of [[pell-castle-strip](pages/pell-castle-strip.md)]. Adding a column of height 2 at each end is a bijection from the free strips of width `w` to the strips of width `w + 2` with both ends at 2, so the free strip count is `A001333(w + 1)`, the Pell-Lucas row of [[pell-castle-strip](pages/pell-castle-strip.md)].
 - **No floor, no ceiling.** Closed `±1` walks on the integers number `C(2k, k)`, and the aerated transform gives the central trinomials A002426, the unconstrained `U/R/D` words returning to their start ([[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]); Barry's `C(2n, n) → A002426`.

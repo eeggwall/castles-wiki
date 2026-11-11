@@ -99,7 +99,7 @@ A period **alternates** when its cyclic steps alternate in sign, so that every h
 A000111(2m − 1)  =  A000182(m)  =  1, 2, 16, 272, 7936, …     (N = 2m = 2, 4, 6, 8, 10, …).
 ```
 
-A000111 counts "half the number of alternating permutations on n letters" for `n ≥ 2`, the up-down half, and its odd-indexed terms are A000182, the tangent numbers, with e.g.f. `tan(x)`.[^a000111][^a000182] An orbital castle shows every step of its cycle, so it is of the sign-alternating type, its differences `c_{i+1} − c_i` alternating in sign, exactly when its period alternates. Among these, the alternating castles, `c_1 > c_2 < c_3 > ⋯ < c_w` at odd width, are the ones whose period starts on a fall, half the rotations of each alternating period. At order `N = 2m` and width `w ≥ 2N`:[^exec9]
+A000111 counts "half the number of alternating permutations on n letters" for `n ≥ 2`, the up-down half, and its odd-indexed terms are A000182, the tangent numbers, with e.g.f. `tan(x)`.[^a000111][^a000182] An orbital castle shows every step of its cycle, so it is of the sign-alternating type, its differences `c_{i+1} − c_i` alternating in sign, exactly when its period alternates. Among these, the alternating castles, `c_1 > c_2 < c_3 > ⋯ < c_w` at odd width (the castles of plane trees, [[von-neumann-castles](pages/von-neumann-castles.md)]), are the ones whose period starts on a fall, half the rotations of each alternating period. At order `N = 2m` and width `w ≥ 2N`:[^exec9]
 
 ```
 sign-alternating:  C(h − 1, 2m − 1) · 2m · A000182(m),

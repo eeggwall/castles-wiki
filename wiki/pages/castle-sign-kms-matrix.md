@@ -5,7 +5,7 @@ summary: Weight each block of towers by t. The block-weighted tower transfer mat
 tags: [analysis, castle, sign, parity, transfer-matrix, toeplitz, kms-matrix, poisson-kernel, gaussian-integers, cayley-transform, characteristic-polynomial, signed-tower-count, semi-perimeter, motzkin]
 sources: [project-euler-502-solution, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin]
 created: 2026-09-27
-updated: 2026-10-31
+updated: 2026-11-10
 ---
 
 # The castle sign is a KMS matrix at ρ = i
@@ -75,7 +75,7 @@ of [[generating-function-gallery](pages/generating-function-gallery.md)], there 
 D_i⁻¹ 𝒥 D_i = i^k · D 𝒥,      D = diag((−1)^c),
 ```
 
-which commutes with `M_k(−1)`. This is the involution `𝒥D` of [[tower-parity-sectors](pages/tower-parity-sectors.md)], up to the transpose and the scalar `i^k`. Since `(D_i⁻¹ 𝒥 D_i)² = 𝒥² = I`, `(D𝒥)² = i^{−2k} I = (−1)^k I`. For even `k`, `D𝒥` is a real involution and `char_k` splits over `Q` into the characteristic polynomials of its two eigenspaces. For odd `k`, `D𝒥` squares to `−I`, its eigenvalues are `±i`, and `char_k` splits over `Q(i)` into two complex-conjugate factors of degree `(k+1)/2`, so `char_k` is a norm from `Q(i)`. Over `Q`, `char_k` is irreducible for odd `k ≤ 31` (computed) and for every `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). For `k ≤ 11` the irreducible factors of `char_k` have degrees `[2], [1, 2], [4], [2, 3], [6], [3, 4], …` over `Q` and `[1, 1], [1, 2], [2, 2], [2, 3], [3, 3], [3, 4], …` over `Q(i)` (computed). At `k = 1`, `K(i) = [[1, i], [i, 1]]` has eigenvalues `1 ± i`, which give `P(1, L) = Re((1+i)^{L+1})`.
+which commutes with `M_k(−1)`. This is the involution `𝒥D` of [[tower-parity-sectors](pages/tower-parity-sectors.md)], up to the transpose and the scalar `i^k`. Since `(D_i⁻¹ 𝒥 D_i)² = 𝒥² = I`, `(D𝒥)² = i^{−2k} I = (−1)^k I`. For even `k`, `D𝒥` is a real involution and `char_k` splits over `Q` into the characteristic polynomials of its two eigenspaces. For odd `k`, `D𝒥` squares to `−I`, its eigenvalues are `±i`, and `char_k` splits over `Q(i)` into two complex-conjugate factors of degree `(k+1)/2`, so `char_k` is a norm from `Q(i)`. Over `Q`, `char_k` is irreducible for odd `k ≤ 31`, each `k` proved by one prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]), and for every `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). For `k ≤ 11` the irreducible factors of `char_k` have degrees `[2], [1, 2], [4], [2, 3], [6], [3, 4], …` over `Q` and `[1, 1], [1, 2], [2, 2], [2, 3], [3, 3], [3, 4], …` over `Q(i)` (computed). At `k = 1`, `K(i) = [[1, i], [i, 1]]` has eigenvalues `1 ± i`, which give `P(1, L) = Re((1+i)^{L+1})`.
 
 ## 4. The symbol is the Poisson kernel
 

@@ -5,14 +5,14 @@ summary: The tree castles of area n, of any height, are the compositions of n wi
 tags: [analysis, castle, bijection, a005251, plastic-number, composition, binary-string, hardin, tree-castle, tower-spacing, padovan, parity, verification]
 sources: [oeis-encyclopedia]
 created: 2026-09-18
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # The A005251 bijection
 
 ## Two readings of A005251
 
-`A005251` is `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, …` (offset 0), with `a(n) = a(n−1) + a(n−2) + a(n−4)` for `n ≥ 4`.[^1] Since `x⁴ − x³ − x² − 1 = (x + 1)(x³ − 2x² + x − 1)` and the initial terms give the root `−1` no weight, also `a(n) = 2a(n−1) − a(n−2) + a(n−3)`; the cubic is the minimal polynomial of `ψ²`, the square of the plastic number ([[plastic-number](pages/plastic-number.md)]). Two of its readings are:
+`A005251` is `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, …` (offset 0, [[oeis-encyclopedia](pages/oeis-encyclopedia.md)]), with `a(n) = a(n−1) + a(n−2) + a(n−4)` for `n ≥ 4`.[^1] Since `x⁴ − x³ − x² − 1 = (x + 1)(x³ − 2x² + x − 1)` and the initial terms give the root `−1` no weight, also `a(n) = 2a(n−1) − a(n−2) + a(n−3)`; the cubic is the minimal polynomial of `ψ²`, the square of the plastic number ([[plastic-number](pages/plastic-number.md)]). Two of its readings are:
 
 - **Tree castles by area.** A castle is a tree castle when its castle graph is a tree, which happens exactly when no two neighboring columns both have height at least 2 ([[castle-graph](pages/castle-graph.md)]). Read as a composition of its area `n`, a tree castle of any height is a composition of `n` with no two neighboring parts at least 2. These number `A005251(n + 2)`.[^1]
 - **Strings without 010.** The binary strings of length `N` with no factor `010` number `A005251(N + 3)`. Of the 16 strings of length 4, exactly `0100`, `0101`, `0010` and `1010` contain `010`, which leaves 12.[^1]
@@ -95,7 +95,7 @@ Each object below is taken at the size matched with the tree castles of area `n`
 | binary strings of length `N = n` with no isolated `1`, `W_1(N)` | `A005251(N + 2)` | a column of height 1 becomes `0`, a column of height `c ≥ 2` becomes `1^c` | section *Strings with no isolated 1*, [[tree-castle-by-area](pages/tree-castle-by-area.md)] section *Compositions* |
 | compositions of `m = n + 1` with no part equal to 2 | `A005251(m + 1)` | a column of height 1 put in front, then each column of height 1 followed by a column of height `j ≥ 2` merged into one part `1 + j` | [[tree-castle-by-area](pages/tree-castle-by-area.md)], section *Compositions* |
 | skylines of width `w = n − 1` on `{1, 2}` with tower spacing at least 2, `spacing_2(w, 2)` | `A005251(w + 3)` | the gap map, then each `0` a column of height 2 and each `1` a column of height 1 | [[tower-spacing-castles](pages/tower-spacing-castles.md)] |
-| even-sector signed towers `P_even(6, L)/2^L` with `L = n − 1` | `A005251(L + 3)` | equal counts, `P_even(6, L) = 2^L W_1(L + 1)` | [[hardin-word-identity](pages/hardin-word-identity.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)] |
+| even-sector signed towers `P_even(6, L)/2^L` with `L = n − 1` | `A005251(L + 3)` | equal counts, `P_even(6, L) = 2^L W_1(L + 1)` | [[hardin-word-identity](pages/hardin-word-identity.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] |
 
 The skyline map turns a column of height `c` into `c − 1` columns of height 2 and puts one column of height 1 between neighboring columns of the castle. Row 2 of the skyline is the complement of the string, so it has no factor `101`, which is the tower-spacing condition at height 2; the castles of height 2 among these skylines, all but the flat row, number `A005251(w + 3) − 1`. The even sector is the one reading without a map: [[hardin-word-identity](pages/hardin-word-identity.md)] proves its count by a change of basis between transfer matrices. The OEIS entry carries the readings by compositions (Joerg Arndt), by strings without `010` (David Callan), and by strings with no isolated zero (Milan Janjic) or with no run of ones of length 1 (Félix Balado).[^1][^6]
 

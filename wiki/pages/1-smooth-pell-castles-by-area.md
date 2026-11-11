@@ -5,7 +5,7 @@ summary: The Pell castles (first column at height 1, neighboring columns differi
 tags: [analysis, castle, 1-smooth, pell, fixed-height, area, generating-function, transfer-matrix, pedagogy]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-07
-updated: 2026-10-22
+updated: 2026-11-10
 ---
 
 # 1-smooth Pell castles by area
@@ -282,6 +282,7 @@ A dynamic program over the area counts the Pell castles without the generating f
 - [[generating-functions](pages/generating-functions.md)] - coefficient bookkeeping and rational generating functions.
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles of height `h` by area; its height-3 row counts all castles of height 3, without the anchor or the smoothness rule.
 - [[area-growth-census](pages/area-growth-census.md)] - area counting for arbitrary fixed-height strip rules.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - the Pell castles on three axes: silver by width, `1.666302…` by area and copper by semi-perimeter.
 
 ## Footnotes
 

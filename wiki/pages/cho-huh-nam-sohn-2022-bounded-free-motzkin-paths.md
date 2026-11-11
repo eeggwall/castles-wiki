@@ -41,7 +41,7 @@ with `scc(t, 0) = 1` and `scc(t, m) = scc(t + 1, m)` for even `t`. The paper tab
 
 ## Castles as core partitions
 
-A cornerless Motzkin path is the tower word of a castle ([[motzkin-castles](pages/motzkin-castles.md)] §1): its flat steps `R` are the columns, at heights `c_j − 1`, and its up steps are the blocks above the bottom row. So the sequence `(n_1, …, n_{t−1})` of Theorem 3.3 is a tower `(c_1, …, c_L)` on a base of length `L = t − 1` ([[tower-heap](pages/tower-heap.md)]). Its sum of differences is twice the total rise, `Σ |n_i − n_{i−1}| = 2 · blocks`, and the strip bound `k` is the tower height bound of [[castle-notation](pages/castle-notation.md)], `k = h − 1` for castles of height `h`. In the wiki's notation Theorem 3.3 reads
+A cornerless Motzkin path is the tower word of a castle ([[motzkin-castles](pages/motzkin-castles.md)] §1): its flat steps `R` are the columns, at heights `c_j − 1`, and its up steps are the blocks above the bottom row. So the sequence `(n_1, …, n_{t−1})` of Theorem 3.3 is a tower `(c_1, …, c_L)` on a base of length `L = t − 1` ([[tower-heap](pages/tower-heap.md)]), and the bijection between the sequences and the paths is the Lemma of [[tower-word-language](pages/tower-word-language.md)] with the number of blocks fixed. Its sum of differences is twice the total rise, `Σ |n_i − n_{i−1}| = 2 · blocks`, and the strip bound `k` is the tower height bound of [[castle-notation](pages/castle-notation.md)], `k = h − 1` for castles of height `h`. In the wiki's notation Theorem 3.3 reads
 
 ```
 (L+1)-cores with b corners and  λ_1 + ℓ(λ) − 1 < k(L + 1)

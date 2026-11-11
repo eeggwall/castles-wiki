@@ -5,7 +5,7 @@ summary: The spectra computed for castles and what each decides. (1) The signed 
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, dct, galois, ramanujan-sum, homometric, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Spectral analysis of castles
@@ -26,7 +26,7 @@ The castle graph of a castle has its cells as vertices and an edge between cells
 
 ## 1. Transfer-matrix spectrum
 
-The column-height dynamic program of [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] steps from a column of height `a` to one of height `b` with the sign `(−1)^{max(0, b − a)}`, one factor `−1` for each new block. The same sum is the matrix product `P(k, L) = e_0ᵀ M̃_k^L v`, with `M̃_k` the signed transfer matrix of size `k + 1` on the tower heights `0, …, k`, which counts the blocks by descents, and `char_k` its characteristic polynomial ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).[^bf] The unsigned transfer matrix of the skylines of height at most `h` is the all-ones `h × h` matrix, with largest eigenvalue `h`, and
+The column-height dynamic program of [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] steps from a column of height `a` to one of height `b` with the sign `(−1)^{max(0, b − a)}`, one factor `−1` for each new block. The same sum is the matrix product `P(k, L) = e_0ᵀ M̃_k^L v`, with `M̃_k` the signed transfer matrix of size `k + 1` on the tower heights `0, …, k`, which counts the blocks by descents, and `char_k` its characteristic polynomial ([[signed-tower-count](pages/signed-tower-count.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]).[^bf] The unsigned transfer matrix of the skylines of height at most `h` is the all-ones `h × h` matrix, with largest eigenvalue `h`, and
 
 ```
 A^e(w, h)  =  [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)] / 2   ~   h^w / 2.

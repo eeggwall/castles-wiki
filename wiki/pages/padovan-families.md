@@ -5,14 +5,14 @@ summary: Five castle families grow at the plastic number ψ and are counted exac
 tags: [analysis, castle, padovan, plastic-number, generating-function, bijection, maximal-castle, run-length-limited, ridge-castle, tree-castle, palindrome, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-10-11
-updated: 2026-10-22
+updated: 2026-11-10
 ---
 
 # The Padovan families of castles
 
 ## The question
 
-The **Padovan numbers** `P(n)` (A000931) start `1, 0, 0, 1, 0, 1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, …` and satisfy `P(n) = P(n − 2) + P(n − 3)`; they grow at the plastic number `ψ ≈ 1.3247`, the real root of `x³ = x + 1` ([[plastic-number](pages/plastic-number.md)]). Five castle families are counted by them exactly, each at its own shift ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]). This page explains why: what they share, and how to turn one into another.
+The **Padovan numbers** `P(n)` (A000931) start `1, 0, 0, 1, 0, 1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, …` and satisfy `P(n) = P(n − 2) + P(n − 3)`; they grow at the plastic number `ψ ≈ 1.3247`, the real root of `x³ = x + 1` ([[plastic-number](pages/plastic-number.md)]). Five castle families are counted by them exactly, each at its own shift ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]).[^pe502] This page explains why: what they share, and how to turn one into another.
 
 ## The five families
 
@@ -24,7 +24,7 @@ A column of height 2 next to columns of height 1 is the basic piece throughout. 
 | `(1, 2)`-RLL castles ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]) | height 2; gaps of 1 or 2; end runs of at most 2 | `(1, 1, 2, 1, 2)` | `P(w + 8)` for `w ≥ 3` | width `w` |
 | ridge castles of height 2 ([[ridge-castle](pages/ridge-castle.md)]) | columns 1 and 2, some 2, no two adjacent 1s | `(2, 1, 2, 2, 1)` | `P(A + 5)` for `A ≥ 2` | area `A` |
 | palindromic tree castles ([[castle-sequence-catalog](pages/castle-sequence-catalog.md)]) | no two adjacent columns both of height 2 or more; the same read backwards | `(3, 1, 3)` | `P(A + 6)` | area `A` |
-| the rule `1 → 2 → 3 → {1, 2}` from height 1 | first column 1; each column one higher than the last, except after a 3, which drops to 1 or 2; reaches 3 | `(1, 2, 3, 2, 3, 1, 2)` | `P(w + 4)` for `w ≥ 3` | width `w` |
+| the rule `1 → 2 → 3 → {1, 2}` from height 1 ([[reachable-field-census](pages/reachable-field-census.md)]) | first column 1; each column one higher than the last, except after a 3, which drops to 1 or 2; reaches 3 | `(1, 2, 3, 2, 3, 1, 2)` | `P(w + 4)` for `w ≥ 3` | width `w` |
 
 Their generating functions all have the denominator `1 − x² − x³`:[^exec]
 
@@ -82,7 +82,9 @@ and the factor `1 − x² + x³` cancels from the sum. The factorization is the 
 - [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)] - maximal castles and the run-length-limited castles.
 - [[ridge-castle](pages/ridge-castle.md)] - golden by width and plastic by area at height 2.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree castles by area, the `ψ²` family that the palindromes halve.
+- [[area-growth-census](pages/area-growth-census.md)] - every strip rule counted by area; at height 2 the ridge rule, "height 1 may not follow height 1", is its plastic rule.
 
 ## Footnotes
 
+[^pe502]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L18-19 - "The bottom row is occupied by a block of length w." and "The maximum achieved height of the entire castle is exactly h."
 [^exec]: Verified by execution (Python 3.10, SymPy, 2026-10-11): `bin/python/padovan_families.py`, run log `bin/python/padovan_families-run.log`. Each family enumerated by brute force (castles of width or area `n`); the series of each generating function in the table of *The five families* equals the counts for `n = 1, …, 18`. The three maps are injective with image exactly the maximal castles of the stated width, for ridge area `A = 2, …, 20`, rule width `w = 3, …, 20` and `(1, 2)`-RLL width `w = 3, …, 18`. Prime castles of height 3 by brute force for `A = 1, …, 20`. `T_1`, `T_b` and `D(x)` by solving `T_1 = y(1 + T_1 + T_b)`, `T_b = (y²/(1 − y))(1 + T_1)` and simplifying; the factorization by `sp.factor`. Padovan values from https://oeis.org/A000931/b000931.txt (fetched 2026-10-10).

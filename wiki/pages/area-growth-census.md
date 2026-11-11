@@ -5,7 +5,7 @@ summary: Castle strips (skylines on the heights 1..h under a 0/1 rule saying whi
 tags: [analysis, castle, castle-strip, area, generating-function, transfer-matrix, growth-constant, perron-number, pisot-number, salem-number, lehmer, mahler-measure, norm, plastic-number, supergolden, n-nacci, selmer, census, exhaustive-search, min-height, implementation, verification]
 sources: [verger-gaugry-2024-salem-minoration, pe502-pell-castle-strip]
 created: 2026-09-25
-updated: 2026-10-31
+updated: 2026-11-10
 ---
 
 # Castle strips counted by area - the growth-constant census
@@ -116,6 +116,8 @@ rule   growth                       denominator          reading
 11     supergolden 1.465571         1 − x − x³           height 2 may not follow height 2
 10
 ```
+
+The plastic rule is the ridge rule at height 2, whose castles number `A000931(A + 5)` by area ([[ridge-castle](pages/ridge-castle.md)], [[padovan-families](pages/padovan-families.md)]), and the supergolden rule is the rule of the Fibonacci castles, counted by area on [[q-fibonacci-castle](pages/q-fibonacci-castle.md)].
 
 The largest constant at each height is the `h`-nacci constant: the tribonacci constant `1.839287` first at height 3, the tetranacci constant `1.927562` first at height 4 and the pentanacci constant `1.965948` first at height 5. The tribonacci constant cannot appear at height 2, because it exceeds the golden mean, the ceiling at height 2. The smallest constant above 1 at height 5 is `1.048985`, the root of `z^15 − z − 1`, as the theorem requires.
 

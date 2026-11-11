@@ -5,7 +5,7 @@ summary: Every place the wiki meets the Fibonacci, tribonacci, tetranacci and hi
 tags: [concept, disambiguation, fibonacci, tribonacci, tetranacci, pentanacci, n-nacci, growth-constant, composition, index]
 sources: [algebraic-languages-and-polyominoes-enumeration, dhar-ruelle-sen-verma-1995-algebraic-aspects, aocp-generating-functions, analytic-combinatorics-ch1-ogfs, balado-silvestre-2026-runs-binary-strings, edwards-allen-2021-fibonacci-squared-fence-tiles]
 created: 2026-10-02
-updated: 2026-11-03
+updated: 2026-11-10
 ---
 
 # n-nacci disambiguation
@@ -107,6 +107,7 @@ These share the constant with section 1. An interleaving map ties the tree skyli
 - **Signed Motzkin castles.** The signed count is `A343773(n) = (−1)^n A007440(n + 1)`, where A007440 is the reversion of the Fibonacci generating function ([[motzkin-castles](pages/motzkin-castles.md)]).
 - **Tower parity sectors.** The factors `H_d(μ) = Σ_i (−1)^i C(⌊(d + i)/2⌋, i) μ^{d−i}` of [[tower-parity-sectors](pages/tower-parity-sectors.md)] take Fibonacci values at `μ = ±1`: `H_d(1) = (−1)^d F_{d−1}` and `H_d(−1) = (−1)^d F_{d+2}`.[^exec]
 - **The second-difference rule.** The strip rule `|c_n − 2c_{n−1} + c_{n−2}| ≤ 1` on the heights `{1, 2}`, the case `α = 2` of the power-law memory rules, grows like `φ` ([[power-law-memory-rules](pages/power-law-memory-rules.md)]).
+- **Euler castles by semi-perimeter.** The castles whose heights fall by 0 or 1 at each step and end at height 1 number `F_{s−1}` at semi-perimeter `s` ([[euler-castles](pages/euler-castles.md)]).
 
 ### 6. Fibonacci as a worked example or an algebraic tool
 

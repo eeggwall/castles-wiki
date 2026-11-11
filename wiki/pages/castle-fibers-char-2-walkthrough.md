@@ -5,7 +5,7 @@ summary: A seminar that follows the signed tower count P(2, L) = 1, 1, 3, 9, 19,
 tags: [concept, castle, seminar, pedagogy, teaching, ring, spectrum, finite-field, chinese-remainder-theorem, idempotent, nilradical, frobenius, quadratic-reciprocity, signed-tower-count, parity-sector]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-31
+updated: 2026-11-10
 ---
 
 # Castle fibers seminar - `char_2` across the primes
@@ -176,6 +176,7 @@ def fiber_board(k, primes):
 - [[finite-fields](pages/finite-fields.md)] - the orders of the roots in `F_p^*` and `F_{p²}^*`, and the rule `p ≡ 1 (mod 4)` for `char_1`.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e` mod 3, 5 and 7, built from the orders of `x` in these fibers, and the double root of `char_2 mod 7`.
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_2)` as a cryptosystem; its CRT projections at `p = 101` are worked in Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)].
+- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the reducible modulus `char_2`, which splits mod every prime (Exercise 4), and the CRT split of the discrete logarithm it gives.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar that derives `T(k, L) = (k + 1)^L` and the signed count `P(k, L)`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the parity-sector split of `P(6, ·)` and Hardin's word counts.
 - [[pell-castle-strip](pages/pell-castle-strip.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)], [[song-as-castle](pages/song-as-castle.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the other seminar pages.

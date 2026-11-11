@@ -5,7 +5,7 @@ summary: Bender's eight-page Discrete Math. paper on convex polyominoes counted 
 tags: [source, paper, polyomino, convex, parallelogram-polyomino, stack-polyomino, asymptotics, growth-constant, klarner-rivest, bender, discrete-math, a276994, a006958, a067675, a001523]
 sources: [bender-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Convex n-ominoes (Bender, 1974)
@@ -35,7 +35,7 @@ Bender cuts a convex polyomino at the rows `I = max{i : l_i > l_{i+1}}` and `J =
   T(x, 1)  =  Σ_{k≥1} x^k (1 − x^k) / Π_{n≤k} (1 − x^n)²  =  Σ_{k≥1} x^k / ((1 − x^k) Π_{n<k} (1 − x^n)²),
   ```
 
-  the stack-polyomino series A001523, `1, 2, 4, 8, 15, 27, 47, 79, 130, 209, …`, checked through area 20.[^11] (`T` here is the paper's trapezoid series, not the tower count `T(k, L)`.) The rows of a trapezoid are nested above its bottom row, so its columns stand on the bottom row with a unimodal skyline: a trapezoid is a stack polyomino, and so a [[convex-castle](pages/convex-castle.md)].
+  the stack-polyomino series A001523 of Flajolet and Sedgewick's Example I.8 ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]), `1, 2, 4, 8, 15, 27, 47, 79, 130, 209, …`, checked through area 20.[^11] (`T` here is the paper's trapezoid series, not the tower count `T(k, L)`.) The rows of a trapezoid are nested above its bottom row, so its columns stand on the bottom row with a unimodal skyline: a trapezoid is a stack polyomino, and so a [[convex-castle](pages/convex-castle.md)].
 - **Typical shape.** The height of a random parallelogram of area `n` is asymptotically normal, with mean `0.42088n` and variance `0.20806n`, so the average width is `n/μ_n = 2.37597`.[^12] The exact counts reproduce both slopes (0.42088 and 0.20806 between areas 100 and 120).[^11] For the base (bottom row) of a parallelogram the paper gives mean `2.06030` and variance `0.57609`.[^13] The mean agrees with the exact counts, `2.0603013436`, but the variance of the base length computed from the counts is `1.7054123579` at areas 60 and 90, so `0.57609` is not the variance of the base length ([[convex-castle-cap-factor](pages/convex-castle-cap-factor.md)]).[^11] For convex polyominoes only the bases change, since that is where the trapezoids attach; there the base mean is `K^{−1}` times a coefficient `3.13352`.[^13] Bender states, without proof, that every row away from the ends likely has mean length equal to the average width.[^14] The slope is within `f(n)` of 45 degrees for almost all parallelograms whenever `f(n)/√n → ∞`.[^15]
 
 ## Entities & Concepts

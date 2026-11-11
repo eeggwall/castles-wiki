@@ -5,7 +5,7 @@ summary: The second round of the build / red-team / blue-team series on the cast
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-18
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle cryptography, round two
@@ -128,7 +128,7 @@ For `a = 373309869` the norm alone returns the key under both, since `a < 500000
 
 ## Attack 5 - a nonlinear filter does not help either
 
-Round one's Fix 2 published a polynomial function of consecutive terms instead of the terms, so that Berlekamp-Massey would not find a short recurrence. The attack is linearization. If `s_n = Σ_i c_i λ_iⁿ` satisfies a recurrence with characteristic polynomial `Q` of degree `d`, with roots `λ_i`, then a product of `e` shifted terms is a linear combination of the powers `(λ_{i₁} ⋯ λ_{i_e})ⁿ`, so it satisfies a linear recurrence whose characteristic roots are among the `C(d + e − 1, e)` products of `e` roots. A filter that is a polynomial of degree `e` therefore has linear complexity, the order of its shortest linear recurrence, at most `Σ_{j ≤ e} C(d + j − 1, j)` (at most `C(d + e − 1, e)` if every term has degree `e`), and Berlekamp-Massey over `F_p` recovers that recurrence from `2L` terms. On the castle registers `P(k, ·) mod p`, `d = k + 1`:[^6]
+Round one's Fix 2 published a polynomial function of consecutive terms instead of the terms, so that Berlekamp-Massey would not find a short recurrence. The attack is linearization. If `s_n = Σ_i c_i λ_iⁿ` satisfies a recurrence with characteristic polynomial `Q` of degree `d`, with roots `λ_i`, then a product of `e` shifted terms is a linear combination of the powers `(λ_{i₁} ⋯ λ_{i_e})ⁿ`, so it satisfies a linear recurrence whose characteristic roots are among the `C(d + e − 1, e)` products of `e` roots. A filter that is a polynomial of degree `e` therefore has linear complexity, the order of its shortest linear recurrence, at most `Σ_{j ≤ e} C(d + j − 1, j)` (at most `C(d + e − 1, e)` if every term has degree `e`), and Berlekamp-Massey over `F_p` recovers that recurrence from `2L` terms. On the castle registers `P(k, ·) mod p`, `d = k + 1`, the order [[recurrence-discovery](pages/recurrence-discovery.md)] finds over the rationals:[^6]
 
 | filter | `d = 2` (`char_1`) | `d = 3` (`char_2`) | `d = 4` (`char_3`) | `d = 5` (`char_4`) | `d = 6` (`char_5`) | `d = 7` (`char_6`) | bound |
 |---|---|---|---|---|---|---|---|
@@ -137,7 +137,7 @@ Round one's Fix 2 published a polynomial function of consecutive terms instead o
 | `s_n · s_{n+1} + s_{n+2}` | 5 | 8 | 14 | 20 | 27 | 35 | `C(d+1, 2) + d` |
 | `s_n · s_{n+1} · s_{n+2}` | 4 | 9 | 20 | 31 | 56 | 84 | `C(d+2, 3)` |
 
-The bounds are reached at `d = 2, 4, 6` and `7`. The shortfalls are at `d = 3` and `d = 5`, both at even `k`, where `char_k` factors; at `d = 7`, also even `k`, every bound is reached. At `d = 3` both shortfalls come from `α + ᾱ = 1` and `α·ᾱ = 2` for the roots `α, ᾱ` of `x² − x + 2`: for `s_n s_{n+1} + s_{n+2}` the product `αᾱ = 2` equals the third root, so one root is counted twice, and for `s_n s_{n+1} s_{n+2}` the ten products are distinct but the coefficient of `4 = 2αᾱ` vanishes ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 5). At `d = 5` the product filter reaches 31 of 35: the roots `β = 2e^{±iπ/3}` of the factor `λ² − 2λ + 4` of `char_4` satisfy `β_1³ = β_2³ = −8`, which merges two products whose coefficients cancel, and `β_1β_2(β_1 + β_2) = 8 = −β³`, which removes two more (the same section). The characteristic polynomial of `s_n s_{n+1}` for `char_2` is `∏_{i ≤ j}(x − λ_iλ_j) = x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`, and Berlekamp-Massey mod `p` returns these coefficients. In every case the recovered recurrence predicts every later term, and `2L` terms suffice.
+The bounds are reached at `d = 2, 4, 6` and `7`. The shortfalls are at `d = 3` and `d = 5`, both at even `k`, where `char_k` factors; at `d = 7`, also even `k`, every bound is reached. At `d = 3` both shortfalls come from `α + ᾱ = 1` and `α·ᾱ = 2` for the roots `α, ᾱ` of `x² − x + 2`: for `s_n s_{n+1} + s_{n+2}` the product `αᾱ = 2` equals the third root, so one root is counted twice, and for `s_n s_{n+1} s_{n+2}` the ten products are distinct but the coefficient of `4 = 2αᾱ` vanishes ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 5). At `d = 5` the product filter reaches 31 of 35: the roots `β = 2e^{±iπ/3}` of the factor `λ² − 2λ + 4` of `char_4`, which gives the ring `Z[√−3]` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 4), satisfy `β_1³ = β_2³ = −8`, which merges two products whose coefficients cancel, and `β_1β_2(β_1 + β_2) = 8 = −β³`, which removes two more (the same section). The characteristic polynomial of `s_n s_{n+1}` for `char_2` is `∏_{i ≤ j}(x − λ_iλ_j) = x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`, and Berlekamp-Massey mod `p` returns these coefficients. In every case the recovered recurrence predicts every later term, and `2L` terms suffice.
 
 A four-stage register has linear complexity 4, and the product of two adjacent terms has linear complexity `10 = C(5, 2)`:
 

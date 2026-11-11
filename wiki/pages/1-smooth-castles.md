@@ -5,7 +5,7 @@ summary: A 1-smooth castle is a castle whose neighboring columns differ in heigh
 tags: [concept, castle, castle-type, 1-smooth, pell, transfer-matrix, chebyshev, parity, motzkin, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform, knopfmacher-mansour-munagi-prodinger-2008-smooth-words]
 created: 2026-10-06
-updated: 2026-10-28
+updated: 2026-11-10
 ---
 
 # 1-smooth castles
@@ -40,7 +40,7 @@ smooth(w, h)  =  strips(w, h) − strips(w, h − 1).
 At `h = 3` the pieces are:[^exec]
 
 - **Transfer matrix.** The column heights are the states, and the 1-smooth rule is the `3 × 3` matrix `I + A_path` with ones on the diagonal and both off-diagonals ([[castle-strip](pages/castle-strip.md)]). Its characteristic polynomial is `(x − 1)(x² − 2x − 1)`.
-- **Strips.** Anchored at height 1, the `(1 − x)` factor cancels and `Σ_w strips(w, 3) x^w = x/(1 − 2x − x²)`, so `strips(w, 3) = P⋆_w`, the Pell numbers (A000129, [[pell-numbers](pages/pell-numbers.md)]).
+- **Strips.** Anchored at height 1, the `(1 − x)` factor cancels and `Σ_w strips(w, 3) x^w = x/(1 − 2x − x²)`, so `strips(w, 3) = P⋆_w`, the Pell numbers (A000129, [[pell-numbers](pages/pell-numbers.md)]).[^pell-note]
 - **Subtraction.** The strips that never reach 3 stay on `{1, 2}`, where every column after the first is free: `strips(w, 2) = 2^{w−1}`. So `smooth(w, 3) = P⋆_w − 2^{w−1}`.
 - **Generating function.** `Σ_w smooth(w, 3) x^w = x³/((1 − 2x − x²)(1 − 2x))`.
 - **Growth.** The silver mean `δ_2 = 1 + √2`: the Pell castles are silver by width.
@@ -220,7 +220,7 @@ At `w = h` and, for `h ≥ 2`, `w = h + 1`, every anchored 1-smooth castle of he
 | 11 | `0, 0, 10, 141, 1076, 5898, 26358, 104378, …` | `1, 12, 79, 378, 1535, 5980, 23878, 96698, …` | `−1, −12, −69, −237, −459, −82, 2480, 7680, …` | 2.1753 | 17 | 28 |
 | 12 | `1, 13, 92, 470, 2017, 8190, 33730, 140609, …` | `0, 0, 11, 166, 1348, 7822, 36786, 152182, …` | `1, 13, 81, 304, 669, 368, −3056, −11573, …` | 2.1842 | 19 | 31 |
 
-The orders are the degrees of the reduced denominators, from the weighted transfer matrix; at `h = 2` the even-block row has order 3 and the odd-block row order 4. At `h = 2` every anchored castle is a castle of width `w` whose first column has height 1, and deleting that column keeps the block count ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.3), so the rows are those of all castles of height 2 and width `w − 1`: even-block `A038505(w)`, odd-block `A038503(w) − 1`, even − odd `A077860(w − 2)`.[^h2rows][^exec]
+The orders are the degrees of the reduced denominators, from the weighted transfer matrix; at `h = 2` the even-block row has order 3 and the odd-block row order 4. At `h = 2` every anchored castle is a castle of width `w` whose first column has height 1, and deleting that column keeps the block count ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.3), so the rows are those of all castles of height 2 and width `w − 1`, and of the brick-wall castles of height 2 ([[brick-wall-castles](pages/brick-wall-castles.md)]): even-block `A038505(w)`, odd-block `A038503(w) − 1`, even − odd `A077860(w − 2)`.[^h2rows][^exec]
 
 **Proposition (signed eigenvalues).** Let `H ≥ 1` and `θ_k = πk/(H + 1)`. The signed count `Σ (−1)^{#rises}` over the anchored strips of width `w` on `{1, …, H}` is `Σ_k c_k (1 + 2i·cos θ_k)^{w−1}` with
 
@@ -380,6 +380,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 
 ## Footnotes
 
+[^pell-note]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The Pell fingerprint" L52 [synthesis] - "a_0, a_1, a_2, … = 1, 2, 5, 12, 29, 70, 169, …", the coefficients of `D(x) = 1/(1 − 2x − x²)` (L5); `x·D(x)` shifts them to `P⋆_w`.
 [^a001519]: https://oeis.org/A001519 (fetched 2026-10-06) - "a(n) = 3*a(n-1) - a(n-2) for n >= 2, with a(0) = a(1) = 1."; comment "This is a bisection of the Fibonacci sequence A000045. a(n) = F(2*n-1)"; "G.f.: (1-2*x)/(1-3*x+x^2)."; data `1, 1, 2, 5, 13, 34, 89, 233, 610, 1597, …`, offset 0.
 [^a005773]: https://oeis.org/A005773 (fetched 2026-10-06) - "Number of directed animals of size n (or directed n-ominoes in standard position)."; comment "(i.e., left factors of length n-1 of Motzkin paths, ...)"; data `1, 1, 2, 5, 13, 35, 96, 267, 750, 2123, 6046, 17303, 49721, 143365, …`, offset 0.
 [^a057960]: https://oeis.org/A057960 (fetched 2026-10-06) - "Number of base-5 (n+1)-digit numbers starting with a zero and with adjacent digits differing by one or less."; comment "Or, number of three-choice paths along a corridor of width 5 and length n, starting from one side."; "G.f.: (1-x-x^2)/((1-x)*(1-2*x-2*x^2));"; data `1, 2, 5, 13, 35, 95, 259, 707, 1931, 5275, 14411, 39371, 107563, 293867, …`, offset 0.

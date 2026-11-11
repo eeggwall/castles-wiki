@@ -5,7 +5,7 @@ summary: Ten random samplers, each implemented and checked by execution. Seven d
 tags: [concept, castle, sampling, monte-carlo, transfer-matrix, rejection-sampling, rank-unrank, gray-code, mcmc, coupling-from-the-past, wilson-algorithm, spanning-tree, lgv, wang-landau, random-matrix, sattolo, foata, verification]
 sources: [project-euler-502-brute-force, project-euler-502-castle-factoring, aocp-generating-permutations-tuples]
 created: 2026-09-27
-updated: 2026-11-06
+updated: 2026-11-10
 ---
 
 # Castle samplers
@@ -123,7 +123,7 @@ the probability that column 1 is a peak's first column plus `w − 1` times the 
 
 ## 4. The Gray walk: exhaustive ground truth
 
-The reflected mixed-radix Gray code visits every tuple of `{1..h}^w` once and changes one column by `±1` per step ([[castle-gray-code](pages/castle-gray-code.md)], by the loopless Gray algorithm, Algorithm H of TAOCP §7.2.1.1). A `±1` change at column `i` touches only the terms `max(0, c_i − c_{i−1})` and `max(0, c_{i+1} − c_i)` of the block count, so `blocks(c)` is carried along in `O(1)` per step. The walk visits each tuple once with a correct running block count at `(3, 2)`, `(4, 3)`, `(5, 4)` and `(6, 3)`.[^exec]
+The reflected mixed-radix Gray code visits every tuple of `{1..h}^w` once and changes one column by `±1` per step ([[castle-gray-code](pages/castle-gray-code.md)], by the loopless Gray algorithm, Algorithm H of TAOCP §7.2.1.1; [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] gives the binary case as Algorithm G). A `±1` change at column `i` touches only the terms `max(0, c_i − c_{i−1})` and `max(0, c_{i+1} − c_i)` of the block count, so `blocks(c)` is carried along in `O(1)` per step. The walk visits each tuple once with a correct running block count at `(3, 2)`, `(4, 3)`, `(5, 4)` and `(6, 3)`.[^exec]
 
 Keeping the castles of `V(w, h)` as the walk passes them gives every moment of every statistic on `V(w, h)` exactly. On `V(8, 4)`, with 29,201 castles, the mean block count is `205920/29201 = 7.05181` and the variance `2.30248`; these are the exact values in the section *Cross-check*.[^exec]
 

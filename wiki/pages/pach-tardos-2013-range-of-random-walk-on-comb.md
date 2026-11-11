@@ -5,7 +5,7 @@ summary: Pach and Tardos prove that the simple random walk on the two-dimensiona
 tags: [source, paper, comb-model, random-walk, range, simple-random-walk, recurrence, tree-castle]
 sources: [pach-tardos-2013-range-of-random-walk-on-comb]
 created: 2026-10-29
-updated: 2026-10-29
+updated: 2026-11-10
 ---
 
 # Pach and Tardos (2013) - The range of a random walk on a comb
@@ -67,7 +67,7 @@ The graph of a tree castle is a comb whose backbone is the bottom row and whose 
 
 ## Relation to Other Wiki Pages
 
-[[mendez-iomin-campos-horsthemke-2015-random-walks-on-combs](pages/mendez-iomin-campos-horsthemke-2015-random-walks-on-combs.md)] treats the same comb with branches of finite length and finds the mean-square displacement `√(2t/π)` for infinite unbiased branches, the count of Lemma 2. [[arkhincheev-baskin-1991-comb-model](pages/arkhincheev-baskin-1991-comb-model.md)] also credits the model to Weiss and Havlin and rejects their Gaussian Green's function.
+[[mendez-iomin-campos-horsthemke-2015-random-walks-on-combs](pages/mendez-iomin-campos-horsthemke-2015-random-walks-on-combs.md)] treats the same comb with branches of finite length and finds the mean-square displacement `√(2t/π)` for infinite unbiased branches, the count of Lemma 2. [[arkhincheev-baskin-1991-comb-model](pages/arkhincheev-baskin-1991-comb-model.md)] also credits the model to Weiss and Havlin and rejects their Gaussian Green's function. [[yuste-abad-baumgaertner-2016-random-comb-model](pages/yuste-abad-baumgaertner-2016-random-comb-model.md)] takes the same comb with infinite teeth, credited to Weiss and Havlin, as the case `⟨x²⟩ ∝ t^{1/2}` of its random comb.
 
 ## Footnotes
 

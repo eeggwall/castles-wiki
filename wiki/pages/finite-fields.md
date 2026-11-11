@@ -5,7 +5,7 @@ summary: Why the castle and tower counts are periodic modulo a prime p. Over the
 tags: [concept, finite-field, modular-arithmetic, periodicity, pedagogy]
 sources: [project-euler-502-representations, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-14
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Finite fields for the castle count
@@ -47,7 +47,7 @@ Reduce `char_k` modulo `p` and factor it into irreducible polynomials over `F_p`
 
 For `char_1`, the discriminant is `−4`, so for odd `p` it factors over `F_p` exactly when `−1` is a square modulo `p`, which by Euler's criterion is when `p ≡ 1 (mod 4)`. So it factors modulo 5 and is irreducible modulo 3 and 7.
 
-**Repeated roots.** A root of multiplicity `m` contributes the terms `C(L, j) λ^L` for `j < m`, and for `m ≤ p` the binomial coefficients `C(L, j)` are periodic modulo `p` with period `p`. So a double root multiplies the period it contributes by `p`. Modulo 7, `char_2 = (λ − 2)(λ + 3)²`, with roots of order 3, so `P(2, ·) mod 7` has period `3 · 7 = 21`, and `A^e(·, 4) mod 7` has period `8400 = 7 · 1200`.[^2]
+**Repeated roots.** A root of multiplicity `m` contributes the terms `C(L, j) λ^L` for `j < m`, and for `m ≤ p` the binomial coefficients `C(L, j)` are periodic modulo `p` with period `p`. So a double root multiplies the period it contributes by `p`. Modulo 7, `char_2 = (λ − 2)(λ + 3)²`, with roots of order 3, so `P(2, ·) mod 7` has period `3 · 7 = 21` (`reduced_period(2, 7)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]), and `A^e(·, 4) mod 7` has period `8400 = 7 · 1200`.[^2]
 
 **Primitive roots.** A root that generates the cyclic group `F_{p^d}^*` has the full order `p^d − 1`. If `char_{h−1}` stays irreducible of degree `h` modulo `p`, the period of `A^e(·, h) mod p` can be as large as `p^h − 1`, far too long to observe at `p = 10^9 + 7`; it is computed as an order, not by listing terms.
 

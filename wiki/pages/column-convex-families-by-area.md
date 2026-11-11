@@ -5,7 +5,7 @@ summary: Bousquet-Mélou's 1996 generating functions for stack, parallelogram, d
 tags: [analysis, polyomino, column-convex, directed-column-convex, area, perimeter, parity, sign, q-series, castle, stack-polyomino, parallelogram-polyomino, directed-convex, oeis, asymptotics, verification]
 sources: [column-convex-polygon-enumeration]
 created: 2026-09-23
-updated: 2026-11-08
+updated: 2026-11-10
 ---
 
 # Column-convex polyomino families by area
@@ -61,6 +61,7 @@ For directed column-convex polyominoes, `q_0` is a zero of Theorem 3.6's denomin
 
 ## Related
 
+- [[column-convex-polyomino](pages/column-convex-polyomino.md)] - the column-convex polyominoes, A001169 by area, and the castles as those with every column on row 1.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the six generating functions and the paper's constructions.
 - [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)] - the castle's add-a-column equation and its relation to the paper's Lemma 2.3.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the convex families by area, the growth constant `2.30914`, and the rows signed by height.

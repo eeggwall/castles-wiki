@@ -5,7 +5,7 @@ summary: A brick-wall castle is a castle on the hexagonal tiling {6,3} read as a
 tags: [concept, castle, brick-wall-castle, hexagonal-tiling, fountain-of-coins, histogram, shear, dyck-path, catalan, narayana, parity, block-fountain, continued-fraction]
 sources: [endicott-may-shacklette-2018-stacks-of-spheres, thomas-may-2022-mountain-counting, paule-prodinger-2003-fountains-histograms-q-identities]
 created: 2026-10-29
-updated: 2026-10-30
+updated: 2026-11-10
 ---
 
 # Brick-wall castles
@@ -64,7 +64,7 @@ row 1   #  #  #  #  #
 
 again 4 blocks and 9 cells, and the five castles of width 3 shear to `(1, 1, 1)`, `(1, 2, 1)`, `(1, 1, 2)`, `(1, 2, 2)` and `(1, 2, 3)`.
 
-**The mirror.** Reversed, a 1-histogram is a castle that drops by at most 1 from each column to the next and ends at height 1: `(1, 2, 3, 1, 2)` becomes `(2, 1, 3, 2, 1)`. Those castles are on [[motzkin-castles](pages/motzkin-castles.md)], in the section *Relatives in the semi-perimeter grading*, and in [[castle-sequence-catalog](pages/castle-sequence-catalog.md)], counted by `C_w` by width and by A004148 by semi-perimeter. So the brick-wall castles are those square-grid castles, sheared and mirrored, and every count of the brick wall below is a count of them.
+**The mirror.** Reversed, a 1-histogram is a castle that drops by at most 1 from each column to the next and ends at height 1: `(1, 2, 3, 1, 2)` becomes `(2, 1, 3, 2, 1)`. Those castles are on [[motzkin-castles](pages/motzkin-castles.md)], in the section *Relatives in the semi-perimeter grading*, and in [[castle-sequence-catalog](pages/castle-sequence-catalog.md)], counted by `C_w` by width and by A004148 by semi-perimeter, the castles with no double fall of [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]. So the brick-wall castles are those square-grid castles, sheared and mirrored, and every count of the brick wall below is a count of them.
 
 ## Dyck paths
 
@@ -118,7 +118,7 @@ from `√(1 − 4z) = 1 − 2 Σ_m C_m z^{m+1}` at `z = −x²`. So `Σ_p (−1)
 
 The values agree with enumeration and with the OEIS data of A071688 for `w ≤ 16`.[^exec] For even `w` the symmetry of the Narayana numbers already splits the castles in half, since `b` and `w + 1 − b` have opposite parity.
 
-**Fixed height.** The brick-wall version of the Project Euler 502 count is `A^e_brick(w, h)`. A brick-wall castle of height 2 shears to a skyline of 1s and 2s with `s_1 = 1`, any string of heights after the first column, and its blocks are 1 plus the number of runs of 2s. A binary string of length `w − 1` with `j` runs of 2s is fixed by the `2j` places where the runs start and end among `w` places, so
+**Fixed height.** The brick-wall version of the Project Euler 502 count is `A^e_brick(w, h)`. A brick-wall castle of height 2 shears to a skyline of 1s and 2s with `s_1 = 1`, an anchored 1-smooth castle of height 2 ([[1-smooth-castles](pages/1-smooth-castles.md)]), any string of heights after the first column, and its blocks are 1 plus the number of runs of 2s. A binary string of length `w − 1` with `j` runs of 2s is fixed by the `2j` places where the runs start and end among `w` places, so
 
 ```
 A_brick(w, 2)  =  2^{w−1} − 1,

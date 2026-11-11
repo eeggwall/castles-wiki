@@ -5,7 +5,7 @@ summary: The tower words as a formal language. Read U, R, D as steps +1, 0, −1
 tags: [concept, castle, formal-language, motzkin, dyck, grammar, pedagogy]
 sources: [dyck-words, project-euler-502-representations, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-14
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Tower word language
@@ -18,7 +18,7 @@ With `U = +1`, `R = 0` and `D = −1`, a tower word is a Motzkin path, a path of
 
 **Lemma.** The tower words with `L` letters `R` and height at most `k` correspond one-to-one with the tuples `(c_1, …, c_L) ∈ {0, …, k}^L`, the heights at which the `R`s stand.
 
-*Proof.* Between two consecutive `R`s the vertical steps are all `U` or all `D`, since a change of direction would create `UD` or `DU`; so they are determined by the heights of the two `R`s. Before the first `R` the word is `U^{c_1}`, and after the last it is `D^{c_L}`. So a tower word is determined by its tuple of heights, and every tuple gives a tower word.[^2]
+*Proof.* Between two consecutive `R`s the vertical steps are all `U` or all `D`, since a change of direction would create `UD` or `DU`; so they are determined by the heights of the two `R`s. Before the first `R` the word is `U^{c_1}`, and after the last it is `D^{c_L}`. So a tower word is determined by its tuple of heights, and every tuple gives a tower word.[^2] Theorem 3.3 of [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] contains the same correspondence with the number of blocks fixed.
 
 ## The grammar
 

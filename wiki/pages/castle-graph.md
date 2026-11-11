@@ -5,7 +5,7 @@ summary: The castle graph of a castle has its cells as vertices and an edge betw
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy, cycle-lattice, parity, burnside, padovan]
 sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile, edwards-allen-2021-fibonacci-squared-fence-tiles]
 created: 2026-09-17
-updated: 2026-11-03
+updated: 2026-11-10
 ---
 
 # The castle graph - bridge to graph theory
@@ -235,6 +235,9 @@ def cycle_rank(c):
 - [[castle-avalanches](pages/castle-avalanches.md)] - avalanches on the castle graph; in the tide model, rectangles and battlements of the same height have the same mean avalanche, and the `2 × 2` squares change only the tail.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines counted by area.
 - [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] - the graph of a tree castle as a comb, the bottom row with a tooth on each column, and the simple random walk on it.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - the seminar whose Stop 6 runs the random walk on the comb of a tree castle.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar whose word sequence `A005251` also counts the tree skylines by area (Stop 7).
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar on castles by area, whose Stop 7 counts the tree skylines of height at most 3 and 4 by area, `A006498` and `A000570`.
 - [[orbital-castles](pages/orbital-castles.md)] - the orbital castles, whose only tree castles of height `h ≥ 2` are the battlements.
 - [[hilbert-castles](pages/hilbert-castles.md)] - the Hilbert duality of strip rules, which gives the tree skylines by width and area from the strips with every column at height at least 2.
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the tree castles of height 2, and the signed Fibonacci tower count `P_F(w)` that gives the parity of the tree castles at every height.

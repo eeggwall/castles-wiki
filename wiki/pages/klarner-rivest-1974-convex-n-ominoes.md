@@ -5,7 +5,7 @@ summary: Klarner and Rivest prove that c(n)^{1/n} converges, for the number c(n)
 tags: [paper, source, polyomino, convex, parallelogram-polyomino, stack-polyomino, row-convex, area, growth-constant, integral-equation, q-analog]
 sources: [klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Asymptotic Bounds for the Number of Convex n-Ominoes (Klarner & Rivest 1974)
@@ -18,7 +18,7 @@ updated: 2026-10-16
 
 The paper answers a question Donald Knuth put to the authors: how fast does the number `c(n)` of convex n-ominoes grow?[^1] An n-omino is a polyomino of area `n` taken up to translation, and it is convex when every row and every column is one strip of cells.[^2] The comparison families at the time were the row-convex polyominoes, `b(n)` of area `n` with growth constant `β = 3.20…`, and all polyominoes, `t(n)` of area `n`, whose growth constant `θ` was known to lie in `3.72 < θ < 4.65`.[^3]
 
-The paper prints the row-convex generating function (1) as `x(1 − x)^3/(1 − 4x + 7x² − 5x³)`, and `β` as "the largest real root of `y³ − 4y² + 7y − 5 = 0`; that is, `β = 3.20…`" (p. 32); the transcription copies both. The two printed polynomials have the coefficients 4 and 5 exchanged. The printed denominator gives the coefficients `1, 1, 0, −3, …`, and the printed cubic has only one real root, `1.5698…`, beside a complex pair of modulus `1.7847…`, so the printed `β = 3.20…` is not a root of it. The row-convex generating function is `x(1 − x)^3/(1 − 5x + 7x² − 4x³)`, A001169, and `β = 3.2055694304…` is the largest root of `y³ − 5y² + 7y − 4`, the value the paper states ([[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)]).[^3][^4]
+The paper prints the row-convex generating function (1) as `x(1 − x)^3/(1 − 4x + 7x² − 5x³)`, and `β` as "the largest real root of `y³ − 4y² + 7y − 5 = 0`; that is, `β = 3.20…`" (p. 32); the transcription copies both. The two printed polynomials have the coefficients 4 and 5 exchanged. The printed denominator gives the coefficients `1, 1, 0, −3, …`, and the printed cubic has only one real root, `1.5698…`, beside a complex pair of modulus `1.7847…`, so the printed `β = 3.20…` is not a root of it. The row-convex generating function is `x(1 − x)^3/(1 − 5x + 7x² − 4x³)`, A001169, and `β = 3.2055694304…` is the largest root of `y³ − 5y² + 7y − 4`, the value the paper states ([[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)]); this denominator and `β` are Hickerson's recurrence and growth constant on [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)].[^3][^4]
 
 **The trisection.** Cutting a convex polyomino along two rows splits it into an upper **stack**, a middle **parallelogram** and a lower upside-down stack (Fig. 2).[^5] A stack has a left boundary that climbs to the right and a right boundary that climbs to the left, so its columns stand on its bottom row with a unimodal skyline (Wright's stacks; `s(3) = 4`). A parallelogram has both boundaries climbing to the right.[^6] Stacks inject into parallelograms (`s(n) ≤ p(n)`), parallelograms are supermultiplicative (`p(m)p(n) ≤ p(m + n)`), and gluing the three pieces back gives[^7]
 

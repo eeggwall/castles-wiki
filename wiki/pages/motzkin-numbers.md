@@ -5,7 +5,7 @@ summary: The Motzkin number M_n (OEIS A001006) counts the ways to draw noninters
 tags: [concept, motzkin, lattice-paths, q-analog, generating-functions]
 sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-29
+updated: 2026-11-10
 ---
 
 # Motzkin numbers
@@ -25,7 +25,7 @@ M_0 = 1,        M_n  =  M_{n−1} + Σ_{k=0}^{n−2} M_k M_{n−2−k}        (n
 M(x)  =  Σ_n M_n x^n  =  (1 − x − √(1 − 2x − 3x²)) / (2x²),
 ```
 
-the generating function being the root of `M = 1 + xM + x²M²` with `M(0) = 1`.
+the generating function being the root of `M = 1 + xM + x²M²` with `M(0) = 1`; the kernel method gives the same series as the small root of its kernel divided by `x` ([[kernel-method](pages/kernel-method.md)]).
 
 Deleting the flat steps of a Motzkin path leaves a Dyck path. Choosing the `2k` positions of the up and down steps and then a Dyck path of semilength `k` on them gives `M_n = Σ_k C(n, 2k) C_k`, with `C_k` the [[catalan-numbers](pages/catalan-numbers.md)]. Barry writes this as the binomial transform of the Catalan numbers placed on the even indices ([[binomial-transform](pages/binomial-transform.md)]).[^4] The values, the recurrence and this sum agree for `n ≤ 11`.[^5]
 

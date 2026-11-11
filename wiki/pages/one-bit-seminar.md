@@ -5,7 +5,7 @@ summary: A seminar on Project Euler 502's even-block clause read as information,
 tags: [concept, castle, seminar, pedagogy, teaching, entropy, information, parity, castle-sign, steganography, compression, topological-entropy]
 sources: [project-euler-502-observations, project-euler-502-solution]
 created: 2026-09-26
-updated: 2026-11-06
+updated: 2026-11-10
 ---
 
 # One bit seminar - the parity clause as information
@@ -84,7 +84,7 @@ At height at most 2 one rule chooses the flipping move for all but a few castles
 
 ## Stop 4 - the bit is easy to lose
 
-The last column of the table says that a random one-cell edit flips the parity about half the time. [[castle-phone-line](pages/castle-phone-line.md)] sends the 512 row castles of the cameraman image as tones through a simulated telephone line, and finds the block parity the most fragile statistic it measures: about 50% correct until the line is nearly perfect, and 83-86% correct when 99.9% of heights arrive exact. The height histogram and the slow trend of the skyline, which average over the row, survive every setting tested. On [[song-as-castle](pages/song-as-castle.md)], replacing one random column of a castle of width 17 and height 16 by a different random height flips the parity with probability 0.427, in the same range.
+The last column of the table says that a random one-cell edit flips the parity about half the time. [[castle-phone-line](pages/castle-phone-line.md)] sends the 512 row castles of the cameraman image ([[image-as-castle](pages/image-as-castle.md)]) as tones through a simulated telephone line, and finds the block parity the most fragile statistic it measures: about 50% correct until the line is nearly perfect, and 83-86% correct when 99.9% of heights arrive exact. The height histogram and the slow trend of the skyline, which average over the row, survive every setting tested. On [[song-as-castle](pages/song-as-castle.md)], replacing one random column of a castle of width 17 and height 16 by a different random height flips the parity with probability 0.427, in the same range.
 
 *Idea:* a bit that every column's error can flip is the least robust statistic on the line.
 

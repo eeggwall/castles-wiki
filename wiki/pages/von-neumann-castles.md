@@ -5,7 +5,7 @@ summary: The castle of a hereditarily finite set is a bottom block carrying the 
 tags: [concept, castle, von-neumann-castle, ordinal, hereditarily-finite-set, ackermann-coding, binomial-tree, plane-tree, alternating, catalan, binary-weight, ruler-function, block-count, parity, oeis, verification]
 sources: [project-euler-502-brute-force, analytic-combinatorics-ch1-ogfs]
 created: 2026-10-28
-updated: 2026-11-08
+updated: 2026-11-10
 ---
 
 # Von Neumann castles
@@ -168,6 +168,7 @@ These are the recursions of three OEIS entries. A116549 is defined by `a(0) = 1`
 - [[castle-polyomino](pages/castle-polyomino.md)] - castles, skylines, and the blocks of a castle as the maximal runs of columns in each row.
 - [[castle-sign](pages/castle-sign.md)] - the parity of the block count; every `vN(n)` with `n ≥ 1` is an even-block castle.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the sign-alternating type, with differences alternating in sign; its castles of odd width that fall first are the alternating castles, the castles of plane trees.
+- [[orbital-castles](pages/orbital-castles.md)] - the orbital castles that are alternating, `C(h − 1, 2m − 1) · m · A000182(m)` of order `2m` at each odd width `w ≥ 4m`.
 - [[zig-zag-castles](pages/zig-zag-castles.md)] - a different family: neighboring columns differ by exactly 1.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the plane trees with `b` nodes, `C_{b−1}` of them, and so the alternating castles with `b` blocks.
 - [[castle-notation](pages/castle-notation.md)] - `vN(n)`, `castle(x)`, `code(x)`, `ack(m)` and `s_2(i)`.

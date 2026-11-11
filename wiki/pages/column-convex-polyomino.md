@@ -5,7 +5,7 @@ summary: A polyomino whose intersection with every vertical line is one segment,
 tags: [concept, polyomino, column-convex, convexity, combinatorics, symbolic-method]
 sources: [column-convex-polygon-enumeration, analytic-combinatorics-ch1-ogfs]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Column-convex polyomino
@@ -41,6 +41,7 @@ Bousquet-Mélou names three classical families of directed and convex polyominoe
 - [[convex-castle](pages/convex-castle.md)] - the castles that are row-convex, the stack polyominoes.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the generating function of stack polyominoes by area.
 - [[symbolic-method](pages/symbolic-method.md)] - the specification method of Analytic Combinatorics.
+- [[column-convex-families-by-area](pages/column-convex-families-by-area.md)] - the area generating function `q(1 − q)³/(1 − 5q + 7q² − 4q³)` of A001169, with the castles inside the directed column-convex polyominoes.
 
 ## Footnotes
 

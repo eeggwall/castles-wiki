@@ -5,7 +5,7 @@ summary: Growth types classify families of castles, not single castles; upper bo
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [de-spinadel-1999-family-of-metallic-means, balado-silvestre-2026-runs-binary-strings, verger-gaugry-2024-salem-minoration, edwards-allen-2021-fibonacci-squared-fence-tiles]
 created: 2026-09-19
-updated: 2026-11-03
+updated: 2026-11-10
 ---
 
 # Castle classification - growth types
@@ -98,7 +98,7 @@ A 0/1 matrix on `n` states with largest eigenvalue above 1 has largest eigenvalu
 | 3 | tribonacci, `1.8393…` | `x³ − x² − x − 1` | `A000073(A + 2) − F_{A+1}` |
 | 4 | tetranacci, `1.9276…` | `x⁴ − x³ − x² − x − 1` | `A000078(A + 3) − A000073(A + 2)` |
 | 5 | pentanacci, `1.9659…` | `x⁵ − x⁴ − x³ − x² − x − 1` | `A001591(A + 4) − A000078(A + 3)` |
-| unrestricted | `2` | `x − 2` | `2^{A−1}` (A011782) |
+| unrestricted | `2` | `x − 2` | `2^{A−1}` (A011782, [[castle-by-area](pages/castle-by-area.md)]) |
 
 Two of these constants are metallic means: golden at `h = 2`, and copper `σ_1^2 = 2` with the height unrestricted. Since all castles of area `A` number `2^{A−1}`, every family of castles grows at most 2 by area, and golden and copper are the only metallic means at most 2, so no family is silver or bronze by area.
 
@@ -150,7 +150,7 @@ The same family has a growth constant on each axis:[^axes]
 | ridge castles, height 2 | golden `φ` | plastic `ψ` | supergolden |
 | ridge castles, height 3 | silver `δ_2` | `1.503862…`, `x⁶ − 2x³ − x² − x − 1` | `1.803707…`, `x⁵ − x⁴ − 2x² − 2` |
 | ridge castles, height 4 | bronze `δ_3` | `1.613479…`, `x⁹ − x⁸ + x⁷ − 2x⁶ − 2x⁴ − x³ − x² − 1` | `2.038180…`, `x⁷ − x⁶ − 3x⁴ − 4x² − x − 4` |
-| Pell castles | silver `δ_2` | `1.666302…`, `x⁵ − x³ − 2x² − x − 1` | copper 2 |
+| Pell castles | silver `δ_2` | `1.666302…`, `x⁵ − x³ − 2x² − x − 1` ([[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)]) | copper 2 |
 | plateau-free castles, height 3 | copper 2 | `1.424054…`, `x⁵ − x⁴ + x³ − 2x² + x − 2` | `1.521380…`, `x³ − x − 2` |
 | prime castles, height 3 | copper 2 | plastic `ψ` | `ψ²` |
 
@@ -187,6 +187,7 @@ Every value agrees with the counts of the two family pages, computed to at least
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the strips counted by the Pell numbers, silver by width.
 - [[brick-wall-castles](pages/brick-wall-castles.md)], [[keystone-castles](pages/keystone-castles.md)] - the castles on the hexagonal and triangular tilings, with their growth constants by width, cells, and width plus blocks.
 - [[castle-strip](pages/castle-strip.md)] - skylines read one column at a time under a rule on neighboring columns, whose transfer matrices give the growth by width.
+- [[castle-entropy](pages/castle-entropy.md)] - the growth constants by width of the Fibonacci, ridge and maximal castles as entropy rates, `log₂ ρ` bits per column.
 - [[castle-graph](pages/castle-graph.md)] - tree skylines and tree castles by width.
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the castles of height `h` by area, the n-nacci family.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - tree skylines and tree castles by area.
@@ -197,6 +198,7 @@ Every value agrees with the counts of the two family pages, computed to at least
 - [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - golden, silver, bronze and plastic side by side by width, area, semi-perimeter and spectrum.
 - [[padovan-families](pages/padovan-families.md)] - the families counted by Padovan numbers and the bijections between them.
 - [[unique-tournament](pages/unique-tournament.md)] - A000570 and the growth constant `1.685…`.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the asymptotic of A001523, which rules out a linear recurrence with constant coefficients for the convex castles by area.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - eigenvalues of castle graphs, transfer matrices and recurrences, worked on small castles.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] - code that computes growth constants of strip rules.
 

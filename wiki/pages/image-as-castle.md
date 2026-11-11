@@ -5,7 +5,7 @@ summary: Three readings of the 512 x 512 grayscale cameraman image as castles, w
 tags: [analysis, castle, encoding, image, png, jpeg, height-field, higher-dimensional, compression, persistence, implementation]
 sources: [project-euler-502-representations]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # An image as a castle
@@ -72,6 +72,7 @@ The height field takes `512 · 512 · log₂ 256 = 2,097,152` bits, 2.1 Mbit; th
 - [[song-as-castle](pages/song-as-castle.md)] - the same readings for audio: one skyline instead of a stack.
 - [[castle-steganography](pages/castle-steganography.md)] - a message hidden in the row castles of this image.
 - [[castle-phone-line](pages/castle-phone-line.md)] - the row castles sent over a simulated telephone line.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar whose Stops 4 and 5 lose and write the block parity of the row castles.
 - [[castle-compression](pages/castle-compression.md)] - the description tiers of a castle and the comparison of `log₂ A(w, h)` bits with the `w h` bits of the raster.
 - [[castle-sign](pages/castle-sign.md)] - the block count as total ascent.
 - [[castle-representations](pages/castle-representations.md)] - the skyline encoding.

@@ -5,7 +5,7 @@ summary: The convergents of the castle eigenvalues against the OEIS. Each metall
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-encyclopedia, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -164,7 +164,7 @@ So `ρ_6 = 2ψ² = 3.50975533249…`, where `ψ = 1.3247…` is the plastic numb
 | 16 | `6.563018640…` | degree 9 | 9 | not an algebraic integer | no |
 | 18 | `7.117830358…` | degree 9 | 9 | root of `μ⁹ − 5μ⁸ + 10μ⁷ − 20μ⁶ + 15μ⁵ − 21μ⁴ + 7μ³ − 8μ² + μ − 1` | yes |
 
-For even `k ≤ 18`, both factors of `char_k` have constant term of absolute value `2^{k/2}`. For even `k ≤ 40`, the dominant root lies in the factor of degree `k/2` exactly when `k ≡ 2 (mod 4)`, and then `ρ_k/2` is an algebraic unit; when `k ≡ 0 (mod 4)` it lies in the factor of degree `k/2 + 1`, and `ρ_k/2` is not an algebraic integer (computed).[^8] [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives the two factors.
+For even `k ≤ 18`, both factors of `char_k` have constant term of absolute value `2^{k/2}`. For even `k ≤ 40`, the dominant root lies in the factor of degree `k/2` exactly when `k ≡ 2 (mod 4)`, and then `ρ_k/2` is an algebraic unit ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] finds the same split for every `k ≤ 30`); when `k ≡ 0 (mod 4)` it lies in the factor of degree `k/2 + 1`, and `ρ_k/2` is not an algebraic integer (computed).[^8] [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives the two factors.
 
 **The plastic part of `P(6, L)`.** Partial fractions split `P_6(x) = num_6(x)/den_6(x)` into a part with the cubic denominator, from the factor of `2ψ²`, and a part with the quartic denominator:[^7][^8]
 
@@ -187,13 +187,13 @@ def series_coefficients_of(f, n):
 [1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616]
 ```
 
-These are `A005251(L+3)`, which satisfy `a(n) = 2a(n−1) − a(n−2) + a(n−3)` and by the OEIS comment count the binary strings of length `L` that avoid `010`. So
+These are `A005251(L+3)`, which satisfy `a(n) = 2a(n−1) − a(n−2) + a(n−3)` and by the OEIS comment count the binary strings of length `L` that avoid `010` ([[a005251-bijection](pages/a005251-bijection.md)]). So
 
 ```
 P(6, L)  =  2^L · A005251(L+3)  +  r(L),
 ```
 
-where `r(L) = 0, −3, −9, −7, 39, 161, 215, −431, …` has characteristic polynomial `λ⁴ − 3λ³ + 8λ² − 4λ + 8`. The two parts are the even-sector and odd-sector parts of `P(6, ·)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), and [[hardin-word-identity](pages/hardin-word-identity.md)] proves `P_even(6, L) = 2^L·A005251(L+3)` by a change of basis.
+where `r(L) = 0, −3, −9, −7, 39, 161, 215, −431, …` has characteristic polynomial `λ⁴ − 3λ³ + 8λ² − 4λ + 8`. The two parts are the even-sector and odd-sector parts of `P(6, ·)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), and [[hardin-word-identity](pages/hardin-word-identity.md)] proves `P_even(6, L) = 2^L·A005251(L+3)` by a change of basis, worked step by step at `k = 6` on [[hardin-identity-seminar](pages/hardin-identity-seminar.md)].
 
 ### Simple continued fractions
 

@@ -97,6 +97,7 @@ Counted by width and height instead of area, the vee castles and the convex cast
 - [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - the Fibonacci castles counted by area, `A000930(n+1) − 1`, supergolden by area.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree castles counted by area: `A077868` at height exactly 2, the tree skylines of height at most 3 and at most 4 as `A006498` and `A000570`, and `A005251` with no bound on the height.
 - [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of castle strips under every rule on neighboring columns through height 5.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth constants by area: 2 for all castles and 1 for the convex castles.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the families of convex polyominoes counted by area, with the convex castles as the stacks and the castles as the bargraphs.
 - [[column-convex-families-by-area](pages/column-convex-families-by-area.md)] - castles by area inside the directed column-convex polyominoes (`A001519`) and the column-convex polyominoes (`A001169`), unsigned and with the block sign.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method for column-convex polygons; castles are its directed column-convex polygons whose columns all start on row 1.

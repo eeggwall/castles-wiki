@@ -5,7 +5,7 @@ summary: A Pell castle is a castle of height 3 whose first column has height 1 a
 tags: [concept, castle, castle-type, pell, silver-ratio, transfer-matrix, 1-smooth, parity, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-04
-updated: 2026-10-29
+updated: 2026-11-10
 ---
 
 # Pell castle
@@ -26,7 +26,7 @@ c_1 = 1,      |c_{i+1} − c_i| ≤ 1  (1 ≤ i < w),      max_i c_i = 3.
 
 ## Counting Pell castles
 
-**The count.** The anchored 1-smooth strips of width `w` number the Pell numbers `P⋆_w` (`P⋆_1 = 1`, `P⋆_2 = 2`, `P⋆_{w} = 2P⋆_{w−1} + P⋆_{w−2}`; A000129), with width generating function `x/(1 − 2x − x²)` ([[pell-castle-strip](pages/pell-castle-strip.md)]). Those that never reach height 3 stay on `{1, 2}`, where every column after the first may be 1 or 2, so there are `2^{w−1}` of them. Hence
+**The count.** The anchored 1-smooth strips of width `w` number the Pell numbers `P⋆_w` (`P⋆_1 = 1`, `P⋆_2 = 2`, `P⋆_{w} = 2P⋆_{w−1} + P⋆_{w−2}`; A000129), with width generating function `x/(1 − 2x − x²)` ([[pell-castle-strip](pages/pell-castle-strip.md)]).[^pell-note] Those that never reach height 3 stay on `{1, 2}`, where every column after the first may be 1 or 2, so there are `2^{w−1}` of them. Hence
 
 ```
 A_Pell(w)  =  P⋆_w − 2^{w−1},
@@ -53,7 +53,7 @@ The same numbers are column 2 of the triangle A283595, Motzkin prefixes of lengt
 
 **Growth.** The root of smallest modulus of `(1 − 2x − x²)(1 − 2x)` is `1/(1 + √2)`, so the Pell castles grow like the silver mean `1 + √2 ≈ 2.4142`: they are silver by width ([[castle-classification-growth](pages/castle-classification-growth.md)], [[metallic-means](pages/metallic-means.md)]). The subtracted `2^{w−1}` grows more slowly, so the Pell castles are a fraction of the Pell strips that tends to 1.
 
-**The other boundary conditions.** Dropping `c_1 = 1` gives the 1-smooth castles of height 3, `A001333(w + 1) − 2^w = 1, 3, 9, 25, 67, 175, 449, …` from the Pell-Lucas numbers A001333 ([[castle-classification-growth](pages/castle-classification-growth.md)]); their generating function is `x(1 − x)/((1 − 2x)(1 − 2x − x²))`, so they number exactly `A106514(w − 1)`, "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2))".[^a106514] Requiring both end columns at height 1 gives `0, 0, 0, 0, 1, 5, 18, 56, 161, 441, …`, generating function `x⁵/((1 − x)(1 − 2x)(1 − 2x − x²))`: the partial sums of the Pell castles, shifted by 2, since the generating function is `x²/(1 − x)` times the Pell castles'. That row is column 2 of the triangle A097862 (Motzkin paths of length `w − 1` and height 2).[^a097862] All three grow like `1 + √2`.[^exec]
+**The other boundary conditions.** Dropping `c_1 = 1` gives the 1-smooth castles of height 3, `A001333(w + 1) − 2^w = 1, 3, 9, 25, 67, 175, 449, …` from the Pell-Lucas numbers A001333 ([[castle-classification-growth](pages/castle-classification-growth.md)]); their generating function is `x(1 − x)/((1 − 2x)(1 − 2x − x²))`, so they number exactly `A106514(w − 1)`, "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2))".[^a106514] Requiring both end columns at height 1 gives `0, 0, 0, 0, 1, 5, 18, 56, 161, 441, …`, generating function `x⁵/((1 − x)(1 − 2x)(1 − 2x − x²))`: the partial sums of the Pell castles, shifted by 2, since the generating function is `x²/(1 − x)` times the Pell castles'. That row is column 2 of the triangle A097862 (Motzkin paths of length `w − 1` and height 2), the Motzkin-path castles of height 3 on [[motzkin-castles](pages/motzkin-castles.md)].[^a097862] All three grow like `1 + √2`.[^exec]
 
 ## Blocks and parity
 
@@ -122,6 +122,7 @@ print([e for e, o in c])    # 0, 0, 0, 0, 2, 13, 51, 154, 400, 969, 2331, 5742, 
 
 ## Footnotes
 
+[^pell-note]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The Pell fingerprint" L52 [synthesis] - "a_0, a_1, a_2, … = 1, 2, 5, 12, 29, 70, 169, …", the coefficients of `D(x) = 1/(1 − 2x − x²)` (L5); `x·D(x)` shifts them to `P⋆_w`.
 [^a094706]: https://oeis.org/A094706 (read 2026-10-16) - "Convolution of Pell(n) and 2^n."; "G.f.: x/((1-2*x-x^2)*(1-2*x))."; data `0, 1, 4, 13, 38, 105, 280, 729, 1866, 4717, 11812, 29365, …`, offset 0.
 [^a283595]: https://oeis.org/A283595 (read 2026-10-16) - "Triangle read by rows: T(n,k) is the number of Motzkin prefixes (i.e., left factors of Motzkin paths) of length n and height k."; data `1, 1, 1, 1, 3, 1, 1, 7, 4, 1, 1, 15, 13, 5, 1, 1, 31, 38, 19, 6, 1, 1, 63, 105, 64, 26, 7, 1, 1, 127, 280, 202, 97, 34, 8, 1, …`, offset 0; column 2 reads `1, 4, 13, 38, 105, 280` from row 2.
 [^a097862]: https://oeis.org/A097862 (read 2026-10-16) - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)."; data `1, 1, 1, 1, 1, 3, 1, 7, 1, 1, 15, 5, 1, 31, 18, 1, 1, 63, 56, 7, 1, 127, 161, 33, 1, 1, 255, 441, 129, 9, …`, offset 0; column 2 reads `1, 5, 18, 56, 161, 441` from row 4.

@@ -5,7 +5,7 @@ summary: Tree skylines (no two neighboring columns of height at least 2) of heig
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [tetali-1998-unique-tournaments, edwards-allen-2021-fibonacci-squared-fence-tiles]
 created: 2026-09-17
-updated: 2026-11-03
+updated: 2026-11-10
 ---
 
 # Tree castle by area
@@ -82,7 +82,7 @@ Every entry agrees with brute-force enumeration for `A ≤ 12` and with Equation
 | 3 | `0, 0, 1, 2, 3, 6, 12, 21, 36, 63, 109, 185, 312, 525` | | golden |
 | 4 | `0, 0, 0, 1, 2, 3, 6, 13, 25, 45, 82, 151, 274, 490` | | `1.685137…` |
 
-The growth constant of `G_h` increases with `h`, so the tree castles of height `h` grow at the rate of the tree skylines of height at most `h`. In the terms of [[castle-classification-growth](pages/castle-classification-growth.md)], the tree castles of height 2 are supergolden by area, those of height 3 golden by area, and the tree castles of any height grow at `ψ²` by area. The `h = 3` constant is golden because the denominator factors as `(1 + q²)(1 − q − q²)`; the counts are not Fibonacci numbers, but `A006498(2n) = F_{n+1}²` and `A006498(2n − 1) = F_{n+1}·F_n`.[^3]
+The growth constant of `G_h` increases with `h`, so the tree castles of height `h` grow at the rate of the tree skylines of height at most `h`. In the terms of [[castle-classification-growth](pages/castle-classification-growth.md)], the tree castles of height 2 are supergolden by area, as many at area `A` as the spaced castles of width `A − 1` ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]), those of height 3 golden by area, and the tree castles of any height grow at `ψ²` by area. The `h = 3` constant is golden because the denominator factors as `(1 + q²)(1 − q − q²)`; the counts are not Fibonacci numbers, but `A006498(2n) = F_{n+1}²` and `A006498(2n − 1) = F_{n+1}·F_n`.[^3]
 
 Apart from `φ` at `h = 3`, none of these growth constants is a metallic mean: each is a root of an irreducible polynomial of degree 3, 5, 6 or 9 (the factor carrying the largest root in Table 1), while every metallic mean `σ_p^q` is a root of `x² − px − q` ([[metallic-means](pages/metallic-means.md)]).
 

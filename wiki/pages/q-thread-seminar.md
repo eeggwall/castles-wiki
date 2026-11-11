@@ -5,7 +5,7 @@ summary: A seminar on castles graded by area, with one castle (2, 1, 3, 3, 1, 1,
 tags: [concept, castle, seminar, pedagogy, teaching, area, q-analog, q-catalan, q-motzkin, q-bessel, prime-castles, signed-count, polyomino, composition]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, steep-polyominoes-q-motzkin-bessel, prellberg-brak-1995-cluster-models]
 created: 2026-09-27
-updated: 2026-11-08
+updated: 2026-11-10
 ---
 
 # q-thread seminar - castles by area
@@ -109,7 +109,7 @@ castles(u, x, q)  =  Π / (1 − x − Π),          Π = Y J_1 / J_0  at width 
 J_0(X, Y) = Σ_{n≥0} (−1)^n X^n q^{C(n+1,2)} / ((q)_n (Yq)_n)         (Bousquet-Mélou-Fédou)
 ```
 
-`Π` is the generating function of the **parallelogram polyominoes** by width `X`, height `Y` and area `q`, a quotient of two q-analogues of Bessel functions.[^4] So `1 + castles` is the sequence construction on parallelograms, each weighted `u^w (1 − x)^{w − 1} x^h q^{area}`; the weight `(1 − x)^{w−1}` has negative coefficients, so this is an identity of series, not a weight-preserving bijection. Of the three q-Catalan families (Carlitz by inversions, MacMahon, Krattenthaler and Gessel by the down set, Pólya and Gessel by area), the one that appears is the Pólya-Gessel family, parallelograms by area, with width and height kept apart.[^5]
+`Π` is the generating function of the **parallelogram polyominoes** by width `X`, height `Y` and area `q`, a quotient of two q-analogues of Bessel functions, found from its `q = 1` Bessel limit ([[q-differential-system](pages/q-differential-system.md)]).[^4] So `1 + castles` is the sequence construction on parallelograms, each weighted `u^w (1 − x)^{w − 1} x^h q^{area}`; the weight `(1 − x)^{w−1}` has negative coefficients, so this is an identity of series, not a weight-preserving bijection. Of the three q-Catalan families (Carlitz by inversions, MacMahon, Krattenthaler and Gessel by the down set, Pólya and Gessel by area), the one that appears is the Pólya-Gessel family, parallelograms by area, with width and height kept apart.[^5]
 
 At the block sign `x = −1` and `u = 1` the formula is `N(q)/M(q) − 1`, with `N` and `M` q-series analytic in the unit disk. The signed count is **meromorphic** there, and its dominant pole is the first zero of `M`:
 
@@ -132,7 +132,7 @@ Barcucci, Del Lungo, Fédou and Pinzani define three q-analogues of the Motzkin 
 
 ## Stop 7 - fix the height
 
-With the height bounded, the counts by area are rational and their growth constants are algebraic numbers. The tree skylines by area (no `2 × 2` block of cells, height at most `h`) give one C-finite sequence per height: A000930 (Narayana's cows) at `h = 2`, A006498 at `h = 3`, A000570, the tournaments determined by their score vectors, at `h = 4`, and A005251, growth `ψ²`, with the height unrestricted; the tree castles of height `h` are the differences of consecutive rows ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Over all 0/1 strip rules, [[area-growth-census](pages/area-growth-census.md)] proves that the growth constant by area of a rule on `h` heights is at most the `h`-nacci constant, below 2, and that the smallest one above 1 is the root of `z^T − z − 1` with `T = h(h+1)/2`, which first appears at height `h`. Its census of every rule through height 5 finds all ten smallest Pisot numbers by height 4 and Lehmer's number first at height 5, and the largest of three lower bounds on the minimum height, from the degree, the `h`-nacci ceiling and the norm, is exact for 96.8% of the constants.
+With the height bounded, the counts by area are rational and their growth constants are algebraic numbers. The tree skylines by area (no `2 × 2` block of cells, height at most `h`; [[castle-graph](pages/castle-graph.md)], section *Tree castles*) give one C-finite sequence per height: A000930 (Narayana's cows) at `h = 2`, A006498 at `h = 3`, A000570, the tournaments determined by their score vectors, at `h = 4`, and A005251, growth `ψ²`, with the height unrestricted; the tree castles of height `h` are the differences of consecutive rows ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Over all 0/1 strip rules, [[area-growth-census](pages/area-growth-census.md)] proves that the growth constant by area of a rule on `h` heights is at most the `h`-nacci constant, below 2, and that the smallest one above 1 is the root of `z^T − z − 1` with `T = h(h+1)/2`, which first appears at height `h`. Its census of every rule through height 5 finds all ten smallest Pisot numbers by height 4 and Lehmer's number first at height 5, and the largest of three lower bounds on the minimum height, from the degree, the `h`-nacci ceiling and the norm, is exact for 96.8% of the constants.
 
 *Idea:* bounded height turns counting by area into a finite transfer matrix, and the growth constants that occur are algebraic numbers with a smallest height each.
 

@@ -123,6 +123,7 @@ For fixed `L`, `P(·, L)` also satisfies a linear recurrence in `k`. For every `
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and the closed form of `den_k` from the Pell-polynomial recurrence.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the proof that `char_k` is irreducible for `k = 2^m − 1`.
 - [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the transfer matrix with a weight `t` per block, diagonally similar to the Kac-Murdock-Szegő matrix `(ρ^{|a−b|})` with `ρ = √t`; `P(k, L)` is the case `t = −1`, `ρ = i`.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the roots of `char_k` as the spectrum of the signed transfer matrix `M̃_k`, with its spectral radii `ρ_1, …, ρ_6`.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the eigenvalues of `char_k` and of the recurrences in `k`, set against the OEIS.
 - [[block-count-constraints](pages/block-count-constraints.md)] - selecting towers and castles by block count, with `P(1, L)` as the case of block count modulo 2.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the sequences `A038503` and `A038505` of the castles of height 2.

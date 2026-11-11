@@ -5,7 +5,7 @@ summary: An idempotent e (e² = e) other than 0 and 1 splits a commutative ring 
 tags: [concept, ring, idempotent, chinese-remainder-theorem, quotient-ring, finite-field, eigenvalue, projection, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Idempotent decomposition
@@ -55,7 +55,7 @@ e_1 + e_2 = 1,    e_1 · e_2 = 0 (mod char_2, p = 101)
 | 3 | 5 | (1,**2**), (2,1) | 4 | 4 | 0 |
 | 4 | 3 | (1,**2**), (3,1) | 4 | 4 | 0 |
 
-The rows `char_2 mod 7`, `char_3 mod 5` and `char_4 mod 3` have a repeated factor, at a prime dividing `disc(char_k)` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 4), and still have `2^r` idempotents. The multiplicity enlarges the nilradical and the `p`-group of units of the local factor, and leaves the idempotents unchanged. In the rows `char_1 mod 3` and `char_3 mod 3`, `char_k` is irreducible and `R` is a field, with only the idempotents `0` and `1`, so the product of the nonzero idempotents is `1`.
+The rows `char_2 mod 7`, `char_3 mod 5` and `char_4 mod 3` have a repeated factor, at a prime dividing `disc(char_k)` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 4; the discriminant primes for `k ≤ 10` are on [[larger-prime-periodicity](pages/larger-prime-periodicity.md)]), and still have `2^r` idempotents. The multiplicity enlarges the nilradical and the `p`-group of units of the local factor, and leaves the idempotents unchanged. In the rows `char_1 mod 3` and `char_3 mod 3`, `char_k` is irreducible and `R` is a field, with only the idempotents `0` and `1`, so the product of the nonzero idempotents is `1`.
 
 ## Finding the idempotents without factoring
 

@@ -5,7 +5,7 @@ summary: Polynomial q-analogs C_n(q) of the Catalan numbers with C_n(1) = C_n, i
 tags: [concept, q-catalan, q-analog, catalan, dyck-words, polyomino]
 sources: [algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # q-Catalan numbers
@@ -37,7 +37,7 @@ Counted by area alone, over all semi-perimeters, the parallelogram polyominoes o
 
 - **Castles.** Counted by width `u`, blocks `x` and area `q`, the castles are `Π/(1 − x − Π)`, where `Π` is the generating function of the parallelogram polyominoes at width `(1 − x)u` and height `x` ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]). The castles counted by area alone are the compositions of `n`, and the convex castles of area `n` are `A001523` ([[castle-by-area](pages/castle-by-area.md)]).
 - **Steep polyominoes.** The steep parallelogram polyominoes, whose lower boundary has no two consecutive east steps, are counted by width, perimeter and area by a quotient of two `q`-Bessel functions. Carlitz's statistic, inversions, restricted to the steep Dyck words gives a `q`-analog of the Motzkin numbers ([[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]).
-- **Convex polyominoes.** Delest and Viennot counted the convex polyominoes by perimeter (`A005436`) and posed the problem of a `q`-analog, counting by area as well; in 1984 the area was known for stack and parallelogram polyominoes.[^6] Bousquet-Mélou and Fédou gave the generating function of the convex polyominoes by width, height and area ([[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]).
+- **Convex polyominoes.** Delest and Viennot counted the convex polyominoes ([[convex-polyomino](pages/convex-polyomino.md)]) by perimeter (`A005436`) and posed the problem of a `q`-analog, counting by area as well; in 1984 the area was known for stack and parallelogram polyominoes.[^6] Bousquet-Mélou and Fédou gave the generating function of the convex polyominoes by width, height and area ([[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]).
 
 ## Appearances in Sources
 

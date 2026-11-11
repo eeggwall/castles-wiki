@@ -5,12 +5,12 @@ summary: The three terms the castle cryptosystem uses, explained from the castle
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
 sources: [project-euler-502-representations]
 created: 2026-09-18
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle cryptography - the number theory, for engineers
 
-The [[castle-cryptography](pages/castle-cryptography.md)] seminar series uses three number-theory terms. This page explains them from scratch, using the running `castle_dh` code.
+The [[castle-cryptography](pages/castle-cryptography.md)] seminar series uses three number-theory terms. This page explains them from scratch, using the running `castle_dh` code ([[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)]).
 
 ## The characteristic polynomial
 
@@ -88,7 +88,7 @@ x**4 - 4*x**3 + 8*x**2 - 8*x + 8
 | 59 | 9 |
 | 179 | 17 |
 
-Irreducibility depends on the field. The table is over the rationals `ℚ`. Mod a prime `p`, a polynomial irreducible over `ℚ` can still split ([[finite-fields](pages/finite-fields.md)]): `char_3` splits into four linear factors mod 101 and stays irreducible mod `10⁹ + 7`.[^4] For every odd `k`, `char_k = g·ḡ` over `Q(i)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), so `char_k` splits mod every `p ≡ 1 (mod 4)`, as mod `101`, and can stay irreducible only at `p ≡ 3 (mod 4)`, as at `10⁹ + 7`; for `char_5` the primes that keep it irreducible have density `1/6` ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]). For the quadratic `char_1`, with discriminant `−4`, the question is whether `−1` is a square mod `p`, which Euler's criterion answers: it is irreducible exactly when `p ≡ 3 (mod 4)`. A factorization over the integers holds mod every `p`, so `char_2` splits mod every prime.
+Irreducibility depends on the field. The table is over the rationals `ℚ`. Mod a prime `p`, a polynomial irreducible over `ℚ` can still split ([[finite-fields](pages/finite-fields.md)]): `char_3` splits into four linear factors mod 101 and stays irreducible mod `10⁹ + 7`.[^4] For every odd `k`, `char_k = g·ḡ` over `Q(i)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]; [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)], section 3), so `char_k` splits mod every `p ≡ 1 (mod 4)`, as mod `101`, and can stay irreducible only at `p ≡ 3 (mod 4)`, as at `10⁹ + 7`; for `char_5` the primes that keep it irreducible have density `1/6` ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]). For the quadratic `char_1`, with discriminant `−4`, the question is whether `−1` is a square mod `p`, which Euler's criterion answers: it is irreducible exactly when `p ≡ 3 (mod 4)`. A factorization over the integers holds mod every `p`, so `char_2` splits mod every prime.
 
 **How often `char_k` stays irreducible.** By Chebotarev's density theorem, the share of primes at which a polynomial stays irreducible mod `p` is the share of elements of its Galois group, the group of permutations of its roots that respect every algebraic relation among them, that move all the roots in one cycle. For odd `k` the factorization `char_k = g·ḡ` limits the group. It sends the roots of `g` either to themselves or to the roots of `ḡ`, so it lies in the group that permutes each set of `m = (k + 1)/2` roots and may swap the two sets, of order `2(m!)²`. A cycle through all `2m` roots must swap the sets, and exactly `m!(m − 1)!` elements do it: the map from the roots of `g` to those of `ḡ` can be any of `m!`, and the map back must make the round trip a single `m`-cycle, `(m − 1)!` ways. That is a share of `1/(2m) = 1/(k + 1)`. The groups of `char_1`, `char_3` and `char_5` are this whole group for `m = 1, 2, 3`, of orders 2, 8 and 72 (the dihedral group of [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] and the group of [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]), so they stay irreducible mod densities `1/2`, `1/4` and `1/6` of primes. Over the 3,000 primes from 10,007 to 40,277, the shares follow `1/(k + 1)` through `k = 11`:[^6]
 
@@ -117,7 +117,7 @@ This is why Fix 1 of [[castle-cryptography](pages/castle-cryptography.md)] repla
 - the factor `x − 2` has degree 1, and its piece is `F_p`, an ordinary discrete logarithm mod `p`;
 - the factor `x² − x + 2` has degree 2, and its piece is `F_{p²}` when the factor is irreducible mod `p`.
 
-The attacker solves the two smaller discrete logarithms separately and combines them by the CRT. At `p = 103` both kinds of modulus behave as the table says: `x² − x + 2` is irreducible, since `−7` is not a square mod 103, and so is `char_3`, which `103 ≡ 3 (mod 4)` allows:[^7]
+The attacker solves the two smaller discrete logarithms separately and combines them by the CRT. At `p = 103` both kinds of modulus behave as the table says: `x² − x + 2` is irreducible, since `−7` is not a square mod 103 ([[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], Stop 3), and so is `char_3`, which `103 ≡ 3 (mod 4)` allows:[^7]
 
 ```
 reducible char_2:     pieces of group order  p − 1 = 102  and  p² − 1 = 10,608

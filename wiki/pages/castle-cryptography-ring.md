@@ -5,7 +5,7 @@ summary: Seminar 1 of the castle cryptography series, the algebra the later roun
 tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, hankel-matrix, norm, census, mod-p-observatory, baseline, pedagogy, implementation, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-18
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle cryptography, seminar 1 - the ring
@@ -149,7 +149,7 @@ Bob publishes     P(2, b),  P(2, b + 1),  P(2, b + 2)   =  604270770, 787138505,
 shared window     P(2, ab), P(2, ab + 1), P(2, ab + 2)  =  426037164, 487263844, 278640608
 ```
 
-Each party turns the other's window into a ring element with `H_2^{−1}`, raises it to its own exponent, and reads off the window of `x^{ab}`. The keypair is a castle count: the private key is a base length `a`, the public key is the signed count of the towers of height at most `k` on the bases of length `a`, …, `a + k`, mod `p`, and the discrete logarithm asks for the base length from that window. A run of `2(k + 1)` consecutive terms is twice a window, and from it Berlekamp-Massey recovers `Q` (section 9).
+Each party turns the other's window into a ring element with `H_2^{−1}`, raises it to its own exponent, and reads off the window of `x^{ab}`. The keypair is a castle count: the private key is a base length `a`, the public key is the signed count of the towers of height at most `k` on the bases of length `a`, …, `a + k`, mod `p`, and the discrete logarithm asks for the base length from that window. A run of `2(k + 1)` consecutive terms is twice a window, and from it Berlekamp-Massey ([[berlekamp-massey](pages/berlekamp-massey.md)]) recovers `Q` (section 9).
 
 ## 6. The period is the order of `x`
 
@@ -262,6 +262,7 @@ Four facts from this page are the starting points of the attacks:
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots of `char_k`, whose orders mod `p` section 2 takes the lcm of.
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dh` and the `mulmod` and `powmod` helpers.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, whose characteristic polynomial contains `char_2 = (x − 2)(x² − x + 2)`.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - `R` as the fiber over `p` of `Z[x]/(char_k)`, with one point per distinct factor of `char_k mod p`, such as the two of `char_2 mod 101`, and the norm `±2^k` of `x` over the integers.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group `R^*` as a product of cyclic groups, `R^* ≅ ∏ Z/(p^{d_i} − 1)` when `Q` is squarefree mod `p`, and the period of `P(k, ·)` as the order of `x`.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the theorem behind the unit group of section 7.
 - [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the CRT split by explicit idempotents of `R`, `2^r` of them for `r` distinct factors of `Q`.

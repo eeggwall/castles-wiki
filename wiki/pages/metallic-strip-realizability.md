@@ -114,6 +114,7 @@ Rules off the `q = 1` row give other metallic means:
 - [[quadratic-min-height](pages/quadratic-min-height.md)], [[reachable-field-census](pages/reachable-field-census.md)] - the least height of each quadratic growth constant, and the fields that strip rules reach.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the purely periodic continued fractions of the `δ_a` and their fields `Q(√(a² + 4))`.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the metallic means as spectral radii of castle graphs, where the maximum degree 4 rules out `δ_4` and above.
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - golden, silver, bronze and plastic side by side by width, area, semi-perimeter and spectrum, with the ridge castles as the golden, silver and bronze families by width.
 
 ## Footnotes
 

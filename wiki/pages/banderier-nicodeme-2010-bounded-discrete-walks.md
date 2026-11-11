@@ -5,7 +5,7 @@ summary: Banderier and Nicodème extend the kernel method to directed walks of b
 tags: [source, paper, lattice-paths, kernel-method, generating-functions, m-smooth, 1-smooth, transfer-matrix, motzkin]
 sources: [banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-07
-updated: 2026-10-28
+updated: 2026-11-10
 ---
 
 # Banderier & Nicodème (2010) - Bounded discrete walks
@@ -54,7 +54,7 @@ and the paper's two-wall theorem expresses the m-smooth strip, and so `smooth_m(
 
 - **Two walls.** Substituting all `2m` kernel roots into the paper's functional equation and solving for the `2m` wall functions reproduces the transfer-matrix generating function `e_1ᵀ(I − x·band)^{−1}𝟙` for `m = 1, 2, 3` and `h ≤ 8`. At `m = 1` this is the strip of [[1-smooth-castles](pages/1-smooth-castles.md)].
 - **The printed alternant formula.** With `h_low = 0`, the printed quotient labeled as the floor function at altitude `k` equals `(−1)^{m−1−k}·(strip_0 + ⋯ + strip_k)`, a cumulative sum rather than `strip_k` itself; the ceiling quotients behave the same way from the top, in absolute value, once the exponent 0 is kept in the exponent vector `λ''_k`. The two agree only at `k = 0`, so at `m = 1`, where `k = 0` is the only index, the printed formula is the wall function itself. The individual wall functions follow by differences (checked for `m ≤ 3`).
-- **No ceiling.** The meander formula reproduces the anchored m-smooth counts with no height bound, `1, 2, 5, 13, 35, 96, …` (A005773, [[motzkin-castles](pages/motzkin-castles.md)], section 5) at `m = 1` and `1, 3, 12, 51, 226, 1025, 4724, …` at `m = 2`, A180898(`w`); the excursion formula reproduces the castles with both end columns at height 1 and no height bound, the Motzkin numbers at `m = 1` and `1, 1, 3, 9, 32, 120, 473, …` at `m = 2`, A104184(`w − 1`) (checked for `m ≤ 3`).[^10]
+- **No ceiling.** The meander formula reproduces the anchored m-smooth counts with no height bound, `1, 2, 5, 13, 35, 96, …` (A005773, [[motzkin-castles](pages/motzkin-castles.md)], section 5) at `m = 1` and `1, 3, 12, 51, 226, 1025, 4724, …` at `m = 2`, A180898(`w`); the excursion formula reproduces the castles with both end columns at height 1 and no height bound, the Motzkin numbers at `m = 1` (which [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] gets from the same castles as `Σ_k C(w − 1, 2k) C_k`) and `1, 1, 3, 9, 32, 120, 473, …` at `m = 2`, A104184(`w − 1`) (checked for `m ≤ 3`).[^10]
 
 ## Key Takeaways
 
