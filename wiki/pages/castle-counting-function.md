@@ -5,7 +5,7 @@ summary: The castle counts A(w, h) = h^w − (h−1)^w, A^e(w, h) and A^o(w, h) 
 tags: [concept, castle, counting-function, project-euler]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-28
+updated: 2026-11-10
 ---
 
 # Castle counts A(w,h), A^e(w,h) and A^o(w,h)
@@ -58,7 +58,7 @@ A^e(w, 2)  =  Σ_{j≥0} C(w+1, 4j+2)  =  A038505(w+1)
 A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)    =  A038503(w+1) − 1
 ```
 
-`A038503(n)` and `A038505(n)` are the sums of `C(n, j)` over `j ≡ 0` and over `j ≡ 2 (mod 4)`, two of the four sums of every fourth binomial coefficient ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]). [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] proves both readings. At width 3, `A^e(3, 2) = C(4, 2) = 6` and `A^o(3, 2) = C(4, 4) = 1`.
+`A038503(n)` and `A038505(n)` are the sums of `C(n, j)` over `j ≡ 0` and over `j ≡ 2 (mod 4)`, two of the four sums of every fourth binomial coefficient, and [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] proves both readings. At width 3, `A^e(3, 2) = C(4, 2) = 6` and `A^o(3, 2) = C(4, 4) = 1`.
 
 ## Appearances in Sources
 

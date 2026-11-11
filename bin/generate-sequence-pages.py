@@ -244,7 +244,7 @@ def render_catalog(families, rows, checks):
                "shows its A-numbers with the pages that cite them. "
                f"{link('oeis-cross-referencing')} describes the checks a match must pass, "
                f"{link('oeis-mining-pe502')} collects the castle counts matched to OEIS entries, and "
-               f"{link('oeis-height2-hyperbolic-castles')} proves the height-2 rows.")
+               f"{link('hyperbolic-sequence-family')} proves the height-2 rows.")
     out.append("")
     out.append(f"The symbols are those of {link('castle-notation')}: `A^e(w, h)` and `A^o(w, h)` "
                "count the castles of width `w` and height `h` with an even and an odd number of "
@@ -286,8 +286,7 @@ def render_catalog(families, rows, checks):
     out += [
         f"- {link(INDEX_SLUG)} - the same data by A-number, with the pages that cite each entry.",
         f"- {link('oeis-cross-referencing')} - the checks a match must pass: the offset, and agreement beyond a short prefix.",
-        f"- {link('oeis-height2-hyperbolic-castles')} - the height-2 rows `A038505` and `A038503`.",
-        f"- {link('hyperbolic-sequence-family')} - the four sums of every fourth binomial coefficient, `A038503`, `A038504`, `A038505`, `A000749`.",
+        f"- {link('hyperbolic-sequence-family')} - the four sums of every fourth binomial coefficient, `A038503`, `A038504`, `A038505`, `A000749`, and the height-2 rows `A038505` and `A038503`.",
         f"- {link('metallic-means')} / {link('pell-numbers')} / {link('plastic-number')} - the metallic means, the Pell numbers and the plastic number, the growth constants of several rows.",
         f"- {link('castle-graph')} - the tree castles and tree skylines by width (`A001045`, `A006130`, `A006131`).",
         f"- {link('castle-eigenvalue-oeis-crosswalk')} - the convergents of castle eigenvalues against the OEIS, `|P(k, 4)| = A352116(k+1)`, and the Jacobi-Perron expansion of `2ψ²`.",

@@ -5,7 +5,7 @@ summary: A seminar that runs OEIS mining on castle counts, one row at a time. En
 tags: [concept, castle, seminar, pedagogy, teaching, oeis, offsets, false-positive, berlekamp-massey, hyperbolic-sequence, a038505, a038503, a146559, a009545]
 sources: [oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-29
+updated: 2026-11-10
 ---
 
 # OEIS mining seminar - one castle sequence, end to end
@@ -178,12 +178,11 @@ True
 ## Related Concepts
 
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the other matches of castle counts against the OEIS.
-- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 identities `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`, and the castle comments of their OEIS entries.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(·, 3)` with its recurrence and characteristic polynomial.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the two checks of the method, offsets and short prefixes.
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] / [[oeis-index](pages/oeis-index.md)] - every castle sequence with its terms, and every A-number the wiki cites.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = A146559(L+1)` and the rows `P(k, ·)`.
-- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the four sums of every fourth binomial coefficient, two of which count the castles of height 2.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the four sums of every fourth binomial coefficient, two of which count the castles of height 2: the identities `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`, and the castle comments of their OEIS entries.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm of Stop 6, and when its output is the shortest recurrence.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form of `A^e(w, h)` behind the factors of Stop 6.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] / [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] - the same method on eigenvalue convergents, on the odd count and on the block-count tables.

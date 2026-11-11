@@ -5,7 +5,7 @@ summary: "The odd-block count A^o(w, h) = (A − S)/2 = (A + P(h−1, w) − P(h
 tags: [analysis, castle, oeis, sequence, odd-count, parity, area, block-count, peaks, joint-distribution, c-finite, binomial, verification]
 sources: [oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # The odd castles and the block-count tables
@@ -36,7 +36,7 @@ The rows, from `w = 1`:
 | 6 | `0, 0, 15, 223, 2021, 14905, 100157, 645029, 4069173` | 13 | `(x−6)(x−5)(x²−2x+4)(x³−3x²+2x−4)(x⁶−6x⁵+18x⁴−32x³+48x²−32x+32)` |
 | 7 | `1, 13, 106, 738, 5124, 37128, 275804, 2053324` | 15 | `(x−7)(x−6)(x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)(x⁶−6x⁵+18x⁴−32x³+48x²−32x+32)` |
 
-The `h = 2` row is `A038503(w + 1) − 1` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]). The orders 5, 9 and 11 at `h = 3, 4, 5` agree with [[oeis-mining-pe502](pages/oeis-mining-pe502.md)].[^exec]
+The `h = 2` row is `A038503(w + 1) − 1` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]). The orders 5, 9 and 11 at `h = 3, 4, 5` agree with [[oeis-mining-pe502](pages/oeis-mining-pe502.md)].[^exec]
 
 **Where the odd and even rows part.** For `h = 4..7` the minimal characteristic polynomial of `A^o(·, h)` equals that of `A^e(·, h)`, factor for factor. They differ only at `h = 2` and `h = 3`, where `(h−1)^w` from `A` meets the eigenvalue `h − 1` of one of the `P` terms. At `h = 3` the root 2 of `P(2, ·)` enters `A^o` with coefficient `+1/2` and cancels the `−2^w/2` from `A`, so `A^o(·, 3)` has order 5 while `A^e(·, 3)` has order 6. At `h = 2` it goes the other way: the constant `P(0, w) = 1` cancels the `−1^w` of `A` in `A^e`, which has order 3, and doubles it in `A^o`, which gains the root 1. For `4 ≤ h ≤ 7` neither `P(h−1, ·)` nor `P(h−2, ·)` has the eigenvalue `h − 1`, so nothing cancels and both rows have order `2h + 1`.[^exec]
 

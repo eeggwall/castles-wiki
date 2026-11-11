@@ -5,7 +5,7 @@ summary: P(k, L) = Σ (−1)^blocks over the towers of height at most k on a bas
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [project-euler-502-solution, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Signed tower count P(k,L)
@@ -105,7 +105,7 @@ For fixed `L`, `P(·, L)` also satisfies a linear recurrence in `k`. For every `
 
 ## OEIS
 
-- `A146559`, the real parts of `(1+i)^n`, is the row `k = 1`: `P(1, L) = A146559(L+1)`, and `A146559(n) = A038503(n) − A038505(n)` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).[^6]
+- `A146559`, the real parts of `(1+i)^n`, is the row `k = 1`: `P(1, L) = A146559(L+1)`, and `A146559(n) = A038503(n) − A038505(n)` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]).[^6]
 - `A009545`, the imaginary parts of `(1+i)^n`, gives `P_odd(1, L) = −A009545(L)` and `P(1, L) = A009545(L+3)/2`.
 
 ## Appearances in Sources

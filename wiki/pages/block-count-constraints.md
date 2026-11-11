@@ -5,7 +5,7 @@ summary: Counting towers or castles whose block count lies in a set S is a coeff
 tags: [concept, castle, generating-functions, roots-of-unity, coin-problem, narayana, pedagogy]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, balado-silvestre-2026-runs-binary-strings, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-14
-updated: 2026-10-27
+updated: 2026-11-10
 ---
 
 # Block-count constraints
@@ -92,7 +92,7 @@ By Equation (1), `G_{1,L}(−1) = Σ_r (−1)^r C(L+1, 2r) = Re((1+i)^{L+1})`, w
 #{ blocks odd  }  =  Σ_{s≥0} C(L+1, 4s+2)    =  A038505(L+1)  =  A^e(L, 2)
 ```
 
-since `r` is even exactly when `2r ≡ 0 (mod 4)`. The odd-block towers stand under the even-block castles of height 2, whose count `A^e(L, 2)` is the `F(L, 2)` of the problem statement ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]). In general, the towers of height at most 1 with `blocks ≡ r (mod m)` are counted by a sum of every `2m`-th binomial coefficient `C(L+1, j)`, `j ≡ 2r (mod 2m)`; the case `m = 4` is a sum of every eighth.
+since `r` is even exactly when `2r ≡ 0 (mod 4)`. The odd-block towers stand under the even-block castles of height 2, whose count `A^e(L, 2)` is the `F(L, 2)` of the problem statement ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]). In general, the towers of height at most 1 with `blocks ≡ r (mod m)` are counted by a sum of every `2m`-th binomial coefficient `C(L+1, j)`, `j ≡ 2r (mod 2m)`; the case `m = 4` is a sum of every eighth.
 
 Two more counts at height at most 1 are in [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)], which counts binary strings by their runs of 1s. For `S = {m, m + 1, …}`, Equation (3) gives the towers with at least `m` blocks, and by `C(L+1, 2r) = C(L, 2r) + C(L, 2r − 1)` they number
 
@@ -168,7 +168,7 @@ At every height, the even-block condition of Project Euler 502 is Equation (2) w
 - [[castle-sign](pages/castle-sign.md)] - the case `m = 2`: the sign `(−1)^{blocks}` and the split `(T ± P)/2`.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L) = G_{k,L}(−1)`, with `P(1, L) = A146559(L+1)`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - `A^e(w, h)` from the case `m = 2` at every height.
-- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] and [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the sequences `A038503` and `A038505` and their castle reading.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the sequences `A038503` and `A038505` and their castle reading.
 - [[generating-functions](pages/generating-functions.md)] - coefficient extraction from rational generating functions.
 - [[generating-functions-topic](pages/generating-functions-topic.md)] - filters on the index of a sequence instead of the block count: the ordinary generating function `1/(1 − x⁴)` that keeps every fourth term and the exponential generating function `(e^x + e^{−x})/2` that keeps the even-indexed terms.
 - [[symbolic-method](pages/symbolic-method.md)] - the constructions `MSET` and `SEQ`.

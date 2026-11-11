@@ -5,7 +5,7 @@ summary: The castle counts of Project Euler 502 that equal OEIS entries, offsets
 tags: [analysis, oeis, castle, cross-reference]
 sources: [oeis-encyclopedia, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # OEIS matches of Project Euler 502 (PE 502) castle counts
@@ -31,7 +31,7 @@ A^e(w, 2)  =  Σ_j C(w+1, 4j+2)  =  A038505(w+1),
 A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)  =  A038503(w+1) − 1,
 ```
 
-with `A^e(w, 2) + A^o(w, 2) = 2^w − 1`. `A038503`, `A038504`, `A038505` and `A000749` are the four sums of every fourth binomial coefficient, starting at `C(n, 0)`, `C(n, 1)`, `C(n, 2)` and `C(n, 3)`, and add to `2^n` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).[^5]
+with `A^e(w, 2) + A^o(w, 2) = 2^w − 1`. `A038503`, `A038504`, `A038505` and `A000749` are the four sums of every fourth binomial coefficient, starting at `C(n, 0)`, `C(n, 1)`, `C(n, 2)` and `C(n, 3)`, and add to `2^n` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]).[^5]
 
 For `h = 3, 4, 5` the rows satisfy linear recurrences of orders 6, 9 and 11 for `A^e(·, h)` and 5, 9 and 11 for `A^o(·, h)`; at `h = 3` the characteristic polynomials are `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2)` and `(x − 3)(x² − x + 2)(x² − 2x + 2)`. In the height, every column `A^e(w, ·)` is annihilated by `(x² − 1)^w` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), and for `w = 3, 4, 5, 6` this is the characteristic polynomial of its shortest recurrence.[^7]
 
@@ -72,8 +72,7 @@ A castle of area `n` is a composition of `n`, its column heights in order, so al
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - matching counts against the OEIS with offsets.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and the row `P(1, ·)`.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the recurrences in the height, and the annihilator `(x² − 1)^w` of the columns.
-- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the four sums of every fourth binomial coefficient, `A038503`, `A038504`, `A038505` and `A000749`.
-- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the castles of height 2 in `A038505`, `A038503` and `A146559`.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the four sums of every fourth binomial coefficient, `A038503`, `A038504`, `A038505` and `A000749`, and the castles of height 2 in `A038505`, `A038503` and `A146559`.
 - [[convex-castle](pages/convex-castle.md)] and [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castles and the proof of `C(2h+w−3, w−1)`.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[tower-heap](pages/tower-heap.md)] and [[narayana-numbers](pages/narayana-numbers.md)] - the block count of towers through the Narayana numbers.
 - [[castle-by-area](pages/castle-by-area.md)] and [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - castles counted by area.

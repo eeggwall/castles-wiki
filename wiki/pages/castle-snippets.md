@@ -5,7 +5,7 @@ summary: Short tested Python snippets that enumerate the castles of width w and 
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle snippets
@@ -427,7 +427,7 @@ def oeis_snippet(seq, n=10):
 '1, 3, 6, 10, 16, 28, 56, 120'
 ```
 
-The second line is `A^e(w, 2)` for `w = 1, …, 8`, which is `A038505(w + 1)` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).
+The second line is `A^e(w, 2)` for `w = 1, …, 8`, which is `A038505(w + 1)` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]).
 
 ### `oeis_lookup(terms)` → list of `(A-number, name)`
 

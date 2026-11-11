@@ -235,7 +235,7 @@ Over all cells with `A ≤ 10^9` and `w ≥ 3`:[^exec]
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = Re((1+i)^{L+1})` and `P(k, 3) = (−1)^k (k+1)^2`.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomial `(x+1)^L (x−1)^{L−2}` of `P(·, L)` in `k`, proved for every `L ≥ 4`.
 - [[kitamasa](pages/kitamasa.md)] and [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the reduction of `x^L` modulo `char_k`, which works over `Z/9`.
-- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] and [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `A^e(w, 2) = A038505(w + 1)`.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `A^e(w, 2) = A038505(w + 1)`.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and the block count for brute-force checks.
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] and [[oeis-index](pages/oeis-index.md)] - the width-3 columns, and the A-numbers cited here.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of castle counts, with `1729 = A^e(6, 4)`, `906 = A^e(5, 5)` and the powers of two in the row of height 2.

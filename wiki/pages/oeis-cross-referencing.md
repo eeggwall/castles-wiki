@@ -5,14 +5,14 @@ summary: The wiki's method for relating castle counts to the OEIS. A count that 
 tags: [concept, oeis, method, cross-reference, research-workflow]
 sources: [oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Online Encyclopedia of Integer Sequences (OEIS) cross-referencing (interlinking method)
 
 ## Description
 
-The wiki relates the counting sequences of castles ([[castle-polyomino](pages/castle-polyomino.md)]) to the On-Line Encyclopedia of Integer Sequences, the OEIS, by interlinking: a castle count that reproduces the data of an existing entry, at a stated offset, gives that sequence a castle reading. For example, the castles of width `w` and height 2 with an even number of blocks number `A038505(w+1)` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).
+The wiki relates the counting sequences of castles ([[castle-polyomino](pages/castle-polyomino.md)]) to the On-Line Encyclopedia of Integer Sequences, the OEIS, by interlinking: a castle count that reproduces the data of an existing entry, at a stated offset, gives that sequence a castle reading. For example, the castles of width `w` and height 2 with an even number of blocks number `A038505(w+1)` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]).
 
 [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] lists every castle sequence on the wiki with the entry it equals, and [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] collects the castle counts matched to OEIS entries, with their offsets.
 
@@ -33,7 +33,6 @@ Two checks decide whether a match is an interlink.
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - every castle sequence with its terms and the entry it equals, at the stated offset.
 - [[oeis-index](pages/oeis-index.md)] - the generated directory of every A-number cited on the wiki, with the citing pages.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = A146559(L+1)` and `P(1, L) = A009545(L+3)/2`, the offset example.
-- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 identities `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`.
 - [[castle-by-area](pages/castle-by-area.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[narayana-numbers](pages/narayana-numbers.md)] - families of castle counts matched to OEIS entries.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - a seminar that takes one sequence through the method.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched to OEIS entries, with their offsets.

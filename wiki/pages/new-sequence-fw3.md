@@ -5,7 +5,7 @@ summary: The sequence A^e(w, 3) of castles of width w and height 3 with an even 
 tags: [oeis, castle, c-finite, height-3, analysis]
 sources: [oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-26
+updated: 2026-11-10
 ---
 
 # Even-block castles of height 3, A^e(w, 3)
@@ -74,9 +74,8 @@ with characteristic polynomial `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2
 - [[block-count-constraints](pages/block-count-constraints.md)] - `A^e(w, 3)` as a double sum of binomials, from the Dyck paths of height 2 by peaks.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, ·)` and `P(2, ·)` and their characteristic polynomials.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - `P(2, w) = 2^w − A107920(w)`, split by the parity of the last column.
-- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the row `h = 2`, `A^e(w, 2) = A038505(w+1)`.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the row `h = 2`, `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - geometric generating functions and the difference of powers `3^w − 2^w = A001047(w)`.
-- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 rows `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`.
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the rows `A^e(·, h)` and `A^o(·, h)`.
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_2)`, in which `x` has order 3400 for `p = 101`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`.
