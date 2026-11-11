@@ -1,11 +1,11 @@
 ---
 title: Eisenstein at 2 - char_k is irreducible for k = 2^m - 1
 category: Analyses
-summary: Rescaling λ = 2μ turns char_k into Q_k(μ) = char_k(2μ)/2^k, an integer polynomial with Q_{k+1} = μ²·Q_{k−1} − Q_k. The reversal of Q_k is Eisenstein at 2 exactly when Q_k ≡ 1 (mod 2), and modulo 2 the recurrence is a Fibonacci recurrence over F_2[t], t = μ², whose k-th term is the power sum α^{k+1} + β^{k+1}; it equals 1 exactly when k + 1 is a power of 2. So char_k is irreducible over Q, with 2 totally ramified, for k = 1, 3, 7, 15, 31, …. The same condition is the condition that the 2-adic Newton polygon of char_k is one segment, so Eisenstein and Dumas at 2 reach no other k; for the other odd k ≤ 31, irreducibility is computed.
+summary: Rescaling λ = 2μ turns char_k into Q_k(μ) = char_k(2μ)/2^k, an integer polynomial with Q_{k+1} = μ²·Q_{k−1} − Q_k. The reversal of Q_k is Eisenstein at 2 exactly when Q_k ≡ 1 (mod 2), and modulo 2 the recurrence is a Fibonacci recurrence over F_2[t], t = μ², whose k-th term is the power sum α^{k+1} + β^{k+1}; it equals 1 exactly when k + 1 is a power of 2. So char_k is irreducible over Q, with 2 totally ramified, for k = 1, 3, 7, 15, 31, …. The same condition is the condition that the 2-adic Newton polygon of char_k is one segment, so Eisenstein and Dumas at 2 reach no other k; for the other odd k ≤ 31, irreducibility is proved by a prime p mod which char_k stays irreducible.
 tags: [analysis, castle, characteristic-polynomial, irreducible-polynomial, eisenstein, newton-polygon, two-adic, fibonacci-polynomial, signed-tower-count, proof, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-31
+updated: 2026-11-10
 ---
 
 # Eisenstein at 2 - `char_k` is irreducible for `k = 2^m − 1`

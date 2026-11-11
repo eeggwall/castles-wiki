@@ -5,14 +5,14 @@ summary: The signed transfer matrix M̃_k commutes with 𝒥D, "reflect heights,
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-castle-factoring, oeis-encyclopedia]
 created: 2026-09-16
-updated: 2026-10-31
+updated: 2026-11-10
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
 
 ## The question
 
-`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). For even `k ≤ 40` it has two irreducible factors, of degrees `k/2` and `k/2 + 1`, and for odd `k ≤ 31` it is irreducible ([[generating-function-gallery](pages/generating-function-gallery.md)]), each `k` proved by a prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). At `k = 6` its root of largest modulus is `2ψ²`, with `ψ` the [[plastic-number](pages/plastic-number.md)]. This page derives the factorization from a symmetry of the transfer matrix (Part 1), gives the two factors in closed form and proves the product formula (Part 2), and identifies the sequences of the two sectors (Part 3). For `k ≡ 2 (mod 4)` the even-last-column part of `P(k, L)` is `2^L` times a word count that R. H. Hardin entered in the OEIS with an "empirical" recurrence; [[hardin-word-identity](pages/hardin-word-identity.md)] proves the identity for every `k ≡ 2 (mod 4)`.
+`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). For even `k ≤ 40` it has two irreducible factors, of degrees `k/2` and `k/2 + 1`, and for odd `k ≤ 31` it is irreducible, proved on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] ([[generating-function-gallery](pages/generating-function-gallery.md)]), each `k` proved by a prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). At `k = 6` its root of largest modulus is `2ψ²`, with `ψ` the [[plastic-number](pages/plastic-number.md)]. This page derives the factorization from a symmetry of the transfer matrix (Part 1), gives the two factors in closed form and proves the product formula (Part 2), and identifies the sequences of the two sectors (Part 3). For `k ≡ 2 (mod 4)` the even-last-column part of `P(k, L)` is `2^L` times a word count that R. H. Hardin entered in the OEIS with an "empirical" recurrence; [[hardin-word-identity](pages/hardin-word-identity.md)] proves the identity for every `k ≡ 2 (mod 4)`.
 
 Every printed value on this page was recomputed.[^1]
 
@@ -52,7 +52,7 @@ since `a + b + max(0, b − a) ≡ max(0, a − b) (mod 2)`: both sides are even
 
 **Even `k`: two real sectors.** For even `k`, `𝒥D` is an involution with trace `(−1)^{k/2}`, so `M̃_k` preserves its `+1` and `−1` eigenspaces, of dimensions `(k + 1 ± (−1)^{k/2})/2`, and `char_k` is the product of the characteristic polynomials of `M̃_k` on the two eigenspaces. The `+1` sector has dimension `k/2` when `k ≡ 2 (mod 4)` and `k/2 + 1` when `k ≡ 0 (mod 4)`.
 
-**Odd `k`.** For odd `k`, `(𝒥D)² = −I`, and `𝒥D` has no real eigenvectors: its eigenspaces are the `±i` eigenspaces over `Q(i)`, each of dimension `(k + 1)/2`, and `char_k = g·ḡ` for a polynomial `g` over `Q(i)` and its complex conjugate. This rules out the sector split over the rationals but does not prove `char_k` irreducible, since `g` could factor further. Irreducibility is proved for `k = 2^m − 1` by Eisenstein's criterion at 2 after the rescaling `λ = 2μ` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]), and computed for odd `k ≤ 31`.
+**Odd `k`.** For odd `k`, `(𝒥D)² = −I`, and `𝒥D` has no real eigenvectors: its eigenspaces are the `±i` eigenspaces over `Q(i)`, each of dimension `(k + 1)/2`, and `char_k = g·ḡ` for a polynomial `g` over `Q(i)` and its complex conjugate. This rules out the sector split over the rationals but does not prove `char_k` irreducible, since `g` could factor further. Irreducibility is proved for `k = 2^m − 1` by Eisenstein's criterion at 2 after the rescaling `λ = 2μ` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]), and for the other odd `k ≤ 31` by a prime mod which `char_k` stays irreducible (same page).
 
 ```
 >>> # M̃_k restricted to each 𝒥D-eigenspace, k even: (eigenvalue of 𝒥D, dimension, char poly, root of largest modulus?)
