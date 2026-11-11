@@ -40,26 +40,18 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-04).** The A226274 link back to A226136 (#21–#23) and the A038505 link
-back to A146559 (#141–#142) are in review, and the third slot goes to A129972, a submission
-outside this queue; stage 2 waits until a slot is free for it, and its top item is the reverse
-link A097862 back to A283595. Meanwhile the A094706 castle comment, the first item of stage
-3, can be drafted. Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit,
+**Next step (2026-11-11).** The A226274 link back to A226136 (#26) and the A038505 link back
+to A146559 (#143) are approved, and so is A129972 (#41), the submission outside this queue
+that held the third slot. Stage 1 is empty, and the free slots take the top of stage 2 in
+order: the reverse links A097862 and A094706 back to A283595, then A271942 back to A001263.
+Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted. Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit,
 every stage-2 target is at the revision its draft was checked against, and the stage-2
 verification scripts pass against the live b-files. Checked 2026-11-06: no stage-2 target has
 a revision after 2026-10-31.
 
 ### 1. In review (max 3)
 
-- [~] **A226274 → A226136** (submitted 2026-11-03, #21–#23), the link back for the approved
-  A226136 edit (#29): the formula `a(n) = A226136(3*n-1) - 1` and A226136 appended to the Cf.
-  line: `raw/oeis-pe502/xrefs/A226274-A226136.md`
-  (`wiki/pages/fibonacci-castles-sub-families.md`). Proposed (checked 2026-11-06).
-- [~] **A038505 → A146559** (submitted 2026-11-04, #141–#142), the link back for the approved
-  A146559 comment: A146559 appended to the Cf. line, `Cf. A000225, A000749, A009116,
-  A009545, A038503, A038504, A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
-  already link both ways): `raw/oeis-pe502/xrefs/A038505-A146559.md`. Proposed, with no
-  other editor since (checked 2026-11-06).
+None (2026-11-11).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
@@ -450,8 +442,18 @@ with no match.
 
 ### Done (live on OEIS)
 
-Checked live 2026-10-31, and A005891 and A003410 on 2026-11-06: every edit below is in
-place, and none of these entries has an open edit.
+Checked live 2026-10-31, A005891 and A003410 on 2026-11-06, and A226274 and A038505 on
+2026-11-11: every edit below is in place, and none of these entries has an open edit.
+
+- [x] **A226274 → A226136** (submitted 2026-11-03, #21–#23, approved: A226274 #26, Nov 10
+  2026, Sean A. Irvine), the link back for the approved A226136 edit (#29): the formula
+  `a(n) = A226136(3*n-1) - 1.` and A226136 appended to the Cf. line, `Cf. A226271, A226275,
+  A226080, A226081, A226130, A226136.`, both as submitted:
+  `raw/oeis-pe502/xrefs/A226274-A226136.md` (`wiki/pages/fibonacci-castles-sub-families.md`).
+- [x] **A038505 → A146559** (submitted 2026-11-04, #141–#142, approved: A038505 #143, Nov 10
+  2026, Sean A. Irvine, with no editor changes), the link back for the approved A146559
+  comment: A146559 appended to the Cf. line, `Cf. A000225, A000749, A009116, A009545,
+  A038503, A038504, A146559.`: `raw/oeis-pe502/xrefs/A038505-A146559.md`.
 
 - [x] **A003410 → A226136** (submitted 2026-11-01, approved: A003410 #76, Nov 02 2026,
   Michael De Vlieger, reviewed by Joerg Arndt, #75), the link back for the approved A226136
