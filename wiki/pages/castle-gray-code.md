@@ -5,7 +5,7 @@ summary: The reflected Gray code on the cube {1..h}^w, which changes one column 
 tags: [concept, castle, gray-code, generation, algorithm, mixed-radix, loopless, taocp]
 sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Castle Gray code
@@ -173,4 +173,4 @@ Heap's algorithm and the Steinhaus-Johnson-Trotter algorithm list permutations, 
 [^2]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L18-24 - "column heights c_1, …, c_w ∈ {1, …, h} with max c = h", "#blocks = ∑_{r=1}^{h} #{runs of columns with c_i ≥ r} = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})".
 [^3]: Verified by execution (Python 3.11, 2026-10-16): both `(3, 2)` tables; the odometer jumps `4 → 2` at `(3, 3)` and `5 → 2` at `(4, 4)`; the Lemma, with the exact change `[c_i ≥ c_{i−1}] − [c_{i+1} > c_i]`, on every raise of every tuple for `w ≤ 6`, `h ≤ 4`; the `(2, 3)` walk; and, for `w ≤ 6`, `h ≤ 4`, that `loopless_gray` visits each tuple of `{1..h}^w` once with one position changing by `±1` per step.
 [^4]: https://oeis.org/A007814 (read 2026-10-16) - "Exponent of highest power of 2 dividing n", `0, 1, 0, 2, 0, 1, 0, 3, …` from `n = 1`. In the `(3, 2)` table the steps 1 to 7 change the positions `c_3, c_2, c_3, c_1, c_3, c_2, c_3`, that is `ρ(k) = 0, 1, 0, 2, 0, 1, 0` counted from `c_3`.
-[^5]: Knuth, *The Art of Computer Programming* Vol. 4A §7.2.1.1, Algorithm H, "Loopless reflected mixed-radix Gray generation" (quoted from a copy that is not in the repository and was not re-read): focus pointers `f_0, …, f_n` and directions `o_1, …, o_n`; at each step `j ← f_0`, stop if `j = n`, else `f_0 ← 0`, `a_j ← a_j + o_j`, and if `a_j` reaches an end, flip `o_j` and set `f_j ← f_{j+1}`, `f_{j+1} ← j + 1`. The Python version is checked by running it (footnote 3).
+[^5]: assets/knuth-taocp-4a.pdf (D. E. Knuth, *The Art of Computer Programming*, Vol. 4A, *Combinatorial Algorithms, Part 1*, Addison-Wesley, 2011; read 2026-11-10) §7.2.1.1 p. 300, Algorithm H, "Loopless reflected mixed-radix Gray generation": it visits all `n`-tuples `(a_{n−1}, …, a_0)` with `0 ≤ a_j < m_j`, "changing only one component by ±1 at each step", with focus pointers `(f_n, …, f_0)` and directions `(o_{n−1}, …, o_0)`; at each step `j ← f_0` and `f_0 ← 0`, stop if `j = n`, else `a_j ← a_j + o_j`, and if `a_j = 0` or `a_j = m_j − 1`, set `o_j ← −o_j`, `f_j ← f_{j+1}` and `f_{j+1} ← j + 1`. The Python version is checked by running it (footnote 3).
