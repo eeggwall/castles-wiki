@@ -60,7 +60,7 @@ None (2026-11-11).
   - [ ] **A097862 → A283595**: A027907, A080936, A094706 and A283595 inserted into the Cf.
     line (A283595's column g.f. is built from A097862's `P(k)`) and `Column k=1 gives
     A000225(n-1).`, with one formula block: the binomial sum over A080936 (Dyck paths by
-    height), the trinomial form for `2*k <= n <= 4*k+1`, and column 2 as the running sums of
+    height), the trinomial form for `n <= 4*k+1`, and column 2 as the running sums of
     A094706: `raw/oeis-pe502/xrefs/A097862-A283595.md`.
   - [ ] **A094706 → A283595**: `a(n) = A283595(n+1, 2) for n >= 1.` and A283595 appended to
     the Cf. line (A283595's `Column k=2 gives A094706(n-1).`; checked by
