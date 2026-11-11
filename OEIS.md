@@ -52,17 +52,9 @@ a revision after 2026-10-31.
 ### 1. In review (max 3)
 
 - [~] **A226274 → A226136** (submitted 2026-11-03, #21–#23), the link back for the approved
-  A226136 edit (#29), with the proof of Hasler's observation: one signed comment block (1/n
-  is the last element of generation `3n - 2` and is immediately followed by `3n - 1`, proved
-  from Lemmas 3 and 5, Theorem 8 and Corollary 9(c) of the Reid link), links to Kimberling
-  and Moses (Example 4.2, p. 141), the Reid proof and the linear-recurrence index, signature
-  `(5,-7,4,-1)`, one signed formula block ("Formulas above proved (see comments)",
-  `a(n) = A226136(3*n-1) - 1` and the order-4 recurrence for `n >= 6`), a Python program, and
-  A226136 appended to the Cf. line: `raw/oeis-pe502/xrefs/A226274-A226136.md`
-  (`wiki/pages/fibonacci-castles-sub-families.md`).
-  Still in review (checked 2026-11-06): Jason Yuen (#24–#25, Nov 05) added a space before
-  "(End)", wrote the products in Hasler's o.g.f. with `*` and added the keyword `easy`; back
-  in proposed.
+  A226136 edit (#29): the formula `a(n) = A226136(3*n-1) - 1` and A226136 appended to the Cf.
+  line: `raw/oeis-pe502/xrefs/A226274-A226136.md`
+  (`wiki/pages/fibonacci-castles-sub-families.md`). Proposed (checked 2026-11-06).
 - [~] **A038505 → A146559** (submitted 2026-11-04, #141–#142), the link back for the approved
   A146559 comment: A146559 appended to the Cf. line, `Cf. A000225, A000749, A009116,
   A009545, A038503, A038504, A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
