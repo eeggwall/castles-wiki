@@ -5,7 +5,7 @@ summary: How the Project Euler 502 values A^e(w, h) are computed. A^e needs P(h�
 tags: [analysis, castle, algorithms, generating-functions, kitamasa, berlekamp-massey]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castle-count algorithms
@@ -44,7 +44,7 @@ For fixed `w`, the program computes `P(0, w), …, P(N − 1, w)` modulo the pri
 2. Kitamasa's method reaches `k = h − 2`;
 3. one more step of the reduction, multiplication by `x` and one reduction modulo the characteristic polynomial, gives `k = h − 1`, so both values come from one pass.
 
-The output is the recurrence of `P(·, w)` when that sequence satisfies a recurrence of order at most `N/2 = 2w + 14` ([[berlekamp-massey](pages/berlekamp-massey.md)], the Corollary). For every `L ≥ 4` the order is `2L − 2`, computed for `L ≤ 12` ([[recurrence-discovery](pages/recurrence-discovery.md)]) and proved for every `L` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so at `L = w = 100` the order is 198, below `N/2 = 214`. The source states the order as "at most about 2w empirically" and that "no proof is required to use it".[^4]
+The output is the recurrence of `P(·, w)` when that sequence satisfies a recurrence of order at most `N/2 = 2w + 14` ([[berlekamp-massey](pages/berlekamp-massey.md)], the Corollary). For every `L ≥ 4` the order is `2L − 2`, proved on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] and found by Berlekamp-Massey for `L ≤ 12` ([[recurrence-discovery](pages/recurrence-discovery.md)]), so at `L = w = 100` the order is 198, below `N/2 = 214`. The source states the order as "at most about 2w empirically" and that "no proof is required to use it".[^4]
 
 ## The exact path
 
@@ -75,7 +75,7 @@ The source lists the transfer matrix in the `L` direction as an approach it did 
 - [[kitamasa](pages/kitamasa.md)] - the reduction of `x^n` modulo the characteristic polynomial, and its costs.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm, and when its output is the recurrence of the whole sequence.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders of the recurrences of `P(k, L)` in `L` and in `k`, computed.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomials of the recurrences in `k`, for `L ≤ 12`.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomials of the recurrences in `k`, proved for every `L`.
 - [[castle-counting-function](pages/castle-counting-function.md)] - the checkpoints and the Project Euler target.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and their denominators.
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] - another polyomino count with a short linear recurrence: the horizontally convex `n`-ominoes satisfy `a(n) = 5a(n−1) − 7a(n−2) + 4a(n−3)` for `n ≥ 5`.

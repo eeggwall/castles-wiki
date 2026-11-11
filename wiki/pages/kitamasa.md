@@ -5,7 +5,7 @@ summary: Kitamasa's method computes one far term a_n of a linear recurrence of o
 tags: [concept, algorithm, linear-recurrence, kitamasa, method, c-finite, pedagogy, teaching]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes, generating-functions-topic, project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Kitamasa
@@ -187,7 +187,7 @@ The recurrence (1) also advances the state `(a_{n+D−1}, …, a_n)` by one step
 
 ## Name and scope
 
-"Kitamasa" is the name the castle sources use.[^1] Kitamasa's method applies to every sequence with a linear recurrence, equivalently with a rational generating function. Among polyomino counts, the horizontally convex polyominoes by area satisfy a recurrence of order 3 ([[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]). The orders of the castle recurrences are `k + 1` in `L` (proved on [[castle-counting-formula](pages/castle-counting-formula.md)]) and `2L − 2` in `k` for `4 ≤ L ≤ 12` (computed, [[recurrence-discovery](pages/recurrence-discovery.md)]).
+"Kitamasa" is the name the castle sources use.[^1] Kitamasa's method applies to every sequence with a linear recurrence, equivalently with a rational generating function. Among polyomino counts, the horizontally convex polyominoes by area satisfy a recurrence of order 3 ([[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]). The orders of the castle recurrences are `k + 1` in `L` (proved on [[castle-counting-formula](pages/castle-counting-formula.md)]) and `2L − 2` in `k` for every `L ≥ 4` (proved on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)], section *Proof of the multiplicities*).
 
 ## Appearances in Sources
 

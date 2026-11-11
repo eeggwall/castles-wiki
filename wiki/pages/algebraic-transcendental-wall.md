@@ -5,7 +5,7 @@ summary: At each fixed height, the castle counts A(·, h), A^e(·, h), A^o(·, h
 tags: [concept, castle, algebraic, transcendental, c-finite, golden-ratio, sqrt2, e, pi, asymptotics, pedagogy]
 sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # The algebraic/transcendental wall
@@ -36,7 +36,7 @@ P(1, L)  =  Re((1+i)^{L+1})  =  2^{(L+1)/2} cos((L+1)π/4),
 
 and `cos((L+1)π/4)` is one of `0, ±1, ±√2/2`. The same holds for a root of unity `e^{2πi/m}`, which is a root of `x^m − 1`.
 
-In the other direction, at fixed base length `L`, `T(k, L) = (k + 1)^L` is a polynomial in `k`, and `P(·, L)` satisfies a linear recurrence in `k` whose characteristic polynomial is `(λ + 1)^L (λ − 1)^{L−2}` for `4 ≤ L ≤ 12` (computed), with the roots `±1` only ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).
+In the other direction, at fixed base length `L`, `T(k, L) = (k + 1)^L` is a polynomial in `k`, and `P(·, L)` satisfies a linear recurrence in `k` whose characteristic polynomial is `(λ + 1)^L (λ − 1)^{L−2}` for every `L ≥ 4` (proved), with the roots `±1` only ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).
 
 ## The algebraic constants that occur
 

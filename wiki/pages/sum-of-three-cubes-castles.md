@@ -5,7 +5,7 @@ summary: Which castle counts are sums of three cubes. With signed cubes, under H
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, kitamasa, closed-form, height-2, perfect-numbers, taxicab, booker-sutherland, worked-example, computation]
 sources: [project-euler-502-solution, project-euler-502]
 created: 2026-09-20
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Sum of three cubes castles
@@ -19,7 +19,7 @@ The counts are those of [[castle-notation](pages/castle-notation.md)]: `A(w, h) 
 Under Heath-Brown's conjecture, `A^e(w, h)` is a sum of three cubes exactly when `A^e(w, h) mod 9` is not `4` or `5`.[^1] The residues are periodic in both directions.
 
 - **Width.** For fixed `h`, `A^e(·, h)` is a combination of `h^w`, `(h−1)^w`, `P(h−1, w)` and `P(h−2, w)`, so it satisfies a linear recurrence with integer coefficients ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (6)). Modulo 9 its state takes finitely many values, so the residues are eventually periodic ([[mod-p-observatory](pages/mod-p-observatory.md)] treats the periods modulo a prime).
-- **Height.** For fixed `w`, `P(k, w)` is a polynomial in `k` of degree at most `w` on each class of `k` modulo 2. Write the towers `c ∈ {0, …, k}^w` by the distinct values `0 = v_0 < v_1 < ⋯ < v_m` of `(0, c_1, …, c_w)`, with `m ≤ w`. The sign `(−1)^{blocks(c)}` depends only on which positions take which value and on the parities of the `v_j`, since `blocks(c)` is the total ascent. For fixed positions and parities, the gaps `v_j − v_{j−1} ≥ 1` have prescribed parities, and the number of choices with `v_m ≤ k` is `C(⌊(k − R)/2⌋ + m, m)` for a constant `R ≤ 2m`, a polynomial of degree `m` in `k` on each parity class. So `A^e(w, ·) mod 9` is periodic in `h`. On [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] the exact characteristic polynomial `(x+1)^w (x−1)^{w−2}` is computed for `4 ≤ w ≤ 12`.
+- **Height.** For fixed `w`, `P(k, w)` is a polynomial in `k` of degree at most `w` on each class of `k` modulo 2. Write the towers `c ∈ {0, …, k}^w` by the distinct values `0 = v_0 < v_1 < ⋯ < v_m` of `(0, c_1, …, c_w)`, with `m ≤ w`. The sign `(−1)^{blocks(c)}` depends only on which positions take which value and on the parities of the `v_j`, since `blocks(c)` is the total ascent. For fixed positions and parities, the gaps `v_j − v_{j−1} ≥ 1` have prescribed parities, and the number of choices with `v_m ≤ k` is `C(⌊(k − R)/2⌋ + m, m)` for a constant `R ≤ 2m`, a polynomial of degree `m` in `k` on each parity class. So `A^e(w, ·) mod 9` is periodic in `h`. On [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] the exact characteristic polynomial `(x+1)^w (x−1)^{w−2}` is proved for every `w ≥ 4`.
 
 The periods in the width, each checked to be a period and to be minimal:[^exec]
 
