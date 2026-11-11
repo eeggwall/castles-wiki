@@ -57,8 +57,11 @@ None (2026-11-11).
 
 - [ ] **Reverse links**, one edit each, each adding only the lines shown. All three point at
   approved entries; the last, A271942, answers the A001263 edit (#792).
-  - [ ] **A097862 → A283595**: A283595 inserted into the Cf. line (A283595's column g.f. is
-    built from A097862's `P(k)`): `raw/oeis-pe502/xrefs/A097862-A283595.md`.
+  - [ ] **A097862 → A283595**: A027907, A080936, A094706 and A283595 inserted into the Cf.
+    line (A283595's column g.f. is built from A097862's `P(k)`) and `Column k=1 gives
+    A000225(n-1).`, with one formula block: the binomial sum over A080936 (Dyck paths by
+    height), the trinomial form for `2*k <= n <= 4*k+1`, and column 2 as the running sums of
+    A094706: `raw/oeis-pe502/xrefs/A097862-A283595.md`.
   - [ ] **A094706 → A283595**: `a(n) = A283595(n+1, 2) for n >= 1.` and A283595 appended to
     the Cf. line (A283595's `Column k=2 gives A094706(n-1).`; checked by
     `bin/python/a283595_column_gf.py`): `raw/oeis-pe502/xrefs/A094706-A283595.md`.
@@ -177,10 +180,6 @@ with no match.
     `wiki/pages/m-smooth-castles.md`):
     - the Pell castle rows (even-block, odd-block, signed; no match 2026-10-04), which are
       column 2 of the A283595 parity triangles below;
-    - the both-ends-at-height-1 Pell row `0, 0, 0, 0, 1, 5, 18, 56, …`, column 2 of A097862
-      (not a standalone entry): only as a column entry with its own formula,
-      `x⁵/((1−x)(1−2x)(1−2x−x²))`; its value at width `w` is `S(w − 4)`, where `S` is the
-      running sum of A094706;
     - column 3 of A283595, the 1-smooth castles of exact height 4 with first column at
       height 1: `1, 5, 19, 64, 202, 612, …` from width 4, `= F_{2w−1} − P⋆_w`, g.f.
       `x⁴/((1−3x+x²)(1−2x−x²))`; no standalone match 2026-10-06. If A283595 gets its
