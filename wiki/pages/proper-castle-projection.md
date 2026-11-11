@@ -1,11 +1,11 @@
 ---
 title: From ridge strips to even-block ridge castles
 category: Analyses
-summary: The ridge strips of metallic-strip-realizability need not reach their ceiling h and carry no parity. Restricting to the ridge castles of height h and then to their even-block part keeps the growth constant δ_{h−1}, because the signed transfer matrix R̃_h has spectral radius below δ_{h−1} (1.000, 1.575, 1.768, 2.242, 2.413 against 1.618, 2.414, 3.303, 4.236, 5.193 for h = 2..6), so A^e_ridge = (A_ridge + S_ridge)/2 is half of A_ridge up to a smaller term. The even-block counts satisfy linear recurrences of order 4, 8, 10, 12, 14 for h = 2..6 (computed). The ridge strip counts are A001333(w+1), A003688(w+1), A015448(w+1), A015449(w+1) for h = 3..6, not the primary metallic sequences A000129, A006190, A001076, A052918; only h = 2 gives the Fibonacci numbers.
+summary: The ridge strips of metallic-strip-realizability need not reach their ceiling h and carry no parity. Restricting to the ridge castles of height h and then to their even-block part keeps the growth constant δ_{h−1}, because the signed transfer matrix R̃_h has spectral radius below δ_{h−1} (1.000, 1.575, 1.768, 2.242, 2.413 against 1.618, 2.414, 3.303, 4.236, 5.193 for h = 2..6), so A^e_ridge = (A_ridge + S_ridge)/2 is half of A_ridge up to a smaller term. The even-block counts satisfy linear recurrences of order 4, 8, 10, 12, 14 for h = 2..6 (computed). The ridge strip counts are A001333(w+1), A003688(w+1), A015448(w+1), A015449(w+1) for h = 3..6, not the primary metallic sequences A000129, A006190, A001076, A052918; h = 2 gives the Fibonacci numbers F_{w+2}, and h = 5 every third one, F_{3w+2}.
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, bronze, silver, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-09-18
-updated: 2026-10-23
+updated: 2026-11-10
 ---
 
 # From ridge strips to even-block ridge castles
