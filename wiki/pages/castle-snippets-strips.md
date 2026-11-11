@@ -138,7 +138,7 @@ Meaning: as `h = 2, 3, 4, 5, 6` the largest eigenvalue runs through golden, silv
 
 ### `proper_even(h, Wmax)` → the even-block ridge castles
 
-`ridge_count` counts strips. The ridge castles of height `h` are the strips that reach `h`, and the even-block ones number `A^e_ridge = (A_ridge + S_ridge)/2`, with `S_ridge` the signed count ([[ridge-castle](pages/ridge-castle.md)], [[castle-sign](pages/castle-sign.md)]). `proper_even` subtracts the strips that stay below `h`, which follow the rule `J − I` (neighboring columns differ), and computes `S_ridge = Σ (−1)^{blocks}` with the signed transfer matrix `R̃_h[a][b] = (−1)^{max(0, b−a)} R_h[a][b]` and the start vector `(−1)^{c_1}`, since a column of height `b` after one of height `a` starts `max(0, b − a)` blocks ([[proper-castle-projection](pages/proper-castle-projection.md)]). Requires SymPy.
+`ridge_count` counts strips. The ridge castles of height `h` are the strips that reach `h`, and the even-block ones number `A^e_ridge = (A_ridge + S_ridge)/2`, with `S_ridge` the signed count ([[ridge-castle](pages/ridge-castle.md)], [[castle-sign](pages/castle-sign.md)]). `proper_even` subtracts the strips that stay below `h`, which follow the rule `J − I` (neighboring columns differ), and computes `S_ridge = Σ (−1)^{blocks}` with the signed transfer matrix `R̃_h[a][b] = (−1)^{max(0, b−a)} R_h[a][b]` and the start vector `(−1)^{c_1}`, since a column of height `b` after one of height `a` starts `max(0, b − a)` blocks. Requires SymPy.
 
 ```python
 def proper_even(h, Wmax):
@@ -627,7 +627,7 @@ Meaning: for `m = 1` the valid words are binary strings with no isolated `1` (th
 - [[castle-strip](pages/castle-strip.md)] / [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] / [[reachable-field-census](pages/reachable-field-census.md)] - the strip-transfer-matrix machinery.
 - [[metallic-means](pages/metallic-means.md)] - the family `nearest_metallic` tests against.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the Pell strip of `pell_strip_count`, silver by width.
-- [[proper-castle-projection](pages/proper-castle-projection.md)] - the `proper_even` projection.
+- [[ridge-castle](pages/ridge-castle.md)] - the ridge strips of `ridge_count` and the even-block ridge castles of `proper_even`.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the horizontal-gap variation whose transfer matrix is `tower_spacing_matrix`.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines by width and area, and their bijections with compositions and unique tournaments.
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the castles of height `h` by area and the `h`-nacci growth constants of `bounded_castles_by_area`.

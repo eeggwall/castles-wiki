@@ -294,7 +294,7 @@ def render_catalog(families, rows, checks):
         f"- {link('new-sequence-fw3')} - the row `A^e(·, 3)`.",
         f"- {link('castles-of-height-h-by-area')} - castles by area with bounded height and the n-nacci numbers.",
         f"- {link('tower-spacing-castles')} - the tower-spacing skylines and Hardin's running-minimum arrays.",
-        f"- {link('proper-castle-projection')} - the even-block ridge castles.",
+        f"- {link('ridge-castle')} - the ridge strips and ridge castles by width, and the even-block ridge castles.",
         f"- {link('reachable-field-census')} - the strip Perron roots and the fields they reach.",
         f"- {link('odd-castles-and-block-tables')} - the odd-block rows, the parity splits by area, and the tables by blocks and peaks.",
         f"- {link('a005251-bijection')} - the bijection between the readings of `A005251`.",

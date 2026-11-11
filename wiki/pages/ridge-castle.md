@@ -1,11 +1,11 @@
 ---
 title: Ridge castle
 category: Concepts
-summary: The ridge castles of height h are the castles of height h whose neighboring columns differ in height unless both have height h. Their transfer matrix R_h = J − D has characteristic polynomial (x + 1)^{h−2}(x² − (h−1)x − 1), so the ridge strips number x_{w+1} + x_w, with x_n the metallic sequence of order a = h − 1, and the ridge castles number A_ridge(w, h) = x_{w+1} + x_w − (h−1)(h−2)^{w−1}; at height 5 this is F_{3w+2} − 4·3^{w−1}. They grow at the metallic mean δ_{h−1}, golden, silver and bronze by width at h = 2, 3, 4. At height 2, exchanging the heights 1 and 2 maps the ridge castles onto the Fibonacci castles and the flat row; by area, the ridge castles of height 2 number A000931(A + 5) for A ≥ 2, the Padovan numbers. The signed transfer matrix R̃_h has spectral radius below δ_{h−1}, so the even-block ridge castles grow at δ_{h−1} as well.
-tags: [concept, castle, castle-type, ridge-castle, metallic-mean, transfer-matrix, growth-constant, golden, silver, bronze, fibonacci, parity, blocks]
+summary: The ridge castles of height h are the castles of height h whose neighboring columns differ in height unless both have height h. Their transfer matrix R_h = J − D has characteristic polynomial (x + 1)^{h−2}(x² − (h−1)x − 1), so the ridge strips number x_{w+1} + x_w, with x_n the metallic sequence of order a = h − 1, and the ridge castles number A_ridge(w, h) = x_{w+1} + x_w − (h−1)(h−2)^{w−1}; at height 5 this is F_{3w+2} − 4·3^{w−1}. They grow at the metallic mean δ_{h−1}, golden, silver and bronze by width at h = 2, 3, 4. At height 2, exchanging the heights 1 and 2 maps the ridge castles onto the Fibonacci castles and the flat row; by area, the ridge castles of height 2 number A000931(A + 5) for A ≥ 2, the Padovan numbers. The signed transfer matrix R̃_h has spectral radius below δ_{h−1} (1.000, 1.575, 1.768, 2.242, 2.413 against 1.618, 2.414, 3.303, 4.236, 5.193 for h = 2..6), so the even-block ridge castles grow at δ_{h−1} as well, and their counts satisfy linear recurrences of order 4, 8, 10, 12, 14 for h = 2..6 (computed). The ridge strip counts A001333(w+1), A003688(w+1), A015448(w+1), A015449(w+1) for h = 3..6 are not the primary metallic sequences A000129, A006190, A001076, A052918.
+tags: [concept, castle, castle-type, ridge-castle, metallic-mean, transfer-matrix, growth-constant, perron-root, golden, silver, bronze, fibonacci, parity, blocks, even-block, oeis, sympy, verification]
 sources: [project-euler-502]
-created: 2026-10-03
-updated: 2026-10-23
+created: 2026-09-18
+updated: 2026-11-10
 ---
 
 # Ridge castle
@@ -58,7 +58,17 @@ Let `x_n` be the metallic sequence of order `a = h − 1`: `x_0 = 0`, `x_1 = 1`,
 𝟙ᵀ R_h^{w−1} 𝟙  =  h·x_w + x_{w−1}  =  x_{w+1} + x_w,                                    (2)
 ```
 
-with no contribution from the eigenvalue `−1`. These are `F_{w+2}` at `h = 2`, `A001333(w + 1)` at `h = 3`, `A003688(w + 1)` at `h = 4` and `A015448(w + 1)` at `h = 5`.[^oeis]
+with no contribution from the eigenvalue `−1`:[^oeis][^strips]
+
+| `h` | ridge strips, `w = 1, 2, …` | OEIS | primary metallic sequence |
+|---|---|---|---|
+| 2 | 2, 3, 5, 8, 13, 21, 34 | `F_{w+2}`, A000045 | A000045, Fibonacci |
+| 3 | 3, 7, 17, 41, 99, 239, 577 | `A001333(w + 1)`, Pell-Lucas | A000129, Pell |
+| 4 | 4, 13, 43, 142, 469, 1549, 5116 | `A003688(w + 1)` | A006190 |
+| 5 | 5, 21, 89, 377, 1597, 6765, 28657 | `A015448(w + 1) = F_{3w+2}` | A001076, `F_{3n}/2` |
+| 6 | 6, 31, 161, 836, 4341, 22541, 117046 | `A015449(w + 1)` | A052918 |
+
+Only at `h = 2` is the strip count a shift of the primary metallic sequence `x_n` ([[metallic-means](pages/metallic-means.md)]). Neither the ridge strips nor the ridge castles of height `h ≥ 3` give A000129, A006190, A001076 or A052918; the Pell numbers `P⋆_w` appear instead as the anchored 1-smooth strips on `{1, 2, 3}` ([[pell-castle-strip](pages/pell-castle-strip.md)]).
 
 **Ridge castles.** Subtract the strips that do not reach `h`. On the heights `1, …, h − 1` the ridge rule says only that neighbors differ, which allows `(h − 1)(h − 2)^{w−1}` skylines. So
 
@@ -66,7 +76,7 @@ with no contribution from the eigenvalue `−1`. These are `F_{w+2}` at `h = 2`,
 A_ridge(w, h)  =  x_{w+1} + x_w − (h − 1)(h − 2)^{w−1},                                  (3)
 ```
 
-which for `h ≥ 3` satisfies the order-3 recurrence with characteristic polynomial `(x² − (h − 1)x − 1)(x − (h − 2))`. At `h = 2` the subtracted term is 1 at `w = 1` and 0 after, so `A_ridge(w, 2) = F_{w+2}` for `w ≥ 2`.[^exec]
+which for `h ≥ 3` satisfies the order-3 recurrence with characteristic polynomial `(x² − (h − 1)x − 1)(x − (h − 2))`. At `h = 2` the subtracted term is 1 at `w = 1` and 0 after, so `A_ridge(w, 2) = F_{w+2}` for `w ≥ 2`.[^exec][^bm]
 
 **Height 5.** At `a = 4`, `x_n = F_{3n}/2`, the sequence `A001076`.[^oeis] Since `F_{3w+3} + F_{3w} = (F_{3w+2} + F_{3w+1}) + F_{3w} = 2F_{3w+2}`, Equation (2) gives `F_{3w+2}` ridge strips of height 5, and Equation (3) gives
 
@@ -109,23 +119,27 @@ Above height 2 the two families separate: the tree castles of height `h`, which 
 
 ## Blocks and the even-block count
 
-The block count is the total rise `c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` ([[castle-sign](pages/castle-sign.md)]), so the sign `(−1)^{blocks}` factors over the steps. Let `R̃_h` be the signed transfer matrix, `R̃_h[a][b] = (−1)^{max(0, b − a)} R_h[a][b]`, and `v_a = (−1)^a`. The signed count of the ridge castles of height `h` is
+The Project Euler castles of height `h` also have an even number of blocks.[^pe][^pe502] The block count is the total rise `c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` ([[castle-sign](pages/castle-sign.md)]), so the sign `(−1)^{blocks}` factors over the steps. Let `R̃_h` be the signed transfer matrix, `R̃_h[a][b] = (−1)^{max(0, b − a)} R_h[a][b]`, and `v_a = (−1)^a`.[^sign] The signed count of the ridge castles of height `h` is
 
 ```
 S_ridge(w, h)  =  vᵀ R̃_h^{w−1} 𝟙  −  (the same sum over the plateau-free skylines on 1, …, h − 1),
 ```
 
-and `A^e_ridge = (A_ridge + S_ridge)/2` ([[proper-castle-projection](pages/proper-castle-projection.md)]). The subtracted sum is at most `(h − 1)(h − 2)^{w−1}` in absolute value. For `h ≤ 6` the spectral radius of `R̃_h` is below `δ_{h−1}`, so `A^e_ridge(w, h)` is half of `A_ridge(w, h)` up to a smaller term and is `δ_{h−1}` by width:[^exec]
+and the even-block and odd-block ridge castles number `A^e_ridge = (A_ridge + S_ridge)/2` and `A^o_ridge = (A_ridge − S_ridge)/2`. The subtracted sum is at most `(h − 1)(h − 2)^{w−1}` in absolute value. For `h ≤ 6` the spectral radius of `R̃_h` is below `δ_{h−1}`,[^charpoly] so `A^e_ridge(w, h)` is half of `A_ridge(w, h)` up to a smaller term and is `δ_{h−1}` by width:[^exec][^bm]
 
-| `h` | `ρ(R̃_h)` | `δ_{h−1}` | even-block ridge castles, `A^e_ridge(w, h)` for `w = 1, …, 10` |
+| `h` | `ρ(R̃_h)` | `δ_{h−1}` | even-block ridge castles, `A^e_ridge(w, h)` for `w = 1, …, 12` |
 |---|---|---|---|
-| 2 | 1.000 | 1.618 | `1, 3, 4, 4, 5, 9, 17, 29, 46, 72` |
-| 3 | 1.575 | 2.414 | `0, 0, 3, 16, 44, 104, 265, 674, 1640, 3972` |
-| 4 | 1.768 | 3.303 | `1, 7, 25, 70, 209, 697, 2390, 8169, 27565, 91762` |
-| 5 | 2.242 | 4.236 | `0, 0, 10, 104, 604, 2836, 12630, 55668, 242744, 1047448` |
-| 6 | 2.413 | 5.193 | `1, 11, 66, 320, 1601, 8661, 47807, 261401, 1411224, 7537448` |
+| 2 | 1.000 | 1.618 | `1, 3, 4, 4, 5, 9, 17, 29, 46, 72, 115, 187` |
+| 3 | 1.575 | 2.414 | `0, 0, 3, 16, 44, 104, 265, 674, 1640, 3972, 9687, 23512` |
+| 4 | 1.768 | 3.303 | `1, 7, 25, 70, 209, 697, 2390, 8169, 27565, 91762, 303541, 1002841` |
+| 5 | 2.242 | 4.236 | `0, 0, 10, 104, 604, 2836, 12630, 55668, 242744, 1047448, 4489986, 19175568` |
+| 6 | 2.413 | 5.193 | `1, 11, 66, 320, 1601, 8661, 47807, 261401, 1411224, 7537448, 39939391, 210495659` |
 
-At width 1 the only ridge castle is the skyline `(h)`, with `h` blocks, so the first entry is 1 for even `h` and 0 for odd `h`.
+At width 1 the only ridge castle is the skyline `(h)`, with `h` blocks, so the first entry is 1 for even `h` and 0 for odd `h`. At `w = 40` the ratios `A^e_ridge(40, h)/A^e_ridge(39, h)` are `2.41421`, `3.30278`, `4.23607`, `5.19263` for `h = 3, 4, 5, 6`.[^ratio]
+
+The even-block counts `A^e_ridge(·, h)` satisfy linear recurrences of order 4, 8, 10, 12, 14 for `h = 2, …, 6` (Berlekamp-Massey on 60 terms, computed). Each characteristic polynomial contains the factors `x² − (h − 1)x − 1` and `char(R̃_h)`; at `h = 3` it is `(x − 1)(x² + 1)(x² − 2x − 1)(x³ − x² + x − 3)`.[^bm]
+
+*Example.* At `h = 3` and `w = 3` there are 17 ridge strips. Two of them, the skylines `(1, 2, 1)` and `(2, 1, 2)`, do not reach height 3; the other 15 are the ridge castles of width 3 and height 3. Three of these have an even number of blocks: `(2, 1, 3)`, `(3, 1, 2)` and `(3, 2, 3)`, with 4 blocks each.
 
 ## Computation
 
@@ -155,7 +169,9 @@ print([ridge(4, w) for w in range(1, 6)])   # [(1, 1), (7, 7), (31, 25), (118, 7
 ## Related Concepts
 
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the growth constants of the natural strip rules on three heights, and the ridge rule as the rule that reaches every `δ_a`.
-- [[proper-castle-projection](pages/proper-castle-projection.md)] - the subtraction of the strips that do not reach `h`, and the even-block counts through the signed transfer matrix.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split `A^e = (A + S)/2`.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the `ridge_R`, `ridge_count` and `proper_even` snippets, which compute the ridge strips, `A_ridge(w, h)` and `A^e_ridge(w, h)`.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the anchored 1-smooth strips on `{1, 2, 3}`, counted by the Pell numbers; its free strips and the ridge strips of height 3 are both `A001333(w + 1)`.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q` and its `q = 1` row `δ_a`.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the ridge castles among the rate-of-change types.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth types by width, among them `δ_{h−1}` by width.
@@ -171,5 +187,11 @@ print([ridge(4, w) for w in range(1, 6)])   # [(1, 1), (7, 7), (31, 25), (118, 7
 ## Footnotes
 
 [^pe]: https://projecteuler.net/problem=502 (Project Euler, Problem 502 "Counting Castles", fetched 2026-10-03) - rules "The bottom row is occupied by a block of length w.", "The maximum achieved height of the entire castle is exactly h.", "The castle is made from an even number of blocks."
-[^oeis]: https://oeis.org/A001333, https://oeis.org/A003688, https://oeis.org/A015448, https://oeis.org/A001076, https://oeis.org/A000931 (read 2026-10-16) - A001333 "Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2)" (1, 1, 3, 7, 17, 41, …); A003688 "a(n) = 3*a(n-1) + a(n-2), with a(1)=1 and a(2)=4" (1, 4, 13, 43, 142, …); A015448 "a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2" (1, 1, 5, 21, 89, 377, …); A001076 "Denominators of continued fraction convergents to sqrt(5)" (0, 1, 4, 17, 72, 305, …); A000931 "Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0." (1, 0, 0, 1, 0, 1, 1, 1, 2, 2, 3, …).
+[^pe502]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L19-20 - "The maximum achieved height of the entire castle is exactly h." and "The castle is made from an even number of blocks."
+[^oeis]: https://oeis.org/A001333, https://oeis.org/A003688, https://oeis.org/A015448, https://oeis.org/A015449, https://oeis.org/A001076, https://oeis.org/A000931 (read 2026-10-16) - A001333 "Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2)" (1, 1, 3, 7, 17, 41, …); A003688 "a(n) = 3*a(n-1) + a(n-2), with a(1)=1 and a(2)=4" (1, 4, 13, 43, 142, …); A015448 "a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2" (1, 1, 5, 21, 89, 377, …); A015449 "Expansion of (1-4*x)/(1-5*x-x^2)" (1, 1, 6, 31, 161, …); A001076 "Denominators of continued fraction convergents to sqrt(5)" (0, 1, 4, 17, 72, 305, …); A000931 "Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0." (1, 0, 0, 1, 0, 1, 1, 1, 2, 2, 3, …).
+[^strips]: Verified by execution (2026-10-16): the strip counts recomputed from `𝟙ᵀ R_h^{w−1} 𝟙` for `w ≤ 7`.
 [^exec]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16): for `h = 2..6`, a transfer recurrence that tracks the height, whether `h` has been reached and the block parity gives both tables for `w ≤ 12`, and agrees with brute force over all skylines for `h ≤ 4`, `w ≤ 6`; Equation (3) matches every entry for `w ≤ 12`, and `A_ridge(w, 5) = F_{3w+2} − 4·3^{w−1}` for `w ≤ 12`; Equation (1) holds symbolically for `h = 2..6`; `ρ(R̃_h)` is computed numerically; of the `2^9` 0/1 matrices of size 3 none, and of the `2^{16}` of size 4 exactly 192, have an eigenvalue within `10^{−9}` of `(3 + √13)/2`; the example castle obeys the rule and has 12 blocks; the code block runs and prints the line shown; for area `2 ≤ A ≤ 18`, brute force over all skylines gives `A000931(A + 5)` ridge castles of height 2 and none at `A = 1`, and the column-per-cell map is a bijection onto the maximal castles of width `A − 1`, with the example as shown.
+[^sign]: The sign convention is that of [[castle-sign](pages/castle-sign.md)]: `blocks(c)` is the total rise from `c_0 = 0`, and the start vector carries the factor `(−1)^{c_1}`.
+[^charpoly]: Characteristic polynomials of the signed matrices (SymPy): `char(R̃_2) = x² − x + 1`, whose roots are primitive sixth roots of unity; `char(R̃_3) = x³ − x² + x − 3`; `char(R̃_4) = x⁴ − x³ + 2x² − x + 7`; `char(R̃_5) = x⁵ − x⁴ + 2x³ − 6x² − 3x − 17`; `char(R̃_6) = x⁶ − x⁵ + 3x⁴ − 2x³ + 19x² + 19x + 41`.
+[^ratio]: Verified by execution (Python 3.11, 2026-10-16): the even-block counts by a dynamic program over (last height, whether `h` has been reached, block parity) for `w ≤ 40`, and their successive ratios.
+[^bm]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the table by the dynamic program for `w ≤ 12` and `2 ≤ h ≤ 6`, and against enumeration of all skylines in `{1, …, h}^w` (filter: the ridge rule, some column of height `h`, an even block count) for `h ≤ 4`, `w ≤ 7`; the characteristic polynomials of `R_h` and `R̃_h` and their spectral radii; the recurrences of `A_ridge` and `A^e_ridge` by Berlekamp-Massey on 60 terms (orders 3 and 4, 8, 10, 12, 14), with the factored characteristic polynomials.

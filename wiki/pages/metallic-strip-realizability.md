@@ -5,7 +5,7 @@ summary: The growth constant of a castle strip is the spectral radius of its 0/1
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, silver, fibonacci-decimation, realizability, sympy, verification]
 sources: [pe502-pell-castle-strip, de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Which metallic means are castle-strip growth constants
@@ -77,7 +77,7 @@ with ratio tending to bronze.[^5]
 
 Up to the factor `(1 + x)^{h−2}`, `det(I − xR_h)` is `1 − (h − 1)x − x²`, with `p₁ = h − 1` and `p₂ = 1`. At `h = 2` the ridge rule is the Fibonacci rule (no two neighboring columns of height 2) with the heights 1 and 2 exchanged ([[fibonacci-castle](pages/fibonacci-castle.md)]). At `h = 3` it is a different rule from the 1-smooth rule, with the same growth.
 
-The ridge castles of height `h`, the ridge strips that reach `h`, are `δ_{h−1}` by width, and so are their even-block members: the signed transfer matrix `R̃_h` has spectral radius below `δ_{h−1}` for `h ≤ 6` ([[ridge-castle](pages/ridge-castle.md)], [[proper-castle-projection](pages/proper-castle-projection.md)]). With `x_n` the metallic sequence of order `h − 1` (`x_0 = 0`, `x_1 = 1`), the ridge strips number `x_{w+1} + x_w`: `A001333(w + 1)` at `h = 3`, `A003688(w + 1)` at `h = 4`, `A015448(w + 1)` at `h = 5`, while `x_n` itself is `A000129`, `A006190`, `A001076`.[^6]
+The ridge castles of height `h`, the ridge strips that reach `h`, are `δ_{h−1}` by width, and so are their even-block members: the signed transfer matrix `R̃_h` has spectral radius below `δ_{h−1}` for `h ≤ 6` ([[ridge-castle](pages/ridge-castle.md)]). With `x_n` the metallic sequence of order `h − 1` (`x_0 = 0`, `x_1 = 1`), the ridge strips number `x_{w+1} + x_w`: `A001333(w + 1)` at `h = 3`, `A003688(w + 1)` at `h = 4`, `A015448(w + 1)` at `h = 5`, while `x_n` itself is `A000129`, `A006190`, `A001076`.[^6]
 
 ### Height 5: every third Fibonacci number
 

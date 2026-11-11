@@ -5,7 +5,7 @@ summary: Notes on Knuth's generation of all n-tuples in TAOCP Vol. 4A - mixed-ra
 tags: [knuth, taocp, generation, mixed-radix, gray-code, brute-force, source]
 sources: [aocp-generating-permutations-tuples]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # AOCP Generating Permutations & Tuples (Knuth, *The Art of Computer Programming*, Vol. 4)
@@ -26,7 +26,7 @@ The notes contain no mixed-radix Gray code. The reflected Gray code on `{1, …,
 
 ## Relevance to the castle
 
-**The brute force is Algorithm M.** A castle of width `w` and height `h` is a skyline in `{1, …, h}^w` that reaches `h` ([[castle-polyomino](pages/castle-polyomino.md)]). Python's `product(range(1, h+1), repeat=w)`, used by [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] and by `all_castles(w, h)` on [[castle-snippets](pages/castle-snippets.md)], visits `{1, …, h}^w` in the order of Algorithm M with every radix `m_j = h`, shifted by 1. The same loop over `{0, …, k}^L` sums `(−1)^{blocks}` over towers on [[tower-parity-sectors](pages/tower-parity-sectors.md)], and checks the even-block counts on [[proper-castle-projection](pages/proper-castle-projection.md)]. Of the `h^w` skylines visited, `A(w, h) = h^w − (h−1)^w` are castles of height `h`, a fraction `1 − ((h−1)/h)^w` that tends to 1 as `w` grows ([[castle-counting-function](pages/castle-counting-function.md)]).
+**The brute force is Algorithm M.** A castle of width `w` and height `h` is a skyline in `{1, …, h}^w` that reaches `h` ([[castle-polyomino](pages/castle-polyomino.md)]). Python's `product(range(1, h+1), repeat=w)`, used by [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] and by `all_castles(w, h)` on [[castle-snippets](pages/castle-snippets.md)], visits `{1, …, h}^w` in the order of Algorithm M with every radix `m_j = h`, shifted by 1. The same loop over `{0, …, k}^L` sums `(−1)^{blocks}` over towers on [[tower-parity-sectors](pages/tower-parity-sectors.md)], and checks the even-block counts on [[ridge-castle](pages/ridge-castle.md)]. Of the `h^w` skylines visited, `A(w, h) = h^w − (h−1)^w` are castles of height `h`, a fraction `1 − ((h−1)/h)^w` that tends to 1 as `w` grows ([[castle-counting-function](pages/castle-counting-function.md)]).
 
 **The binary case** is the [[binary-string-bijection](pages/binary-string-bijection.md)]: the binary strings of length `L` are the configurations of blocks in the row above a block of length `L`.
 
@@ -41,7 +41,7 @@ The notes contain no mixed-radix Gray code. The reflected Gray code on `{1, …,
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the binary strings of length `L` as the block configurations above a block of length `L`.
 - [[castle-gray-code](pages/castle-gray-code.md)] - the reflected mixed-radix Gray code on `{1, …, h}^w` (Knuth's Algorithm H of §7.2.1.1) and the change of the block count by at most 1 per step.
 - [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - Gray tours restricted to the even-block castles of height `h`.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[proper-castle-projection](pages/proper-castle-projection.md)] - censuses that loop over `{0, …, k}^L` or `{1, …, h}^w`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[ridge-castle](pages/ridge-castle.md)] - censuses that loop over `{0, …, k}^L` or `{1, …, h}^w`.
 - [[castle-counting-function](pages/castle-counting-function.md)] - the number `A(w, h)` of castles among the visited skylines.
 - [[castle-compression](pages/castle-compression.md)] - Gray order, in which consecutive skylines differ in one column by one.
 - [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - the partitions section of the same volume (§7.2.1.4), whose Hindenburg algorithm generates the sides of hoodoo and monadnock castles.

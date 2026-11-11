@@ -691,7 +691,7 @@ Definition: on the triangular tiling: a full bottom row of `w` up triangles and 
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(·, 3)`.
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles by area with bounded height and the n-nacci numbers.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the tower-spacing skylines and Hardin's running-minimum arrays.
-- [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block ridge castles.
+- [[ridge-castle](pages/ridge-castle.md)] - the ridge strips and ridge castles by width, and the even-block ridge castles.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the strip Perron roots and the fields they reach.
 - [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] - the odd-block rows, the parity splits by area, and the tables by blocks and peaks.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the bijection between the readings of `A005251`.

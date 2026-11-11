@@ -5,7 +5,7 @@ summary: The four constants golden φ, silver 1 + √2, bronze (3 + √13)/2 and
 tags: [analysis, castle, metallic-means, golden-ratio, silver-ratio, bronze, plastic-number, padovan, growth-constant, width, area, semi-perimeter, spectral-radius, run-length-limited, ridge-castle, classification, totally-real, oeis, sympy, verification]
 sources: [project-euler-502, balado-silvestre-2026-runs-binary-strings]
 created: 2026-10-10
-updated: 2026-10-29
+updated: 2026-11-10
 ---
 
 # Golden, silver, bronze and plastic growth of castles
@@ -190,7 +190,7 @@ where `e(s)` repeats `−1, 2, 3, 1, −2, −3` from `s = 4`, since `1 − x + 
 ## Parallels
 
 - **Width realizes all four; area and spectrum split them.** By area only constants below 2 can occur (golden, plastic); by adjacency spectrum only totally real ones can (golden, silver, bronze open). Golden is the one constant present on every axis except the signed transfer matrix.
-- **Padovan for plastic, as Fibonacci for golden, by width and by area.** The three plastic families by width and two of the three by area are counted exactly by shifted Padovan numbers A000931 ([[padovan-families](pages/padovan-families.md)] explains the shared core and gives the bijections), as the golden families are counted by the Fibonacci numbers. The prime castles of height 3 miss by the all-2s castle, and neither plastic family by semi-perimeter has a Padovan count (section *Plastic counts*). The silver Pell castles are counted by the Pell numbers less `2^{w−1}`, and the bronze ridge strips by A003688, not the bronze metallic sequence A006190 ([[proper-castle-projection](pages/proper-castle-projection.md)]).
+- **Padovan for plastic, as Fibonacci for golden, by width and by area.** The three plastic families by width and two of the three by area are counted exactly by shifted Padovan numbers A000931 ([[padovan-families](pages/padovan-families.md)] explains the shared core and gives the bijections), as the golden families are counted by the Fibonacci numbers. The prime castles of height 3 miss by the all-2s castle, and neither plastic family by semi-perimeter has a Padovan count (section *Plastic counts*). The silver Pell castles are counted by the Pell numbers less `2^{w−1}`, and the bronze ridge strips by A003688, not the bronze metallic sequence A006190 ([[ridge-castle](pages/ridge-castle.md)]).
 - **Smallest versus largest.** At height 2, golden is the largest area growth constant (all castles) and plastic the smallest above 1 (the ridge rule). By width at height 3, plastic is the smallest constant above 1, and the rule realizing it is the cycle `1 → 2 → 3 → 1` with one extra step; section *Smallest constants above 1* gives the minima on all three axes.
 - **One family, two constants.** The ridge castles of height 2 are golden by width and plastic by area.
 
