@@ -5,7 +5,7 @@ summary: "The prefactors of the parallelogram, directed-convex and convex polyom
 tags: [analysis, polyomino, convex, directed-convex, parallelogram-polyomino, stack-polyomino, convex-castle, asymptotics, residue, prefactor, q-series, bender, verification, oeis]
 sources: [bender-1974-convex-n-ominoes, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-11-08
+updated: 2026-11-10
 ---
 
 # The convex-castle cap factor
@@ -113,7 +113,7 @@ print(2 * K**2 / (r * P1(r) * dP2), 2 * p * kappa**2)   # convex: Bender (11) wi
 [^1]: https://oeis.org/A006958, https://oeis.org/A067675, https://oeis.org/A276994 (fetched 2026-09-22) - A006958 "c = 0.2974535058111219..."; A067675 "c = 2.9195985097136070..."; A276994 "2.3091385933304947...". Values on this page computed by execution, 2026-09-22 (block above, and a 40-digit rerun with 80 series terms).
 [^2]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.221 eqs. (5a), (5b) - `P_1` and `P_2` as alternating sums with `x^{k(k+1)/2}` numerators; "Hence P(x, t, 1, y_2) = P_1(x, t, 1, y_2)/(1 - P_2(x, t, 1))" (read from the page image of the local PDF).
 [^3]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.222 §3 - "We also obtained P_1(r, 1, 1, 1)/(rP_2'(r, 1, 1)) = 0.29745. Thus (7a) p(n) ~ 0.29745γ^n since the pole is simple" (read from the page image).
-[^4]: [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] eq. (3) pp.56-57 and Appendix A p.72 - `Y = y M_1/J_0` and the series `M_1`, as transcribed on that page.
+[^4]: [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] eq. (3) pp.56-57 L185-198 and Appendix A p.72 L984-994 - `Y = y M_1/J_0` and the series `M_1`, as transcribed on that page.
 [^5]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.219 abstract, p.223 eqs. (9)-(10), p.224 eq. (11) - "c(n) ~ fγ^n, where γ = 2.30914"; "(10) f = (-2r^{-1} Res_{x=r} (1 - P_2(x, 1, 1))^{-1}) × C(y_2^0, S(r, y_2)P_1(r, 1, 1, y_2^{-1})) × C(y_1^0, S(r, y_1)P_2(r, 1, y_1^{-1}))"; "(11) f = 2K^2/(rP_1(r, 1, 1, 1)P_2'(r, 1, 1))" (read from the page images).
 [^6]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.223-224 - (8) "A trapezoid of base b_T and a parallelogram of base b_P can be joined in one way if b_T = 0 and b_P - b_T ways otherwise", with "S(x, y) = T(x, y) y/(1 - y)^2 + 1/(1 - y)"; K as a sum over the residues at `y = r^k` and `y = 0`; "By rotating the plane 180° ... Hence the third factor in (10) is K/P_1(r, 1, 1, 1)" (read from the page images). The cap reading of `S_b` and `κ` is this page's.
 [^7]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.225 §5 - "the base has mean ... μ(n) = p_1(n)/p_0(n) ~ 2.06030". Recomputed by execution, 2026-09-22: exact bottom-row distribution of parallelograms from the `min{m, n}` row transfer at areas 30, 60, 90 (mean `2.06030134`, variance `1.70541236` from area 60 on).
