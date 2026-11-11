@@ -1,0 +1,5 @@
+[1] castles with c_1 = c_w = 1 by (w, h), w <= 141; w = 5: [1, 7, 1], w = 7: [1, 31, 18, 1]
+    A097862 b-file: first 5041 terms (rows 0..140) == count(n + 1, k + 1)
+[2] four-term formula == count for 2 <= h, w <= min(141, 4h - 2): 17394 pairs (w, h)
+[3] count(4h - 1, h) - formula = 1 for h = 2..35
+[4] image sum == pinned strips on {1..H}, H <= 39, w <= 141
