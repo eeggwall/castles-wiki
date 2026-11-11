@@ -5,7 +5,7 @@ summary: A proof that the convex castles of width w and height h number A_convex
 tags: [analysis, castle, convex, binomial, vandermonde, catalan]
 sources: [aocp-binomial-coefficients, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Convex castle count is binomial (Vandermonde)
@@ -66,7 +66,7 @@ Summed along `w + h = n + 2`, the Theorem gives the Fibonacci number `F_{2n+1}`,
 - [[castle-perimeter](pages/castle-perimeter.md)] - the semi-perimeter `w + blocks`, and the convex castles counted by semi-perimeter with the block sign.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles counted by area, `A001523`.
 - [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - the bijection from Dyck words onto parallelogram polyominoes.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - towers counted by blocks through Narayana polynomials.
+- [[tower-heap](pages/tower-heap.md)] - towers counted by blocks through Narayana polynomials.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - castles of height 2 counted by block parity, through the binomial coefficients `C(w + 1, 2r)`.
 
 ## Footnotes

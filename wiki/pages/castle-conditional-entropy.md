@@ -5,7 +5,7 @@ summary: On the uniform distribution over the A^e(w, h) even-block castles of wi
 tags: [analysis, castle, entropy, information-theory, conditional-entropy, block-count, area, statistic, verification]
 sources: [project-euler-502-brute-force, project-euler-502-observations]
 created: 2026-09-21
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # Conditional entropy given block count and area
@@ -92,7 +92,7 @@ The computed values are `c(3, w) = 1.387, 1.389, 1.395, 1.405` at `w = 8, 10, 12
 
 ## Where the two statistics come from
 
-**Block count.** A castle of width `w` with `b` blocks stands on towers with `b − 1` blocks, and the towers of any height on a base of length `L` with `b` blocks number `T̂(L, b)`, which has a Narayana-polynomial generating function ([[tower-heap](pages/tower-heap.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]). Over all heights these counts have no finite total for fixed `L`, so they are not the distribution of `B` on the ensemble of this page, which fixes the height.
+**Block count.** A castle of width `w` with `b` blocks stands on towers with `b − 1` blocks, and the towers of any height on a base of length `L` with `b` blocks number `T̂(L, b)`, which has a Narayana-polynomial generating function ([[tower-heap](pages/tower-heap.md)]). Over all heights these counts have no finite total for fixed `L`, so they are not the distribution of `B` on the ensemble of this page, which fixes the height.
 
 **Area.** The castles of area `n` are the compositions of `n`, `2^{n−1}` of them; the convex ones are `A001523(n)` ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]). On the ensemble of this page the area is the sum of the `w` column heights.
 

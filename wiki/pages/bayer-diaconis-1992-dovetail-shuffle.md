@@ -56,7 +56,7 @@ The wiki's towers on a base of length `L` are column-height vectors `c_1, …, c
 T̂(L, b)  =  Σ_{k=1..L} N(L, k) · C(b + L − k, L − 1),      Σ_b T̂(L, b) x^b  =  Σ_k N(L, k) x^{k−1} / (1 − x)^L,
 ```
 
-with `N(L, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents; both are proved for every `L` ([[viennot-heap-tower](pages/viennot-heap-tower.md)], Theorems 1 and 2; [[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).[^18] The binomial of Theorem 3 at `a = b + 1`, `n = L − 1` and `r = k` is the binomial of the tower identity, `C(a + n − r, n) = C(b + L − k, L − 1)`, and the two generating functions have the same denominator `(1 − x)^{n+1} = (1 − x)^L`. The parameters correspond as follows:
+with `N(L, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents; both are proved for every `L` ([[viennot-heap-tower](pages/viennot-heap-tower.md)], Theorems 1 and 2; [[narayana-numbers](pages/narayana-numbers.md)], [[tower-heap](pages/tower-heap.md)]).[^18] The binomial of Theorem 3 at `a = b + 1`, `n = L − 1` and `r = k` is the binomial of the tower identity, `C(a + n − r, n) = C(b + L − k, L − 1)`, and the two generating functions have the same denominator `(1 − x)^{n+1} = (1 − x)^L`. The parameters correspond as follows:
 
 | Bayer-Diaconis | tower |
 |---|---|
@@ -85,7 +85,7 @@ The index ranges differ: `r` runs over `1, …, n = L − 1` and `k` over `1, �
 
 ## Relation to Other Wiki Pages
 
-[[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] records the Narayana numerator and [[narayana-numbers](pages/narayana-numbers.md)] the descent refinement; this paper gives Worpitzky's identity, with the same binomial, and its proof by stars and bars. [[castle-samplers](pages/castle-samplers.md)] runs a heat-bath chain on castles, with coupling from the past for exact draws; the total-variation computation here uses the exact formula of Theorem 3 on one sufficient statistic. [[sandcastle-relaxation](pages/sandcastle-relaxation.md)] compares the relaxation time of a castle sandpile with the riffle shuffle, whose second-largest eigenvalue is `1/2` at every deck size. [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)], which lists this paper among its references, analyzes the Thorp shuffle, whose cut is exactly in half, as a cipher: its security is a bound on how fast the cards an attacker sees mix, proved by coupling.
+[[tower-heap](pages/tower-heap.md)] records the Narayana numerator and [[narayana-numbers](pages/narayana-numbers.md)] the descent refinement; this paper gives Worpitzky's identity, with the same binomial, and its proof by stars and bars. [[castle-samplers](pages/castle-samplers.md)] runs a heat-bath chain on castles, with coupling from the past for exact draws; the total-variation computation here uses the exact formula of Theorem 3 on one sufficient statistic. [[sandcastle-relaxation](pages/sandcastle-relaxation.md)] compares the relaxation time of a castle sandpile with the riffle shuffle, whose second-largest eigenvalue is `1/2` at every deck size. [[morris-rogaway-stegers-2009-thorp-shuffle](pages/morris-rogaway-stegers-2009-thorp-shuffle.md)], which lists this paper among its references, analyzes the Thorp shuffle, whose cut is exactly in half, as a cipher: its security is a bound on how fast the cards an attacker sees mix, proved by coupling.
 
 ## Footnotes
 

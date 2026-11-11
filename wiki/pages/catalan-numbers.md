@@ -5,7 +5,7 @@ summary: The Catalan numbers C_n = C(2n, n)/(n + 1) (A000108; 1, 1, 2, 5, 14, 42
 tags: [concept, catalan, dyck, narayana, generating-functions, combinatorics, symbolic-method]
 sources: [analytic-combinatorics-ch1-ogfs, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-29
+updated: 2026-11-10
 ---
 
 # Catalan numbers
@@ -49,7 +49,7 @@ A nonempty Dyck word factors uniquely as `U w_1 D w_2`, where `w_1` and `w_2` ar
 
 ## Castle appearances
 
-- **Narayana numbers.** `N(n, k) = C(n, k) C(n, k − 1)/n` (`A001263`) counts the Dyck words of semilength `n` with `k` peaks, and `Σ_k N(n, k) = C_n` ([[narayana-numbers](pages/narayana-numbers.md)]). The towers of any height on a base of length `L`, counted by blocks, have generating function `Σ_k N(L, k) x^{k−1}/(1 − x)^L`, whose numerator is `C_L` at `x = 1` ([[tower-heap](pages/tower-heap.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
+- **Narayana numbers.** `N(n, k) = C(n, k) C(n, k − 1)/n` (`A001263`) counts the Dyck words of semilength `n` with `k` peaks, and `Σ_k N(n, k) = C_n` ([[narayana-numbers](pages/narayana-numbers.md)]). The towers of any height on a base of length `L`, counted by blocks, have generating function `Σ_k N(L, k) x^{k−1}/(1 − x)^L`, whose numerator is `C_L` at `x = 1` ([[tower-heap](pages/tower-heap.md)]).
 - **Parallelogram polyominoes.** The parallelogram polyominoes of semi-perimeter `n + 1` number `C_n`, and counted by area they give the Pólya-Gessel `q`-Catalan numbers ([[q-catalan-numbers](pages/q-catalan-numbers.md)]). The castles counted by width, blocks and area are `Π/(1 − x − Π)`, with `Π` the generating function of the parallelogram polyominoes ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]).
 - **Brick-wall castles.** The castles on the brick wall of width `w`, every brick resting on both bricks below, the fountains of coins, number `C_w`; the levels of the up-steps of a Dyck path are their sheared skylines, with `w + 1 −` peaks blocks ([[brick-wall-castles](pages/brick-wall-castles.md)]).
 - **Convex castles** are counted by the binomial coefficient `C(2h + w − 3, w − 1)` ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).

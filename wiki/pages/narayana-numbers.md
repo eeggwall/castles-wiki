@@ -33,7 +33,7 @@ Write `T̂(L, b)` for the number of towers on a base of length `L` with `b` bloc
 T̂(L, b)              =  Σ_{k=1}^{L} N(L, k) C(b + L − k, L − 1).
 ```
 
-This agrees with enumeration for `L ≤ 6`, `b ≤ 7`, and for `L = 7`, `b ≤ 6`,[^3] and [[tower-heap](pages/tower-heap.md)] proves it: the substitution `x = z(1 − y)` turns the fixed point of the tower grammar's height map into the first-return equation of Dyck paths counted by peaks. The `k`-th term counts the towers whose column heights have `k − 1` descents ([[viennot-heap-tower](pages/viennot-heap-tower.md)], Theorem 2). At `L = 2`, `T̂(2, b) = C(b + 1, 1) + C(b, 1) = 2b + 1`: of the `2b + 1` towers `(c_1, c_2)` with `max(c_1, c_2) = b`, the `b + 1` with `c_1 ≤ c_2` have no descent and the `b` with `c_1 > c_2` have one. [[tower-heap](pages/tower-heap.md)] treats these counts, and [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] tabulates the rows and their OEIS entries.
+This agrees with enumeration for `L ≤ 6`, `b ≤ 7`, and for `L = 7`, `b ≤ 6`,[^3] and [[tower-heap](pages/tower-heap.md)] proves it: the substitution `x = z(1 − y)` turns the fixed point of the tower grammar's height map into the first-return equation of Dyck paths counted by peaks. The `k`-th term counts the towers whose column heights have `k − 1` descents ([[viennot-heap-tower](pages/viennot-heap-tower.md)], Theorem 2). At `L = 2`, `T̂(2, b) = C(b + 1, 1) + C(b, 1) = 2b + 1`: of the `2b + 1` towers `(c_1, c_2)` with `max(c_1, c_2) = b`, the `b + 1` with `c_1 ≤ c_2` have no descent and the `b` with `c_1 > c_2` have one. [[tower-heap](pages/tower-heap.md)] treats these counts and tabulates the rows and their OEIS entries.
 
 The Narayana numbers also enter with the index on the blocks, through Dyck paths by peaks. Cho, Huh, Nam and Sohn prove, for `b ≥ 1`,[^5]
 
@@ -53,12 +53,11 @@ The convex castles are counted by a binomial coefficient, not by Narayana number
 
 ## Related Concepts
 
-- [[tower-heap](pages/tower-heap.md)] - towers counted by blocks, with the refinement by descents.
+- [[tower-heap](pages/tower-heap.md)] - towers counted by blocks, with the refinement by descents, and the rows of their generating function in the OEIS.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the row sums `Σ_k N(n, k) = C_n`.
 - [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - Delest-Viennot's β, under which the width of a parallelogram polyomino is the number of peaks of a Dyck path.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the binomial count of the convex castles.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the castles counted by semi-perimeter and width, A271942, which are the numbers `T̂(L, b)` re-indexed.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the generating function of towers counted by blocks, and its rows in the OEIS.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched to OEIS entries, the tower block-count rows among them.
 
 ## Footnotes

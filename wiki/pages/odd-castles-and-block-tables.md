@@ -119,7 +119,7 @@ Both identifications with OEIS entries hold over the full length compared, throu
 
 ### Width, height and blocks
 
-At fixed `(w, h)` the block count runs from `h`, for the convex castles ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]), up to a maximum reached by the battlement `h, 1, h, 1, …` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] treats the towers by blocks). Its `h = 3` rows from `w = 1`, for blocks `3, 4, 5, …`:
+At fixed `(w, h)` the block count runs from `h`, for the convex castles ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]), up to a maximum reached by the battlement `h, 1, h, 1, …` ([[tower-heap](pages/tower-heap.md)] treats the towers by blocks). Its `h = 3` rows from `w = 1`, for blocks `3, 4, 5, …`:
 
 ```
 1

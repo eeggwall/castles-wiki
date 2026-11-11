@@ -5,7 +5,7 @@ summary: Notes on Knuth's TAOCP Vol. 1 §1.2.6. The binomial coefficient C(r, k)
 tags: [knuth, taocp, binomial, vandermonde, hockey-stick, stirling, source]
 sources: [aocp-binomial-coefficients]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # AOCP Binomial Coefficients (Knuth, *The Art of Computer Programming*, Vol. 1)
@@ -37,7 +37,7 @@ They list Knuth's identities by type. For example, `C(4, 2) = 6`, and `C(−4, 3
 ## Uses on the wiki
 
 - **The convex castle count.** A convex castle of width `w` and height `h` splits at its first column of height `h` into a weakly increasing front and a weakly decreasing back, counted by binomial coefficients, and Vandermonde's convolution sums the product to `C(2h + w − 3, w − 1)` ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], [[convex-castle](pages/convex-castle.md)]).
-- **The negative binomial series.** By eq. (17), `1/(1 − z)^{m+1} = Σ_k C(m + k, m) z^k`. It gives the factor `1/(1 − x)^L` of the tower generating function by blocks ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) and the convex castle count as a coefficient ([[generating-functions](pages/generating-functions.md)], [[aocp-generating-functions](pages/aocp-generating-functions.md)]).
+- **The negative binomial series.** By eq. (17), `1/(1 − z)^{m+1} = Σ_k C(m + k, m) z^k`. It gives the factor `1/(1 − x)^L` of the tower generating function by blocks ([[tower-heap](pages/tower-heap.md)]) and the convex castle count as a coefficient ([[generating-functions](pages/generating-functions.md)], [[aocp-generating-functions](pages/aocp-generating-functions.md)]).
 - **Row sums and the parity split.** `2^L` is the number of configurations of blocks in the row above a block of length `L` ([[binary-string-bijection](pages/binary-string-bijection.md)]). Halving `Σ_k C(n, k) ± Σ_k (−1)^k C(n, k)` counts the subsets of even and of odd size, the same split that [[castle-sign](pages/castle-sign.md)] makes with `(−1)^{blocks}`.
 - **Sums over residue classes.** The binary strings of length `L` with `r` runs of 1s number `C(L + 1, 2r)`. With `z` marking runs, `Σ_r C(L + 1, 2r) z^r` gives `2^L` at `z = 1` and `P(1, L) = Re((1+i)^{L+1})` at `z = −1`; its even and odd `r` give the sums of every fourth binomial coefficient, `A038503(L + 1)` and `A038505(L + 1)` ([[block-count-constraints](pages/block-count-constraints.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]). At height 2, `A^e(w, 2) = Σ_s C(w + 1, 4s + 2)`; at `w = 4` only `C(5, 2) = 10` is nonzero, and the castles of width `w` and height 2 whose row 2 is a single run number `C(w + 1, 2)`, the triangular numbers `A000217`.[^9]
 - **An alternating sum.** On a base of length 1, `P(k, 1) = Σ_{c=0}^{k} (−1)^c = (1 + (−1)^k)/2` ([[closed-form-hunting](pages/closed-form-hunting.md)]).

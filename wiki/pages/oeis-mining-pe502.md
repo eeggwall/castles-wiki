@@ -41,7 +41,7 @@ Every castle of height `h` has at least `h` blocks, with equality exactly when i
 
 ## Towers by blocks
 
-Towers of height at most 1 on a base of length `w` are binary strings, and those with `b` blocks number `C(w+1, 2b)`, the entry `T(w+1, b)` of the triangle `A034839`.[^5][^6] Over towers of any height, the number `T̂(w, b)` of towers on a base of length `w` with `b` blocks is `Σ_k N(w, k) C(b+w−k, w−1)`, with `N(w, k)` the Narayana numbers (`A001263`), proved on [[tower-heap](pages/tower-heap.md)] from the fixed point of the tower grammar ([[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]). Its rows `w = 2, 3, 4, 5` are `A005408(b)`, `A005891(b)`, `A063490(b + 1)` and `A160747(b)`.[^10][^11]
+Towers of height at most 1 on a base of length `w` are binary strings, and those with `b` blocks number `C(w+1, 2b)`, the entry `T(w+1, b)` of the triangle `A034839`.[^5][^6] Over towers of any height, the number `T̂(w, b)` of towers on a base of length `w` with `b` blocks is `Σ_k N(w, k) C(b+w−k, w−1)`, with `N(w, k)` the Narayana numbers (`A001263`), proved on [[tower-heap](pages/tower-heap.md)] from the fixed point of the tower grammar ([[narayana-numbers](pages/narayana-numbers.md)]). Its rows `w = 2, 3, 4, 5` are `A005408(b)`, `A005891(b)`, `A063490(b + 1)` and `A160747(b)`.[^10][^11]
 
 ## Castles by area
 
@@ -74,7 +74,7 @@ A castle of area `n` is a composition of `n`, its column heights in order, so al
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the recurrences in the height, and the annihilator `(x² − 1)^w` of the columns.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the four sums of every fourth binomial coefficient, `A038503`, `A038504`, `A038505` and `A000749`, and the castles of height 2 in `A038505`, `A038503` and `A146559`.
 - [[convex-castle](pages/convex-castle.md)] and [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castles and the proof of `C(2h+w−3, w−1)`.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[tower-heap](pages/tower-heap.md)] and [[narayana-numbers](pages/narayana-numbers.md)] - the block count of towers through the Narayana numbers.
+- [[tower-heap](pages/tower-heap.md)] and [[narayana-numbers](pages/narayana-numbers.md)] - the block count of towers through the Narayana numbers.
 - [[castle-by-area](pages/castle-by-area.md)] and [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - castles counted by area.
 - [[castle-counting-function](pages/castle-counting-function.md)] and [[castle-counting-formula](pages/castle-counting-formula.md)] - the counts `A`, `A^e`, `A^o` and the closed form.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(·, 3)`: `0, 0, 3, 21, 89, 307, 977, 3031, …`.

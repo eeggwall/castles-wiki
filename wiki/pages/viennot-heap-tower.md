@@ -5,7 +5,7 @@ summary: Whether the block count of towers (skylines with no height bound on a b
 tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana, associahedron, h-vector, noncrossing]
 sources: [project-euler-502-brute-force, bousquet-melou-fedou-1995-convex-polyominoes, bayer-diaconis-1992-dovetail-shuffle, prellberg-brak-1995-cluster-models]
 created: 2026-09-21
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Viennot heaps of pieces on towers
@@ -100,7 +100,7 @@ records the `max(0, b − a)` blocks that a column of height `b` starts after a 
 Σ_b T̂(L, b) x^b  =  e_0ᵀ M_∞(x)^L 𝟙,
 ```
 
-and by Theorem 1 this matrix power has the closed form of Equation (1). Equation (1) is also the identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], and [[tower-heap](pages/tower-heap.md)] proves it for every `L` from the fixed point of the tower grammar's height map.[^6]
+and by Theorem 1 this matrix power has the closed form of Equation (1). Equation (1) is also the identity of [[tower-heap](pages/tower-heap.md)], which proves it for every `L` from the fixed point of the tower grammar's height map.[^6]
 
 ## Descents split Equation (2)
 
@@ -139,8 +139,7 @@ Equation (2) has the shape of Worpitzky's identity `a^n = Σ_r A(n, r) C(a + n �
 
 ## Related Concepts
 
-- [[tower-heap](pages/tower-heap.md)] - towers with no height bound, the unit-cell heap and the cell count `1/(1 − x)^L`, a second proof of Equation (1) from the tower grammar, and the split by peaks.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - Equation (1) with its OEIS rows, and its refinements by descents and by peaks.
+- [[tower-heap](pages/tower-heap.md)] - towers with no height bound, the unit-cell heap and the cell count `1/(1 − x)^L`, a second proof of Equation (1) from the tower grammar, its OEIS rows, and its refinements by descents and by peaks.
 - [[narayana-numbers](pages/narayana-numbers.md)] - `N(L, k)`, the numerator of Equation (1), and its readings on Dyck paths and parallelogram polyominoes.
 - [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the block-weighted transfer matrix `M_k(t)` on the heights `0, …, k`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed matrix `M̃_k` and the split of the signed tower count by the parity of the last column.

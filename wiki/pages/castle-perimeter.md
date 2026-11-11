@@ -5,7 +5,7 @@ summary: A castle of width w has semi-perimeter s = w + blocks, so the block cou
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis]
 sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, baril-florez-ramirez-2026-generalized-narayana-arrays]
 created: 2026-09-22
-updated: 2026-10-31
+updated: 2026-11-10
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -40,7 +40,7 @@ Removing the bottom row leaves towers with one block fewer ([[castle-notation](p
 Σ_{k=1}^{w}  N(w, k) · C(b + w − k, w − 1),
 ```
 
-where `N(w, k) = C(w, k) C(w, k − 1)/w` are the Narayana numbers ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[narayana-numbers](pages/narayana-numbers.md)]). So the castles of width `w` and semi-perimeter `s` have `s − w − 1` blocks in their towers and number `Σ_k N(w, k) C(s − k − 1, w − 1)`. The Narayana generating function `G(u, y) = Σ_{w,k} N(w, k) u^w y^k` satisfies `G = u(y + G)(1 + G)`. Marking width by `x` and blocks by `y` turns the factor `1/(1 − y)^w` of the tower count into the substitution `u = x/(1 − y)`, and setting `x = y = t` marks the semi-perimeter. This gives the generating function `B(t, t)` of the castles by semi-perimeter:[^4]
+where `N(w, k) = C(w, k) C(w, k − 1)/w` are the Narayana numbers ([[tower-heap](pages/tower-heap.md)], [[narayana-numbers](pages/narayana-numbers.md)]). So the castles of width `w` and semi-perimeter `s` have `s − w − 1` blocks in their towers and number `Σ_k N(w, k) C(s − k − 1, w − 1)`. The Narayana generating function `G(u, y) = Σ_{w,k} N(w, k) u^w y^k` satisfies `G = u(y + G)(1 + G)`. Marking width by `x` and blocks by `y` turns the factor `1/(1 − y)^w` of the tower count into the substitution `u = x/(1 − y)`, and setting `x = y = t` marks the semi-perimeter. This gives the generating function `B(t, t)` of the castles by semi-perimeter:[^4]
 
 ```
 t·B(t, t)² − (1 − 2t − t²)·B(t, t) + t²  =  0
@@ -94,7 +94,7 @@ Here `F_n` are the Fibonacci numbers with `F_1 = F_2 = 1`; Delest and Viennot wr
 
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Delest and Viennot's counts of polyominoes by perimeter through algebraic languages. `B(t, t)` is algebraic; at bounded height the tower words form a regular language and the generating function is rational ([[tower-word-language](pages/tower-word-language.md)]).
 - [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - convex castles are the stack polyominoes; the minimum-block Proposition and the convex count.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[narayana-numbers](pages/narayana-numbers.md)] - the tower-Narayana identity, of which `A271942` is a re-indexing; `k − 1` is the number of descents of the column heights.
+- [[tower-heap](pages/tower-heap.md)], [[narayana-numbers](pages/narayana-numbers.md)] - the tower-Narayana identity, of which `A271942` is a re-indexing; `k − 1` is the number of descents of the column heights.
 - [[convex-polyomino](pages/convex-polyomino.md)], [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - convex polyominoes, whose perimeter is the perimeter of the bounding box, and Lin and Chang's generating function `Z(x, y, 1)` of convex polyominoes by width and height.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the same `B` from cornerless Motzkin paths: the first-return decomposition gives `xB² − (1 − x − y − xy)B + xy = 0`, with `x` marking width and `y` blocks, which is the quadratic of `B(t, t)` at `x = y = t`; the signed count is `y → −y`. Its row-deletion bijection sends the castles with every column at least 2, the prime castles ([[prime-castles](pages/prime-castles.md)]), to castles of semi-perimeter one less, so the prime castles by semi-perimeter are `A082582` shifted by one, with the opposite sign.
 - [[baril-florez-ramirez-2026-generalized-narayana-arrays](pages/baril-florez-ramirez-2026-generalized-narayana-arrays.md)] - `A082582` as Dyck paths avoiding `UUDD` and as Dyck paths with no peak at a height `≡ 2 (mod 3)`, joined by the bijection `µ″`; the paper has no bargraphs.

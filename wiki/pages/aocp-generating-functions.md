@@ -5,7 +5,7 @@ summary: Notes on Knuth's treatment of generating functions (TAOCP Vol. 1 §1.2.
 tags: [knuth, taocp, generating-functions, c-finite, rational, partial-fractions, source]
 sources: [aocp-generating-functions]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-11-10
 ---
 
 # AOCP Generating Functions (Knuth, *The Art of Computer Programming*, Vol. 1)
@@ -66,7 +66,7 @@ These readings are the wiki's, not the source's.
   P_1(x)  =  ½ ( (1 + i)/(1 − (1 + i)x) + (1 − i)/(1 − (1 − i)x) ),        P(1, L)  =  Re((1 + i)^{L+1}).
   ```
 
-- **Negative binomial.** The convex castles of width `w` and height `h` number `C(2h + w − 3, w − 1) = [z^{w−1}] (1 − z)^{−(2h−1)}` ([[convex-castle](pages/convex-castle.md)]). The towers on a base of length `L` counted by blocks have generating function `Σ_k N(L, k) x^{k−1} / (1 − x)^L`, with `N(L, k)` the Narayana numbers, and the negative binomial series turns it into `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)` ([[tower-heap](pages/tower-heap.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]). The tower count `E_k(x) = 1/(1 − (k+1)x)` is geometric.
+- **Negative binomial.** The convex castles of width `w` and height `h` number `C(2h + w − 3, w − 1) = [z^{w−1}] (1 − z)^{−(2h−1)}` ([[convex-castle](pages/convex-castle.md)]). The towers on a base of length `L` counted by blocks have generating function `Σ_k N(L, k) x^{k−1} / (1 − x)^L`, with `N(L, k)` the Narayana numbers, and the negative binomial series turns it into `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)` ([[tower-heap](pages/tower-heap.md)]). The tower count `E_k(x) = 1/(1 − (k+1)x)` is geometric.
 - **Differences of geometric series.** As in Exercise 1, the castles of height `h` counted by width have generating function `Σ_{w≥1} (h^w − (h−1)^w) z^w = z / ((1 − hz)(1 − (h − 1)z))` ([[castle-counting-function](pages/castle-counting-function.md)]). At `h = 3` the coefficients are `A001047(w) = 3^w − 2^w = A^e(w, 3) + A^o(w, 3)` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]).
 
 ## Entities & Concepts
@@ -77,7 +77,7 @@ These readings are the wiki's, not the source's.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - the binomial coefficients with negative upper index behind the negative binomial series.
 - [[castle-counting-formula](pages/castle-counting-formula.md)], [[signed-tower-count](pages/signed-tower-count.md)] - the rational generating functions `P_k(x)` and their recurrences.
 - [[kitamasa](pages/kitamasa.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] - evaluating and finding linear recurrences.
-- [[tower-heap](pages/tower-heap.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the towers by blocks, with the denominator `(1 − x)^L`.
+- [[tower-heap](pages/tower-heap.md)] - the towers by blocks, with the denominator `(1 − x)^L`.
 - [[convex-castle](pages/convex-castle.md)] - the convex count as a coefficient of a negative binomial series.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the castles of height 3 split by parity.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders of the recurrences of `P(k, L)` in `L` and in `k`, found by Berlekamp-Massey.

@@ -5,7 +5,7 @@ summary: "Graded by width u, blocks x and area q, the tower grammar gives E_∞(
 tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-23
-updated: 2026-10-25
+updated: 2026-11-10
 ---
 
 # Castles by width, blocks and area
@@ -64,7 +64,7 @@ castles(u, x, q)  =  Π / (1 − x − Π),        Π  =  Π((1 − x)u, x),    
 1 + castles  =  1 / (1 − Π̃),        Π̃  =  Σ_p  u^{w(p)} (1 − x)^{w(p)−1} x^{h(p)} q^{a(p)},     (5)
 ```
 
-where the sum runs over the parallelogram polyominoes `p` with width `w(p)`, height `h(p)` and area `a(p)`. So `1 + castles` is the sequence construction on parallelograms, each weighted `(1 − x)^{w − 1} x^h`. A parallelogram of width 1 is a single column of height `h`, with weight `x^h q^h u`: the castle `(h)` with its `h` blocks. The weight `(1 − x)^{w − 1}` has negative coefficients, so Equation (5) is not a weight-preserving bijection between castles and sequences of parallelograms. At `q = 1`, `Π` is the Narayana GF of the parallelograms by width and height ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]), as in [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
+where the sum runs over the parallelogram polyominoes `p` with width `w(p)`, height `h(p)` and area `a(p)`. So `1 + castles` is the sequence construction on parallelograms, each weighted `(1 − x)^{w − 1} x^h`. A parallelogram of width 1 is a single column of height `h`, with weight `x^h q^h u`: the castle `(h)` with its `h` blocks. The weight `(1 − x)^{w − 1}` has negative coefficients, so Equation (5) is not a weight-preserving bijection between castles and sequences of parallelograms. At `q = 1`, `Π` is the Narayana GF of the parallelograms by width and height ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]), as in [[tower-heap](pages/tower-heap.md)].
 
 The q-Catalan family that appears is the one of Pólya and Gessel, the parallelograms by area, with width and height kept apart; the Carlitz family, which counts inversions of Dyck words, does not.[^4] Its denominator `J_0` is the numerator `N` of the castle GF, and the castle denominator `M = J_0 − (Y/(1 − Y)) J_1` is a second combination of the same series.
 

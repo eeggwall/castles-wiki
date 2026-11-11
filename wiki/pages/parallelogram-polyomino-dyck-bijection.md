@@ -47,7 +47,7 @@ For example, the peak heights `3, 3` give the three words `x³x̄xx̄³`, `x³x�
 ## Castle relevance
 
 - **Area as a word statistic.** Through β, the Pólya-Gessel q-Catalan numbers of [[q-catalan-numbers](pages/q-catalan-numbers.md)], the parallelogram polyominoes by area, are the Dyck words graded by the sum of their peak heights. [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] writes the castles by width, blocks and area through the same parallelogram series.
-- **Narayana numbers.** `N(L, k)` counts the parallelogram polyominoes of semi-perimeter `L + 1` and width `k`, the Dyck words of length `2L` with `k` peaks, and appears in the tower count by blocks `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)`, whose `k`-th term counts the towers with `k − 1` descents (proved for every `L` on [[viennot-heap-tower](pages/viennot-heap-tower.md)]; [[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
+- **Narayana numbers.** `N(L, k)` counts the parallelogram polyominoes of semi-perimeter `L + 1` and width `k`, the Dyck words of length `2L` with `k` peaks, and appears in the tower count by blocks `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)`, whose `k`-th term counts the towers with `k − 1` descents (proved for every `L` on [[viennot-heap-tower](pages/viennot-heap-tower.md)]; [[narayana-numbers](pages/narayana-numbers.md)], [[tower-heap](pages/tower-heap.md)]).
 - **Parallelograms and convex castles.** The convex castles are the stack polyominoes, which Delest and Viennot code by Fibonacci words, while the middle piece of a convex polyomino is a parallelogram coded through β ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)], [[convex-polyomino](pages/convex-polyomino.md)]).
 
 ## Appearances in Sources
@@ -58,7 +58,7 @@ For example, the peak heights `3, 3` give the three words `x³x̄xx̄³`, `x³x�
 
 - [[dyck-words](pages/dyck-words.md)] - the domain of β; area here is the sum of the peak heights, not the number of inversions.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the parallelogram polyominoes by area, the count that β makes a word statistic.
-- [[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - width and number of peaks, and the tower count by blocks.
+- [[narayana-numbers](pages/narayana-numbers.md)], [[tower-heap](pages/tower-heap.md)] - width and number of peaks, and the tower count by blocks.
 - [[catalan-numbers](pages/catalan-numbers.md)], [[motzkin-numbers](pages/motzkin-numbers.md)] - the Catalan count, and the 2-colored Motzkin words of γ.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - the steep parallelogram polyominoes, whose generating function by width, perimeter and area is a quotient of two q-Bessel functions.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the parallelogram polyominoes by area and perimeter through the add-a-column method (Theorem 3.2).

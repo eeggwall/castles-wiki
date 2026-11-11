@@ -5,7 +5,7 @@ summary: Cho, Huh, Nam and Sohn put the t-core partitions with m corners and lar
 tags: [paper, source, partition, t-core, self-conjugate, motzkin, cornerless, dyck, narayana, tower, palindromic, bijection, oeis]
 sources: [cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-10-17
-updated: 2026-10-17
+updated: 2026-11-10
 ---
 
 # Combinatorics on bounded free Motzkin paths and its applications (Cho-Huh-Nam-Sohn, 2022)
@@ -79,18 +79,17 @@ So Project Euler 502 counts `(w+1)`-cores in a window of largest hook lengths by
 
 - **Towers are core partitions.** The `(L+1)`-cores with `b` corners and largest hook length below `k(L + 1)` correspond to the towers on a base of length `L` with `b` blocks and height at most `k`. Column `j` of the tower is the number of first-column hook lengths of the core congruent to `j` modulo `L + 1`. For `h ≥ 2`, `A^e(w, h)` is the number of `(w+1)`-cores with an odd number of corners and largest hook length in `[(h − 2)(w + 1), (h − 1)(w + 1))`.[^3][^exec]
 - **A Narayana sum indexed by blocks.** For `b ≥ 1`, `T̂(L, b) = Σ_{i=1}^{min(b, ⌊(L+1)/2⌋)} N(b, i) C(L + 1 + 2b − 2i, 2b)`, with the bijective proof of Proposition 3.4.[^5] [[tower-heap](pages/tower-heap.md)] also has the sum `Σ_k N(L, k) C(b + L − k, L − 1)`, indexed by the base length and refined by descents. In the new sum, term `i` counts the towers whose word with its flat steps deleted is a Dyck path with `i` peaks. These are the towers with `i` plateaus higher than the columns on both sides, with height 0 outside the base. For `b ≥ 1` they are the bargraph peaks of the castle in Deutsch and Elizalde's sense, factors `U H⋯H D` of its bargraph word, and not the castle peaks of [[castle-foata-transform](pages/castle-foata-transform.md)].[^exec]
-- **Table 1 is the tower table.** `cc(t, m) = T̂(t − 1, m)`, so the paper's rows `t = 3, 4, 5, 6` are the rows `L = 2, 3, 4, 5` of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]: A005408, A005891, A063490 (with offset 1) and A160747.[^6][^exec]
+- **Table 1 is the tower table.** `cc(t, m) = T̂(t − 1, m)`, so the paper's rows `t = 3, 4, 5, 6` are the rows `L = 2, 3, 4, 5` of [[tower-heap](pages/tower-heap.md)]: A005408, A005891, A063490 (with offset 1) and A160747.[^6][^exec]
 - **Palindromic towers in closed form.** Write `T̂_pal(L, b)` for the number of palindromic towers on a base of length `L` with `b` blocks. For `b ≥ 1`, `T̂_pal(L, b) = Σ_{i=1}^{min(b, ⌊(L+1)/2⌋)} C(⌊(b−1)/2⌋, ⌊(i−1)/2⌋) C(⌊b/2⌋, ⌊i/2⌋) C(⌊(L+1)/2⌋ + b − i, b)`, and `T̂_pal(L, 0) = 1`. The palindromic castles of width `w` with `b + 1` blocks, of any height, number `T̂_pal(w, b)`. For `b = 0, 1, …, 7` the rows `L = 3` and `L = 5` are `1, 2, 4, 5, 7, 8, 10, 11` and `1, 3, 9, 15, 27, 37, 55, 69`.[^9][^exec]
 - **Doubling the middle column.** The paper's `scc(t, m) = scc(t + 1, m)` for even `t` is `T̂_pal(L, b) = T̂_pal(L + 1, b)` for odd `L`. On castles it is a bijection: doubling the middle column of a palindromic tower on an odd base keeps its blocks and its height, and every palindromic tower on an even base arises exactly once, since its two middle columns are equal.[^exec]
 
 ## Entities & Concepts
 
-- [[tower-heap](pages/tower-heap.md)] - towers counted by blocks, `T̂(L, b)`, now with the sum indexed by blocks.
+- [[tower-heap](pages/tower-heap.md)] - towers counted by blocks, `T̂(L, b)`, the sum indexed by blocks, and the rows of `T̂` with their A-numbers, which are the rows of Table 1.
 - [[narayana-numbers](pages/narayana-numbers.md)] - `N(b, i)`, the Dyck paths by peaks, in the sum indexed by blocks.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the castle as a cornerless Motzkin path, which is the second map of Theorem 3.3.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the paper's reference [8], the bargraph bijection, and the bargraph peaks.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the palindromic castles.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the rows of `T̂` and their A-numbers, which are the rows of Table 1.
 - [[castle-notation](pages/castle-notation.md)] - the translation of the paper's symbols.
 
 ## Relation to Other Wiki Pages
