@@ -5,7 +5,7 @@ summary: Every DTMF key, every R1 MF signal, the Bell precise-tone-plan call-pro
 tags: [analysis, castle, audio, telephone, dtmf, mf-signaling, goertzel, dft, periodicity, sparse-spectrum, divisor-classes, block-parity, quantization, signal-processing]
 sources: [project-euler-502-representations]
 created: 2026-10-01
-updated: 2026-10-31
+updated: 2026-11-10
 ---
 
 # Tone-castle catalog - telephone signaling tones as exactly periodic castles
@@ -160,7 +160,7 @@ The Bell precise tone plan builds its call-progress tones from 350, 440, 480 and
 | busy / reorder | 480 + 620 | 400 | 50 ms | 24, 31 | 8, 1 | 400 | 4779 | 244 | 10 / 5 |
 | trunk idle | 2600 | 40 | 5 ms | 13 | 1 | 40 | 2842 | 71 | - |
 
-The 2600 Hz castle at `h = 9` is drawn on [[song-as-castle](pages/song-as-castle.md)].
+[[song-as-castle](pages/song-as-castle.md)] draws the 2600 Hz tone at `h = 9` from a sine started at phase 0, `c_j = 5 + round(4 sin(2π · 13j/40))`, which is the cosine castle of this page at `h = 9` rotated to start at its column 31.
 
 ## Which signals are exactly periodic
 
