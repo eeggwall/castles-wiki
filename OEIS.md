@@ -42,26 +42,30 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 
 **Next step (2026-11-11).** The A226274 link back to A226136 (#26) and the A038505 link back
 to A146559 (#143) are approved, and so is A129972 (#41), the submission outside this queue
-that held the third slot. Stage 1 is empty, and the free slots take the top of stage 2 in
-order: the reverse links A097862 and A094706 back to A283595, then A271942 back to A001263.
-Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted. Checked 2026-10-31: no other entry in stages 2 to 4 has an open edit,
-every stage-2 target is at the revision its draft was checked against, and the stage-2
-verification scripts pass against the live b-files. Checked 2026-11-06: no stage-2 target has
-a revision after 2026-10-31.
+that held the third slot. The A097862 edit (#43–#44), the link back to A283595 with the castle
+reading and the column formulas, is in review, and the free slots take the rest of stage
+2 in order: the reverse links A094706 back to A283595, then A271942 back to A001263.
+Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted. Checked
+2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is at the
+revision its draft was checked against, and the stage-2 verification scripts pass against the
+live b-files. Checked 2026-11-06: no stage-2 target has a revision after 2026-10-31.
 
 ### 1. In review (max 3)
 
-None (2026-11-11).
+- [~] **A097862 castles, columns 1 and 2, Dyck paths by height, trinomial form and the link
+  back to A283595** (submitted 2026-11-11, #43–#44). One comment, `T(n,k)` = castle
+  polyominoes of width `n+1` and height `k+1` whose first and last columns have height 1 and
+  whose neighboring columns differ in height by at most 1, and the PE 502 link. One formula
+  block: the binomial sum over A080936 (Dyck paths by height), the trinomial form for
+  `2*k <= n <= 4*k+1`, and `T(n,2)` as the running sums of A094706. A027907, A080936, A094706
+  and A283595 inserted into the Cf. line (A283595's column g.f. is built from A097862's
+  `P(k)`) and `Column k=1 gives A000225(n-1).`: `raw/oeis-pe502/xrefs/A097862-A283595.md`
+  (`wiki/pages/1-smooth-castles.md`). Proposed (checked 2026-11-11).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Reverse links**, one edit each, each adding only the lines shown. All three point at
-  approved entries; the last, A271942, answers the A001263 edit (#792).
-  - [ ] **A097862 → A283595**: A027907, A080936, A094706 and A283595 inserted into the Cf.
-    line (A283595's column g.f. is built from A097862's `P(k)`) and `Column k=1 gives
-    A000225(n-1).`, with one formula block: the binomial sum over A080936 (Dyck paths by
-    height), the trinomial form for `n <= 4*k+1`, and column 2 as the running sums of
-    A094706: `raw/oeis-pe502/xrefs/A097862-A283595.md`.
+- [ ] **Reverse links**, one edit each, each adding only the lines shown. Both point at
+  approved entries; the second, A271942, answers the A001263 edit (#792).
   - [ ] **A094706 → A283595**: `a(n) = A283595(n+1, 2) for n >= 1.` and A283595 appended to
     the Cf. line (A283595's `Column k=2 gives A094706(n-1).`; checked by
     `bin/python/a283595_column_gf.py`): `raw/oeis-pe502/xrefs/A094706-A283595.md`.
@@ -387,9 +391,6 @@ with no match.
   strips, not castle families, for the same reason; A057960 and A085810 already carry the
   equivalent corridor-path reading, and A001519 is dense. The castle readings go on A283595
   and the diagonal castle rows.
-- A097862 castle comment (both end columns at height 1, neighboring columns differing by at
-  most 1): the entry already states the column g.f. `z^(2k)/[P_k*P_{k+1}]`, whose `P_k` are
-  the 1-smooth determinants, and the castle reading is the Motzkin path raised one row.
 - A000225 / A001047 / … (`h^w − (h−1)^w`, all castles of exact height `h`, one row per `h`):
   dense entries, and the array A047969 already has the reading (skipped below).
 - A000071 (the Fibonacci castles of width `w`, `A000071(w+2)`; the castles of height 2 with
