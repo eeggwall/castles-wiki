@@ -47,7 +47,7 @@ def census(hmax):
               f'smallest new {new[0][0]:.6f} ({new[0][2]}), largest {new[-1][0]:.6f}', flush=True)
 
 def ceiling(H):
-    """All castles of exact height h: the largest growth at height h; any family of height <= h grows no faster."""
+    """All castles of height h: the largest growth at height h; any family of height <= h grows no faster."""
     for h in range(2, H + 1): print(f'  all castles of height {h}: {growth(np.ones((h, h))):.6f}')
     mp.mp.dps = 50; x0 = 2 / (3 + mp.sqrt(13))
     for h in (21, 22):
@@ -77,7 +77,7 @@ def silver_exact(masks, h):
 
 if __name__ == '__main__':
     t = time.time()
-    print('ceiling (all castles of exact height h):'); ceiling(22)
+    print('ceiling (all castles of height h):'); ceiling(22)
     print('two-height castles {a, a + d}: denominators')
     for d in (1, 2, 3, 4, 8):
         S = (1, 1 + d); M = sp.Matrix(2, 2, lambda i, j: x ** (1 + max(0, S[j] - S[i])))
@@ -96,6 +96,6 @@ if __name__ == '__main__':
             ns = s + 1 + max(0, b - (c[-1] if c else 0))
             if ns <= 16: rec(c + (b,), ns)
     rec((), 0)
-    print('  its castles of exact height 5 by semi-perimeter s = 6..16:', [cnt.get(s, 0) for s in range(6, 17)])
+    print('  its castles of height 5 by semi-perimeter s = 6..16:', [cnt.get(s, 0) for s in range(6, 17)])
     print('census:'); census(4)
     print(f'total {time.time() - t:.0f} s')

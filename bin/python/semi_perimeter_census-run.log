@@ -1,5 +1,5 @@
 # python3 bin/python/semi_perimeter_census.py  (2026-10-11, Python 3.10, numpy, sympy, mpmath)
-ceiling (all castles of exact height h):
+ceiling (all castles of height h):
   all castles of height 2: 1.754878
   all castles of height 3: 2.205569
   all castles of height 4: 2.494691
@@ -32,7 +32,7 @@ two-height castles {a, a + d}: denominators
 silver rules at height 4: 0
 silver at height 5: 601 numeric candidates, 601 confirmed exactly
   rule "no 1 next to 2, no 4 next to 5" in the confirmed list: True ; denominator -(x - 1)**2*(x**2 + 1)*(x**2 + 2*x - 1)*(x**3 + x**2 - x + 1)
-  its castles of exact height 5 by semi-perimeter s = 6..16: [1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250]
+  its castles of height 5 by semi-perimeter s = 6..16: [1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250]
 census:
 h=1: 2 distinct denominators, 1 new constants, degrees {1: 1}; smallest new 1.000000 (1 - z), largest 1.000000
 h=2: 6 distinct denominators, 2 new constants, degrees {3: 2}; smallest new 1.465571 (-z**3 + z**2 + 1), largest 1.754878

@@ -54,7 +54,7 @@ def bijective(f, src, dst):
 x = sp.symbols('x'); core = 1 / (1 - x**2 - x**3)
 gf = {'maximal (width)': (x * (1 + x)**2 * core, maximal),
       'palindromic tree (area)': (x * (1 + x)**2 * core, palin_tree),
-      'ridge, exact height 2 (area)': (x**2 * (1 + x)**2 * core, ridge_area),
+      'ridge, height 2 (area)': (x**2 * (1 + x)**2 * core, ridge_area),
       'rule from 1 (width)': (x**3 * (1 + x)**2 * core, rule_from_1),
       '(1, 2)-RLL (width)': (x * (1 + x + x**2)**2 * core, rll12)}
 N = 18
@@ -69,6 +69,6 @@ print('tree-castle denominator at y = x^2:', sp.factor((y**3 - y**2 + 2*y - 1).s
 P = [1, 0, 0]
 for _ in range(40): P.append(P[-2] + P[-3])
 prime3 = lambda A: [c for c in comps(A) if min(c) >= 2 and max(c) == 3]
-print('prime castles of exact height 3, area A = P(A+3) - [A even], A = 1..20:',
+print('prime castles of height 3, area A = P(A+3) - [A even], A = 1..20:',
       all(len(prime3(A)) == P[A + 3] - (A % 2 == 0) for A in range(1, 21)))
 print('examples:', ridge_to_maximal((2, 1, 2, 2, 1)), rule_to_maximal((1, 2, 3, 2, 3, 1, 2, 3, 1, 2)), rll_to_maximal((1, 1, 2, 1, 2)))
