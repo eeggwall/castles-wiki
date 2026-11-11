@@ -5,7 +5,7 @@ summary: A castle is Ramanujan when the second-largest adjacency eigenvalue λ_2
 tags: [concept, castle, spectral, ramanujan, universal-cover, alon-boppana, cavity-method, non-backtracking, expander, computation, worked-example]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-22
+updated: 2026-11-10
 ---
 
 # Ramanujan castles
@@ -24,7 +24,7 @@ Let `A(G)` be the adjacency matrix of `G`, with eigenvalues `λ_n ≤ ⋯ ≤ λ
 λ_2  ≤  ρ(T).
 ```
 
-**Regular castles.** Only four castle graphs are regular. The leftmost cell of the top row has no neighbor above it and none to its left, so it has at most two neighbors, and a regular castle graph has degree at most 2: a path or a cycle. A path with more than two cells has ends of degree 1 and middle cells of degree 2, and the only cycle among castle graphs is the `2 × 2` square, so the regular castles are `(1)` (the path `P_1`), `(1, 1)` and `(2)` (both `P_2`) and `(2, 2)` (the cycle `C_4`). For every other castle `ρ(T)` is computed for its own covering tree.
+**Regular castles.** Only four castles have a regular castle graph, and they give three graphs. The leftmost cell of the top row has no neighbor above it and none to its left, so it has at most two neighbors, and a regular castle graph has degree at most 2: a path or a cycle. A path with more than two cells has ends of degree 1 and middle cells of degree 2, and the only cycle among castle graphs is the `2 × 2` square, so the regular castles are `(1)` (the path `P_1`), `(1, 1)` and `(2)` (both `P_2`) and `(2, 2)` (the cycle `C_4`). For every other castle `ρ(T)` is computed for its own covering tree.
 
 ## The universal covering tree of a castle
 
