@@ -1,6 +1,6 @@
 # Cross-link draft — A115981 (compositions that are not stacks) as the castles with more blocks than their height
 
-Status: DRAFT for Charles to submit. Submit after, or together with, the A001523 comment
+Status: DRAFT for Chaz to submit. Submit after, or together with, the A001523 comment
 (`A001523-castle.md`), which it refers to.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-31 (A115981 revision #23, Feb 16 2025).

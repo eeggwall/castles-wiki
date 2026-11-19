@@ -1,6 +1,6 @@
 # Cross-link draft — A001523 (stacks) as the castles with as many blocks as their height
 
-Status: DRAFT for Charles to submit.
+Status: DRAFT for Chaz to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-31 (A001523 revision #135, May 30 2026).
 
