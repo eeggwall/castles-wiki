@@ -40,27 +40,33 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-18).** Nothing is in review: the A097862 edit was approved Nov 17
-(#47), and all 3 slots are free. They take stage 2 in order: the reverse links A094706 back to
-A283595 and A271942 back to A001263, then the A005408 3-cores comment. Checked 2026-11-18:
+**Next step (2026-11-18).** The A094706 edit (#62–#69) is in review, and the 2 free slots take
+stage 2 in order: the reverse link A271942 back to A001263, then the A005408 3-cores comment.
+Checked 2026-11-18:
 every stage-2 target is at the revision its draft was checked against, and
 `bin/python/a283595_column_gf.py` and `bin/python/tower_t_cores.py` pass.
 
 ### 1. In review (max 3)
 
-Nothing in review.
+- [~] **A094706 → A283595, with two formula corrections and a Python program** (submitted
+  2026-11-18, #62–#69). Paul Barry's convolution sum had `(1+sqrt(2))^n - (1-sqrt(2))^n` where
+  `^k` belongs (as written it is `Pell(n)*(2^(n+1)-1)`, so a(1) = 3), and Reinhard Zumkeller's
+  line read `sum of n-th row in A101164 = A000129(n) - A000079(n)` (row `n` of A101164 sums to
+  `a(n-1)`, and the right side gives a(0) = -1); both now read as corrected, each marked
+  "[Corrected by _Chaz Reid_, Nov 18 2026]", and match the 1001 b-file terms. The formula
+  `a(n) = A283595(n+1, 2) for n >= 1.`, a Python program of R. J. Mathar's
+  `A000129(n+2) - 2^(n+1)` (checked to `n = 1000`), and A283595 appended to the Cf. line,
+  `Cf. A000079, A000129 (Pell numbers), A101164, A255494, A283595.`:
+  `raw/oeis-pe502/xrefs/A094706-A283595.md` (A283595's `Column k=2 gives A094706(n-1).`;
+  checked by `bin/python/a283595_column_gf.py`).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Reverse links**, one edit each, each adding only the lines shown. Both point at
-  approved entries; the second, A271942, answers the A001263 edit (#792).
-  - [ ] **A094706 → A283595**: `a(n) = A283595(n+1, 2) for n >= 1.` and A283595 appended to
-    the Cf. line (A283595's `Column k=2 gives A094706(n-1).`; checked by
-    `bin/python/a283595_column_gf.py`): `raw/oeis-pe502/xrefs/A094706-A283595.md`.
-  - [ ] **A271942 → A001263**: `Columns k=2..5 give A005408(n-3), A005891(n-4),
-    A063490(n-4), A160747(n-6).` and A001263 inserted into the Cf. line (A001263's formula
-    `= A271942(n+m, n)`; the width-2..5 castle counts; checked against the A271942 b-file by
-    `bin/python/tower_t_cores.py`): `raw/oeis-pe502/xrefs/A271942-A001263.md`.
+- [ ] **A271942 → A001263**, the reverse link for the approved A001263 edit (#792), adding
+  only `Columns k=2..5 give A005408(n-3), A005891(n-4), A063490(n-4), A160747(n-6).` and
+  A001263 inserted into the Cf. line (A001263's formula `= A271942(n+m, n)`; the width-2..5
+  castle counts; checked against the A271942 b-file by `bin/python/tower_t_cores.py`):
+  `raw/oeis-pe502/xrefs/A271942-A001263.md`.
 - [ ] **A005408 3-cores by corners**: one comment, `a(n)` = 3-core partitions with `n`
   corners (Cho et al., Proposition 3.4, p. 14 "cc(3, m) = 2m + 1"), the Cho et al. link
   (after Hongwei Chen) and the t-core family Cf. line, which A160747 and A063490 already
@@ -99,8 +105,8 @@ Nothing in review.
   castles (exact height 3, first column 1, neighboring columns differing by at most 1) of
   width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
   the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). The formula
-  `a(n) = A283595(n+1, 2)` and `Cf. A283595` are in the stage-2 reverse links
-  (`wiki/pages/1-smooth-castles.md`).
+  `a(n) = A283595(n+1, 2)` and `Cf. A283595` are in the stage-1 edit, which this comment
+  waits for (`wiki/pages/1-smooth-castles.md`).
 - [ ] **A077868**: two castle readings and the bijection between them. Spaced Fibonacci
   castles (height-2 columns at least 3 apart) of width `w` number `A077868(w − 1)`; tree
   castles of height 2 with area `A` (cells) number `A077868(A − 2)`; the domino-boundary map
