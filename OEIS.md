@@ -40,27 +40,15 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-11).** The A226274 link back to A226136 (#26) and the A038505 link back
-to A146559 (#143) are approved, and so is A129972 (#41), the submission outside this queue
-that held the third slot. The A097862 edit (#43–#44), the link back to A283595 with the castle
-reading and the column formulas, is in review, and the free slots take the rest of stage
-2 in order: the reverse links A094706 back to A283595, then A271942 back to A001263.
-Meanwhile the A094706 castle comment, the first item of stage 3, can be drafted. Checked
-2026-10-31: no other entry in stages 2 to 4 has an open edit, every stage-2 target is at the
-revision its draft was checked against, and the stage-2 verification scripts pass against the
-live b-files. Checked 2026-11-06: no stage-2 target has a revision after 2026-10-31.
+**Next step (2026-11-18).** Nothing is in review: the A097862 edit was approved Nov 17
+(#47), and all 3 slots are free. They take stage 2 in order: the reverse links A094706 back to
+A283595 and A271942 back to A001263, then the A005408 3-cores comment. Checked 2026-11-18:
+every stage-2 target is at the revision its draft was checked against, and
+`bin/python/a283595_column_gf.py` and `bin/python/tower_t_cores.py` pass.
 
 ### 1. In review (max 3)
 
-- [~] **A097862 castles, columns 1 and 2, Dyck paths by height, trinomial form and the link
-  back to A283595** (submitted 2026-11-11, #43–#44). One comment, `T(n,k)` = castle
-  polyominoes of width `n+1` and height `k+1` whose first and last columns have height 1 and
-  whose neighboring columns differ in height by at most 1, and the PE 502 link. One formula
-  block: the binomial sum over A080936 (Dyck paths by height), the trinomial form for
-  `2*k <= n <= 4*k+1`, and `T(n,2)` as the running sums of A094706. A027907, A080936, A094706
-  and A283595 inserted into the Cf. line (A283595's column g.f. is built from A097862's
-  `P(k)`) and `Column k=1 gives A000225(n-1).`: `raw/oeis-pe502/xrefs/A097862-A283595.md`
-  (`wiki/pages/1-smooth-castles.md`). Proposed (checked 2026-11-11).
+Nothing in review.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
@@ -442,8 +430,20 @@ with no match.
 
 ### Done (live on OEIS)
 
-Checked live 2026-10-31, A005891 and A003410 on 2026-11-06, and A226274 and A038505 on
-2026-11-11: every edit below is in place, and none of these entries has an open edit.
+Checked live 2026-10-31, A005891 and A003410 on 2026-11-06, A226274 and A038505 on
+2026-11-11, and A097862 on 2026-11-18: every edit below is in place, and none of these entries
+has an open edit.
+
+- [x] **A097862 castles, columns 1 and 2, Dyck paths by height, trinomial form and the link
+  back to A283595** (submitted 2026-11-11, #43–#46, approved: A097862 #47, Nov 17 2026, Sean
+  A. Irvine, with no editor changes). One comment, `T(n,k)` = castle polyominoes of width
+  `n+1` and height `k+1` whose first and last columns have height 1 and whose neighboring
+  columns differ in height by at most 1, and the PE 502 link. One formula block, signed Nov 11
+  2026: the binomial sum over A080936, the trinomial form for `k >= 1` and `n <= 4*k+1` (Chaz
+  Reid dropped the bound `2*k <= n` in #45), and `T(n,2)` as the running sums of A094706.
+  `Cf. A001006, A027907, A080936, A094706, A283595, A333498.` and
+  `Column k=1 gives A000225(n-1).`: `raw/oeis-pe502/xrefs/A097862-A283595.md`
+  (`wiki/pages/1-smooth-castles.md`).
 
 - [x] **A226274 → A226136** (submitted 2026-11-03, #21–#23, approved: A226274 #26, Nov 10
   2026, Sean A. Irvine), the link back for the approved A226136 edit (#29): the formula
