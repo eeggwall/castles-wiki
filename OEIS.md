@@ -40,10 +40,10 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-19).** The A094706 (#62–#69) and A271942 (#36–#37) edits are in review,
-and the free slot takes the top of stage 2, the A005408 3-cores comment. Checked 2026-11-18:
-every stage-2 target is at the revision its draft was checked against, and
-`bin/python/a283595_column_gf.py` and `bin/python/tower_t_cores.py` pass.
+**Next step (2026-11-19).** All 3 slots are in use: A094706 (#62–#69), A271942 (#36–#37) and
+A005408 (#520–#526) are in review. The next free slot takes the top of stage 2, the A001523
+comment. Checked 2026-11-18: every stage-2 target is at the revision its draft was checked
+against.
 
 ### 1. In review (max 3)
 
@@ -70,14 +70,17 @@ every stage-2 target is at the revision its draft was checked against, and
   `Cf. A001263, A082582, A145904, A271943, A273350.`:
   `raw/oeis-pe502/xrefs/A271942-A001263.md` (checked against the A271942 b-file by
   `bin/python/tower_t_cores.py` and the draft's script).
+- [~] **A005408 3-cores by corners** (submitted 2026-11-19, #520–#526). One comment, signed
+  Nov 19 2026, `a(n)` = 3-core partitions with `n` corners (Cho et al., Proposition 3.4, p. 14
+  "cc(3, m) = 2m + 1"); the Cho et al. link, after Hongwei Chen; and the t-core family Cf.
+  line, which A005891, A063490 and A160747 already carry with A005408 as `t = 3`. Michel
+  Marcus (Nov 19) pointed out the typo "hte" in the comment, which Chaz Reid fixed (#523),
+  along with a space at the start of the link text (#525); Michel Marcus (#522) changed the
+  Somos link to its web.archive.org copy and the two Stein links to https:
+  `raw/oeis-pe502/xrefs/A005408-tower.md` (checked by `bin/python/tower_t_cores.py`).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **A005408 3-cores by corners**: one comment, `a(n)` = 3-core partitions with `n`
-  corners (Cho et al., Proposition 3.4, p. 14 "cc(3, m) = 2m + 1"), the Cho et al. link
-  (after Hongwei Chen) and the t-core family Cf. line, which A160747 and A063490 already
-  carry with A005408 as `t = 3`. The width-2 castle reading is left out: it is the `w = 2`
-  case of `h^w − (h−1)^w`, which goes once on A047969: `raw/oeis-pe502/xrefs/A005408-tower.md`.
 - [ ] **A001523 castles with as many blocks as rows**: one comment, the castles with `n` cells
   whose number of blocks equals their height are the stacks, since every row holds at least
   one block and exactly one when the column heights are weakly unimodal; the PE 502 link
