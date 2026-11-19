@@ -40,9 +40,8 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-11-18).** The A094706 edit (#62–#69) is in review, and the 2 free slots take
-stage 2 in order: the reverse link A271942 back to A001263, then the A005408 3-cores comment.
-Checked 2026-11-18:
+**Next step (2026-11-19).** The A094706 (#62–#69) and A271942 (#36–#37) edits are in review,
+and the free slot takes the top of stage 2, the A005408 3-cores comment. Checked 2026-11-18:
 every stage-2 target is at the revision its draft was checked against, and
 `bin/python/a283595_column_gf.py` and `bin/python/tower_t_cores.py` pass.
 
@@ -59,14 +58,21 @@ every stage-2 target is at the revision its draft was checked against, and
   `Cf. A000079, A000129 (Pell numbers), A101164, A255494, A283595.`:
   `raw/oeis-pe502/xrefs/A094706-A283595.md` (A283595's `Column k=2 gives A094706(n-1).`;
   checked by `bin/python/a283595_column_gf.py`).
+- [~] **A271942 → A001263, with the A145904 and A273350 connections** (submitted 2026-11-19,
+  #36–#37), the reverse link for the approved A001263 edit (#792). One comment, signed Nov 19
+  2026, after "Connection with A145904 should be explored.": column `k` is row `k-1` of
+  A145904, the Hilbert transform of A001263, by A001263's formula
+  `T(m+k,k) = Sum_{j=1..k} A001263(k,j)*binomial(m+k-j-1,k-1)`, so the rows read backwards are
+  the antidiagonals of A145904; and since a bargraph's semiperimeter is its width plus its up
+  steps, `T(n,k) = A273350(n,n-k)`, so A145904 and A273350 are the same array, as conjectured
+  on both. The formula `T(n,k) = A273350(n,n-k).`; `Columns k=2..5 give A005408(n-3),
+  A005891(n-4), A063490(n-4), A160747(n-6).`; and
+  `Cf. A001263, A082582, A145904, A271943, A273350.`:
+  `raw/oeis-pe502/xrefs/A271942-A001263.md` (checked against the A271942 b-file by
+  `bin/python/tower_t_cores.py` and the draft's script).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **A271942 → A001263**, the reverse link for the approved A001263 edit (#792), adding
-  only `Columns k=2..5 give A005408(n-3), A005891(n-4), A063490(n-4), A160747(n-6).` and
-  A001263 inserted into the Cf. line (A001263's formula `= A271942(n+m, n)`; the width-2..5
-  castle counts; checked against the A271942 b-file by `bin/python/tower_t_cores.py`):
-  `raw/oeis-pe502/xrefs/A271942-A001263.md`.
 - [ ] **A005408 3-cores by corners**: one comment, `a(n)` = 3-core partitions with `n`
   corners (Cho et al., Proposition 3.4, p. 14 "cc(3, m) = 2m + 1"), the Cho et al. link
   (after Hongwei Chen) and the t-core family Cf. line, which A160747 and A063490 already
